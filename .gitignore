@@ -73,3 +73,5 @@ crashlytics-build.properties
 
 .idea
 .vscode
+
+/[Aa]ssets/RiderFlow.*

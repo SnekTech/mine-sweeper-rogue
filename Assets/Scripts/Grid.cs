@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Grid : MonoBehaviour
 {
@@ -37,5 +38,11 @@ public class Grid : MonoBehaviour
                 cells.Add(cell);
             }
         }
+    }
+    
+    private void OnUncover()
+    {
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Debug.Log($"{mousePos.x} {mousePos.y}");
     }
 }
