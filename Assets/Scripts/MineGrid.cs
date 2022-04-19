@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace SnekTech
 {
-    public class Grid : MonoBehaviour
+    public class MineGrid : MonoBehaviour
     {
         [SerializeField]
         private Cell cellPrefab;

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 58783576}
   - component: {fileID: 58783578}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Mine Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
