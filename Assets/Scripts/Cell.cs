@@ -1,18 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class Cell : MonoBehaviour
+namespace SnekTech
 {
-    [SerializeField]
-    private CellSprites cellSprites;
-
-    private SpriteRenderer spriteRenderer;
-
-    private void Start()
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class Cell : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        [SerializeField]
+        private CellSprites cellSprites;
+
+        private SpriteRenderer _spriteRenderer;
+
+        private void Start()
+        {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 }

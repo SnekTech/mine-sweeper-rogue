@@ -1,15 +1,18 @@
-﻿public enum CellStatus
+﻿namespace SnekTech
 {
-    Covered,
-    Zero,
-    One,
-    Two,
-    Three,
-    Four,
-    Five,
-    Six,
-    Seven,
-    Eight,
-    Bomb,
-    BombMistake,
+    public enum CellStatus
+    {
+        Covered,
+        Zero,
+        One,
+        Two,
+        Three,
+        Four,
+        Five,
+        Six,
+        Seven,
+        Eight,
+        Bomb,
+        BombMistake,
+    }
 }
