@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 58783576}
   - component: {fileID: 58783578}
   m_Layer: 0
-  m_Name: Mine Area
+  m_Name: Mine Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: ecb7c7ebb60b1974b9ea19e8592b27bb, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
