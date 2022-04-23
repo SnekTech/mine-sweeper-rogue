@@ -25,5 +25,15 @@ namespace SnekTech
         {
             _animator.SetTrigger(DisappearTrigger);
         }
+
+        public bool IsActive()
+        {
+            return gameObject.activeInHierarchy;
+        }
+
+        public void SetActive(bool active)
+        {
+            gameObject.SetActive(active);
+        }
     }
 }

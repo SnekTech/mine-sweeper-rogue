@@ -36,13 +36,15 @@ namespace SnekTech
         private void Start()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _flag = GetComponentInChildren<Flag>();
+            _flag.Disappeared += OnFlagDisappeared;
 
             Reset();
         }
 
         public void Reset()
         {
-            
+            _flag.SetActive(false);
             SwitchState(CoveredState);
         }
 
@@ -54,33 +56,20 @@ namespace SnekTech
 
         public void RaiseFlag()
         {
-            if (_flag == null)
+            if (!_flag.IsActive())
             {
-                _flag = Instantiate(flagPrefab, transform);
-                _flag.Disappeared += OnFlagDisappeared;
-            }
-            else
-            {
-                if (!_flag.gameObject.activeInHierarchy)
-                {
-                    _flag.gameObject.SetActive(true);
-                }
+                _flag.SetActive(true);
             }
         }
 
         private void OnFlagDisappeared()
         {
-            _flag.gameObject.SetActive(false);
+            _flag.SetActive(false);
         }
 
         public void PutDownFlag()
         {
-            if (_flag == null)
-            {
-                return;
-            }
-
-            if (_flag.gameObject.activeInHierarchy)
+            if (_flag.IsActive())
             {
                 _flag.PutDown();
             }
