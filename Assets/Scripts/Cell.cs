@@ -57,7 +57,7 @@ namespace SnekTech
             if (_flag == null)
             {
                 _flag = Instantiate(flagPrefab, transform);
-                _flag.DisappearCompleted += OnFlagDisappearCompleted;
+                _flag.Disappeared += OnFlagDisappeared;
             }
             else
             {
@@ -68,7 +68,7 @@ namespace SnekTech
             }
         }
 
-        private void OnFlagDisappearCompleted()
+        private void OnFlagDisappeared()
         {
             _flag.gameObject.SetActive(false);
         }

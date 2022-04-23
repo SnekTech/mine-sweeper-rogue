@@ -5,7 +5,7 @@ namespace SnekTech
 {
     public class Flag : MonoBehaviour
     {
-        public event Action DisappearCompleted;
+        public event Action Disappeared;
         
         private Animator _animator;
         private static readonly int DisappearTrigger = Animator.StringToHash("Disappear");
@@ -18,7 +18,7 @@ namespace SnekTech
 
         public void OnDisappearComplete()
         {
-            DisappearCompleted?.Invoke();
+            Disappeared?.Invoke();
         }
 
         public void PutDown()
