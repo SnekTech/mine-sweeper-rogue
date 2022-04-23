@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,28 +37,31 @@ namespace SnekTech
             
             InitCells();
         }
-        
+
         private void OnDisable()
         {
             DisablePlayerInput();
         }
         
-        private void OnCellLeftClick(InputAction.CallbackContext obj)
+        private void OnGridLeftClick(InputAction.CallbackContext obj)
         {
-            Cell cell = GetClickedCell();
-            
+         
         }
 
-        private void OnCellRightClick(InputAction.CallbackContext context)
+        private void OnGridRightClick(InputAction.CallbackContext context)
         {
             Cell cell = GetClickedCell();
+            if (cell != null)
+            {
+                cell.OnRightClick();
+            }
         }
 
         private Cell GetClickedCell()
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, float.MaxValue, _cellLayer);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, ~_cellLayer);
             
             return hit.collider != null ? hit.collider.GetComponent<Cell>() : null;
         }
@@ -70,21 +72,36 @@ namespace SnekTech
             _leftClickAction = _playerInput.actions["LeftClick"];
             _rightClickAction = _playerInput.actions["RightClick"];
             _moveAction = _playerInput.actions["Move"];
-            _leftClickAction.performed += OnCellLeftClick;
-            _rightClickAction.performed += OnCellRightClick;
+            _leftClickAction.performed += OnGridLeftClick;
+            _rightClickAction.performed += OnGridRightClick;
         }
-        
+
         private void DisablePlayerInput()
         {
-            _leftClickAction.performed -= OnCellLeftClick;
-            _rightClickAction.performed -= OnCellRightClick;
+            _leftClickAction.performed -= OnGridLeftClick;
+            _rightClickAction.performed -= OnGridRightClick;
         }
 
         [ContextMenu(nameof(InitCells))]
         private void InitCells()
         {
-            _cells.Clear();
-        
+            if (!HasCells())
+            {
+                InstantiateCells();
+            }
+            else
+            {
+                ResetCells();
+            }
+        }
+
+        private bool HasCells()
+        {
+            return GetComponentInChildren<Cell>() != null;
+        }
+
+        private void InstantiateCells()
+        {
             for (int y = 0; y < size.y; y++)
             {
                 for (int x = 0; x < size.x; x++)
@@ -93,6 +110,14 @@ namespace SnekTech
                     cell.transform.localPosition = new Vector3(x, y, 0);
                     _cells.Add(cell);
                 }
+            }
+        }
+
+        private void ResetCells()
+        {
+            foreach (Cell cell in _cells)
+            {
+                cell.Reset();
             }
         }
     

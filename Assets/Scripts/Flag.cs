@@ -1,26 +1,29 @@
+using System;
 using UnityEngine;
 
 namespace SnekTech
 {
     public class Flag : MonoBehaviour
     {
+        public event Action DisappearCompleted;
+        
         private Animator _animator;
-        private static readonly int Growing = Animator.StringToHash("growing");
+        private static readonly int DisappearTrigger = Animator.StringToHash("Disappear");
 
+        
         private void Awake()
         {
             _animator = GetComponent<Animator>();
         }
 
-        private void OnEnable()
+        public void OnDisappearComplete()
         {
-            // animator.SetBool(Growing, true);
+            DisappearCompleted?.Invoke();
         }
 
-        // Update is called once per frame
-        void Update()
+        public void PutDown()
         {
-        
+            _animator.SetTrigger(DisappearTrigger);
         }
     }
 }
