@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,19 +14,73 @@ namespace SnekTech
         private Vector2Int size = new Vector2Int(10, 10);
 
         private List<Cell> _cells = new List<Cell>();
+        
+        private PlayerInput _playerInput;
+        private InputAction _leftClickAction;
+        private InputAction _rightClickAction;
+        private InputAction _moveAction;
+        private Camera _mainCamera;
 
-        // Start is called before the first frame update
-        void Start()
+        private int _cellLayer;
+        
+        
+        private void Awake()
         {
+            _mainCamera = Camera.main;
+            _cellLayer = LayerMask.NameToLayer("Cell");
+            
+            InitPlayerInput();
+        }
+        
+        // Start is called before the first frame update
+        private void Start()
+        {
+            
             InitCells();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
         
+        private void OnDisable()
+        {
+            DisablePlayerInput();
+        }
+        
+        private void OnCellLeftClick(InputAction.CallbackContext obj)
+        {
+            Cell cell = GetClickedCell();
+            
         }
 
+        private void OnCellRightClick(InputAction.CallbackContext context)
+        {
+            Cell cell = GetClickedCell();
+        }
+
+        private Cell GetClickedCell()
+        {
+            var mousePosition = _moveAction.ReadValue<Vector2>();
+            Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, float.MaxValue, _cellLayer);
+            
+            return hit.collider != null ? hit.collider.GetComponent<Cell>() : null;
+        }
+
+        private void InitPlayerInput()
+        {
+            _playerInput = GetComponent<PlayerInput>();
+            _leftClickAction = _playerInput.actions["LeftClick"];
+            _rightClickAction = _playerInput.actions["RightClick"];
+            _moveAction = _playerInput.actions["Move"];
+            _leftClickAction.performed += OnCellLeftClick;
+            _rightClickAction.performed += OnCellRightClick;
+        }
+        
+        private void DisablePlayerInput()
+        {
+            _leftClickAction.performed -= OnCellLeftClick;
+            _rightClickAction.performed -= OnCellRightClick;
+        }
+
+        [ContextMenu(nameof(InitCells))]
         private void InitCells()
         {
             _cells.Clear();
@@ -41,10 +96,5 @@ namespace SnekTech
             }
         }
     
-        private void OnUncover()
-        {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Debug.Log($"{mousePos.x} {mousePos.y}");
-        }
     }
 }
