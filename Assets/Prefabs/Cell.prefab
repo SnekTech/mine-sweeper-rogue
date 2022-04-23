@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
+  flagPrefab: {fileID: 869197326658611454, guid: 5610ebdf5e4b2a9469e8a0bad7e94dba, type: 3}
 --- !u!61 &460246214638790137
 BoxCollider2D:
   m_ObjectHideFlags: 0
