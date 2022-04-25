@@ -28,7 +28,7 @@ namespace SnekTech
             _mainCamera = Camera.main;
             _cellLayer = LayerMask.NameToLayer("Cell");
             
-            InitPlayerInput();
+            CachePlayerInputRelatedFields();
         }
         
         // Start is called before the first frame update
@@ -36,6 +36,11 @@ namespace SnekTech
         {
             
             InitCells();
+        }
+
+        private void OnEnable()
+        {
+            EnablePlayerInput();
         }
 
         private void OnDisable()
@@ -66,14 +71,18 @@ namespace SnekTech
             return hit.collider != null ? hit.collider.GetComponent<Cell>() : null;
         }
 
-        private void InitPlayerInput()
+        private void CachePlayerInputRelatedFields()
         {
             _playerInput = GetComponent<PlayerInput>();
             _leftClickAction = _playerInput.actions["LeftClick"];
             _rightClickAction = _playerInput.actions["RightClick"];
             _moveAction = _playerInput.actions["Move"];
+        }
+
+        private void EnablePlayerInput()
+        {
             _leftClickAction.performed += OnGridLeftClick;
-            _rightClickAction.performed += OnGridRightClick;
+            _rightClickAction.performed += OnGridRightClick; 
         }
 
         private void DisablePlayerInput()
