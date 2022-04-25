@@ -2,7 +2,7 @@
 {
     public abstract class CellState
     {
-        protected Cell Cell;
+        protected readonly Cell Cell;
 
         protected CellState(Cell cell)
         {

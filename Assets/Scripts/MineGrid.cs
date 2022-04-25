@@ -12,7 +12,7 @@ namespace SnekTech
         [SerializeField]
         private Vector2Int size = new Vector2Int(10, 10);
 
-        private List<Cell> _cells = new List<Cell>();
+        private readonly List<Cell> _cells = new List<Cell>();
         
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
