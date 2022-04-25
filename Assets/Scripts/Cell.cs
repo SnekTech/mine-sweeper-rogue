@@ -8,6 +8,8 @@ namespace SnekTech
     {
         [SerializeField]
         private CellSprites cellSprites;
+        [SerializeField]
+        private Flag flag;
 
         [NonSerialized]
         public CellState CoveredState;
@@ -16,11 +18,12 @@ namespace SnekTech
         
         private CellState _currentState;
 
-        private Flag _flag;
 
         private void Awake()
         {
             CacheCellStates();
+            Debug.Assert(flag != null, "a Cell should have a reference to the child Flag");
+            Debug.Assert(!flag.IsActive(), "the Flag under a Cell should be initialized as inactive");
         }
 
         private void CacheCellStates()
@@ -31,15 +34,22 @@ namespace SnekTech
 
         private void Start()
         {
-            _flag = GetComponentInChildren<Flag>();
-            _flag.Disappeared += OnFlagDisappeared;
-
             Reset();
+        }
+
+        private void OnEnable()
+        {
+            flag.Disappeared += OnFlagDisappeared;
+        }
+
+        private void OnDisable()
+        {
+            flag.Disappeared -= OnFlagDisappeared;
         }
 
         public void Reset()
         {
-            _flag.SetActive(false);
+            flag.SetActive(false);
             SwitchState(CoveredState);
         }
 
@@ -51,22 +61,22 @@ namespace SnekTech
 
         public void RaiseFlag()
         {
-            if (!_flag.IsActive())
+            if (!flag.IsActive())
             {
-                _flag.SetActive(true);
+                flag.SetActive(true);
             }
         }
 
         private void OnFlagDisappeared()
         {
-            _flag.SetActive(false);
+            flag.SetActive(false);
         }
 
         public void PutDownFlag()
         {
-            if (_flag.IsActive())
+            if (flag.IsActive())
             {
-                _flag.PutDown();
+                flag.PutDown();
             }
         }
 
