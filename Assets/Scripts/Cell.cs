@@ -9,9 +9,6 @@ namespace SnekTech
         [SerializeField]
         private CellSprites cellSprites;
 
-        [SerializeField]
-        private Flag flagPrefab;
-
         [NonSerialized]
         public CellState CoveredState;
         [NonSerialized]
@@ -19,7 +16,6 @@ namespace SnekTech
         
         private CellState _currentState;
 
-        private SpriteRenderer _spriteRenderer;
         private Flag _flag;
 
         private void Awake()
@@ -35,7 +31,6 @@ namespace SnekTech
 
         private void Start()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
             _flag = GetComponentInChildren<Flag>();
             _flag.Disappeared += OnFlagDisappeared;
 
