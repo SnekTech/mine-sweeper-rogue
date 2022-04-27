@@ -14,9 +14,9 @@ namespace Tests.PlayMode
         public IEnumerator flag_should_not_be_null_after_cell_init()
         {
             Cell cell = Object.Instantiate(CellPrefab);
-            Flag flag = cell.Flag;
+            FlagBehaviour flagBehaviour = cell.FlagBehaviour;
             
-            Assert.NotNull(flag);
+            Assert.NotNull(flagBehaviour);
             yield break;
         }
         
@@ -24,9 +24,9 @@ namespace Tests.PlayMode
         public IEnumerator flag_should_be_inactive_after_cell_init()
         {
             Cell cell = Object.Instantiate(CellPrefab);
-            Flag flag = cell.Flag;
+            FlagBehaviour flagBehaviour = cell.FlagBehaviour;
             
-            Assert.IsFalse(flag.IsActive());
+            Assert.IsFalse(flagBehaviour.IsActive());
             yield break;
         }
     }

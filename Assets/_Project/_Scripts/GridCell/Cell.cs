@@ -9,7 +9,7 @@ namespace SnekTech.GridCell
         [SerializeField]
         private CellSprites cellSprites;
         [SerializeField]
-        private Flag flag;
+        private FlagBehaviour flagBehaviour;
         [SerializeField]
         private Cover cover;
 
@@ -22,7 +22,7 @@ namespace SnekTech.GridCell
         
         private CellState _currentState;
 
-        public Flag Flag => flag;
+        public FlagBehaviour FlagBehaviour => flagBehaviour;
 
         private void Awake()
         {
@@ -43,17 +43,17 @@ namespace SnekTech.GridCell
 
         private void OnEnable()
         {
-            Flag.Disappeared += OnFlagDisappeared;
+            FlagBehaviour.Disappeared += OnFlagDisappeared;
         }
 
         private void OnDisable()
         {
-            Flag.Disappeared -= OnFlagDisappeared;
+            FlagBehaviour.Disappeared -= OnFlagDisappeared;
         }
 
         public void Reset()
         {
-            Flag.SetActive(false);
+            FlagBehaviour.SetActive(false);
             SwitchState(CoveredState);
         }
 
@@ -65,22 +65,22 @@ namespace SnekTech.GridCell
 
         public void RaiseFlag()
         {
-            if (!Flag.IsActive())
+            if (!FlagBehaviour.IsActive())
             {
-                Flag.SetActive(true);
+                FlagBehaviour.SetActive(true);
             }
         }
 
         private void OnFlagDisappeared()
         {
-            Flag.SetActive(false);
+            FlagBehaviour.SetActive(false);
         }
 
         public void PutDownFlag()
         {
-            if (Flag.IsActive())
+            if (FlagBehaviour.IsActive())
             {
-                Flag.PutDown();
+                FlagBehaviour.PutDown();
             }
         }
 

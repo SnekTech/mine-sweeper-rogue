@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
-  flag: {fileID: 7234956224106778064}
+  flagBehaviour: {fileID: 7234956224106778064}
   cover: {fileID: 4244925141977254977}
 --- !u!61 &460246214638790137
 BoxCollider2D:

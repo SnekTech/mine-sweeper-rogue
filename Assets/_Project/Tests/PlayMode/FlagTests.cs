@@ -10,20 +10,20 @@ namespace Tests.PlayMode
     public class FlagTests
     {
 
-        private static readonly Flag FlagPrefab = Utils.GetPrefabAsset<Flag>("Flag.prefab");
+        private static readonly FlagBehaviour FlagBehaviourPrefab = Utils.GetPrefabAsset<FlagBehaviour>("Flag.prefab");
         
         [UnityTest]
         public IEnumerator call_OnDisappearComplete_after_being_put_down()
         {
-            Flag flag = Object.Instantiate(FlagPrefab);
+            FlagBehaviour flagBehaviour = Object.Instantiate(FlagBehaviourPrefab);
             const float secondsToWait = 1;
 
             bool hasCalledHandler = false;
-            flag.Disappeared += () =>
+            flagBehaviour.Disappeared += () =>
             {
                 hasCalledHandler = true;
             };
-            flag.PutDown();
+            flagBehaviour.PutDown();
             yield return new WaitForSeconds(secondsToWait);
             
             Assert.IsTrue(hasCalledHandler);
