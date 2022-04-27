@@ -11,14 +11,14 @@ namespace SnekTech
         [SerializeField]
         private Flag flag;
         [SerializeField]
-        private GameObject cover;
+        private Cover cover;
 
         [NonSerialized]
         public CellState CoveredState;
         [NonSerialized]
         public CellState FlaggedState;
         [NonSerialized]
-        public CellState UncoveredState;
+        public CellState RevealedState;
         
         private CellState _currentState;
 
@@ -34,7 +34,7 @@ namespace SnekTech
         {
             CoveredState ??= new CellCoveredState(this);
             FlaggedState ??= new CellFlaggedState(this);
-            UncoveredState ??= new CellRevealedState(this);
+            RevealedState ??= new CellRevealedState(this);
         }
 
         private void Start()
@@ -97,10 +97,7 @@ namespace SnekTech
 
         public void Reveal()
         {
-            if (cover.activeInHierarchy)
-            {
-                cover.SetActive(false);
-            }
+            cover.Reveal();
         }
     }
 }
