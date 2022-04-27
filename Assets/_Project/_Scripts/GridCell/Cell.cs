@@ -22,12 +22,11 @@ namespace SnekTech.GridCell
         
         private CellState _currentState;
 
+        public Flag Flag => flag;
 
         private void Awake()
         {
             CacheCellStates();
-            Debug.Assert(flag != null, "a Cell should have a reference to the child Flag");
-            Debug.Assert(!flag.IsActive(), "the Flag under a Cell should be initialized as inactive");
         }
 
         private void CacheCellStates()
@@ -44,17 +43,17 @@ namespace SnekTech.GridCell
 
         private void OnEnable()
         {
-            flag.Disappeared += OnFlagDisappeared;
+            Flag.Disappeared += OnFlagDisappeared;
         }
 
         private void OnDisable()
         {
-            flag.Disappeared -= OnFlagDisappeared;
+            Flag.Disappeared -= OnFlagDisappeared;
         }
 
         public void Reset()
         {
-            flag.SetActive(false);
+            Flag.SetActive(false);
             SwitchState(CoveredState);
         }
 
@@ -66,22 +65,22 @@ namespace SnekTech.GridCell
 
         public void RaiseFlag()
         {
-            if (!flag.IsActive())
+            if (!Flag.IsActive())
             {
-                flag.SetActive(true);
+                Flag.SetActive(true);
             }
         }
 
         private void OnFlagDisappeared()
         {
-            flag.SetActive(false);
+            Flag.SetActive(false);
         }
 
         public void PutDownFlag()
         {
-            if (flag.IsActive())
+            if (Flag.IsActive())
             {
-                flag.PutDown();
+                Flag.PutDown();
             }
         }
 

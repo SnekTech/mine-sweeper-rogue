@@ -9,8 +9,8 @@ namespace Tests.PlayMode
 {
     public class FlagTests
     {
-        
-        private static readonly Flag FlagPrefab = AssetDatabase.LoadAssetAtPath<Flag>($"{Constants.PrefabsPath}/Flag.prefab");
+
+        private static readonly Flag FlagPrefab = Utils.GetPrefabAsset<Flag>("Flag.prefab");
         
         [UnityTest]
         public IEnumerator call_OnDisappearComplete_after_being_put_down()
