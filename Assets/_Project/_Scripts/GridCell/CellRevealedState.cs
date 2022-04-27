@@ -8,7 +8,7 @@
 
         public override void OnEnterState()
         {
-            Cell.Reveal();
+            Cell.RevealCover();
         }
 
         public override void OnLeftClick()

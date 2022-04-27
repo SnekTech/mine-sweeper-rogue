@@ -95,7 +95,7 @@ namespace SnekTech.GridCell
             _currentState.OnRightLick();
         }
 
-        public void Reveal()
+        public void RevealCover()
         {
             cover.Reveal();
         }
