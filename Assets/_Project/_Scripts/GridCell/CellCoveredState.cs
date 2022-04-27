@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SnekTech
+namespace SnekTech.GridCell
 {
     public class CellCoveredState : CellState
     {

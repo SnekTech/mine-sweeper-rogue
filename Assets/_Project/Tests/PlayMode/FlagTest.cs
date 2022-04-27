@@ -2,6 +2,7 @@ using System.Collections;
 using NSubstitute;
 using NUnit.Framework;
 using SnekTech;
+using SnekTech.GridCell;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;

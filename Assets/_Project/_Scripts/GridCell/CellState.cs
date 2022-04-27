@@ -1,4 +1,4 @@
-﻿namespace SnekTech
+﻿namespace SnekTech.GridCell
 {
     public abstract class CellState
     {

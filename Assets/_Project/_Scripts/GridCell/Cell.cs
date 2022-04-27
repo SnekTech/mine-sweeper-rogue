@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace SnekTech
+namespace SnekTech.GridCell
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class Cell : MonoBehaviour

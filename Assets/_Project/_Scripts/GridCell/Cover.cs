@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace SnekTech
+namespace SnekTech.GridCell
 {
     [RequireComponent(typeof(Animator))]
     public class Cover : MonoBehaviour

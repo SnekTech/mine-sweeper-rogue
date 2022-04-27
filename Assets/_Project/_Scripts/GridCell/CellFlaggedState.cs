@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace SnekTech
+﻿namespace SnekTech.GridCell
 {
     public class CellFlaggedState : CellState
     {
