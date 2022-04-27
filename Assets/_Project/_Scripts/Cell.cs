@@ -12,9 +12,9 @@ namespace SnekTech
         private Flag flag;
 
         [NonSerialized]
-        public CellState CoveredState;
+        public static CellState CoveredState;
         [NonSerialized]
-        public CellState FlaggedState;
+        public static CellState FlaggedState;
         
         private CellState _currentState;
 
@@ -28,8 +28,8 @@ namespace SnekTech
 
         private void CacheCellStates()
         {
-            CoveredState = new CellCoveredState(this);
-            FlaggedState = new CellFlaggedState(this);
+            CoveredState ??= new CellCoveredState(this);
+            FlaggedState ??= new CellFlaggedState(this);
         }
 
         private void Start()
