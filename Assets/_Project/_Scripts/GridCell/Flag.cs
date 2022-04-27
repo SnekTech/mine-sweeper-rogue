@@ -1,39 +1,21 @@
-using System;
-using UnityEngine;
+﻿using System;
 
 namespace SnekTech.GridCell
 {
-    public class Flag : MonoBehaviour
+    public class Flag
     {
         public event Action Disappeared;
         
-        private Animator _animator;
-        private static readonly int DisappearTrigger = Animator.StringToHash("Disappear");
+        private FlagBehaviour _flagBehaviour;
 
-        
-        private void Awake()
+        public Flag(FlagBehaviour flagBehaviour)
         {
-            _animator = GetComponent<Animator>();
+            _flagBehaviour = flagBehaviour;
         }
 
-        public void OnDisappearComplete()
+        public void OnDisappeared()
         {
             Disappeared?.Invoke();
-        }
-
-        public void PutDown()
-        {
-            _animator.SetTrigger(DisappearTrigger);
-        }
-
-        public bool IsActive()
-        {
-            return gameObject.activeInHierarchy;
-        }
-
-        public void SetActive(bool active)
-        {
-            gameObject.SetActive(active);
         }
     }
 }

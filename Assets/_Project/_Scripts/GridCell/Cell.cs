@@ -22,7 +22,7 @@ namespace SnekTech.GridCell
         
         private CellState _currentState;
 
-        public FlagBehaviour FlagBehaviour => flagBehaviour;
+        public IFlag Flag => flagBehaviour;
 
         private void Awake()
         {
@@ -43,17 +43,17 @@ namespace SnekTech.GridCell
 
         private void OnEnable()
         {
-            FlagBehaviour.Disappeared += OnFlagDisappeared;
+            Flag.PutDownCompleted += OnFlagPutDown;
         }
 
         private void OnDisable()
         {
-            FlagBehaviour.Disappeared -= OnFlagDisappeared;
+            Flag.PutDownCompleted -= OnFlagPutDown;
         }
 
         public void Reset()
         {
-            FlagBehaviour.SetActive(false);
+            Flag.Hide();
             SwitchState(CoveredState);
         }
 
@@ -65,22 +65,24 @@ namespace SnekTech.GridCell
 
         public void RaiseFlag()
         {
-            if (!FlagBehaviour.IsActive())
+            if (Flag.IsActive)
             {
-                FlagBehaviour.SetActive(true);
+                throw new ApplicationException("Raising an active flag is invalid.");
             }
+            Flag.Show();
+            Flag.Lift();
         }
 
-        private void OnFlagDisappeared()
+        private void OnFlagPutDown()
         {
-            FlagBehaviour.SetActive(false);
+            Flag.Hide();
         }
 
         public void PutDownFlag()
         {
-            if (FlagBehaviour.IsActive())
+            if (Flag.IsActive)
             {
-                FlagBehaviour.PutDown();
+                Flag.PutDown();
             }
         }
 

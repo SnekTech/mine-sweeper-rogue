@@ -3,22 +3,39 @@ using UnityEngine;
 
 namespace SnekTech.GridCell
 {
-    public class FlagBehaviour : MonoBehaviour
+    public class FlagBehaviour : MonoBehaviour, IFlag
     {
-        public event Action Disappeared;
+        public event Action LiftCompleted, PutDownCompleted;
         
-        private Animator _animator;
-        private static readonly int DisappearTrigger = Animator.StringToHash("Disappear");
+        private static readonly int LiftTrigger = Animator.StringToHash("Lift");
+        private static readonly int DisappearTrigger = Animator.StringToHash("PutDown");
 
-        
+        private Flag _flag;
+        private Animator _animator;
+
+        public bool IsActive => gameObject.activeInHierarchy;
+
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _flag = new Flag(this);
         }
 
-        public void OnDisappearComplete()
+        public void OnLiftAnimationComplete()
         {
-            Disappeared?.Invoke();
+            LiftCompleted?.Invoke();
+        }
+
+        public void OnPutDownAnimationComplete()
+        {
+            PutDownCompleted?.Invoke();
+        }
+
+
+        public void Lift()
+        {
+            gameObject.SetActive(true);
+            _animator.SetTrigger(LiftTrigger);
         }
 
         public void PutDown()
@@ -26,14 +43,14 @@ namespace SnekTech.GridCell
             _animator.SetTrigger(DisappearTrigger);
         }
 
-        public bool IsActive()
+        public void Show()
         {
-            return gameObject.activeInHierarchy;
+            gameObject.SetActive(true);
         }
 
-        public void SetActive(bool active)
+        public void Hide()
         {
-            gameObject.SetActive(active);
+            gameObject.SetActive(false);
         }
     }
 }

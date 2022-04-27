@@ -1,4 +1,5 @@
 using System.Collections;
+using NSubstitute;
 using NUnit.Framework;
 using SnekTech.GridCell;
 using UnityEditor;
@@ -13,20 +14,37 @@ namespace Tests.PlayMode
         private static readonly FlagBehaviour FlagBehaviourPrefab = Utils.GetPrefabAsset<FlagBehaviour>("Flag.prefab");
         
         [UnityTest]
-        public IEnumerator call_OnDisappearComplete_after_being_put_down()
+        public IEnumerator emit_PutDown_event_within_1_second_after_calling_PutDown()
         {
-            FlagBehaviour flagBehaviour = Object.Instantiate(FlagBehaviourPrefab);
+            IFlag flag = Object.Instantiate(FlagBehaviourPrefab);
             const float secondsToWait = 1;
 
             bool hasCalledHandler = false;
-            flagBehaviour.Disappeared += () =>
+            flag.PutDownCompleted += () =>
             {
                 hasCalledHandler = true;
             };
-            flagBehaviour.PutDown();
+            flag.PutDown();
             yield return new WaitForSeconds(secondsToWait);
             
             Assert.IsTrue(hasCalledHandler);
+        }
+
+        [UnityTest]
+        public IEnumerator emit_Lift_event_within_1_second_after_calling_Lift()
+        {
+            IFlag flag = Object.Instantiate(FlagBehaviourPrefab);
+            const float secondsToWait = 1;
+
+            bool eventInvoked = false;
+            flag.LiftCompleted += () =>
+            {
+                eventInvoked = true;
+            };
+            flag.Lift();
+            yield return new WaitForSeconds(secondsToWait);
+            
+            Assert.IsTrue(eventInvoked);
         }
     }
 }
