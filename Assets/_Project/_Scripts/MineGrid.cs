@@ -50,7 +50,11 @@ namespace SnekTech
         
         private void OnGridLeftClick(InputAction.CallbackContext obj)
         {
-         
+            Cell cell = GetClickedCell();
+            if (cell != null)
+            {
+                cell.OnLeftClick();
+            }
         }
 
         private void OnGridRightClick(InputAction.CallbackContext context)

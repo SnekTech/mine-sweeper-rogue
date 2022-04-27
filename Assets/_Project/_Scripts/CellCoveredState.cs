@@ -15,7 +15,7 @@ namespace SnekTech
 
         public override void OnLeftClick()
         {
-            Debug.Log("left clicking a covered cell, what to do?");
+            Cell.SwitchState(Cell.UncoveredState);
         }
 
         public override void OnRightLick()

@@ -10,11 +10,15 @@ namespace SnekTech
         private CellSprites cellSprites;
         [SerializeField]
         private Flag flag;
+        [SerializeField]
+        private GameObject cover;
 
         [NonSerialized]
-        public static CellState CoveredState;
+        public CellState CoveredState;
         [NonSerialized]
-        public static CellState FlaggedState;
+        public CellState FlaggedState;
+        [NonSerialized]
+        public CellState UncoveredState;
         
         private CellState _currentState;
 
@@ -30,6 +34,7 @@ namespace SnekTech
         {
             CoveredState ??= new CellCoveredState(this);
             FlaggedState ??= new CellFlaggedState(this);
+            UncoveredState ??= new CellRevealedState(this);
         }
 
         private void Start()
@@ -88,6 +93,14 @@ namespace SnekTech
         public void OnRightClick()
         {
             _currentState.OnRightLick();
+        }
+
+        public void Reveal()
+        {
+            if (cover.activeInHierarchy)
+            {
+                cover.SetActive(false);
+            }
         }
     }
 }
