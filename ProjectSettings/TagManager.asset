@@ -7,6 +7,7 @@ TagManager:
   - Cell
   - Flag
   - MineGrid
+  - Cover
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - Water
   - UI
   - Cell
+  - Cover
   - Flag
-  - 
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: Cell
     uniqueID: 1914167931
+    locked: 0
+  - name: Cover
+    uniqueID: 2176419847
     locked: 0
   - name: Flag
     uniqueID: 3708922689
