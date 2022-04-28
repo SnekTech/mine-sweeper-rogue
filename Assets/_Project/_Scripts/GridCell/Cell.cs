@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SnekTech.GridCell
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Cell : MonoBehaviour
+    public class Cell : MonoBehaviour, ICell
     {
         [SerializeField]
         private CellSprites cellSprites;
@@ -13,12 +13,9 @@ namespace SnekTech.GridCell
         [SerializeField]
         private Cover cover;
 
-        [NonSerialized]
-        public CellState CoveredState;
-        [NonSerialized]
-        public CellState FlaggedState;
-        [NonSerialized]
-        public CellState RevealedState;
+        public CellState CoveredState { get; private set; }
+        public CellState FlaggedState { get; private set; }
+        public CellState RevealedState { get; private set; }
         
         private CellState _currentState;
 
@@ -63,7 +60,7 @@ namespace SnekTech.GridCell
             _currentState.OnEnterState();
         }
 
-        public void RaiseFlag()
+        public void LiftFlag()
         {
             if (Flag.IsActive)
             {

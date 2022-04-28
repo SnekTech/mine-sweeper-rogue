@@ -34,7 +34,7 @@ namespace SnekTech.GridCell
 
         public void Lift()
         {
-            gameObject.SetActive(true);
+            Show();
             _animator.SetTrigger(LiftTrigger);
         }
 

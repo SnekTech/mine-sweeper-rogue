@@ -8,7 +8,7 @@
 
         public override void OnEnterState()
         {
-            Cell.RaiseFlag();
+            Cell.LiftFlag();
         }
 
         public override void OnLeftClick()
