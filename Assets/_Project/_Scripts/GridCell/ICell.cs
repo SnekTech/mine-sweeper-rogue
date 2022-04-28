@@ -9,6 +9,7 @@
         void Reset();
         void SwitchState(CellState state);
         void LiftFlag();
+        void PutDownFlag();
         void RevealCover();
         void OnLeftClick();
         void OnRightClick();

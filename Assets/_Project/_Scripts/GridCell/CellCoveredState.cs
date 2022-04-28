@@ -4,7 +4,7 @@ namespace SnekTech.GridCell
 {
     public class CellCoveredState : CellState
     {
-        public CellCoveredState(CellBehaviour cellBehaviour) : base(cellBehaviour)
+        public CellCoveredState(ICell cell) : base(cell)
         {
         }
 
@@ -15,12 +15,12 @@ namespace SnekTech.GridCell
 
         public override void OnLeftClick()
         {
-            CellBehaviour.SwitchState(CellBehaviour.RevealedState);
+            Cell.SwitchState(Cell.RevealedState);
         }
 
         public override void OnRightLick()
         {
-            CellBehaviour.SwitchState(CellBehaviour.FlaggedState);
+            Cell.SwitchState(Cell.FlaggedState);
         }
     }
 }

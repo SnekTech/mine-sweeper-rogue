@@ -2,13 +2,13 @@
 {
     public class CellFlaggedState : CellState
     {
-        public CellFlaggedState(CellBehaviour cellBehaviour) : base(cellBehaviour)
+        public CellFlaggedState(ICell cell) : base(cell)
         {
         }
 
         public override void OnEnterState()
         {
-            CellBehaviour.LiftFlag();
+            Cell.LiftFlag();
         }
 
         public override void OnLeftClick()
@@ -17,8 +17,8 @@
 
         public override void OnRightLick()
         {
-            CellBehaviour.PutDownFlag();
-            CellBehaviour.SwitchState(CellBehaviour.CoveredState);
+            Cell.PutDownFlag();
+            Cell.SwitchState(Cell.CoveredState);
         }
     }
 }
