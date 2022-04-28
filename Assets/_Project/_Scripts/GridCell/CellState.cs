@@ -2,11 +2,11 @@
 {
     public abstract class CellState
     {
-        protected readonly Cell Cell;
+        protected readonly CellBehaviour CellBehaviour;
 
-        protected CellState(Cell cell)
+        protected CellState(CellBehaviour cellBehaviour)
         {
-            Cell = cell;
+            CellBehaviour = cellBehaviour;
         }
         
         public abstract void OnEnterState();

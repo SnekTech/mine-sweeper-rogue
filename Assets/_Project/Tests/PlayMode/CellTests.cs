@@ -8,12 +8,12 @@ namespace Tests.PlayMode
 {
     public class CellTests
     {
-        private static readonly Cell CellPrefab = Utils.GetPrefabAsset<Cell>("Cell.prefab");
+        private static readonly CellBehaviour CellBehaviourPrefab = Utils.GetPrefabAsset<CellBehaviour>("Cell.prefab");
         
         [UnityTest]
         public IEnumerator flag_should_not_be_null_after_cell_init()
         {
-            ICell cell = Object.Instantiate(CellPrefab);
+            ICell cell = Object.Instantiate(CellBehaviourPrefab);
             IFlag flag = cell.Flag;
             
             Assert.NotNull(flag);
@@ -23,7 +23,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator flag_should_be_inactive_after_cell_init()
         {
-            ICell cell = Object.Instantiate(CellPrefab);
+            ICell cell = Object.Instantiate(CellBehaviourPrefab);
             IFlag flag = cell.Flag;
             
             Assert.IsFalse(flag.IsActive);
@@ -33,7 +33,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator should_cache_all_states_after_cell_init()
         {
-            ICell cell = Object.Instantiate(CellPrefab);
+            ICell cell = Object.Instantiate(CellBehaviourPrefab);
 
             CellState coveredState = cell.CoveredState;
             CellState flaggedState = cell.FlaggedState;

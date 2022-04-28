@@ -2,13 +2,13 @@
 {
     public class CellRevealedState : CellState
     {
-        public CellRevealedState(Cell cell) : base(cell)
+        public CellRevealedState(CellBehaviour cellBehaviour) : base(cellBehaviour)
         {
         }
 
         public override void OnEnterState()
         {
-            Cell.RevealCover();
+            CellBehaviour.RevealCover();
         }
 
         public override void OnLeftClick()

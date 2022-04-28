@@ -8,12 +8,12 @@ namespace SnekTech
     public class MineGrid : MonoBehaviour
     {
         [SerializeField]
-        private Cell cellPrefab;
+        private CellBehaviour cellBehaviour;
 
         [SerializeField]
         private Vector2Int size = new Vector2Int(10, 10);
 
-        private readonly List<Cell> _cells = new List<Cell>();
+        private readonly List<ICell> _cells = new List<ICell>();
         
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
@@ -56,29 +56,23 @@ namespace SnekTech
         
         private void OnGridLeftClick(InputAction.CallbackContext obj)
         {
-            Cell cell = GetClickedCell();
-            if (cell != null)
-            {
-                cell.OnLeftClick();
-            }
+            ICell cell = GetClickedCell();
+            cell?.OnLeftClick();
         }
 
         private void OnGridRightClick(InputAction.CallbackContext context)
         {
-            Cell cell = GetClickedCell();
-            if (cell != null)
-            {
-                cell.OnRightClick();
-            }
+            ICell cell = GetClickedCell();
+            cell?.OnRightClick();
         }
 
-        private Cell GetClickedCell()
+        private ICell GetClickedCell()
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, ~_cellLayer);
             
-            return hit.collider != null ? hit.collider.GetComponent<Cell>() : null;
+            return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
         }
 
         private void CachePlayerInputRelatedFields()
@@ -116,7 +110,7 @@ namespace SnekTech
 
         private bool HasCells()
         {
-            return GetComponentInChildren<Cell>() != null;
+            return GetComponentInChildren<ICell>() != null;
         }
 
         private void InstantiateCells()
@@ -125,7 +119,7 @@ namespace SnekTech
             {
                 for (int x = 0; x < size.x; x++)
                 {
-                    Cell cell = Instantiate(cellPrefab, transform);
+                    CellBehaviour cell = Instantiate(cellBehaviour, transform);
                     cell.transform.localPosition = new Vector3(x, y, 0);
                     _cells.Add(cell);
                 }
@@ -134,7 +128,7 @@ namespace SnekTech
 
         private void ResetCells()
         {
-            foreach (Cell cell in _cells)
+            foreach (ICell cell in _cells)
             {
                 cell.Reset();
             }

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SnekTech.GridCell
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Cell : MonoBehaviour, ICell
+    public class CellBehaviour : MonoBehaviour, ICell
     {
         [SerializeField]
         private CellSprites cellSprites;
