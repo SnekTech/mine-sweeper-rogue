@@ -13,24 +13,14 @@ namespace SnekTech.GridCell
         [SerializeField]
         private Cover cover;
 
-        public CellState CoveredState { get; private set; }
-        public CellState FlaggedState { get; private set; }
-        public CellState RevealedState { get; private set; }
-        
-        private CellState _currentState;
+        private ICellBrain _cellBrain;
 
         public IFlag Flag => flagBehaviour;
-
+        public Cover Cover => cover;
+        
         private void Awake()
         {
-            CacheCellStates();
-        }
-
-        private void CacheCellStates()
-        {
-            CoveredState ??= new CellCoveredState(this);
-            FlaggedState ??= new CellFlaggedState(this);
-            RevealedState ??= new CellRevealedState(this);
+            _cellBrain = new BasicCellBrain(this);
         }
 
         private void Start()
@@ -50,52 +40,22 @@ namespace SnekTech.GridCell
 
         public void Reset()
         {
-            Flag.Hide();
-            SwitchState(CoveredState);
-        }
-
-        public void SwitchState(CellState state)
-        {
-            _currentState = state;
-            _currentState.OnEnterState();
-        }
-
-        public void LiftFlag()
-        {
-            if (Flag.IsActive)
-            {
-                throw new ApplicationException("Raising an active flag is invalid.");
-            }
-            Flag.Show();
-            Flag.Lift();
+            _cellBrain.Reset();
         }
 
         private void OnFlagPutDown()
         {
-            Flag.Hide();
-        }
-
-        public void PutDownFlag()
-        {
-            if (Flag.IsActive)
-            {
-                Flag.PutDown();
-            }
+            Flag.IsActive = false;
         }
 
         public void OnLeftClick()
         {
-            _currentState.OnLeftClick();
+            _cellBrain.OnLeftClick();
         }
 
         public void OnRightClick()
         {
-            _currentState.OnRightLick();
-        }
-
-        public void RevealCover()
-        {
-            cover.Reveal();
+            _cellBrain.OnRightClick();
         }
     }
 }

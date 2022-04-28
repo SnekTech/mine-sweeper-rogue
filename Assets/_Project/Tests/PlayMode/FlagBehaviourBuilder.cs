@@ -26,14 +26,7 @@ namespace Tests.PlayMode
         {
             FlagBehaviour flag = Object.Instantiate(FlagBehaviourPrefab);
 
-            if (_isActive)
-            {
-                flag.Show();
-            }
-            else
-            {
-                flag.Hide();
-            }
+            flag.IsActive = _isActive;
 
             return flag;
         }

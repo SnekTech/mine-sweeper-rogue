@@ -29,20 +29,5 @@ namespace Tests.PlayMode
             Assert.IsFalse(flag.IsActive);
             yield break;
         }
-
-        [UnityTest]
-        public IEnumerator should_cache_all_states_after_cell_init()
-        {
-            ICell cell = Object.Instantiate(CellBehaviourPrefab);
-
-            CellState coveredState = cell.CoveredState;
-            CellState flaggedState = cell.FlaggedState;
-            CellState revealedState = cell.RevealedState;
-            
-            Assert.IsInstanceOf<CellCoveredState>(coveredState);
-            Assert.IsInstanceOf<CellFlaggedState>(flaggedState);
-            Assert.IsInstanceOf<CellRevealedState>(revealedState);
-            yield break;
-        }
     }
 }

@@ -2,11 +2,11 @@
 {
     public abstract class CellState
     {
-        protected readonly ICell Cell;
+        protected readonly ICellBrain CellBrain;
 
-        protected CellState(ICell cell)
+        protected CellState(ICellBrain cellBrain)
         {
-            Cell = cell;
+            CellBrain = cellBrain;
         }
         
         public abstract void OnEnterState();

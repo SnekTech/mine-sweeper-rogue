@@ -4,23 +4,23 @@ namespace SnekTech.GridCell
 {
     public class CellCoveredState : CellState
     {
-        public CellCoveredState(ICell cell) : base(cell)
+        public CellCoveredState(ICellBrain cellBrain) : base(cellBrain)
         {
         }
 
         public override void OnEnterState()
         {
-            Debug.Log("Entering covered state.");
+            // TODO: cover the cover
         }
 
         public override void OnLeftClick()
         {
-            Cell.SwitchState(Cell.RevealedState);
+            CellBrain.SwitchState(CellBrain.RevealedState);
         }
 
         public override void OnRightLick()
         {
-            Cell.SwitchState(Cell.FlaggedState);
+            CellBrain.SwitchState(CellBrain.FlaggedState);
         }
     }
 }

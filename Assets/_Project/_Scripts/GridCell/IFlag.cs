@@ -7,8 +7,6 @@ namespace SnekTech.GridCell
         event Action LiftCompleted, PutDownCompleted;
         void Lift();
         void PutDown();
-        bool IsActive { get; }
-        void Show();
-        void Hide();
+        bool IsActive { get; set; }
     }
 }

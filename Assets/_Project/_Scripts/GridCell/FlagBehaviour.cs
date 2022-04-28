@@ -13,7 +13,11 @@ namespace SnekTech.GridCell
         private Flag _flag;
         private Animator _animator;
 
-        public bool IsActive => gameObject.activeInHierarchy;
+        public bool IsActive
+        {
+            get => gameObject.activeInHierarchy;
+            set => gameObject.SetActive(value);
+        }
 
         private void Awake()
         {
@@ -34,23 +38,13 @@ namespace SnekTech.GridCell
 
         public void Lift()
         {
-            Show();
+            IsActive = true;
             _animator.SetTrigger(LiftTrigger);
         }
 
         public void PutDown()
         {
             _animator.SetTrigger(DisappearTrigger);
-        }
-
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
         }
     }
 }
