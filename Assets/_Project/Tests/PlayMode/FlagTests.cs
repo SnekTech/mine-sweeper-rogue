@@ -11,12 +11,11 @@ namespace Tests.PlayMode
     public class FlagTests
     {
 
-        private static readonly FlagBehaviour FlagBehaviourPrefab = Utils.GetPrefabAsset<FlagBehaviour>("Flag.prefab");
-        
         [UnityTest]
         public IEnumerator emit_PutDown_event_within_1_second_after_calling_PutDown()
         {
-            IFlag flag = Object.Instantiate(FlagBehaviourPrefab);
+            FlagBehaviour flagBehaviour = A.FlagBehaviour.WithActive(true);
+            IFlag flag = flagBehaviour;
             const float secondsToWait = 1;
 
             bool hasCalledHandler = false;
@@ -33,7 +32,8 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator emit_Lift_event_within_1_second_after_calling_Lift()
         {
-            IFlag flag = Object.Instantiate(FlagBehaviourPrefab);
+            FlagBehaviour flagBehaviour = A.FlagBehaviour.WithActive(true);
+            IFlag flag = flagBehaviour;
             const float secondsToWait = 1;
 
             bool eventInvoked = false;
