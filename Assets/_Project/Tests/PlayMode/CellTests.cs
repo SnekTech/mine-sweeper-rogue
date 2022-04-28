@@ -13,7 +13,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator flag_should_not_be_null_after_cell_init()
         {
-            Cell cell = Object.Instantiate(CellPrefab);
+            ICell cell = Object.Instantiate(CellPrefab);
             IFlag flag = cell.Flag;
             
             Assert.NotNull(flag);
@@ -23,10 +23,25 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator flag_should_be_inactive_after_cell_init()
         {
-            Cell cell = Object.Instantiate(CellPrefab);
+            ICell cell = Object.Instantiate(CellPrefab);
             IFlag flag = cell.Flag;
             
             Assert.IsFalse(flag.IsActive);
+            yield break;
+        }
+
+        [UnityTest]
+        public IEnumerator should_cache_all_states_after_cell_init()
+        {
+            ICell cell = Object.Instantiate(CellPrefab);
+
+            CellState coveredState = cell.CoveredState;
+            CellState flaggedState = cell.FlaggedState;
+            CellState revealedState = cell.RevealedState;
+            
+            Assert.IsInstanceOf<CellCoveredState>(coveredState);
+            Assert.IsInstanceOf<CellFlaggedState>(flaggedState);
+            Assert.IsInstanceOf<CellRevealedState>(revealedState);
             yield break;
         }
     }
