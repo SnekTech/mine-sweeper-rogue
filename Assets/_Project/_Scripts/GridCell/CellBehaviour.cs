@@ -45,7 +45,7 @@ namespace SnekTech.GridCell
 
         private void OnFlagPutDown()
         {
-            Flag.IsActive = false;
+            Debug.Log("Flag has been put down");
         }
 
         public void OnLeftClick()

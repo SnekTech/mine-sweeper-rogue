@@ -10,6 +10,7 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
+            CellBrain.HideFlag();
             // TODO: cover the cover
         }
 

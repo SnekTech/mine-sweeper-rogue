@@ -10,41 +10,29 @@ namespace Tests.PlayMode
 {
     public class FlagTests
     {
-
         [UnityTest]
-        public IEnumerator emit_PutDown_event_within_1_second_after_calling_PutDown()
+        public IEnumerator flag_animation_events_should_work()
         {
-            FlagBehaviour flagBehaviour = A.FlagBehaviour.WithActive(true);
+            FlagBehaviour flagBehaviour = A.FlagBehaviour;
             IFlag flag = flagBehaviour;
             const float secondsToWait = 1;
 
-            bool hasCalledHandler = false;
-            flag.PutDownCompleted += () =>
-            {
-                hasCalledHandler = true;
-            };
-            flag.PutDown();
-            yield return new WaitForSeconds(secondsToWait);
-            
-            Assert.IsTrue(hasCalledHandler);
-        }
-
-        [UnityTest]
-        public IEnumerator emit_Lift_event_within_1_second_after_calling_Lift()
-        {
-            FlagBehaviour flagBehaviour = A.FlagBehaviour.WithActive(true);
-            IFlag flag = flagBehaviour;
-            const float secondsToWait = 1;
-
-            bool eventInvoked = false;
+            bool liftEventInvoked = false, putDownEventInvoked = false;
             flag.LiftCompleted += () =>
             {
-                eventInvoked = true;
+                liftEventInvoked = true;
+            };
+            flag.PutDownCompleted += () =>
+            {
+                putDownEventInvoked = true;
             };
             flag.Lift();
             yield return new WaitForSeconds(secondsToWait);
+            flag.PutDown();
+            yield return new WaitForSeconds(secondsToWait);
             
-            Assert.IsTrue(eventInvoked);
+            Assert.IsTrue(liftEventInvoked);
+            Assert.IsTrue(putDownEventInvoked);
         }
     }
 }

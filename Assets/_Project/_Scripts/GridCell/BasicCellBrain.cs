@@ -52,31 +52,22 @@ namespace SnekTech.GridCell
 
         public void LiftFlag()
         {
-            if (Flag.IsActive)
-            {
-                throw new ApplicationException("Raising an active flag is invalid.");
-            }
-
-            Flag.IsActive = true;
             Flag.Lift();
         }
 
         public void PutDownFlag()
         {
-            if (Flag.IsActive)
-            {
-                Flag.PutDown();
-            }
+            Flag.PutDown();
+        }
+
+        public void HideFlag()
+        {
+            Flag.Hide();
         }
 
         public void RevealCover()
         {
             Cover.Reveal();
-        }
-
-        public void SetFlagActive(bool isActive)
-        {
-            Flag.IsActive = isActive;
         }
 
         public void OnLeftClick()

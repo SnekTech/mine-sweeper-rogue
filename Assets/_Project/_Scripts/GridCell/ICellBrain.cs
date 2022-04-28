@@ -10,8 +10,8 @@
         void Reset();
         void LiftFlag();
         void PutDownFlag();
+        void HideFlag();
         void RevealCover();
-        void SetFlagActive(bool isActive);
         void OnLeftClick();
         void OnRightClick();
     }

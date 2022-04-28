@@ -9,20 +9,13 @@ namespace SnekTech.GridCell
         
         private static readonly int LiftTrigger = Animator.StringToHash("Lift");
         private static readonly int DisappearTrigger = Animator.StringToHash("PutDown");
+        private static readonly int HideTrigger = Animator.StringToHash("Hide");
 
-        private Flag _flag;
         private Animator _animator;
-
-        public bool IsActive
-        {
-            get => gameObject.activeInHierarchy;
-            set => gameObject.SetActive(value);
-        }
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _flag = new Flag(this);
         }
 
         public void OnLiftAnimationComplete()
@@ -38,13 +31,17 @@ namespace SnekTech.GridCell
 
         public void Lift()
         {
-            IsActive = true;
             _animator.SetTrigger(LiftTrigger);
         }
 
         public void PutDown()
         {
             _animator.SetTrigger(DisappearTrigger);
+        }
+
+        public void Hide()
+        {
+            _animator.SetTrigger(HideTrigger);
         }
     }
 }

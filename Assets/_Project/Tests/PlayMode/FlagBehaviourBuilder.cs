@@ -9,24 +9,9 @@ namespace Tests.PlayMode
         private const string PrefabName = "Flag.prefab";
         private static readonly FlagBehaviour FlagBehaviourPrefab = Utils.GetPrefabAsset<FlagBehaviour>(PrefabName);
 
-        private bool _isActive;
-
-        public FlagBehaviourBuilder(bool isActive = true)
-        {
-            _isActive = isActive;
-        }
-
-        public FlagBehaviourBuilder WithActive(bool isActive)
-        {
-            _isActive = isActive;
-            return this;
-        }
-        
         private FlagBehaviour Build()
         {
             FlagBehaviour flag = Object.Instantiate(FlagBehaviourPrefab);
-
-            flag.IsActive = _isActive;
 
             return flag;
         }

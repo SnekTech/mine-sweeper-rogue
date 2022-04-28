@@ -19,15 +19,5 @@ namespace Tests.PlayMode
             Assert.NotNull(flag);
             yield break;
         }
-        
-        [UnityTest]
-        public IEnumerator flag_should_be_inactive_after_cell_init()
-        {
-            ICell cell = Object.Instantiate(CellBehaviourPrefab);
-            IFlag flag = cell.Flag;
-            
-            Assert.IsFalse(flag.IsActive);
-            yield break;
-        }
     }
 }
