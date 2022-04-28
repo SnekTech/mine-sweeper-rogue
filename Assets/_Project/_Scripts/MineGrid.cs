@@ -22,10 +22,15 @@ namespace SnekTech
         private Camera _mainCamera;
 
         private int _cellLayer;
+
+        private const int MineGeneratorSeed = 0;
+        private ISequence<bool> _mineGenerator;
         
         
         private void Awake()
         {
+            _mineGenerator = new RandomBoolSequence(MineGeneratorSeed);
+            
             _mainCamera = Camera.main;
             _cellLayer = LayerMask.NameToLayer("Cell");
             
