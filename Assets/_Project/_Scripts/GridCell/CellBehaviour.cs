@@ -33,11 +33,6 @@ namespace SnekTech.GridCell
             _cellBrain.Reset();
         }
 
-        private void OnFlagPutDown()
-        {
-            Debug.Log("Flag has been put down");
-        }
-
         public void OnLeftClick()
         {
             _cellBrain.OnLeftClick();

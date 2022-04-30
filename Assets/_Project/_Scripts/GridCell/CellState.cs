@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace SnekTech.GridCell
+﻿namespace SnekTech.GridCell
 {
     public abstract class CellState
     {
