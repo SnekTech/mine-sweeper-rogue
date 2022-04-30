@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
-    public interface IFlag
+    public interface IFlag : ICanSwitchActiveness
     {
         event Action LiftCompleted, PutDownCompleted;
         void Lift();
         void PutDown();
-        bool IsActive { get; set; }
         Task<bool> LiftAsync();
         Task<bool> PutDownAsync();
     }
