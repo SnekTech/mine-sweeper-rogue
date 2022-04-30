@@ -28,16 +28,6 @@ namespace SnekTech.GridCell
             Reset();
         }
 
-        private void OnEnable()
-        {
-            Flag.PutDownCompleted += OnFlagPutDown;
-        }
-
-        private void OnDisable()
-        {
-            Flag.PutDownCompleted -= OnFlagPutDown;
-        }
-
         public void Reset()
         {
             _cellBrain.Reset();

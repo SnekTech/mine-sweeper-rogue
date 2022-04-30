@@ -47,33 +47,9 @@ namespace SnekTech.GridCell
 
         public void SwitchState(CellState state)
         {
+            _currentState?.OnLeaveState();
             _currentState = state;
             _currentState.OnEnterState();
-        }
-
-        public void LiftFlag()
-        {
-            Flag.Lift();
-        }
-
-        public void PutDownFlag()
-        {
-            Flag.PutDown();
-        }
-
-        public Task<bool> LiftFlagAsync()
-        {
-            return Flag.LiftAsync();
-        }
-
-        public Task<bool> PutDownFlagAsync()
-        {
-            return Flag.PutDownAsync();
-        }
-
-        public void HideFlag()
-        {
-            Flag.Hide();
         }
 
         public void RevealCover()

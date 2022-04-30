@@ -10,7 +10,6 @@ namespace SnekTech.GridCell
         
         private static readonly int LiftTrigger = Animator.StringToHash("Lift");
         private static readonly int PutDownTrigger = Animator.StringToHash("PutDown");
-        private static readonly int HideTrigger = Animator.StringToHash("Hide");
 
         private Animator _animator;
         
@@ -19,6 +18,13 @@ namespace SnekTech.GridCell
 
         private Task<bool> LiftTask => _liftCompletionSource.Task;
         private Task<bool> PutDownTask => _putDownCompletionSource.Task;
+
+
+        public bool IsActive
+        {
+            get => gameObject.activeInHierarchy;
+            set => gameObject.SetActive(value);
+        }
 
         private void Awake()
         {
@@ -49,11 +55,6 @@ namespace SnekTech.GridCell
         public void PutDown()
         {
             _animator.SetTrigger(PutDownTrigger);
-        }
-
-        public void Hide()
-        {
-            _animator.SetTrigger(HideTrigger);
         }
 
         public Task<bool> LiftAsync()

@@ -10,7 +10,7 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
-            CellBrain.HideFlag();
+            CellBrain.Flag.IsActive = false;
             // TODO: cover the cover
         }
 
@@ -25,7 +25,12 @@ namespace SnekTech.GridCell
 
         public override async void OnRightLick()
         {
-            bool isLiftFlagCompleted = await CellBrain.LiftFlagAsync();
+            if (!CellBrain.Flag.IsActive)
+            {
+                CellBrain.Flag.IsActive = true;
+            }
+
+            bool isLiftFlagCompleted = await CellBrain.Flag.LiftAsync();
             if (isLiftFlagCompleted)
             {
                 CellBrain.SwitchState(CellBrain.FlaggedState);

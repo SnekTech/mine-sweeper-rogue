@@ -14,7 +14,7 @@ namespace SnekTech.GridCell
 
         public override void OnLeaveState()
         {
-            
+            CellBrain.Flag.IsActive = false;
         }
 
         public override void OnLeftClick()
@@ -23,7 +23,7 @@ namespace SnekTech.GridCell
 
         public override async void OnRightLick()
         {
-            bool isPutDownCompleted = await CellBrain.PutDownFlagAsync();
+            bool isPutDownCompleted = await CellBrain.Flag.PutDownAsync();
             if (isPutDownCompleted)
             {
                 CellBrain.SwitchState(CellBrain.CoveredState);
