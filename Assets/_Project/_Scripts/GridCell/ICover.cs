@@ -4,7 +4,7 @@ namespace SnekTech.GridCell
 {
     public interface ICover : ICanSwitchActiveness
     {
-        Task<bool> OpenAsync();
-        Task<bool> CloseAsync();
+        Task<bool> RevealAsync();
+        Task<bool> PutCoverAsync();
     }
 }

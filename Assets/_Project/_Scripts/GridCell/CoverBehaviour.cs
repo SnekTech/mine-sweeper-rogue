@@ -6,8 +6,8 @@ namespace SnekTech.GridCell
     [RequireComponent(typeof(Animator))]
     public class CoverBehaviour : MonoBehaviour, ICover
     {
-        private static readonly int OpenTrigger = Animator.StringToHash("Open");
-        private static readonly int CloseTrigger = Animator.StringToHash("Close");
+        private static readonly int RevealTrigger = Animator.StringToHash("Reveal");
+        private static readonly int PutCoverTrigger = Animator.StringToHash("PutCover");
         private static readonly int InitPutCoverTrigger = Animator.StringToHash("InitPutCover");
         
         private Animator _animator;
@@ -46,7 +46,7 @@ namespace SnekTech.GridCell
             }
         }
         
-        public Task<bool> OpenAsync()
+        public Task<bool> RevealAsync()
         {
             if (!OpenTask.IsCompleted)
             {
@@ -54,11 +54,11 @@ namespace SnekTech.GridCell
             }
 
             _openCompletionSource = new TaskCompletionSource<bool>();
-            _animator.SetTrigger(OpenTrigger);
+            _animator.SetTrigger(RevealTrigger);
             return OpenTask;
         }
 
-        public Task<bool> CloseAsync()
+        public Task<bool> PutCoverAsync()
         {
             if (!CloseTask.IsCompleted)
             {
@@ -66,7 +66,7 @@ namespace SnekTech.GridCell
             }
 
             _closeCompletionSource = new TaskCompletionSource<bool>();
-            _animator.SetTrigger(CloseTrigger);
+            _animator.SetTrigger(PutCoverTrigger);
             return CloseTask;
         }
 

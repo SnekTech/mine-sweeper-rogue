@@ -23,7 +23,7 @@ namespace SnekTech.GridCell
             ICover cover = CellBrain.Cover;
             cover.IsActive = true;
 
-            bool isCloseCompleted = await cover.CloseAsync();
+            bool isCloseCompleted = await cover.PutCoverAsync();
             if (isCloseCompleted)
             {
                 CellBrain.SwitchState(CellBrain.CoveredState);

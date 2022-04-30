@@ -21,7 +21,7 @@ namespace SnekTech.GridCell
         {
             ICover cover = CellBrain.Cover;
             
-            bool isOpenCoverCompleted = await cover.OpenAsync();
+            bool isOpenCoverCompleted = await cover.RevealAsync();
             if (isOpenCoverCompleted)
             {
                 CellBrain.SwitchState(CellBrain.RevealedState);

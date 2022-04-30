@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Open
+    m_ConditionEvent: Reveal
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4854167309249554027}
@@ -78,7 +78,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Close
+    m_ConditionEvent: PutCover
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8688880748469183633}
@@ -103,13 +103,13 @@ AnimatorController:
   m_Name: Cover
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Open
+  - m_Name: Reveal
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: Close
+  - m_Name: PutCover
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -197,7 +197,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cover-open
+  m_Name: cover-reveal
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -279,7 +279,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cover-close
+  m_Name: cover-put-cover
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
