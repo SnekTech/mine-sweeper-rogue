@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace SnekTech
@@ -15,6 +16,13 @@ namespace SnekTech
             Vector2 screenPosition = Mouse.current.position.ReadValue();
             Camera mainCamera = Camera.main;
             return GetMouseWorldPosition(screenPosition, mainCamera);
+        }
+
+        public static Task<T> GetCompletedTask<T>(T result)
+        {
+            var tcs = new TaskCompletionSource<T>();
+            tcs.SetResult(result);
+            return tcs.Task;
         }
     }
 }

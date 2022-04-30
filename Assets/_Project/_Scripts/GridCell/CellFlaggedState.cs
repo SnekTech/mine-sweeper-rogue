@@ -10,7 +10,6 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
-            CellBrain.LiftFlag();
         }
 
         public override void OnLeaveState()

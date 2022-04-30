@@ -9,6 +9,7 @@ namespace SnekTech.GridCell
         void Lift();
         void PutDown();
         void Hide();
+        Task<bool> LiftAsync();
         Task<bool> PutDownAsync();
     }
 }

@@ -12,6 +12,7 @@ namespace SnekTech.GridCell
         void Reset();
         void LiftFlag();
         void PutDownFlag();
+        Task<bool> LiftFlagAsync();
         Task<bool> PutDownFlagAsync();
         void HideFlag();
         void RevealCover();

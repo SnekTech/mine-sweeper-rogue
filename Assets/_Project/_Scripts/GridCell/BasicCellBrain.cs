@@ -61,6 +61,11 @@ namespace SnekTech.GridCell
             Flag.PutDown();
         }
 
+        public Task<bool> LiftFlagAsync()
+        {
+            return Flag.LiftAsync();
+        }
+
         public Task<bool> PutDownFlagAsync()
         {
             return Flag.PutDownAsync();

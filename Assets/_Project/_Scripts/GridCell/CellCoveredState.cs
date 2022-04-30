@@ -1,4 +1,6 @@
-﻿namespace SnekTech.GridCell
+﻿using System.Threading.Tasks;
+
+namespace SnekTech.GridCell
 {
     public class CellCoveredState : CellState
     {
@@ -21,9 +23,13 @@
             CellBrain.SwitchState(CellBrain.RevealedState);
         }
 
-        public override void OnRightLick()
+        public override async void OnRightLick()
         {
-            CellBrain.SwitchState(CellBrain.FlaggedState);
+            bool isLiftFlagCompleted = await CellBrain.LiftFlagAsync();
+            if (isLiftFlagCompleted)
+            {
+                CellBrain.SwitchState(CellBrain.FlaggedState);
+            }
         }
     }
 }

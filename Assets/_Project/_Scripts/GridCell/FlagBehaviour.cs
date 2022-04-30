@@ -13,20 +13,25 @@ namespace SnekTech.GridCell
         private static readonly int HideTrigger = Animator.StringToHash("Hide");
 
         private Animator _animator;
+        
+        private TaskCompletionSource<bool> _liftCompletionSource = new TaskCompletionSource<bool>();
         private TaskCompletionSource<bool> _putDownCompletionSource = new TaskCompletionSource<bool>();
 
+        private Task<bool> LiftTask => _liftCompletionSource.Task;
         private Task<bool> PutDownTask => _putDownCompletionSource.Task;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             
+            _liftCompletionSource.SetResult(true);
             _putDownCompletionSource.SetResult(true);
         }
 
         public void OnLiftAnimationComplete()
         {
             LiftCompleted?.Invoke();
+            _liftCompletionSource.SetResult(true);
         }
 
         public void OnPutDownAnimationComplete()
@@ -51,13 +56,23 @@ namespace SnekTech.GridCell
             _animator.SetTrigger(HideTrigger);
         }
 
+        public Task<bool> LiftAsync()
+        {
+            if (!LiftTask.IsCompleted)
+            {
+                return Utils.GetCompletedTask(false);
+            }
+
+            _liftCompletionSource = new TaskCompletionSource<bool>();
+            _animator.SetTrigger(LiftTrigger);
+            return LiftTask;
+        }
+
         public Task<bool> PutDownAsync()
         {
             if (!PutDownTask.IsCompleted)
             {
-                var tcs = new TaskCompletionSource<bool>();
-                tcs.SetResult(false);
-                return tcs.Task;
+                return Utils.GetCompletedTask(false);
             }
             
             _putDownCompletionSource = new TaskCompletionSource<bool>();
