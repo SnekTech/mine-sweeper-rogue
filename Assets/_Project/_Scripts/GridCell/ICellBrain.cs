@@ -1,4 +1,6 @@
-﻿namespace SnekTech.GridCell
+﻿using System.Threading.Tasks;
+
+namespace SnekTech.GridCell
 {
     public interface ICellBrain
     {
@@ -10,6 +12,7 @@
         void Reset();
         void LiftFlag();
         void PutDownFlag();
+        Task<bool> PutDownFlagAsync();
         void HideFlag();
         void RevealCover();
         void OnLeftClick();

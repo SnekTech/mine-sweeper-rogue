@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
@@ -8,5 +9,6 @@ namespace SnekTech.GridCell
         void Lift();
         void PutDown();
         void Hide();
+        Task<bool> PutDownAsync();
     }
 }

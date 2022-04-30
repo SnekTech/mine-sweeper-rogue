@@ -1,4 +1,6 @@
-﻿namespace SnekTech.GridCell
+﻿using System.Threading.Tasks;
+
+namespace SnekTech.GridCell
 {
     public class CellRevealedState : CellState
     {
@@ -9,6 +11,11 @@
         public override void OnEnterState()
         {
             CellBrain.RevealCover();
+        }
+
+        public override void OnLeaveState()
+        {
+            
         }
 
         public override void OnLeftClick()

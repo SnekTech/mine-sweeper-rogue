@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
@@ -58,6 +59,11 @@ namespace SnekTech.GridCell
         public void PutDownFlag()
         {
             Flag.PutDown();
+        }
+
+        public Task<bool> PutDownFlagAsync()
+        {
+            return Flag.PutDownAsync();
         }
 
         public void HideFlag()

@@ -1,4 +1,6 @@
-﻿namespace SnekTech.GridCell
+﻿using System.Threading.Tasks;
+
+namespace SnekTech.GridCell
 {
     public abstract class CellState
     {
@@ -10,6 +12,7 @@
         }
         
         public abstract void OnEnterState();
+        public abstract void OnLeaveState();
         
         public abstract void OnLeftClick();
 

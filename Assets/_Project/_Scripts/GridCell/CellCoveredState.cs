@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace SnekTech.GridCell
+﻿namespace SnekTech.GridCell
 {
     public class CellCoveredState : CellState
     {
@@ -12,6 +10,10 @@ namespace SnekTech.GridCell
         {
             CellBrain.HideFlag();
             // TODO: cover the cover
+        }
+
+        public override void OnLeaveState()
+        {
         }
 
         public override void OnLeftClick()
