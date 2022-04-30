@@ -11,16 +11,21 @@ namespace SnekTech.GridCell
         public override void OnEnterState()
         {
             CellBrain.Flag.IsActive = false;
-            // TODO: cover the cover
         }
 
         public override void OnLeaveState()
         {
         }
 
-        public override void OnLeftClick()
+        public override async void OnLeftClick()
         {
-            CellBrain.SwitchState(CellBrain.RevealedState);
+            ICover cover = CellBrain.Cover;
+            
+            bool isOpenCoverCompleted = await cover.OpenAsync();
+            if (isOpenCoverCompleted)
+            {
+                CellBrain.SwitchState(CellBrain.RevealedState);
+            }
         }
 
         public override async void OnRightLick()
