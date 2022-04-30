@@ -11,12 +11,12 @@ namespace SnekTech.GridCell
         [SerializeField]
         private FlagBehaviour flagBehaviour;
         [SerializeField]
-        private Cover cover;
+        private CoverBehaviour coverBehaviour;
 
         private ICellBrain _cellBrain;
 
         public IFlag Flag => flagBehaviour;
-        public Cover Cover => cover;
+        public ICover Cover => coverBehaviour;
         
         private void Awake()
         {

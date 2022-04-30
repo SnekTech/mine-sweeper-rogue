@@ -10,7 +10,7 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
-            CellBrain.RevealCover();
+            CellBrain.Cover.OpenAsync();
         }
 
         public override void OnLeaveState()

@@ -14,7 +14,7 @@ namespace SnekTech.GridCell
 
         public bool HasBomb { get; private set; }
         public IFlag Flag => _cell.Flag;
-        public Cover Cover => _cell.Cover;
+        public ICover Cover => _cell.Cover;
 
         public BasicCellBrain(ICell cell)
         {
@@ -50,11 +50,6 @@ namespace SnekTech.GridCell
             _currentState?.OnLeaveState();
             _currentState = state;
             _currentState.OnEnterState();
-        }
-
-        public void RevealCover()
-        {
-            Cover.Reveal();
         }
 
         public void OnLeftClick()

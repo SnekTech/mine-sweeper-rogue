@@ -8,6 +8,6 @@
         void OnRightClick();
         
         IFlag Flag { get; }
-        Cover Cover { get; }
+        ICover Cover { get; }
     }
 }

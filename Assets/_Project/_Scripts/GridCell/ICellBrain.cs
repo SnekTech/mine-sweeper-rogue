@@ -10,9 +10,9 @@ namespace SnekTech.GridCell
 
         void SwitchState(CellState state);
         void Reset();
-        void RevealCover();
         void OnLeftClick();
         void OnRightClick();
         IFlag Flag { get; }
+        ICover Cover { get; }
     }
 }
