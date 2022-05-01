@@ -22,17 +22,18 @@ namespace Tests.PlayMode
             task.GetAwaiter().GetResult(); 
         }
 
-        public static async Task<bool> UntilComplete(Func<Task<bool>> taskProvider)
+        public static async Task<bool> AttemptUntilSuccess(Func<Task<bool>> taskProvider, int attemptIntervalMilliseconds = 20, int maxAttemptCount = 100)
         {
-            const int maxRunCount = 100;
             int i = 0;
             while (!await taskProvider())
             {
-                if (i >= maxRunCount)
+                if (i >= maxAttemptCount)
                 {
-                    Debug.LogWarning($"{nameof(UntilComplete)} exceeds max run count");
+                    Debug.LogWarning($"{nameof(AttemptUntilSuccess)} exceeds max run count");
                     return false;
                 }
+
+                await Task.Delay(attemptIntervalMilliseconds);
                 i++;
             }
 

@@ -27,7 +27,7 @@ namespace Tests.PlayMode
         }
         
         [UnityTest]
-        public IEnumerator left_click_after_cell_brain_init_will_reveal_the_cover()
+        public IEnumerator left_click_a_covered_cell_should_reveal_the_cover()
         {
             ICellBrain cellBrain = new BasicCellBrain(_cell);
 
@@ -36,7 +36,7 @@ namespace Tests.PlayMode
 
             async Task Run()
             {
-                await Utils.UntilComplete(cellBrain.OnLeftClick);
+                await Utils.AttemptUntilSuccess(cellBrain.OnLeftClick);
 
                 Assert.That(isCoverRevealCompletedInvoked, Is.True);
             }
@@ -45,7 +45,7 @@ namespace Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator right_click_after_cell_init_should_lift_the_flag()
+        public IEnumerator right_click_a_covered_cell_should_lift_the_flag()
         {
             ICellBrain cellBrain = new BasicCellBrain(_cell);
 
@@ -54,9 +54,28 @@ namespace Tests.PlayMode
 
             async Task Run()
             {
-                await Utils.UntilComplete(cellBrain.OnRightClick);
+                await Utils.AttemptUntilSuccess(cellBrain.OnRightClick);
 
                 Assert.That(isLiftFlagCompletedInvoked, Is.True);
+            }
+
+            yield return Run().AsCoroutine();
+        }
+ 
+        [UnityTest]
+        public IEnumerator right_click_a_flagged_cell_should_put_down_the_flag()
+        {
+            ICellBrain cellBrain = new BasicCellBrain(_cell);
+
+            bool isFlagPutDown = false;
+            cellBrain.Flag.PutDownCompleted += () => isFlagPutDown = true;
+
+            async Task Run()
+            {
+                await Utils.AttemptUntilSuccess(cellBrain.OnRightClick);
+                await Utils.AttemptUntilSuccess(cellBrain.OnRightClick);
+
+                Assert.That(isFlagPutDown, Is.True);
             }
 
             yield return Run().AsCoroutine();
