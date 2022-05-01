@@ -11,7 +11,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator cell_animation_complete_events_should_emit()
         {
-            CoverBehaviour coverBehaviour = A.CoverBehaviour.WithIsActive(true);
+            CoverBehaviour coverBehaviour = A.CoverBehaviour;
             ICover cover = coverBehaviour;
 
             bool revealedCompletedCalled = false, putCoverCompletedCalled = false;

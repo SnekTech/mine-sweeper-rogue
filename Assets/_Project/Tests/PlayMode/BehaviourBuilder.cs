@@ -4,14 +4,17 @@ namespace Tests.PlayMode
 {
     public abstract class BehaviourBuilder<T> where T : MonoBehaviour
     {
-        protected readonly T BehaviourPrefab;
+        private readonly T _behaviourPrefab;
 
         protected BehaviourBuilder(string prefabName)
         {
-            BehaviourPrefab = Utils.GetPrefabAsset<T>(prefabName);
+            _behaviourPrefab = Utils.GetPrefabAsset<T>(prefabName);
         }
 
-        protected abstract T Build();
+        private T Build()
+        {
+            return Object.Instantiate(_behaviourPrefab);
+        }
 
         public static implicit operator T(BehaviourBuilder<T> builder)
         {

@@ -11,7 +11,7 @@ namespace Tests.PlayMode
         [UnityTest]
         public IEnumerator flag_animation_complete_events_should_emit()
         {
-            FlagBehaviour flagBehaviour = A.FlagBehaviour.WithIsActive(true);
+            FlagBehaviour flagBehaviour = A.FlagBehaviour;
             IFlag flag = flagBehaviour;
 
             bool liftEventInvoked = false, putDownEventInvoked = false;
