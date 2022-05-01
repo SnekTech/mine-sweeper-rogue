@@ -17,18 +17,20 @@ namespace SnekTech.GridCell
         {
         }
 
-        public override async void OnLeftClick()
+        public override async Task<bool> OnLeftClick()
         {
             ICover cover = CellBrain.Cover;
             
-            bool isOpenCoverCompleted = await cover.RevealAsync();
-            if (isOpenCoverCompleted)
+            bool isRevealCompleted = await cover.RevealAsync();
+            if (isRevealCompleted)
             {
                 CellBrain.SwitchState(CellBrain.RevealedState);
             }
+
+            return isRevealCompleted;
         }
 
-        public override async void OnRightLick()
+        public override async Task<bool> OnRightLick()
         {
             if (!CellBrain.Flag.IsActive)
             {
@@ -40,6 +42,8 @@ namespace SnekTech.GridCell
             {
                 CellBrain.SwitchState(CellBrain.FlaggedState);
             }
+
+            return isLiftFlagCompleted;
         }
     }
 }

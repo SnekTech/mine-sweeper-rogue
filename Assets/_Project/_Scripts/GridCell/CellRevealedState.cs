@@ -18,20 +18,23 @@ namespace SnekTech.GridCell
             
         }
 
-        public override async void OnLeftClick()
+        public override async Task<bool> OnLeftClick()
         {
             ICover cover = CellBrain.Cover;
             cover.IsActive = true;
 
-            bool isCloseCompleted = await cover.PutCoverAsync();
-            if (isCloseCompleted)
+            bool isPutCoverCompleted = await cover.PutCoverAsync();
+            if (isPutCoverCompleted)
             {
                 CellBrain.SwitchState(CellBrain.CoveredState);
             }
+            
+            return isPutCoverCompleted;
         }
 
-        public override void OnRightLick()
+        public override Task<bool> OnRightLick()
         {
+            return Task.FromResult(true);
         }
     }
 }

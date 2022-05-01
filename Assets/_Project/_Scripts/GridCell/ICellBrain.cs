@@ -1,4 +1,6 @@
-﻿namespace SnekTech.GridCell
+﻿using System.Threading.Tasks;
+
+namespace SnekTech.GridCell
 {
     public interface ICellBrain
     {
@@ -8,8 +10,8 @@
 
         void SwitchState(CellState state);
         void Reset();
-        void OnLeftClick();
-        void OnRightClick();
+        Task<bool> OnLeftClick();
+        Task<bool> OnRightClick();
         IFlag Flag { get; }
         ICover Cover { get; }
     }

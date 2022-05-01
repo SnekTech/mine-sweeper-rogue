@@ -53,14 +53,14 @@ namespace SnekTech.GridCell
             _currentState.OnEnterState();
         }
 
-        public void OnLeftClick()
+        public Task<bool> OnLeftClick()
         {
-            _currentState.OnLeftClick();
+            return _currentState.OnLeftClick();
         }
 
-        public void OnRightClick()
+        public Task<bool> OnRightClick()
         {
-            _currentState.OnRightLick();
+            return _currentState.OnRightLick();
         }
     }
 }

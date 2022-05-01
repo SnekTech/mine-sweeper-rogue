@@ -17,17 +17,20 @@ namespace SnekTech.GridCell
             CellBrain.Flag.IsActive = false;
         }
 
-        public override void OnLeftClick()
+        public override Task<bool> OnLeftClick()
         {
+            return Task.FromResult(true);
         }
 
-        public override async void OnRightLick()
+        public override async Task<bool> OnRightLick()
         {
             bool isPutDownCompleted = await CellBrain.Flag.PutDownAsync();
             if (isPutDownCompleted)
             {
                 CellBrain.SwitchState(CellBrain.CoveredState);
             }
+
+            return isPutDownCompleted;
         }
     }
 }
