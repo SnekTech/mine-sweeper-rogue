@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tests.PlayMode
+namespace Tests.PlayMode.Builder
 {
     public abstract class BehaviourBuilder<T> where T : MonoBehaviour
     {

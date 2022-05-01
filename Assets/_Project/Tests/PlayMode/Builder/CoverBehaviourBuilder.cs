@@ -1,6 +1,6 @@
 ﻿using SnekTech.GridCell;
 
-namespace Tests.PlayMode
+namespace Tests.PlayMode.Builder
 {
     public class CoverBehaviourBuilder : BehaviourBuilder<CoverBehaviour>
     {

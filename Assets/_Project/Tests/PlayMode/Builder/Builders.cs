@@ -1,6 +1,4 @@
-﻿using SnekTech.GridCell;
-
-namespace Tests.PlayMode
+﻿namespace Tests.PlayMode.Builder
 {
     public static class A
     {

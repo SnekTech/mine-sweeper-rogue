@@ -2,6 +2,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using SnekTech.GridCell;
+using Tests.PlayMode.Builder;
 using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
