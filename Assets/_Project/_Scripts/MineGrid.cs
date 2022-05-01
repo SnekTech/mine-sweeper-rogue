@@ -32,7 +32,7 @@ namespace SnekTech
             _mineGenerator = new RandomBoolSequence(MineGeneratorSeed);
             
             _mainCamera = Camera.main;
-            _cellLayer = LayerMask.NameToLayer("Cell");
+            _cellLayer = 1 << LayerMask.NameToLayer("Cell");
             
             CachePlayerInputRelatedFields();
         }
@@ -70,7 +70,7 @@ namespace SnekTech
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, ~_cellLayer);
+            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
             
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
         }
