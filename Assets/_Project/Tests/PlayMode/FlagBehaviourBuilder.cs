@@ -9,9 +9,18 @@ namespace Tests.PlayMode
         private const string PrefabName = "Flag.prefab";
         private static readonly FlagBehaviour FlagBehaviourPrefab = Utils.GetPrefabAsset<FlagBehaviour>(PrefabName);
 
+        private bool _isActive = true;
+
+        public FlagBehaviourBuilder WithIsActive(bool isActive)
+        {
+            _isActive = isActive;
+            return this;
+        }
+
         private FlagBehaviour Build()
         {
             FlagBehaviour flag = Object.Instantiate(FlagBehaviourPrefab);
+            flag.gameObject.SetActive(_isActive);
 
             return flag;
         }

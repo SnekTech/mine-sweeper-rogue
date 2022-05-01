@@ -46,17 +46,6 @@ namespace SnekTech.GridCell
             _putDownCompletionSource.SetResult(true);
         }
 
-
-        public void Lift()
-        {
-            _animator.SetTrigger(LiftTrigger);
-        }
-
-        public void PutDown()
-        {
-            _animator.SetTrigger(PutDownTrigger);
-        }
-
         public Task<bool> LiftAsync()
         {
             if (!LiftTask.IsCompleted)
