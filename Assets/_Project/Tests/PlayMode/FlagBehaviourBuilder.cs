@@ -1,14 +1,14 @@
 ﻿using SnekTech.GridCell;
-using UnityEditor;
 using UnityEngine;
 
 namespace Tests.PlayMode
 {
-    public class FlagBehaviourBuilder
+    public class FlagBehaviourBuilder : BehaviourBuilder<FlagBehaviour>
     {
-        private const string PrefabName = "Flag.prefab";
-        private static readonly FlagBehaviour FlagBehaviourPrefab = Utils.GetPrefabAsset<FlagBehaviour>(PrefabName);
-
+        public FlagBehaviourBuilder(string prefabName) : base(prefabName)
+        {
+        }
+ 
         private bool _isActive = true;
 
         public FlagBehaviourBuilder WithIsActive(bool isActive)
@@ -17,9 +17,9 @@ namespace Tests.PlayMode
             return this;
         }
 
-        private FlagBehaviour Build()
+        protected override FlagBehaviour Build()
         {
-            FlagBehaviour flag = Object.Instantiate(FlagBehaviourPrefab);
+            FlagBehaviour flag = Object.Instantiate(BehaviourPrefab);
             flag.gameObject.SetActive(_isActive);
 
             return flag;
@@ -29,5 +29,7 @@ namespace Tests.PlayMode
         {
             return builder.Build();
         }
+
+       
     }
 }

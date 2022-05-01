@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -6,34 +7,38 @@ namespace SnekTech.GridCell
     [RequireComponent(typeof(Animator))]
     public class CoverBehaviour : MonoBehaviour, ICover
     {
+        public event Action RevealCompleted, PutCoverCompleted;
+
         private static readonly int RevealTrigger = Animator.StringToHash("Reveal");
         private static readonly int PutCoverTrigger = Animator.StringToHash("PutCover");
         private static readonly int InitPutCoverTrigger = Animator.StringToHash("InitPutCover");
         
         private Animator _animator;
-        private TaskCompletionSource<bool> _openCompletionSource = new TaskCompletionSource<bool>();
-        private TaskCompletionSource<bool> _closeCompletionSource = new TaskCompletionSource<bool>();
+        private TaskCompletionSource<bool> _revealCompletionSource = new TaskCompletionSource<bool>();
+        private TaskCompletionSource<bool> _putCoverCompletionSource = new TaskCompletionSource<bool>();
 
-        private Task<bool> OpenTask => _openCompletionSource.Task;
-        private Task<bool> CloseTask => _closeCompletionSource.Task;
+        private Task<bool> OpenTask => _revealCompletionSource.Task;
+        private Task<bool> CloseTask => _putCoverCompletionSource.Task;
         
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             PutCoverAfterInit();
             
-            _openCompletionSource.SetResult(true);
-            _closeCompletionSource.SetResult(true);
+            _revealCompletionSource.SetResult(true);
+            _putCoverCompletionSource.SetResult(true);
         }
 
-        public void OnOpenComplete()
+        public void OnRevealComplete()
         {
-            _openCompletionSource.SetResult(true);
+            RevealCompleted?.Invoke();
+            _revealCompletionSource.SetResult(true);
         }
 
-        public void OnCloseComplete()
+        public void OnPutCoverComplete()
         {
-            _closeCompletionSource.SetResult(true);
+            PutCoverCompleted?.Invoke();
+            _putCoverCompletionSource.SetResult(true);
         }
 
         public bool IsActive
@@ -53,7 +58,7 @@ namespace SnekTech.GridCell
                 return Utils.GetCompletedTask(false);
             }
 
-            _openCompletionSource = new TaskCompletionSource<bool>();
+            _revealCompletionSource = new TaskCompletionSource<bool>();
             _animator.SetTrigger(RevealTrigger);
             return OpenTask;
         }
@@ -65,7 +70,7 @@ namespace SnekTech.GridCell
                 return Utils.GetCompletedTask(false);
             }
 
-            _closeCompletionSource = new TaskCompletionSource<bool>();
+            _putCoverCompletionSource = new TaskCompletionSource<bool>();
             _animator.SetTrigger(PutCoverTrigger);
             return CloseTask;
         }
