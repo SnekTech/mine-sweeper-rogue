@@ -21,6 +21,7 @@ namespace SnekTech.GridCell
             _cell = cell;
             
             InitStates();
+            Reset();
         }
 
         private void InitStates()

@@ -23,11 +23,6 @@ namespace SnekTech.GridCell
             _cellBrain = new BasicCellBrain(this);
         }
 
-        private void Start()
-        {
-            Reset();
-        }
-
         public void Reset()
         {
             _cellBrain.Reset();
