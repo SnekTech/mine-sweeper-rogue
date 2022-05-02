@@ -3,6 +3,7 @@
     public interface ICell
     {
         void Reset();
+        void Dispose();
 
         void OnLeftClick();
         void OnRightClick();

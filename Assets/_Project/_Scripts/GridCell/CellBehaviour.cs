@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace SnekTech.GridCell
 {
@@ -26,6 +27,11 @@ namespace SnekTech.GridCell
         public void Reset()
         {
             _cellBrain.Reset();
+        }
+
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
 
         public void OnLeftClick()

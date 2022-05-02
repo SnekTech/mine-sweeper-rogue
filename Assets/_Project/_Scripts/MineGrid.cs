@@ -23,13 +23,13 @@ namespace SnekTech
 
         private int _cellLayer;
 
-        private const int MineGeneratorSeed = 0;
-        private ISequence<bool> _mineGenerator;
+        private const int BombGeneratorSeed = 0;
+        private ISequence<bool> _bombGenerator;
         
         
         private void Awake()
         {
-            _mineGenerator = new RandomBoolSequence(MineGeneratorSeed);
+            _bombGenerator = new RandomBoolSequence(BombGeneratorSeed);
             
             _mainCamera = Camera.main;
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
@@ -41,7 +41,7 @@ namespace SnekTech
         private void Start()
         {
             
-            InitCells();
+            InstantiateCells();
         }
 
         private void OnEnable()
@@ -98,7 +98,7 @@ namespace SnekTech
         [ContextMenu(nameof(InitCells))]
         private void InitCells()
         {
-            if (!HasCells())
+            if (!HasCells)
             {
                 InstantiateCells();
             }
@@ -108,16 +108,33 @@ namespace SnekTech
             }
         }
 
-        private bool HasCells()
+        private bool HasCells => _cells.Count > 0;
+
+        [ContextMenu(nameof(ClearCells))]
+        private void ClearCells()
         {
-            return GetComponentInChildren<ICell>() != null;
+            foreach (ICell cell in _cells)
+            {
+                cell.Dispose();
+            }
+            _cells.Clear();
         }
 
         private void InstantiateCells()
         {
-            for (int y = 0; y < size.y; y++)
+            InstantiateCells(size);
+        }
+
+        private void InstantiateCells(Vector2Int gridSize)
+        {
+            InstantiateCells(gridSize.x, gridSize.y);
+        }
+        
+        private void InstantiateCells(int rowCount, int columnCount)
+        {
+            for (int y = 0; y < rowCount; y++)
             {
-                for (int x = 0; x < size.x; x++)
+                for (int x = 0; x < columnCount; x++)
                 {
                     CellBehaviour cell = Instantiate(cellBehaviour, transform);
                     cell.transform.localPosition = new Vector3(x, y, 0);
@@ -125,7 +142,7 @@ namespace SnekTech
                 }
             }
         }
-
+        
         private void ResetCells()
         {
             foreach (ICell cell in _cells)
