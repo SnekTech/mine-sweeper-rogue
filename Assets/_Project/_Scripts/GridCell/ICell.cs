@@ -1,14 +1,18 @@
-﻿namespace SnekTech.GridCell
+﻿using UnityEngine;
+
+namespace SnekTech.GridCell
 {
     public interface ICell
     {
+        IFlag Flag { get; }
+        ICover Cover { get; }
         void Reset();
         void Dispose();
 
         void OnLeftClick();
         void OnRightClick();
-        
-        IFlag Flag { get; }
-        ICover Cover { get; }
+
+        bool HasBomb { get; set; }
+        void SetContent(Sprite sprite);
     }
 }

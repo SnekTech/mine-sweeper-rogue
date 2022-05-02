@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ef24546c277a14fb6afeba7995d425, type: 3}
   m_Name: BasicCellSprites
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 385173514463150410, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
+  noBombSprites:
   - {fileID: -5256807490170685802, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
   - {fileID: -8430176965839133841, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
   - {fileID: 1962840433704199240, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
@@ -23,5 +22,4 @@ MonoBehaviour:
   - {fileID: -1206278578254024489, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
   - {fileID: -9159407240045392395, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
   - {fileID: 3370448834173254583, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: 6290457256320808859, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: -917050529912110791, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
+  bombSprite: {fileID: 6290457256320808859, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}

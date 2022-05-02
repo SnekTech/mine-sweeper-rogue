@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellBehaviour: {fileID: 4038224895371612872, guid: 60dd97a3585e17244a66b5f87c7e2c47, type: 3}
   size: {x: 10, y: 10}
+  cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
 --- !u!4 &58783577
 Transform:
   m_ObjectHideFlags: 0

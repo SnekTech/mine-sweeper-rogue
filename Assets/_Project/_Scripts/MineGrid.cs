@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SnekTech.GridCell;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,6 +14,9 @@ namespace SnekTech
         [SerializeField]
         private Vector2Int size = new Vector2Int(10, 10);
 
+        [SerializeField]
+        private CellSprites cellSprites;
+
         private readonly List<ICell> _cells = new List<ICell>();
         
         private PlayerInput _playerInput;
@@ -25,8 +29,36 @@ namespace SnekTech
 
         private const int BombGeneratorSeed = 0;
         private ISequence<bool> _bombGenerator;
-        
-        
+
+        private static readonly Index2D[] NeighborOffsets = {
+            new Index2D(-1, -1),
+            new Index2D(0, -1),
+            new Index2D(1, -1),
+            new Index2D(-1, 0),
+            new Index2D(1, 0),
+            new Index2D(-1, 1),
+            new Index2D(0, 1),
+            new Index2D(1, 1),
+        };
+
+        private readonly Dictionary<ICell, Index2D> _cellIndexDict = new Dictionary<ICell, Index2D>();
+
+        private int Width => size.x;
+        private int Height => size.y;
+
+        private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
+        private Sprite BombSprite => cellSprites.bombSprite;
+
+        private Sprite GetSpriteSurroundedBy(int neighborBombCount)
+        {
+            if (neighborBombCount < 0 || neighborBombCount >= NoBombSprites.Count)
+            {
+                throw new RuntimeWrappedException($"Cannot get a cell sprite surrounded by {neighborBombCount} bombs.");
+            }
+
+            return NoBombSprites[neighborBombCount];
+        }
+
         private void Awake()
         {
             _bombGenerator = new RandomBoolSequence(BombGeneratorSeed);
@@ -42,6 +74,7 @@ namespace SnekTech
         {
             
             InstantiateCells();
+            SetCellsContent();
         }
 
         private void OnEnable()
@@ -118,6 +151,7 @@ namespace SnekTech
                 cell.Dispose();
             }
             _cells.Clear();
+            _cellIndexDict.Clear();
         }
 
         private void InstantiateCells()
@@ -132,17 +166,59 @@ namespace SnekTech
         
         private void InstantiateCells(int rowCount, int columnCount)
         {
-            for (int y = 0; y < rowCount; y++)
+            ClearCells();
+            
+            for (int i = 0; i < rowCount; i++)
             {
-                for (int x = 0; x < columnCount; x++)
+                for (int j = 0; j < columnCount; j++)
                 {
                     CellBehaviour cell = Instantiate(cellBehaviour, transform);
-                    cell.transform.localPosition = new Vector3(x, y, 0);
+                    cell.transform.localPosition = new Vector3(j, i, 0);
+                    bool hasBomb = _bombGenerator.Next();
+                    if (hasBomb)
+                    {
+                        cell.HasBomb = true;
+                    }
+                    
+                    _cellIndexDict.Add(cell, new Index2D(i, j));
                     _cells.Add(cell);
                 }
             }
         }
-        
+
+        private void SetCellsContent()
+        {
+            foreach (ICell cell in _cells)
+            {
+                if (cell.HasBomb)
+                {
+                    cell.SetContent(BombSprite);
+                }
+                else
+                {
+                    cell.SetContent(GetSpriteSurroundedBy(GetNeighborBombCount(cell)));
+                }
+            }
+        }
+
+        private int GetNeighborBombCount(ICell cell)
+        {
+            Index2D cellIndex = _cellIndexDict[cell];
+            TryCheckIndex(cellIndex);
+            
+            int neighborBombCount = 0;
+            foreach (Index2D offset in NeighborOffsets)
+            {
+                Index2D index = cellIndex + offset;
+                if (IsIndexWithinGrid(index) && GetCellAt(index).HasBomb)
+                {
+                    neighborBombCount++;
+                }
+            }
+
+            return neighborBombCount;
+        }
+
         private void ResetCells()
         {
             foreach (ICell cell in _cells)
@@ -150,6 +226,40 @@ namespace SnekTech
                 cell.Reset();
             }
         }
-    
+
+        private ICell GetCellAt(Index2D index2D)
+        {
+            return GetCellAt(index2D.RowIndex, index2D.ColumnIndex);
+        }
+        
+        private ICell GetCellAt(int rowIndex, int columnIndex)
+        {
+            TryCheckIndex(rowIndex, columnIndex);
+
+            return _cells[rowIndex * Width + columnIndex];
+        }
+
+        private bool IsIndexWithinGrid(Index2D index2D)
+        {
+            return IsIndexWithinGrid(index2D.RowIndex, index2D.ColumnIndex);
+        }
+
+        private bool IsIndexWithinGrid(int rowIndex, int columnIndex)
+        {
+            return rowIndex >= 0 && rowIndex < size.y && columnIndex >= 0 && columnIndex < size.x;
+        }
+
+        private void TryCheckIndex(Index2D index)
+        {
+            TryCheckIndex(index.RowIndex, index.ColumnIndex);
+        }
+
+        private void TryCheckIndex(int rowIndex, int columnIndex)
+        {
+            if (!IsIndexWithinGrid(rowIndex, columnIndex))
+            {
+                throw new RuntimeWrappedException($"invalid grid index: ({rowIndex}, {columnIndex})");
+            }
+        }
     }
 }
