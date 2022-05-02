@@ -172,15 +172,18 @@ namespace SnekTech
             {
                 for (int j = 0; j < columnCount; j++)
                 {
-                    CellBehaviour cell = Instantiate(cellBehaviour, transform);
-                    cell.transform.localPosition = new Vector3(j, i, 0);
+                    CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
+                    ICell cell = cellMono;
+                    var cellIndex = new Index2D(i, j);
+                    cell.SetPosition(cellIndex);
+                    
                     bool hasBomb = _bombGenerator.Next();
                     if (hasBomb)
                     {
                         cell.HasBomb = true;
                     }
                     
-                    _cellIndexDict.Add(cell, new Index2D(i, j));
+                    _cellIndexDict.Add(cell, cellIndex);
                     _cells.Add(cell);
                 }
             }

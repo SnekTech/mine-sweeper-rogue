@@ -52,5 +52,10 @@ namespace SnekTech.GridCell
         {
             _spriteRenderer.sprite = sprite;
         }
+
+        public void SetPosition(Index2D index)
+        {
+            transform.localPosition = new Vector3(index.ColumnIndex, index.RowIndex, 0);
+        }
     }
 }
