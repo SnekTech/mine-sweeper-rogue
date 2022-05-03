@@ -18,19 +18,12 @@ namespace SnekTech
             Camera mainCamera = Camera.main;
             return GetMouseWorldPosition(screenPosition, mainCamera);
         }
-
-        public static Task<T> GetCompletedTask<T>(T result)
-        {
-            var tcs = new TaskCompletionSource<T>();
-            tcs.SetResult(result);
-            return tcs.Task;
-        }
     }
 
     public struct Index2D
     {
-        public int RowIndex;
-        public int ColumnIndex;
+        public readonly int RowIndex;
+        public readonly int ColumnIndex;
 
         public static Index2D Zero = new Index2D(0, 0);
 

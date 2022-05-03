@@ -55,7 +55,7 @@ namespace SnekTech.GridCell
         {
             if (!OpenTask.IsCompleted)
             {
-                return Utils.GetCompletedTask(false);
+                return Task.FromResult(false);
             }
 
             _revealCompletionSource = new TaskCompletionSource<bool>();
@@ -67,7 +67,7 @@ namespace SnekTech.GridCell
         {
             if (!CloseTask.IsCompleted)
             {
-                return Utils.GetCompletedTask(false);
+                return Task.FromResult(false);
             }
 
             _putCoverCompletionSource = new TaskCompletionSource<bool>();

@@ -50,7 +50,7 @@ namespace SnekTech.GridCell
         {
             if (!LiftTask.IsCompleted)
             {
-                return Utils.GetCompletedTask(false);
+                return Task.FromResult(false);
             }
 
             _liftCompletionSource = new TaskCompletionSource<bool>();
@@ -62,7 +62,7 @@ namespace SnekTech.GridCell
         {
             if (!PutDownTask.IsCompleted)
             {
-                return Utils.GetCompletedTask(false);
+                return Task.FromResult(false);
             }
             
             _putDownCompletionSource = new TaskCompletionSource<bool>();
