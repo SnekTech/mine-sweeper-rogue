@@ -2,14 +2,17 @@
 
 namespace SnekTech
 {
-    public class RandomBoolSequence : ISequence<bool>
+    public class RandomBombGenerator : ISequence<bool>
     {
         private readonly int _seed;
+        private readonly float _bombPercentage;
+        
         private Random _random;
 
-        public RandomBoolSequence(int seed)
+        public RandomBombGenerator(int seed, float bombPercentage)
         {
             _seed = seed;
+            _bombPercentage = bombPercentage;
             Reset();
         }
 
@@ -20,7 +23,7 @@ namespace SnekTech
 
         public bool Next()
         {
-            return _random.Next(0, 2) == 1;
+            return _random.Next() < int.MaxValue * _bombPercentage;
         }
     }
 }
