@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -20,6 +21,8 @@ namespace SnekTech.GridCell
         
         public IFlag Flag => flagBehaviour;
         public ICover Cover => coverBehaviour;
+        public bool IsFlagged => _cellBrain.IsFlagged;
+        public bool IsCovered => _cellBrain.IsCovered;
         
         private void Awake()
         {
@@ -38,14 +41,14 @@ namespace SnekTech.GridCell
             Destroy(gameObject);
         }
 
-        public void OnLeftClick()
+        public Task<bool> OnLeftClick()
         {
-            _cellBrain.OnLeftClick();
+            return _cellBrain.OnLeftClick();
         }
 
-        public void OnRightClick()
+        public Task<bool> OnRightClick()
         {
-            _cellBrain.OnRightClick();
+            return _cellBrain.OnRightClick();
         }
 
         public void SetContent(Sprite sprite)

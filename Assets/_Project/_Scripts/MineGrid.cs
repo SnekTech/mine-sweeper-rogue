@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using SnekTech.GridCell;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +20,7 @@ namespace SnekTech
         private CellSprites cellSprites;
 
         private readonly List<ICell> _cells = new List<ICell>();
-        
+
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
         private InputAction _rightClickAction;
@@ -30,7 +32,8 @@ namespace SnekTech
         private const int BombGeneratorSeed = 0;
         private ISequence<bool> _bombGenerator;
 
-        private static readonly Index2D[] NeighborOffsets = {
+        private static readonly Index2D[] NeighborOffsets =
+        {
             new Index2D(-1, -1),
             new Index2D(0, -1),
             new Index2D(1, -1),
@@ -53,7 +56,7 @@ namespace SnekTech
         {
             if (neighborBombCount < 0 || neighborBombCount >= NoBombSprites.Count)
             {
-                throw new RuntimeWrappedException($"Cannot get a cell sprite surrounded by {neighborBombCount} bombs.");
+                throw new Exception($"Cannot get a cell sprite surrounded by {neighborBombCount} bombs.");
             }
 
             return NoBombSprites[neighborBombCount];
@@ -61,18 +64,17 @@ namespace SnekTech
 
         private void Awake()
         {
-            _bombGenerator = new RandomBoolSequence(BombGeneratorSeed);
-            
+            _bombGenerator = new RandomBombGenerator(BombGeneratorSeed, 0.1f);
+
             _mainCamera = Camera.main;
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
-            
+
             CachePlayerInputRelatedFields();
         }
-        
+
         // Start is called before the first frame update
         private void Start()
         {
-            
             InstantiateCells();
             SetCellsContent();
         }
@@ -86,11 +88,51 @@ namespace SnekTech
         {
             DisablePlayerInput();
         }
-        
-        private void OnGridLeftClick(InputAction.CallbackContext obj)
+
+        private async void OnGridLeftClick(InputAction.CallbackContext obj)
         {
             ICell cell = GetClickedCell();
-            cell?.OnLeftClick();
+            if (cell == null)
+            {
+                return;
+            }
+
+            await RevealCellAsync(_cellIndexDict[cell]);
+        }
+
+        private async Task RevealCellAsync(Index2D cellIndex)
+        {
+            if (!IsIndexWithinGrid(cellIndex))
+            {
+                return;
+            }
+            ICell cell = GetCellAt(cellIndex);
+            if (!cell.IsCovered)
+            {
+                return;
+            }
+
+            bool isLeftClickCompleted = await cell.OnLeftClick();
+            if (!isLeftClickCompleted)
+            {
+                return;
+            }
+
+            if (cell.HasBomb || GetNeighborBombCount(cell) > 0)
+            {
+                return;
+            }
+
+            var leftClickNeighborTasks = new List<Task>();
+            foreach (Index2D offset in NeighborOffsets)
+            {
+                Index2D index = cellIndex + offset;
+                leftClickNeighborTasks.Add(RevealCellAsync(index));
+            }
+
+            await Task.WhenAll(leftClickNeighborTasks);
+            
+            return;
         }
 
         private void OnGridRightClick(InputAction.CallbackContext context)
@@ -104,7 +146,7 @@ namespace SnekTech
             var mousePosition = _moveAction.ReadValue<Vector2>();
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
-            
+
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
         }
 
@@ -119,7 +161,7 @@ namespace SnekTech
         private void EnablePlayerInput()
         {
             _leftClickAction.performed += OnGridLeftClick;
-            _rightClickAction.performed += OnGridRightClick; 
+            _rightClickAction.performed += OnGridRightClick;
         }
 
         private void DisablePlayerInput()
@@ -150,6 +192,7 @@ namespace SnekTech
             {
                 cell.Dispose();
             }
+
             _cells.Clear();
             _cellIndexDict.Clear();
         }
@@ -163,11 +206,11 @@ namespace SnekTech
         {
             InstantiateCells(gridSize.x, gridSize.y);
         }
-        
+
         private void InstantiateCells(int rowCount, int columnCount)
         {
             ClearCells();
-            
+
             for (int i = 0; i < rowCount; i++)
             {
                 for (int j = 0; j < columnCount; j++)
@@ -176,13 +219,13 @@ namespace SnekTech
                     ICell cell = cellMono;
                     var cellIndex = new Index2D(i, j);
                     cell.SetPosition(cellIndex);
-                    
+
                     bool hasBomb = _bombGenerator.Next();
                     if (hasBomb)
                     {
                         cell.HasBomb = true;
                     }
-                    
+
                     _cellIndexDict.Add(cell, cellIndex);
                     _cells.Add(cell);
                 }
@@ -206,20 +249,28 @@ namespace SnekTech
 
         private int GetNeighborBombCount(ICell cell)
         {
-            Index2D cellIndex = _cellIndexDict[cell];
-            TryCheckIndex(cellIndex);
-            
             int neighborBombCount = 0;
-            foreach (Index2D offset in NeighborOffsets)
+            ForEachNeighbor(cell, neighborCell =>
             {
-                Index2D index = cellIndex + offset;
-                if (IsIndexWithinGrid(index) && GetCellAt(index).HasBomb)
+                if (neighborCell.HasBomb)
                 {
                     neighborBombCount++;
                 }
-            }
+            });
 
             return neighborBombCount;
+        }
+
+        private void ForEachNeighbor(ICell cell, Action<ICell> processNeighbor)
+        {
+            foreach (Index2D offset in NeighborOffsets)
+            {
+                Index2D index = _cellIndexDict[cell] + offset;
+                if (IsIndexWithinGrid(index))
+                {
+                    processNeighbor(GetCellAt(index));
+                }
+            }
         }
 
         private void ResetCells()
@@ -234,11 +285,9 @@ namespace SnekTech
         {
             return GetCellAt(index2D.RowIndex, index2D.ColumnIndex);
         }
-        
+
         private ICell GetCellAt(int rowIndex, int columnIndex)
         {
-            TryCheckIndex(rowIndex, columnIndex);
-
             return _cells[rowIndex * Width + columnIndex];
         }
 
@@ -250,19 +299,6 @@ namespace SnekTech
         private bool IsIndexWithinGrid(int rowIndex, int columnIndex)
         {
             return rowIndex >= 0 && rowIndex < size.y && columnIndex >= 0 && columnIndex < size.x;
-        }
-
-        private void TryCheckIndex(Index2D index)
-        {
-            TryCheckIndex(index.RowIndex, index.ColumnIndex);
-        }
-
-        private void TryCheckIndex(int rowIndex, int columnIndex)
-        {
-            if (!IsIndexWithinGrid(rowIndex, columnIndex))
-            {
-                throw new RuntimeWrappedException($"invalid grid index: ({rowIndex}, {columnIndex})");
-            }
         }
     }
 }

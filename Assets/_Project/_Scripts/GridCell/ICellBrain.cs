@@ -14,5 +14,7 @@ namespace SnekTech.GridCell
         Task<bool> OnRightClick();
         IFlag Flag { get; }
         ICover Cover { get; }
+        bool IsFlagged { get; }
+        bool IsCovered { get; }
     }
 }
