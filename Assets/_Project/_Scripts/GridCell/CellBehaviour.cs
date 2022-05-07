@@ -1,7 +1,6 @@
-using System;
 using System.Threading.Tasks;
+using SnekTech.Grid;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace SnekTech.GridCell
 {

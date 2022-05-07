@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using SnekTech.GridCell;
 
-namespace SnekTech
+namespace SnekTech.Grid
 {
     public class BasicGridBrain : IGridBrain
     {

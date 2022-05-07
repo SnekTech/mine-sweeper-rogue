@@ -5,7 +5,7 @@ using SnekTech.GridCell;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace SnekTech
+namespace SnekTech.Grid
 {
     public class GridBehaviour : MonoBehaviour, IGrid
     {

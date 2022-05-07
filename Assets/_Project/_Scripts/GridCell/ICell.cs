@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using SnekTech.Grid;
 using UnityEngine;
 
 namespace SnekTech.GridCell

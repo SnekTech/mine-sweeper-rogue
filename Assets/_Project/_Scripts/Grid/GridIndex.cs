@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SnekTech
+namespace SnekTech.Grid
 {
     public struct GridIndex
     {

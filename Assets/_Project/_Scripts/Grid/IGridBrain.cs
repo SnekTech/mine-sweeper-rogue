@@ -1,7 +1,7 @@
 ﻿using System;
 using SnekTech.GridCell;
 
-namespace SnekTech
+namespace SnekTech.Grid
 {
     public interface IGridBrain
     {

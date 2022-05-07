@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SnekTech
+namespace SnekTech.Grid
 {
     [Serializable]
     public struct GridSize
