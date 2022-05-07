@@ -10,6 +10,7 @@ namespace SnekTech.Grid
         GridSize Size { get; }
         
         void InitCells();
+        void InitCells(GridSize gridSize);
         void DisposeCells();
         void ResetCells();
     }

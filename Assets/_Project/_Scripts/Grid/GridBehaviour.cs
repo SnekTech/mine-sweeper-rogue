@@ -11,10 +11,6 @@ namespace SnekTech.Grid
     {
         [SerializeField]
         private CellBehaviour cellBehaviour;
-
-        [SerializeField]
-        private GridSize gridSize = new GridSize(10, 10);
-
         [SerializeField]
         private CellSprites cellSprites;
 
@@ -37,7 +33,7 @@ namespace SnekTech.Grid
 
         public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
-        public GridSize Size => gridSize;
+        public GridSize Size { get; private set; } = new GridSize(10, 10);
 
         private Sprite GetSpriteByNeighbourBombCount(int neighborBombCount)
         {
@@ -154,21 +150,17 @@ namespace SnekTech.Grid
             _rightClickAction.performed -= OnGridRightClick;
         }
 
-        [ContextMenu(nameof(InitCells))]
         public void InitCells()
         {
-            if (!HasCells)
-            {
-                InstantiateCells(gridSize);
-                InitCellsContent();
-            }
-            else
-            {
-                ResetCells();
-            }
+            InstantiateCells(Size);
+            InitCellsContent();
         }
 
-        private bool HasCells => Cells.Count > 0;
+        public void InitCells(GridSize gridSize)
+        {
+            Size = gridSize;
+            InitCells();
+        }
 
         [ContextMenu(nameof(DisposeCells))]
         public void DisposeCells()
@@ -182,13 +174,13 @@ namespace SnekTech.Grid
             CellIndexDict.Clear();
         }
 
-        private void InstantiateCells(GridSize size)
+        private void InstantiateCells(GridSize gridSize)
         {
             DisposeCells();
 
-            for (int i = 0; i < size.rowCount; i++)
+            for (int i = 0; i < gridSize.rowCount; i++)
             {
-                for (int j = 0; j < size.columnCount; j++)
+                for (int j = 0; j < gridSize.columnCount; j++)
                 {
                     CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
                     ICell cell = cellMono;
