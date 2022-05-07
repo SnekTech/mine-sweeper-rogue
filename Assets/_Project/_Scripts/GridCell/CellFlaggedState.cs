@@ -19,7 +19,7 @@ namespace SnekTech.GridCell
 
         public override Task<bool> OnLeftClick()
         {
-            return Task.FromResult(true);
+            return Task.FromResult(false);
         }
 
         public override async Task<bool> OnRightLick()

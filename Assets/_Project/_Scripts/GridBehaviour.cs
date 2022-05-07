@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using SnekTech.GridCell;
 using UnityEngine;
@@ -8,18 +7,16 @@ using UnityEngine.InputSystem;
 
 namespace SnekTech
 {
-    public class MineGrid : MonoBehaviour
+    public class GridBehaviour : MonoBehaviour, IGrid
     {
         [SerializeField]
         private CellBehaviour cellBehaviour;
 
         [SerializeField]
-        private Vector2Int size = new Vector2Int(10, 10);
+        private GridSize gridSize = new GridSize(10, 10);
 
         [SerializeField]
         private CellSprites cellSprites;
-
-        private readonly List<ICell> _cells = new List<ICell>();
 
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
@@ -32,27 +29,17 @@ namespace SnekTech
         private const int BombGeneratorSeed = 0;
         private ISequence<bool> _bombGenerator;
 
-        private static readonly Index2D[] NeighborOffsets =
-        {
-            new Index2D(-1, -1),
-            new Index2D(0, -1),
-            new Index2D(1, -1),
-            new Index2D(-1, 0),
-            new Index2D(1, 0),
-            new Index2D(-1, 1),
-            new Index2D(0, 1),
-            new Index2D(1, 1),
-        };
+        private IGridBrain _gridBrain;
 
-        private readonly Dictionary<ICell, Index2D> _cellIndexDict = new Dictionary<ICell, Index2D>();
-
-        private int Width => size.x;
-        private int Height => size.y;
 
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
         private Sprite BombSprite => cellSprites.bombSprite;
 
-        private Sprite GetSpriteSurroundedBy(int neighborBombCount)
+        public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
+        public List<ICell> Cells { get; } = new List<ICell>();
+        public GridSize Size => gridSize;
+
+        private Sprite GetSpriteByNeighbourBombCount(int neighborBombCount)
         {
             if (neighborBombCount < 0 || neighborBombCount >= NoBombSprites.Count)
             {
@@ -64,6 +51,8 @@ namespace SnekTech
 
         private void Awake()
         {
+            _gridBrain = new BasicGridBrain(this);
+            
             _bombGenerator = new RandomBombGenerator(BombGeneratorSeed, 0.1f);
 
             _mainCamera = Camera.main;
@@ -72,11 +61,9 @@ namespace SnekTech
             CachePlayerInputRelatedFields();
         }
 
-        // Start is called before the first frame update
         private void Start()
         {
-            InstantiateCells();
-            SetCellsContent();
+            InitCells();
         }
 
         private void OnEnable()
@@ -97,42 +84,39 @@ namespace SnekTech
                 return;
             }
 
-            await RevealCellAsync(_cellIndexDict[cell]);
+            await RevealCellAsync(CellIndexDict[cell]);
         }
 
-        private async Task RevealCellAsync(Index2D cellIndex)
+        private async Task RevealCellAsync(GridIndex cellGridIndex)
         {
-            if (!IsIndexWithinGrid(cellIndex))
+            if (!_gridBrain.IsIndexWithinGrid(cellGridIndex))
             {
                 return;
             }
-            ICell cell = GetCellAt(cellIndex);
+            ICell cell = _gridBrain.GetCellAt(cellGridIndex);
             if (!cell.IsCovered)
             {
                 return;
             }
 
-            bool isLeftClickCompleted = await cell.OnLeftClick();
-            if (!isLeftClickCompleted)
+            bool isLeftClickSucceeded = await cell.OnLeftClick();
+            if (!isLeftClickSucceeded)
             {
                 return;
             }
 
-            if (cell.HasBomb || GetNeighborBombCount(cell) > 0)
+            if (cell.HasBomb || _gridBrain.GetNeighborBombCount(cell) > 0)
             {
                 return;
             }
 
             var leftClickNeighborTasks = new List<Task>();
-            foreach (Index2D offset in NeighborOffsets)
+            _gridBrain.ForEachNeighbor(cell, neighborCell =>
             {
-                Index2D index = cellIndex + offset;
-                leftClickNeighborTasks.Add(RevealCellAsync(index));
-            }
+                leftClickNeighborTasks.Add(RevealCellAsync(CellIndexDict[neighborCell]));
+            });
 
             await Task.WhenAll(leftClickNeighborTasks);
-            
-            return;
         }
 
         private void OnGridRightClick(InputAction.CallbackContext context)
@@ -171,11 +155,12 @@ namespace SnekTech
         }
 
         [ContextMenu(nameof(InitCells))]
-        private void InitCells()
+        public void InitCells()
         {
             if (!HasCells)
             {
-                InstantiateCells();
+                InstantiateCells(gridSize);
+                InitCellsContent();
             }
             else
             {
@@ -183,41 +168,31 @@ namespace SnekTech
             }
         }
 
-        private bool HasCells => _cells.Count > 0;
+        private bool HasCells => Cells.Count > 0;
 
-        [ContextMenu(nameof(ClearCells))]
-        private void ClearCells()
+        [ContextMenu(nameof(DisposeCells))]
+        public void DisposeCells()
         {
-            foreach (ICell cell in _cells)
+            foreach (ICell cell in Cells)
             {
                 cell.Dispose();
             }
 
-            _cells.Clear();
-            _cellIndexDict.Clear();
+            Cells.Clear();
+            CellIndexDict.Clear();
         }
 
-        private void InstantiateCells()
+        private void InstantiateCells(GridSize size)
         {
-            InstantiateCells(size);
-        }
+            DisposeCells();
 
-        private void InstantiateCells(Vector2Int gridSize)
-        {
-            InstantiateCells(gridSize.x, gridSize.y);
-        }
-
-        private void InstantiateCells(int rowCount, int columnCount)
-        {
-            ClearCells();
-
-            for (int i = 0; i < rowCount; i++)
+            for (int i = 0; i < size.rowCount; i++)
             {
-                for (int j = 0; j < columnCount; j++)
+                for (int j = 0; j < size.columnCount; j++)
                 {
                     CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
                     ICell cell = cellMono;
-                    var cellIndex = new Index2D(i, j);
+                    var cellIndex = new GridIndex(i, j);
                     cell.SetPosition(cellIndex);
 
                     bool hasBomb = _bombGenerator.Next();
@@ -226,15 +201,15 @@ namespace SnekTech
                         cell.HasBomb = true;
                     }
 
-                    _cellIndexDict.Add(cell, cellIndex);
-                    _cells.Add(cell);
+                    CellIndexDict.Add(cell, cellIndex);
+                    Cells.Add(cell);
                 }
             }
         }
 
-        private void SetCellsContent()
+        private void InitCellsContent()
         {
-            foreach (ICell cell in _cells)
+            foreach (ICell cell in Cells)
             {
                 if (cell.HasBomb)
                 {
@@ -242,63 +217,18 @@ namespace SnekTech
                 }
                 else
                 {
-                    cell.SetContent(GetSpriteSurroundedBy(GetNeighborBombCount(cell)));
+                    cell.SetContent(GetSpriteByNeighbourBombCount(_gridBrain.GetNeighborBombCount(cell)));
                 }
             }
         }
 
-        private int GetNeighborBombCount(ICell cell)
+        public void ResetCells()
         {
-            int neighborBombCount = 0;
-            ForEachNeighbor(cell, neighborCell =>
-            {
-                if (neighborCell.HasBomb)
-                {
-                    neighborBombCount++;
-                }
-            });
-
-            return neighborBombCount;
-        }
-
-        private void ForEachNeighbor(ICell cell, Action<ICell> processNeighbor)
-        {
-            foreach (Index2D offset in NeighborOffsets)
-            {
-                Index2D index = _cellIndexDict[cell] + offset;
-                if (IsIndexWithinGrid(index))
-                {
-                    processNeighbor(GetCellAt(index));
-                }
-            }
-        }
-
-        private void ResetCells()
-        {
-            foreach (ICell cell in _cells)
+            foreach (ICell cell in Cells)
             {
                 cell.Reset();
             }
         }
 
-        private ICell GetCellAt(Index2D index2D)
-        {
-            return GetCellAt(index2D.RowIndex, index2D.ColumnIndex);
-        }
-
-        private ICell GetCellAt(int rowIndex, int columnIndex)
-        {
-            return _cells[rowIndex * Width + columnIndex];
-        }
-
-        private bool IsIndexWithinGrid(Index2D index2D)
-        {
-            return IsIndexWithinGrid(index2D.RowIndex, index2D.ColumnIndex);
-        }
-
-        private bool IsIndexWithinGrid(int rowIndex, int columnIndex)
-        {
-            return rowIndex >= 0 && rowIndex < size.y && columnIndex >= 0 && columnIndex < size.x;
-        }
     }
 }

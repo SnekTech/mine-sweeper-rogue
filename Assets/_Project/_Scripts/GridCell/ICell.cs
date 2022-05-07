@@ -15,7 +15,7 @@ namespace SnekTech.GridCell
 
         bool HasBomb { get; set; }
         void SetContent(Sprite sprite);
-        void SetPosition(Index2D index);
+        void SetPosition(GridIndex gridIndex);
         bool IsFlagged { get; }
         bool IsCovered { get; }
     }
