@@ -14,7 +14,7 @@ namespace SnekTech.Grid
         [SerializeField]
         private CellSprites cellSprites;
         [SerializeField]
-        private InputManager inputManager;
+        private InputEventManager inputEventManager;
 
         public event Action BombRevealed;
         public event Action EmptyRevealed;
@@ -66,14 +66,14 @@ namespace SnekTech.Grid
 
         private void EnableEventListeners()
         {
-            inputManager.LeftClickPerformed += OnLeftClickAsync;
-            inputManager.RightClickPerformed += OnRightClickAsync;
+            inputEventManager.LeftClickPerformed += OnLeftClickAsync;
+            inputEventManager.RightClickPerformed += OnRightClickAsync;
         }
 
         private void DisableEventListeners()
         {
-            inputManager.LeftClickPerformed -= OnLeftClickAsync;
-            inputManager.RightClickPerformed -= OnRightClickAsync;
+            inputEventManager.LeftClickPerformed -= OnLeftClickAsync;
+            inputEventManager.RightClickPerformed -= OnRightClickAsync;
         }
 
         private async Task RevealCellAsync(GridIndex cellGridIndex)

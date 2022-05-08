@@ -9,7 +9,7 @@ namespace SnekTech
     [RequireComponent(typeof(PlayerInput))]
     public class InputListener : MonoBehaviour
     {
-        public InputManager inputManager;
+        public InputEventManager inputEventManager;
 
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
@@ -39,13 +39,13 @@ namespace SnekTech
         private void OnLeftClickPerformed(InputAction.CallbackContext obj)
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
-            inputManager.OnLeftClickPerformed(mousePosition);
+            inputEventManager.OnLeftClickPerformed(mousePosition);
         }
 
         private void OnRightClickPerformed(InputAction.CallbackContext obj)
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
-            inputManager.OnRightClickPerformed(mousePosition);
+            inputEventManager.OnRightClickPerformed(mousePosition);
         }
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace SnekTech
 {
-    [CreateAssetMenu(fileName = "InputManager", menuName = "MyManagers/InputManager")]
-    public class InputManager : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(InputEventManager), menuName = "MyEventManagers/" + nameof(InputEventManager))]
+    public class InputEventManager : ScriptableObject
     {
         public event Action<Vector2> LeftClickPerformed;
         public event Action<Vector2> RightClickPerformed;
