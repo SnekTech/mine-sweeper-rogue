@@ -5,7 +5,7 @@ namespace SnekTech
 {
     public interface ICanClickAsync
     {
-        Task OnLeftClickAsync(Vector2 mousePosition);
-        Task OnRightClickAsync(Vector2 mousePosition);
+        void OnLeftClickAsync(Vector2 mousePosition);
+        void OnRightClickAsync(Vector2 mousePosition);
     }
 }

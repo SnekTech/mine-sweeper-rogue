@@ -1,63 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using SnekTech.Grid;
+﻿using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace SnekTech
 {
-    [RequireComponent(typeof(PlayerInput))]
-    public class InputManager : MonoBehaviour
+    [CreateAssetMenu(fileName = "InputManager", menuName = "MyManagers/InputManager")]
+    public class InputManager : ScriptableObject
     {
-        public List<GridBehaviour> grids = new List<GridBehaviour>();
+        public event Action<Vector2> LeftClickPerformed;
+        public event Action<Vector2> RightClickPerformed;
 
-        private PlayerInput _playerInput;
-        private InputAction _leftClickAction;
-        private InputAction _rightClickAction;
-        private InputAction _moveAction;
-
-        private void Awake()
+        public void OnLeftClickPerformed(Vector2 mousePosition)
         {
-            _playerInput = GetComponent<PlayerInput>();
-            _leftClickAction = _playerInput.actions["LeftClick"];
-            _rightClickAction = _playerInput.actions["RightClick"];
-            _moveAction = _playerInput.actions["Move"];
+            LeftClickPerformed?.Invoke(mousePosition);
         }
 
-        private void OnEnable()
+        public void OnRightClickPerformed(Vector2 mousePosition)
         {
-            _leftClickAction.performed += OnLeftClickPerformed;
-            _rightClickAction.performed += OnRightClickPerformed;
-        }
-
-        private void OnDisable()
-        {
-            _leftClickAction.performed -= OnLeftClickPerformed;
-            _rightClickAction.performed -= OnRightClickPerformed;
-        }
-
-        private async void OnLeftClickPerformed(InputAction.CallbackContext obj)
-        {
-            var mousePosition = _moveAction.ReadValue<Vector2>();
-            var clickTasks = new List<Task>();
-            foreach (ICanClickAsync clickable in grids)
-            {
-                clickTasks.Add(clickable.OnLeftClickAsync(mousePosition));
-            }
-
-            await Task.WhenAll(clickTasks);
-        }
-
-        private async void OnRightClickPerformed(InputAction.CallbackContext obj)
-        {
-            var mousePosition = _moveAction.ReadValue<Vector2>();
-            var clickTasks = new List<Task>();
-            foreach (ICanClickAsync clickable in grids)
-            {
-                clickTasks.Add(clickable.OnRightClickAsync(mousePosition));
-            }
-
-            await Task.WhenAll(clickTasks);
+            RightClickPerformed?.Invoke(mousePosition);
         }
     }
 }

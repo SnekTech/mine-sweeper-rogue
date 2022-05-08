@@ -13,6 +13,8 @@ namespace SnekTech.Grid
         private CellBehaviour cellBehaviour;
         [SerializeField]
         private CellSprites cellSprites;
+        [SerializeField]
+        private InputManager inputManager;
 
         public event Action BombRevealed;
         public event Action EmptyRevealed;
@@ -21,7 +23,6 @@ namespace SnekTech.Grid
         private Camera _mainCamera;
         private int _cellLayer;
 
-        private const int BombGeneratorSeed = 0;
         private ISequence<bool> _bombGenerator;
         private IGridBrain _gridBrain;
 
@@ -51,6 +52,28 @@ namespace SnekTech.Grid
         private void Start()
         {
             InitCells();
+        }
+
+        private void OnEnable()
+        {
+            EnableEventListeners();
+        }
+
+        private void OnDisable()
+        {
+            DisableEventListeners(); 
+        }
+
+        private void EnableEventListeners()
+        {
+            inputManager.LeftClickPerformed += OnLeftClickAsync;
+            inputManager.RightClickPerformed += OnRightClickAsync;
+        }
+
+        private void DisableEventListeners()
+        {
+            inputManager.LeftClickPerformed -= OnLeftClickAsync;
+            inputManager.RightClickPerformed -= OnRightClickAsync;
         }
 
         private async Task RevealCellAsync(GridIndex cellGridIndex)
@@ -92,7 +115,7 @@ namespace SnekTech.Grid
             await Task.WhenAll(leftClickNeighborTasks);
         }
 
-        public async Task OnLeftClickAsync(Vector2 mousePosition)
+        public async void OnLeftClickAsync(Vector2 mousePosition)
         {
             ICell cell = GetClickedCell(mousePosition);
             if (cell == null)
@@ -107,10 +130,10 @@ namespace SnekTech.Grid
             }
         }
 
-        public Task OnRightClickAsync(Vector2 mousePosition)
+        public void OnRightClickAsync(Vector2 mousePosition)
         {
             ICell cell = GetClickedCell(mousePosition);
-            return cell?.OnRightClick();
+            cell?.OnRightClick();
         }
 
         private ICell GetClickedCell(Vector2 mousePosition)

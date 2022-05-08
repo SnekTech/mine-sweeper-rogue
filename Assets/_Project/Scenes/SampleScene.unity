@@ -136,7 +136,7 @@ GameObject:
   m_Layer: 6
   m_Name: Mine Grid
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellBehaviour: {fileID: 4038224895371612872, guid: 60dd97a3585e17244a66b5f87c7e2c47, type: 3}
   cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
+  inputManager: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
 --- !u!4 &58783577
 Transform:
   m_ObjectHideFlags: 0
@@ -695,7 +696,7 @@ GameObject:
   - component: {fileID: 1313160948}
   - component: {fileID: 1313160947}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: InputListener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -715,6 +716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grids:
   - {fileID: 58783576}
+  inputManager: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
 --- !u!114 &1313160948
 MonoBehaviour:
   m_ObjectHideFlags: 0
