@@ -18,6 +18,7 @@ namespace SnekTech.GridCell
 
         public bool IsFlagged => _currentState == FlaggedState;
         public bool IsCovered => _currentState == CoveredState;
+        public bool IsRevealed => _currentState == RevealedState;
 
         public BasicCellBrain(ICell cell)
         {

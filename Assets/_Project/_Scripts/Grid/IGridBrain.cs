@@ -5,7 +5,6 @@ namespace SnekTech.Grid
 {
     public interface IGridBrain
     {
-
         ICell GetCellAt(GridIndex gridIndex);
         bool IsIndexWithinGrid(GridIndex gridIndex);
         int GetNeighborBombCount(ICell cell);

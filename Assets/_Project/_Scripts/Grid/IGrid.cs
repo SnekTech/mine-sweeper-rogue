@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SnekTech.GridCell;
 
 namespace SnekTech.Grid
@@ -8,6 +9,13 @@ namespace SnekTech.Grid
         Dictionary<ICell, GridIndex> CellIndexDict { get; }
         List<ICell> Cells { get; }
         GridSize Size { get; }
+
+        event Action BombRevealed;
+        event Action Cleared;
+        
+        int CellCount { get; }
+        int BombCount { get; }
+        int RevealedCellCount { get; }
         
         void InitCells();
         void InitCells(GridSize gridSize);

@@ -16,5 +16,6 @@ namespace SnekTech.GridCell
         ICover Cover { get; }
         bool IsFlagged { get; }
         bool IsCovered { get; }
+        bool IsRevealed { get; }
     }
 }

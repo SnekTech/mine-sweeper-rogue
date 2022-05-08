@@ -22,7 +22,8 @@ namespace SnekTech.GridCell
         public ICover Cover => coverBehaviour;
         public bool IsFlagged => _cellBrain.IsFlagged;
         public bool IsCovered => _cellBrain.IsCovered;
-        
+        public bool IsRevealed => _cellBrain.IsRevealed;
+
         private void Awake()
         {
             _cellBrain = new BasicCellBrain(this);

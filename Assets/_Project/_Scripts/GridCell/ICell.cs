@@ -19,5 +19,6 @@ namespace SnekTech.GridCell
         void SetPosition(GridIndex gridIndex);
         bool IsFlagged { get; }
         bool IsCovered { get; }
+        bool IsRevealed { get; }
     }
 }
