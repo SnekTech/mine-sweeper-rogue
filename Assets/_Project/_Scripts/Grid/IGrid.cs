@@ -3,7 +3,7 @@ using SnekTech.GridCell;
 
 namespace SnekTech.Grid
 {
-    public interface IGrid
+    public interface IGrid : ICanClickAsync
     {
         Dictionary<ICell, GridIndex> CellIndexDict { get; }
         List<ICell> Cells { get; }

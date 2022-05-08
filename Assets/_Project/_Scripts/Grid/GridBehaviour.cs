@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SnekTech.GridCell;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace SnekTech.Grid
 {
@@ -14,10 +13,6 @@ namespace SnekTech.Grid
         [SerializeField]
         private CellSprites cellSprites;
 
-        private PlayerInput _playerInput;
-        private InputAction _leftClickAction;
-        private InputAction _rightClickAction;
-        private InputAction _moveAction;
         private Camera _mainCamera;
 
         private int _cellLayer;
@@ -53,34 +48,11 @@ namespace SnekTech.Grid
 
             _mainCamera = Camera.main;
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
-
-            CachePlayerInputRelatedFields();
         }
 
         private void Start()
         {
             InitCells();
-        }
-
-        private void OnEnable()
-        {
-            EnablePlayerInput();
-        }
-
-        private void OnDisable()
-        {
-            DisablePlayerInput();
-        }
-
-        private async void OnGridLeftClick(InputAction.CallbackContext obj)
-        {
-            ICell cell = GetClickedCell();
-            if (cell == null)
-            {
-                return;
-            }
-
-            await RevealCellAsync(CellIndexDict[cell]);
         }
 
         private async Task RevealCellAsync(GridIndex cellGridIndex)
@@ -115,39 +87,24 @@ namespace SnekTech.Grid
             await Task.WhenAll(leftClickNeighborTasks);
         }
 
-        private void OnGridRightClick(InputAction.CallbackContext context)
+        public Task OnLeftClickAsync(Vector2 mousePosition)
         {
-            ICell cell = GetClickedCell();
-            cell?.OnRightClick();
+            ICell cell = GetClickedCell(mousePosition);
+            return cell == null ? Task.CompletedTask : RevealCellAsync(CellIndexDict[cell]);
         }
 
-        private ICell GetClickedCell()
+        public Task OnRightClickAsync(Vector2 mousePosition)
         {
-            var mousePosition = _moveAction.ReadValue<Vector2>();
+            ICell cell = GetClickedCell(mousePosition);
+            return cell?.OnRightClick();
+        }
+
+        private ICell GetClickedCell(Vector2 mousePosition)
+        {
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
 
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
-        }
-
-        private void CachePlayerInputRelatedFields()
-        {
-            _playerInput = GetComponent<PlayerInput>();
-            _leftClickAction = _playerInput.actions["LeftClick"];
-            _rightClickAction = _playerInput.actions["RightClick"];
-            _moveAction = _playerInput.actions["Move"];
-        }
-
-        private void EnablePlayerInput()
-        {
-            _leftClickAction.performed += OnGridLeftClick;
-            _rightClickAction.performed += OnGridRightClick;
-        }
-
-        private void DisablePlayerInput()
-        {
-            _leftClickAction.performed -= OnGridLeftClick;
-            _rightClickAction.performed -= OnGridRightClick;
         }
 
         public void InitCells()
