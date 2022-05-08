@@ -15,10 +15,8 @@ namespace SnekTech.Grid
         private CellSprites cellSprites;
         [SerializeField]
         private InputEventManager inputEventManager;
-
-        public event Action BombRevealed;
-        public event Action EmptyRevealed;
-        public event Action Cleared;
+        [SerializeField]
+        private GridEventManager gridEventManager;
 
         private Camera _mainCamera;
         private int _cellLayer;
@@ -93,11 +91,11 @@ namespace SnekTech.Grid
             {
                 return;
             }
-            EmptyRevealed?.Invoke();
+            gridEventManager.OnEmptyCellRevealed();
 
             if (cell.HasBomb)
             {
-                BombRevealed?.Invoke();
+                gridEventManager.OnBombRevealed();
                 return;
             }
 
@@ -126,7 +124,7 @@ namespace SnekTech.Grid
             
             if (RevealedCellCount == CellCount - BombCount)
             {
-                Cleared?.Invoke();
+                gridEventManager.OnGridCleared();
             }
         }
 

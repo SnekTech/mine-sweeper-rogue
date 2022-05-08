@@ -9,10 +9,6 @@ namespace SnekTech.Grid
         Dictionary<ICell, GridIndex> CellIndexDict { get; }
         List<ICell> Cells { get; }
         GridData GridData { get; }
-
-        event Action BombRevealed;
-        event Action EmptyRevealed;
-        event Action Cleared;
         
         int CellCount { get; }
         int BombCount { get; }

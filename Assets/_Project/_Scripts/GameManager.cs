@@ -6,20 +6,18 @@ namespace SnekTech
 {
     public class GameManager : MonoBehaviour
     {
-        public GridBehaviour gridBehaviour;
-
-        private IGrid Grid => gridBehaviour;
+        public GridEventManager gridEventManager;
 
         private void OnEnable()
         {
-            Grid.BombRevealed += OnBombRevealed;
-            Grid.Cleared += OnGridCleared;
+            gridEventManager.BombRevealed += OnBombRevealed;
+            gridEventManager.GridCleared += OnGridCleared;
         }
 
         private void OnDisable()
         {
-            Grid.BombRevealed -= OnBombRevealed;
-            Grid.Cleared -= OnGridCleared;
+            gridEventManager.BombRevealed -= OnBombRevealed;
+            gridEventManager.GridCleared -= OnGridCleared;
         }
 
         private void OnGridCleared()
