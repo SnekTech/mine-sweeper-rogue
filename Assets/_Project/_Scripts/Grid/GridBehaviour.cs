@@ -31,24 +31,19 @@ namespace SnekTech.Grid
 
         public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
-        public GridSize Size { get; private set; } = new GridSize(10, 10);
-        public int CellCount => Size.rowCount * Size.columnCount;
+
+        public GridData GridData { get; private set; } = GridData.Default;
+
+        private GridSize GridSize => GridData.GridSize;
+        public int CellCount => GridSize.rowCount * GridSize.columnCount;
         public int BombCount { get; private set; }
 
-        public int RevealedCellCount
-        {
-            get
-            {
-                return Cells.Count(cell => cell.IsRevealed);
-            }
-        }
+        public int RevealedCellCount => Cells.Count(cell => cell.IsRevealed);
 
         private void Awake()
         {
             _gridBrain = new BasicGridBrain(this);
             
-            _bombGenerator = new RandomBombGenerator(BombGeneratorSeed, 0.1f);
-
             _mainCamera = Camera.main;
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
         }
@@ -128,13 +123,13 @@ namespace SnekTech.Grid
 
         public void InitCells()
         {
-            InstantiateCells(Size);
+            InstantiateCells(GridData);
             InitCellsContent();
         }
 
-        public void InitCells(GridSize gridSize)
+        public void InitCells(GridData gridData)
         {
-            Size = gridSize;
+            GridData = gridData;
             InitCells();
         }
 
@@ -150,11 +145,14 @@ namespace SnekTech.Grid
             CellIndexDict.Clear();
         }
 
-        private void InstantiateCells(GridSize gridSize)
+        private void InstantiateCells(GridData gridData)
         {
             DisposeCells();
-            BombCount = 0;
 
+            _bombGenerator = new RandomBombGenerator(gridData.BombGeneratorSeed, gridData.BombPercent);
+            BombCount = 0;
+            
+            GridSize gridSize = gridData.GridSize;
             for (int i = 0; i < gridSize.rowCount; i++)
             {
                 for (int j = 0; j < gridSize.columnCount; j++)

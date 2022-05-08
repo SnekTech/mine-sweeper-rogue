@@ -8,7 +8,7 @@ namespace SnekTech.Grid
     {
         Dictionary<ICell, GridIndex> CellIndexDict { get; }
         List<ICell> Cells { get; }
-        GridSize Size { get; }
+        GridData GridData { get; }
 
         event Action BombRevealed;
         event Action EmptyRevealed;
@@ -19,7 +19,7 @@ namespace SnekTech.Grid
         int RevealedCellCount { get; }
         
         void InitCells();
-        void InitCells(GridSize gridSize);
+        void InitCells(GridData gridData);
         void DisposeCells();
         void ResetCells();
     }

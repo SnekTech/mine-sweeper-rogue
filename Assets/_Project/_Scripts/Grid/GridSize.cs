@@ -3,7 +3,7 @@
 namespace SnekTech.Grid
 {
     [Serializable]
-    public struct GridSize
+    public record GridSize
     {
         public int rowCount;
         public int columnCount;
