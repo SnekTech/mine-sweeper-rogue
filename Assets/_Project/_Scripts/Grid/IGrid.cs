@@ -11,6 +11,7 @@ namespace SnekTech.Grid
         GridSize Size { get; }
 
         event Action BombRevealed;
+        event Action EmptyRevealed;
         event Action Cleared;
         
         int CellCount { get; }

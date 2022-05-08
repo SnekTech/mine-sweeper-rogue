@@ -15,6 +15,7 @@ namespace SnekTech.Grid
         private CellSprites cellSprites;
 
         public event Action BombRevealed;
+        public event Action EmptyRevealed;
         public event Action Cleared;
 
         private Camera _mainCamera;
@@ -74,6 +75,7 @@ namespace SnekTech.Grid
             {
                 return;
             }
+            EmptyRevealed?.Invoke();
 
             if (cell.HasBomb)
             {

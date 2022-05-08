@@ -8,10 +8,18 @@ namespace SnekTech
     {
         public GridBehaviour gridBehaviour;
 
+        private IGrid Grid => gridBehaviour;
+
         private void OnEnable()
         {
-            gridBehaviour.BombRevealed += OnBombRevealed;
-            gridBehaviour.Cleared += OnGridCleared;
+            Grid.BombRevealed += OnBombRevealed;
+            Grid.Cleared += OnGridCleared;
+        }
+
+        private void OnDisable()
+        {
+            Grid.BombRevealed -= OnBombRevealed;
+            Grid.Cleared -= OnGridCleared;
         }
 
         private void OnGridCleared()
