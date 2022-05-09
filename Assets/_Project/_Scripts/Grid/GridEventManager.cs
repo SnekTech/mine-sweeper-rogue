@@ -7,28 +7,28 @@ namespace SnekTech.Grid
     public class GridEventManager : ScriptableObject
     {
         public event Action<IGrid> GridInitCompleted;
-        public event Action BombRevealed;
-        public event Action<int> EmptyCellRevealed;
-        public event Action GridCleared;
+        public event Action<IGrid> BombRevealed;
+        public event Action<IGrid> EmptyCellRevealed;
+        public event Action<IGrid> GridCleared;
 
         public void InvokeGridInitCompleted(IGrid grid)
         {
             GridInitCompleted?.Invoke(grid);
         }
         
-        public void InvokeBombRevealed()
+        public void InvokeBombRevealed(IGrid grid)
         {
-            BombRevealed?.Invoke();
+            BombRevealed?.Invoke(grid);
         }
 
-        public void InvokeEmptyCellRevealed(int remainingEmptyCellCount)
+        public void InvokeEmptyCellRevealed(IGrid grid)
         {
-            EmptyCellRevealed?.Invoke(remainingEmptyCellCount);
+            EmptyCellRevealed?.Invoke(grid);
         }
 
-        public void InvokeGridCleared()
+        public void InvokeGridCleared(IGrid grid)
         {
-            GridCleared?.Invoke();
+            GridCleared?.Invoke(grid);
         }
     }
 }

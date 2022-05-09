@@ -90,11 +90,11 @@ namespace SnekTech.Grid
             {
                 return;
             }
-            gridEventManager.InvokeEmptyCellRevealed(CellCount - RevealedCellCount);
+            gridEventManager.InvokeEmptyCellRevealed(this);
 
             if (cell.HasBomb)
             {
-                gridEventManager.InvokeBombRevealed();
+                gridEventManager.InvokeBombRevealed(this);
                 return;
             }
 
@@ -123,7 +123,7 @@ namespace SnekTech.Grid
             
             if (RevealedCellCount == CellCount - BombCount)
             {
-                gridEventManager.InvokeGridCleared();
+                gridEventManager.InvokeGridCleared(this);
             }
         }
 
