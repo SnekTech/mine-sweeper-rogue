@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +58,7 @@ namespace SnekTech.Grid
 
         private void OnDisable()
         {
-            DisableEventListeners(); 
+            DisableEventListeners();
         }
 
         private void EnableEventListeners()
@@ -91,7 +90,7 @@ namespace SnekTech.Grid
             {
                 return;
             }
-            gridEventManager.OnEmptyCellRevealed();
+            gridEventManager.OnEmptyCellRevealed(CellCount - RevealedCellCount);
 
             if (cell.HasBomb)
             {

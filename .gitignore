@@ -76,5 +76,6 @@ crashlytics-build.properties
 
 /[Aa]ssets/RiderFlow.*
 ProjectSettings/RiderScriptEditorPersistedState.asset
-Assets/Plugins
+Assets/Plugins/Demigiant
+Assets/Plugins/Demigiant.meta
 Assets/TextMesh Pro

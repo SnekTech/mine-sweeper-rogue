@@ -7,7 +7,7 @@ namespace SnekTech.Grid
     public class GridEventManager : ScriptableObject
     {
         public event Action BombRevealed;
-        public event Action EmptyCellRevealed;
+        public event Action<int> EmptyCellRevealed;
         public event Action GridCleared;
 
         public void OnBombRevealed()
@@ -15,9 +15,9 @@ namespace SnekTech.Grid
             BombRevealed?.Invoke();
         }
 
-        public void OnEmptyCellRevealed()
+        public void OnEmptyCellRevealed(int remainingEmptyCellCount)
         {
-            EmptyCellRevealed?.Invoke();
+            EmptyCellRevealed?.Invoke(remainingEmptyCellCount);
         }
 
         public void OnGridCleared()
