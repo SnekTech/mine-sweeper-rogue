@@ -39,13 +39,13 @@ namespace SnekTech
         private void OnLeftClickPerformed(InputAction.CallbackContext obj)
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
-            inputEventManager.OnLeftClickPerformed(mousePosition);
+            inputEventManager.InvokeLeftClickPerformed(mousePosition);
         }
 
         private void OnRightClickPerformed(InputAction.CallbackContext obj)
         {
             var mousePosition = _moveAction.ReadValue<Vector2>();
-            inputEventManager.OnRightClickPerformed(mousePosition);
+            inputEventManager.InvokeRightClickPerformed(mousePosition);
         }
     }
 }

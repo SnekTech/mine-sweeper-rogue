@@ -24,6 +24,11 @@ namespace SnekTech.UI
             playerData.DataChanged += OnPlayerDataChanged;
         }
 
+        private void OnDisable()
+        {
+            playerData.DataChanged -= OnPlayerDataChanged;
+        }
+
         private void OnPlayerDataChanged()
         {
             healthLabel.LabelText = HealthStr;

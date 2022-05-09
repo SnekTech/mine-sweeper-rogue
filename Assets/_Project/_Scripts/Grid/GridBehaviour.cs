@@ -90,11 +90,11 @@ namespace SnekTech.Grid
             {
                 return;
             }
-            gridEventManager.OnEmptyCellRevealed(CellCount - RevealedCellCount);
+            gridEventManager.InvokeEmptyCellRevealed(CellCount - RevealedCellCount);
 
             if (cell.HasBomb)
             {
-                gridEventManager.OnBombRevealed();
+                gridEventManager.InvokeBombRevealed();
                 return;
             }
 
@@ -123,7 +123,7 @@ namespace SnekTech.Grid
             
             if (RevealedCellCount == CellCount - BombCount)
             {
-                gridEventManager.OnGridCleared();
+                gridEventManager.InvokeGridCleared();
             }
         }
 
@@ -145,6 +145,7 @@ namespace SnekTech.Grid
         {
             InstantiateCells(GridData);
             InitCellsContent();
+            gridEventManager.InvokeGridInitCompleted(this);
         }
 
         public void InitCells(GridData gridData)
