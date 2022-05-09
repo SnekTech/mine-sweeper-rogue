@@ -10,24 +10,40 @@ namespace SnekTech.UI
         private GridEventManager gridEventManager;
 
         [SerializeField]
-        private LabelController remainingCoverLabel;
+        private LabelController remainingCoverCountLabel;
+
+        [SerializeField]
+        private LabelController flaggedCellCountLabel;
 
         private void OnEnable()
         {
-            gridEventManager.GridInitCompleted += UpdateRemainingCoverLabel;
-            gridEventManager.EmptyCellRevealed += UpdateRemainingCoverLabel;
+            gridEventManager.GridInitCompleted += UpdateGridData;
+            gridEventManager.EmptyCellRevealed += UpdateRemainingCoverCount;
+            gridEventManager.CellFlagOperated += UpdateFlaggedCellCount;
         }
 
         private void OnDisable()
         {
-            gridEventManager.GridInitCompleted -= UpdateRemainingCoverLabel;
-            gridEventManager.EmptyCellRevealed -= UpdateRemainingCoverLabel;
+            gridEventManager.GridInitCompleted -= UpdateGridData;
+            gridEventManager.EmptyCellRevealed -= UpdateRemainingCoverCount;
+            gridEventManager.CellFlagOperated -= UpdateFlaggedCellCount;
         }
 
-        private void UpdateRemainingCoverLabel(IGrid grid)
+        private void UpdateGridData(IGrid grid)
+        {
+            UpdateRemainingCoverCount(grid);
+            UpdateFlaggedCellCount(grid);
+        }
+
+        private void UpdateFlaggedCellCount(IGrid grid)
+        {
+            flaggedCellCountLabel.LabelText = grid.FlaggedCellCount.ToString();
+        }
+
+        private void UpdateRemainingCoverCount(IGrid grid)
         {
             int remainingCoverCount = grid.CellCount - grid.RevealedCellCount;
-            remainingCoverLabel.LabelText = remainingCoverCount.ToString();
+            remainingCoverCountLabel.LabelText = remainingCoverCount.ToString();
         }
     }
 }

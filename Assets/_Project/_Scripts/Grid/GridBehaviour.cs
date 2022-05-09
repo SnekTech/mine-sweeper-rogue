@@ -37,6 +37,7 @@ namespace SnekTech.Grid
         public int BombCount { get; private set; }
 
         public int RevealedCellCount => Cells.Count(cell => cell.IsRevealed);
+        public int FlaggedCellCount => Cells.Count(cell => cell.IsFlagged);
 
         private void Awake()
         {
@@ -127,10 +128,16 @@ namespace SnekTech.Grid
             }
         }
 
-        public void OnRightClickAsync(Vector2 mousePosition)
+        public async void OnRightClickAsync(Vector2 mousePosition)
         {
             ICell cell = GetClickedCell(mousePosition);
-            cell?.OnRightClick();
+            if (cell == null)
+            {
+                return;
+            }
+
+            await cell.OnRightClick();
+            gridEventManager.InvokeCellFlagOperated(this);
         }
 
         private ICell GetClickedCell(Vector2 mousePosition)

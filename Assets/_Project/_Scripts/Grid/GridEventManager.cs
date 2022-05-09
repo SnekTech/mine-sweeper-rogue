@@ -9,6 +9,7 @@ namespace SnekTech.Grid
         public event Action<IGrid> GridInitCompleted;
         public event Action<IGrid> BombRevealed;
         public event Action<IGrid> EmptyCellRevealed;
+        public event Action<IGrid> CellFlagOperated;
         public event Action<IGrid> GridCleared;
 
         public void InvokeGridInitCompleted(IGrid grid)
@@ -29,6 +30,11 @@ namespace SnekTech.Grid
         public void InvokeGridCleared(IGrid grid)
         {
             GridCleared?.Invoke(grid);
+        }
+
+        public void InvokeCellFlagOperated(IGrid grid)
+        {
+            CellFlagOperated?.Invoke(grid);
         }
     }
 }
