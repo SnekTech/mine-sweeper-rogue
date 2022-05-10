@@ -16,9 +16,6 @@ namespace SnekTech.UI
         [SerializeField]
         private PlayerData playerData;
 
-        private string HealthStr => playerData.HealthArmour.Health.ToString();
-        private string ArmourStr => playerData.HealthArmour.Armour.ToString();
-
         private void OnEnable()
         {
             playerData.DataChanged += OnPlayerDataChanged;
@@ -31,8 +28,8 @@ namespace SnekTech.UI
 
         private void OnPlayerDataChanged()
         {
-            healthLabel.LabelText = HealthStr;
-            armourLabel.LabelText = ArmourStr;
+            healthLabel.SetText(playerData.HealthArmour.Health);
+            armourLabel.SetText(playerData.HealthArmour.Armour);
         }
     }
 }

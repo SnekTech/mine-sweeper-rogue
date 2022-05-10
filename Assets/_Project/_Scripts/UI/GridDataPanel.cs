@@ -37,13 +37,13 @@ namespace SnekTech.UI
 
         private void UpdateFlaggedCellCount(IGrid grid)
         {
-            flaggedCellCountLabel.LabelText = grid.FlaggedCellCount.ToString();
+            flaggedCellCountLabel.SetText(grid.FlaggedCellCount);
         }
 
         private void UpdateRemainingCoverCount(IGrid grid)
         {
             int remainingCoverCount = grid.CellCount - grid.RevealedCellCount;
-            remainingCoverCountLabel.LabelText = remainingCoverCount.ToString();
+            remainingCoverCountLabel.SetText(remainingCoverCount);
         }
     }
 }

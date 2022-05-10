@@ -12,10 +12,9 @@ namespace SnekTech.UI
             _text = GetComponentInChildren<TMP_Text>();
         }
 
-        public string LabelText
+        public void SetText<T>(T text)
         {
-            get => _text.text;
-            set => _text.text = value;
+            _text.SetText(text.ToString());
         }
     }
 }
