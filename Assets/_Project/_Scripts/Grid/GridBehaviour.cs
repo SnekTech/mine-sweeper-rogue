@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SnekTech.GridCell;
+using SnekTech.UI;
 using UnityEngine;
 
 namespace SnekTech.Grid
@@ -15,7 +16,11 @@ namespace SnekTech.Grid
         [SerializeField]
         private InputEventManager inputEventManager;
         [SerializeField]
+        private UIEventManager uiEventManager;
+        [SerializeField]
         private GridEventManager gridEventManager;
+        [SerializeField]
+        private GridData gridData;
 
         private Camera _mainCamera;
         private int _cellLayer;
@@ -30,7 +35,11 @@ namespace SnekTech.Grid
         public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
 
-        public GridData GridData { get; private set; } = GridData.Default;
+        public GridData GridData
+        {
+            get => gridData;
+            set => gridData = value;
+        }
 
         private GridSize GridSize => GridData.GridSize;
         public int CellCount => GridSize.rowCount * GridSize.columnCount;
@@ -66,12 +75,21 @@ namespace SnekTech.Grid
         {
             inputEventManager.LeftClickPerformed += OnLeftClickAsync;
             inputEventManager.RightClickPerformed += OnRightClickAsync;
+
+            uiEventManager.ResetButtonClicked += OnResetButtonClicked;
         }
 
         private void DisableEventListeners()
         {
             inputEventManager.LeftClickPerformed -= OnLeftClickAsync;
             inputEventManager.RightClickPerformed -= OnRightClickAsync;
+            
+            uiEventManager.ResetButtonClicked -= OnResetButtonClicked;
+        }
+
+        private void OnResetButtonClicked(GridData gridDataIn)
+        {
+            InitCells(gridDataIn);
         }
 
         private async Task RevealCellAsync(GridIndex cellGridIndex)

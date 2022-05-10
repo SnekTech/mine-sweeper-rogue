@@ -1,16 +1,14 @@
-﻿namespace SnekTech.Grid
-{
-    public record GridData
-    {
-        public GridSize GridSize;
-        public float BombPercent;
-        public int BombGeneratorSeed;
+﻿using UnityEngine;
 
-        public static GridData Default => new GridData
-        {
-            BombGeneratorSeed = 0,
-            BombPercent = 0.1f,
-            GridSize = new GridSize(10, 10),
-        };
+namespace SnekTech.Grid
+{
+    [CreateAssetMenu(fileName = nameof(GridData))]
+    public class GridData : ScriptableObject
+    {
+        public GridSize GridSize = new GridSize(15, 15);
+        [Range(0, 1)]
+        public float BombPercent = 0.2f;
+        [Min(0)]
+        public int BombGeneratorSeed;
     }
 }
