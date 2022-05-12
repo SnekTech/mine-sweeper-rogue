@@ -155,7 +155,7 @@ namespace SnekTech.Grid
         public async void OnLeftDoubleClickAsync(Vector2 mousePosition)
         {
             ICell cell = GetClickedCell(mousePosition);
-            if (cell == null)
+            if (cell == null || !cell.IsRevealed || cell.HasBomb)
             {
                 return;
             }
