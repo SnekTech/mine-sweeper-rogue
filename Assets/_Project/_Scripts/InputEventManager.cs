@@ -7,11 +7,17 @@ namespace SnekTech
     public class InputEventManager : ScriptableObject
     {
         public event Action<Vector2> LeftClickPerformed;
+        public event Action<Vector2> LeftDoubleClickPerformed;
         public event Action<Vector2> RightClickPerformed;
 
         public void InvokeLeftClickPerformed(Vector2 mousePosition)
         {
             LeftClickPerformed?.Invoke(mousePosition);
+        }
+
+        public void InvokeLeftDoubleClickPerformed(Vector2 mousePosition)
+        {
+            LeftDoubleClickPerformed?.Invoke(mousePosition);
         }
 
         public void InvokeRightClickPerformed(Vector2 mousePosition)

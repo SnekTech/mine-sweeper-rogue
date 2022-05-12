@@ -64,5 +64,19 @@ namespace SnekTech.Grid
                 }
             }
         }
+
+        public int GetNeighborFlagCount(ICell cell)
+        {
+            int count = 0;
+            ForEachNeighbor(cell, neighborCell =>
+            {
+                if (neighborCell.IsFlagged)
+                {
+                    count++;
+                }
+            });
+
+            return count;
+        }
     }
 }

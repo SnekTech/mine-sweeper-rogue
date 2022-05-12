@@ -7,7 +7,8 @@ namespace SnekTech.Grid
     {
         ICell GetCellAt(GridIndex gridIndex);
         bool IsIndexWithinGrid(GridIndex gridIndex);
-        int GetNeighborBombCount(ICell cell);
         void ForEachNeighbor(ICell cell, Action<ICell> processNeighbor);
+        int GetNeighborBombCount(ICell cell);
+        int GetNeighborFlagCount(ICell cell);
     }
 }

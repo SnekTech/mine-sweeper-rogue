@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using SnekTech.Grid;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace SnekTech
@@ -13,13 +10,17 @@ namespace SnekTech
 
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
+        private InputAction _leftDoubleClickAction;
         private InputAction _rightClickAction;
         private InputAction _moveAction;
+
+        private Vector2 MousePosition => _moveAction.ReadValue<Vector2>();
 
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
             _leftClickAction = _playerInput.actions["LeftClick"];
+            _leftDoubleClickAction = _playerInput.actions["LeftDoubleClick"];
             _rightClickAction = _playerInput.actions["RightClick"];
             _moveAction = _playerInput.actions["Move"];
         }
@@ -27,25 +28,30 @@ namespace SnekTech
         private void OnEnable()
         {
             _leftClickAction.performed += OnLeftClickPerformed;
+            _leftDoubleClickAction.performed += OnLeftDoubleClickPerformed;
             _rightClickAction.performed += OnRightClickPerformed;
         }
 
         private void OnDisable()
         {
             _leftClickAction.performed -= OnLeftClickPerformed;
+            _leftDoubleClickAction.performed -= OnLeftDoubleClickPerformed;
             _rightClickAction.performed -= OnRightClickPerformed;
         }
 
         private void OnLeftClickPerformed(InputAction.CallbackContext obj)
         {
-            var mousePosition = _moveAction.ReadValue<Vector2>();
-            inputEventManager.InvokeLeftClickPerformed(mousePosition);
+            inputEventManager.InvokeLeftClickPerformed(MousePosition);
+        }
+
+        private void OnLeftDoubleClickPerformed(InputAction.CallbackContext obj)
+        {
+            inputEventManager.InvokeLeftDoubleClickPerformed(MousePosition);
         }
 
         private void OnRightClickPerformed(InputAction.CallbackContext obj)
         {
-            var mousePosition = _moveAction.ReadValue<Vector2>();
-            inputEventManager.InvokeRightClickPerformed(mousePosition);
+            inputEventManager.InvokeRightClickPerformed(MousePosition);
         }
     }
 }
