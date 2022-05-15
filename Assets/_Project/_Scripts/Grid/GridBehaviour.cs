@@ -124,7 +124,7 @@ namespace SnekTech.Grid
 
             if (cell.HasBomb)
             {
-                gridEventManager.InvokeBombRevealed(this);
+                gridEventManager.InvokeBombRevealed(this, cell);
                 return;
             }
 
@@ -217,9 +217,9 @@ namespace SnekTech.Grid
             gridEventManager.InvokeGridInitCompleted(this);
         }
 
-        public void InitCells(GridData gridData)
+        public void InitCells(GridData newGridData)
         {
-            GridData = gridData;
+            GridData = newGridData;
             InitCells();
         }
 
@@ -235,14 +235,14 @@ namespace SnekTech.Grid
             CellIndexDict.Clear();
         }
 
-        private void InstantiateCells(GridData gridData)
+        private void InstantiateCells(GridData newGridData)
         {
             DisposeCells();
 
-            _bombGenerator = new RandomBombGenerator(gridData.BombGeneratorSeed, gridData.BombPercent);
+            _bombGenerator = new RandomBombGenerator(newGridData.BombGeneratorSeed, newGridData.BombPercent);
             BombCount = 0;
 
-            GridSize gridSize = gridData.GridSize;
+            GridSize gridSize = newGridData.GridSize;
             for (int i = 0; i < gridSize.rowCount; i++)
             {
                 for (int j = 0; j < gridSize.columnCount; j++)

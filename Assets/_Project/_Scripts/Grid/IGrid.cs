@@ -16,7 +16,7 @@ namespace SnekTech.Grid
         int FlaggedCellCount { get; }
         
         void InitCells();
-        void InitCells(GridData gridData);
+        void InitCells(GridData newGridData);
         void DisposeCells();
         void ResetCells();
     }

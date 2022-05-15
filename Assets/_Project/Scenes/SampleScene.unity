@@ -812,6 +812,7 @@ MonoBehaviour:
   healthLabel: {fileID: 431378547}
   armourLabel: {fileID: 247280843}
   playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  damageEffectPrefab: {fileID: 3520347169591930366, guid: 271919b17e0bf4a46afaf80b984f8c2b, type: 3}
 --- !u!114 &655018824
 MonoBehaviour:
   m_ObjectHideFlags: 0

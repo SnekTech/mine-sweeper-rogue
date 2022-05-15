@@ -24,6 +24,8 @@ namespace SnekTech.GridCell
         public bool IsCovered => _cellBrain.IsCovered;
         public bool IsRevealed => _cellBrain.IsRevealed;
 
+        public Vector3 WorldPosition => transform.position;
+
         private void Awake()
         {
             _cellBrain = new BasicCellBrain(this);

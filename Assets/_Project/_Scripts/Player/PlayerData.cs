@@ -1,5 +1,6 @@
 ﻿using System;
 using SnekTech.Grid;
+using SnekTech.GridCell;
 using UnityEngine;
 
 namespace SnekTech.Player
@@ -10,9 +11,12 @@ namespace SnekTech.Player
         [SerializeField]
         private GridEventManager gridEventManager;
 
-        public event Action DataChanged;
+        private const int DamagePerBomb = 3;
 
-        public HealthArmour HealthArmour { get; } = new HealthArmour(10, 10);
+        public event Action DataChanged;
+        public event Action<IGrid, ICell, int> TakenDamage;
+
+        public HealthArmour HealthArmour { get; private set; } = HealthArmour.Default;
 
         private void OnEnable()
         {
@@ -26,13 +30,19 @@ namespace SnekTech.Player
             gridEventManager.GridInitCompleted -= OnGridInitCompleted;
         }
 
-        private void OnBombRevealed(IGrid grid)
+        private void OnBombRevealed(IGrid grid, ICell cell)
         {
-            HealthArmour.TakeDamage(3);
-            DataChanged?.Invoke();
+            HealthArmour.TakeDamage(DamagePerBomb);
+            TakenDamage?.Invoke(grid, cell, DamagePerBomb);
         }
 
         private void OnGridInitCompleted(IGrid grid)
+        {
+            HealthArmour = HealthArmour.Default;
+            InvokeDataChanged();
+        }
+
+        public void InvokeDataChanged()
         {
             DataChanged?.Invoke();
         }

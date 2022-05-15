@@ -1,4 +1,5 @@
 ﻿using System;
+using SnekTech.GridCell;
 using UnityEngine;
 
 namespace SnekTech.Grid
@@ -7,7 +8,7 @@ namespace SnekTech.Grid
     public class GridEventManager : ScriptableObject
     {
         public event Action<IGrid> GridInitCompleted;
-        public event Action<IGrid> BombRevealed;
+        public event Action<IGrid, ICell> BombRevealed;
         public event Action<IGrid> EmptyCellRevealed;
         public event Action<IGrid> CellFlagOperated;
         public event Action<IGrid> GridCleared;
@@ -17,9 +18,9 @@ namespace SnekTech.Grid
             GridInitCompleted?.Invoke(grid);
         }
         
-        public void InvokeBombRevealed(IGrid grid)
+        public void InvokeBombRevealed(IGrid grid, ICell cell)
         {
-            BombRevealed?.Invoke(grid);
+            BombRevealed?.Invoke(grid, cell);
         }
 
         public void InvokeEmptyCellRevealed(IGrid grid)

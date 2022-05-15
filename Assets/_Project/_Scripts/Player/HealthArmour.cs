@@ -9,6 +9,7 @@ namespace SnekTech.Player
         
         public int Health { get; private set; }
         public int Armour { get; private set; }
+        public static HealthArmour Default => new HealthArmour(10, 10);
 
         public HealthArmour(int health, int armour)
         {
