@@ -3,7 +3,8 @@
     "rootNamespace": "SnekTech",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:8ad1ee6c50e090d41989ba7cf0686560"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
