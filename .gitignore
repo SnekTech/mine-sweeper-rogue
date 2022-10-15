@@ -79,3 +79,6 @@ ProjectSettings/RiderScriptEditorPersistedState.asset
 Assets/Plugins/Demigiant
 Assets/Plugins/Demigiant.meta
 Assets/TextMesh Pro
+
+Assets/DOTween.meta
+Assets/DOTween/*
