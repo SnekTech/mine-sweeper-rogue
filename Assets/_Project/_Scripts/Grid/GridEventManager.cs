@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SnekTech.Grid
 {
-    [CreateAssetMenu(fileName = nameof(GridEventManager), menuName = Utils.MyEventManagerMenuName + nameof(GridEventManager))]
+    [CreateAssetMenu(fileName = nameof(GridEventManager), menuName = Utils.MyEventManagerMenuName + "/" + nameof(GridEventManager))]
     public class GridEventManager : ScriptableObject
     {
         public event Action<IGrid> GridInitCompleted;

@@ -2,6 +2,7 @@
 {
     public static class Utils
     {
-        public const string MyEventManagerMenuName = "MyEventManagers/";
+        public const string MyEventManagerMenuName = "MyEventManagers";
+        public const string MyInventoryMenuName = "MyInventory";
     }
 }
