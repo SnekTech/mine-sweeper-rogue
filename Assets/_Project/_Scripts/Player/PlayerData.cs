@@ -1,6 +1,7 @@
 ﻿using System;
 using SnekTech.Grid;
 using SnekTech.GridCell;
+using SnekTech.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.Player
@@ -17,6 +18,11 @@ namespace SnekTech.Player
         public event Action<IGrid, ICell, int> TakenDamage;
 
         public HealthArmour HealthArmour { get; private set; } = HealthArmour.Default;
+
+        [SerializeField]
+        private Inventory inventory = new Inventory();
+
+        public Inventory Inventory => inventory;
 
         private void OnEnable()
         {
