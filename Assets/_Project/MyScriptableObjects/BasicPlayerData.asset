@@ -13,3 +13,11 @@ MonoBehaviour:
   m_Name: BasicPlayerData
   m_EditorClassIdentifier: 
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  inventory:
+    items:
+    - stackSize: 1
+      itemData: {fileID: 11400000, guid: 260d3af9d056ec842b282f44c836a2da, type: 2}
+    - stackSize: 2
+      itemData: {fileID: 11400000, guid: 7d0c8f49db92a9743acb671588492ec9, type: 2}
+    - stackSize: 1
+      itemData: {fileID: 11400000, guid: 8c6cb0059ee09db4abef5c8512e81121, type: 2}
