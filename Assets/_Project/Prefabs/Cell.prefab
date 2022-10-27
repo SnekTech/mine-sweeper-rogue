@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 65c3f4683c852ab4f94f8f49efd1d8c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c226a098883874b42ba3404360cd4a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
   flagBehaviour: {fileID: 7234956224106778064}
   coverBehaviour: {fileID: 4244925141977254977}
 --- !u!61 &460246214638790137
