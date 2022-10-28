@@ -8,10 +8,10 @@ namespace SnekTech.UI
 {
     public class ItemButtonController : MonoBehaviour
     {
+        [SerializeField]
+        private UIEventManager uiEventManager;
+        
         private ItemData _itemData;
-
-        public event Action<ItemData> ItemChosen; 
-
         private TMP_Text _text;
         private Image _image;
 
@@ -33,9 +33,9 @@ namespace SnekTech.UI
             _image.sprite = _itemData.icon;
         }
 
-        public void InvokeItemChosen()
+        public void OnItemButtonClicked()
         {
-            ItemChosen?.Invoke(_itemData);
+            uiEventManager.InvokeItemChosen(_itemData);
         }
     }
 }

@@ -260,7 +260,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: -2741922143246006417}
         m_TargetAssemblyTypeName: SnekTech.UI.ItemButtonController, Game
-        m_MethodName: InvokeItemChosen
+        m_MethodName: OnItemButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -282,4 +282,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df32cbed0ea4fbc4da575fad080a58e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 260d3af9d056ec842b282f44c836a2da, type: 2}
+  uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}

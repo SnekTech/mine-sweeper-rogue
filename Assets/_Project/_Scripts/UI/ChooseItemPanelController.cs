@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SnekTech.InventorySystem;
+﻿using SnekTech.InventorySystem;
 using SnekTech.Player;
 using UnityEngine;
 
@@ -8,6 +6,9 @@ namespace SnekTech.UI
 {
     public class ChooseItemPanelController : MonoBehaviour
     {
+        [SerializeField]
+        private UIEventManager uiEventManager;
+        
         [SerializeField]
         private PlayerData playerData;
         
@@ -23,35 +24,26 @@ namespace SnekTech.UI
         [SerializeField]
         private RectTransform itemButtonParentPanel;
 
-        private List<ItemButtonController> _itemButtons = new List<ItemButtonController>();
-
         private void Awake()
         {
             for (int i = 0; i < itemChoiceCount; i++)
             {
                 ItemButtonController button = Instantiate(itemButtonPrefab, itemButtonParentPanel);
                 button.SetItem(itemPool.GetRandom());
-                _itemButtons.Add(button);
             }
         }
 
         private void OnEnable()
         {
-            foreach (ItemButtonController button in _itemButtons)
-            {
-                button.ItemChosen += AddItem;
-            }
+            uiEventManager.ItemChosen += OnItemChosen;
         }
 
         private void OnDisable()
         {
-            foreach (ItemButtonController button in _itemButtons)
-            {
-                button.ItemChosen -= AddItem;
-            }
+            uiEventManager.ItemChosen -= OnItemChosen;
         }
 
-        private void AddItem(ItemData item)
+        private void OnItemChosen(ItemData item)
         {
             playerData.Inventory.AddItem(item);
         }
