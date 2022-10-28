@@ -12,15 +12,15 @@ namespace SnekTech.Player
         [SerializeField]
         private GridEventManager gridEventManager;
 
+        [SerializeField]
+        private Inventory inventory;
+
         private const int DamagePerBomb = 3;
 
         public event Action DataChanged;
         public event Action<IGrid, ICell, int> TakenDamage;
 
         public HealthArmour HealthArmour { get; private set; } = HealthArmour.Default;
-
-        [SerializeField]
-        private Inventory inventory = new Inventory();
 
         public Inventory Inventory => inventory;
 

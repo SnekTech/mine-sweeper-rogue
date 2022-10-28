@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace SnekTech.InventorySystem
 {
-    [Serializable]
-    public class Inventory
+    [CreateAssetMenu(fileName = "New " + nameof(Inventory), menuName = Utils.MyInventoryMenuName + "/" + nameof(Inventory))]
+    public class Inventory : ScriptableObject
     {
         public event Action<List<InventoryItem>> ItemsUpdated;
 
@@ -15,6 +15,15 @@ namespace SnekTech.InventorySystem
         private List<InventoryItem> items = new List<InventoryItem>();
 
         public List<InventoryItem> Items => items;
+
+        private void OnEnable()
+        {
+            _dictionary.Clear();
+            foreach (InventoryItem item in Items)
+            {
+                _dictionary.Add(item.ItemData, item);
+            }
+        }
 
         public void AddItem(ItemData itemData)
         {

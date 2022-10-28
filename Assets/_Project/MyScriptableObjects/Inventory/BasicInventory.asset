@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 170788f21fa84459952365f0bff0a2f7, type: 3}
-  m_Name: BasicPlayerData
+  m_Script: {fileID: 11500000, guid: 488b3dea597d4294907d8ce4850428e3, type: 3}
+  m_Name: BasicInventory
   m_EditorClassIdentifier: 
-  gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
-  inventory: {fileID: 11400000, guid: 438726502eade1e478b2880dd7bfe1b4, type: 2}
+  items: []
