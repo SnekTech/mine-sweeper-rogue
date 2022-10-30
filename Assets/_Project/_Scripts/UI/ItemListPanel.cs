@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using SnekTech.InventorySystem;
 using UnityEngine;
 
-namespace SnekTech
+namespace SnekTech.UI
 {
     public class ItemListPanel : MonoBehaviour
     {

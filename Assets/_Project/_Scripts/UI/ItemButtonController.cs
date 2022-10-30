@@ -14,11 +14,23 @@ namespace SnekTech.UI
         private ItemData _itemData;
         private TMP_Text _text;
         private Image _image;
+        private Button _button;
 
         private void Awake()
         {
             _text = GetComponentInChildren<TMP_Text>();
             _image = GetComponent<Image>();
+            _button = GetComponent<Button>();
+        }
+
+        private void OnEnable()
+        {
+            _button.onClick.AddListener(HandleItemButtonClicked);
+        }
+
+        private void OnDisable()
+        {
+            _button.onClick.RemoveListener(HandleItemButtonClicked);
         }
 
         public void SetItem(ItemData item)
@@ -33,7 +45,7 @@ namespace SnekTech.UI
             _image.sprite = _itemData.icon;
         }
 
-        public void OnItemButtonClicked()
+        public void HandleItemButtonClicked()
         {
             uiEventManager.InvokeItemChosen(_itemData);
         }
