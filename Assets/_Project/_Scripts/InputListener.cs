@@ -13,6 +13,7 @@ namespace SnekTech
         private InputAction _leftDoubleClickAction;
         private InputAction _rightClickAction;
         private InputAction _moveAction;
+        private InputAction _pauseAction;
 
         private Vector2 MousePosition => _moveAction.ReadValue<Vector2>();
 
@@ -23,6 +24,7 @@ namespace SnekTech
             _leftDoubleClickAction = _playerInput.actions["LeftDoubleClick"];
             _rightClickAction = _playerInput.actions["RightClick"];
             _moveAction = _playerInput.actions["Move"];
+            _pauseAction = _playerInput.actions["Pause"];
         }
 
         private void OnEnable()
@@ -30,6 +32,7 @@ namespace SnekTech
             _leftClickAction.performed += OnLeftClickPerformed;
             _leftDoubleClickAction.performed += OnLeftDoubleClickPerformed;
             _rightClickAction.performed += OnRightClickPerformed;
+            _pauseAction.performed += OnPausePerformed;
         }
 
         private void OnDisable()
@@ -37,6 +40,7 @@ namespace SnekTech
             _leftClickAction.performed -= OnLeftClickPerformed;
             _leftDoubleClickAction.performed -= OnLeftDoubleClickPerformed;
             _rightClickAction.performed -= OnRightClickPerformed;
+            _pauseAction.performed -= OnPausePerformed;
         }
 
         private void OnLeftClickPerformed(InputAction.CallbackContext obj)
@@ -52,6 +56,11 @@ namespace SnekTech
         private void OnRightClickPerformed(InputAction.CallbackContext obj)
         {
             inputEventManager.InvokeRightClickPerformed(MousePosition);
+        }
+
+        private void OnPausePerformed(InputAction.CallbackContext obj)
+        {
+            inputEventManager.InvokePausePerformed();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace SnekTech
         public event Action<Vector2> LeftDoubleClickPerformed;
         public event Action<Vector2> RightClickPerformed;
 
+        public event Action PausePerformed;
+
         public void InvokeLeftClickPerformed(Vector2 mousePosition)
         {
             LeftClickPerformed?.Invoke(mousePosition);
@@ -23,6 +25,11 @@ namespace SnekTech
         public void InvokeRightClickPerformed(Vector2 mousePosition)
         {
             RightClickPerformed?.Invoke(mousePosition);
+        }
+
+        public void InvokePausePerformed()
+        {
+            PausePerformed?.Invoke();
         }
     }
 }
