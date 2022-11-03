@@ -7,14 +7,23 @@ namespace SnekTech.UI
 {
     public class PopupPanel : MonoBehaviour
     {
+        [Header("DI")]
         [SerializeField]
         private InputEventManager inputEventManager;
         
         [SerializeField]
+        private RectTransform frameRectTransform;
+        
+        [Header("Animation Options")]
+        [SerializeField]
         private float duration = 1f;
 
         [SerializeField]
-        private RectTransform frameRectTransform;
+        private Ease showEase;
+
+        [SerializeField]
+        private Ease hideEase;
+
         
         private CanvasGroup _canvasGroup;
 
@@ -24,8 +33,6 @@ namespace SnekTech.UI
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
-
-            frameRectTransform.LocalMoveY(Screen.height);
         }
 
         private void OnEnable()
@@ -64,16 +71,21 @@ namespace SnekTech.UI
         private Task Show()
         {
             _canvasGroup.alpha = 0;
-            Task moveToScreen = frameRectTransform.DOLocalMoveY(0, duration).AsyncWaitForCompletion();
+            transform.localScale = Vector3.zero;
+            Task scaleUp = transform.DOScale(Vector3.one, duration)
+                .SetEase(showEase)
+                .AsyncWaitForCompletion();
             Task fadeIn = _canvasGroup.DOFade(1, duration).AsyncWaitForCompletion();
-            return Task.WhenAll(moveToScreen, fadeIn);
+            return Task.WhenAll(scaleUp, fadeIn);
         }
 
         private Task Hide()
         {
-            Task moveOffScreen = frameRectTransform.DOLocalMoveY(Screen.height, duration).AsyncWaitForCompletion();
+            Task scaleDown = transform.DOScale(Vector3.zero, duration)
+                .SetEase(hideEase)
+                .AsyncWaitForCompletion();
             Task fadeOut = _canvasGroup.DOFade(0, duration).AsyncWaitForCompletion();
-            return Task.WhenAll(moveOffScreen, fadeOut);
+            return Task.WhenAll(scaleDown, fadeOut);
         }
     }
 }
