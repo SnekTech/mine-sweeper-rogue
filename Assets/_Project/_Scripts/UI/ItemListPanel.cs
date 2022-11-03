@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SnekTech.InventorySystem;
 using UnityEngine;
@@ -19,7 +20,12 @@ namespace SnekTech.UI
 
         private void OnEnable()
         {
-            inventory.ItemsUpdated += RefreshPanel;
+            inventory.ItemsUpdated += HandleInventoryItemsUpdated;
+        }
+
+        private void OnDisable()
+        {
+            inventory.ItemsUpdated -= HandleInventoryItemsUpdated;
         }
 
         private void DestroyAllChildren()
@@ -45,6 +51,11 @@ namespace SnekTech.UI
                 ItemSlot itemSlot = Instantiate(itemSlotPrefab, transform);
                 itemSlot.SetContent(item);
             }
+        }
+
+        private void HandleInventoryItemsUpdated(List<InventoryItem> items)
+        {
+            RefreshPanel(items);
         }
     }
 }
