@@ -42,3 +42,4 @@ Roguelike 扫雷
 - [ ] 弹出菜单时背景模糊
 - [ ] 变更雷区大小时自动定位
 - [ ] 通用的Modal组件
+    - [x] block mouse input when popup exists

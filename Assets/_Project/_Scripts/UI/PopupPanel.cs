@@ -10,6 +10,9 @@ namespace SnekTech.UI
         [Header("DI")]
         [SerializeField]
         private InputEventManager inputEventManager;
+
+        [SerializeField]
+        private UIState uiState;
         
         [SerializeField]
         private RectTransform frameRectTransform;
@@ -33,6 +36,8 @@ namespace SnekTech.UI
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
+            
+            Init();
         }
 
         private void OnEnable()
@@ -45,6 +50,13 @@ namespace SnekTech.UI
             inputEventManager.PausePerformed -= Toggle;
         }
 
+        private void Init()
+        {
+            _canvasGroup.alpha = 0;
+            transform.localScale = Vector3.zero;
+            uiState.isBlockingRaycast = false;
+        }
+
         private async void Toggle()
         {
             if (_bIsTweening)
@@ -55,13 +67,11 @@ namespace SnekTech.UI
             _bIsTweening = true;
             if (!_bVisible)
             {
-                frameRectTransform.gameObject.SetActive(true);
                 await Show();
             }
             else
             {
                 await Hide();
-                frameRectTransform.gameObject.SetActive(false);
             }
 
             _bIsTweening = false;
@@ -70,8 +80,9 @@ namespace SnekTech.UI
 
         private Task Show()
         {
-            _canvasGroup.alpha = 0;
-            transform.localScale = Vector3.zero;
+            frameRectTransform.gameObject.SetActive(true);
+            uiState.isBlockingRaycast = true;
+            
             Task scaleUp = transform.DOScale(Vector3.one, duration)
                 .SetEase(showEase)
                 .AsyncWaitForCompletion();
@@ -79,13 +90,16 @@ namespace SnekTech.UI
             return Task.WhenAll(scaleUp, fadeIn);
         }
 
-        private Task Hide()
+        private async Task Hide()
         {
             Task scaleDown = transform.DOScale(Vector3.zero, duration)
                 .SetEase(hideEase)
                 .AsyncWaitForCompletion();
             Task fadeOut = _canvasGroup.DOFade(0, duration).AsyncWaitForCompletion();
-            return Task.WhenAll(scaleDown, fadeOut);
+            await Task.WhenAll(scaleDown, fadeOut);
+            
+            frameRectTransform.gameObject.SetActive(false);
+            uiState.isBlockingRaycast = false;
         }
     }
 }

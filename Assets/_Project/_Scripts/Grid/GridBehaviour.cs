@@ -27,6 +27,9 @@ namespace SnekTech.Grid
         [SerializeField]
         private GridData gridData;
 
+        [SerializeField]
+        private UIState uiState;
+
         private Camera _mainCamera;
         private int _cellLayer;
 
@@ -204,6 +207,11 @@ namespace SnekTech.Grid
 
         private ICell GetClickedCell(Vector2 mousePosition)
         {
+            if (uiState.isBlockingRaycast)
+            {
+                return null;
+            }
+            
             Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
 
