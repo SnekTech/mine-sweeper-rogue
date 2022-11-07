@@ -32,6 +32,7 @@ namespace SnekTech
             _leftClickAction.performed += OnLeftClickPerformed;
             _leftDoubleClickAction.performed += OnLeftDoubleClickPerformed;
             _rightClickAction.performed += OnRightClickPerformed;
+            _moveAction.performed += OnMovePerformed;
             _pauseAction.performed += OnPausePerformed;
         }
 
@@ -40,6 +41,7 @@ namespace SnekTech
             _leftClickAction.performed -= OnLeftClickPerformed;
             _leftDoubleClickAction.performed -= OnLeftDoubleClickPerformed;
             _rightClickAction.performed -= OnRightClickPerformed;
+            _moveAction.performed -= OnMovePerformed;
             _pauseAction.performed -= OnPausePerformed;
         }
 
@@ -56,6 +58,11 @@ namespace SnekTech
         private void OnRightClickPerformed(InputAction.CallbackContext obj)
         {
             inputEventManager.InvokeRightClickPerformed(MousePosition);
+        }
+
+        private void OnMovePerformed(InputAction.CallbackContext obj)
+        {
+            inputEventManager.InvokeMovePerformed(MousePosition);
         }
 
         private void OnPausePerformed(InputAction.CallbackContext obj)

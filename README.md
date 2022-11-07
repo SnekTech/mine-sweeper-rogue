@@ -8,7 +8,7 @@ Roguelike 扫雷
 
 ## Todo
 
-- [ ] 揭开状态下正确渲染格子
+- [x] 揭开状态下正确渲染格子
     - [x] 周围没有炸弹时显示空格子
     - [x] 周围有炸弹但自己没有时显示周围炸弹数量
     - [x] 自己有炸弹时显示炸弹
@@ -43,3 +43,7 @@ Roguelike 扫雷
 - [ ] 变更雷区大小时自动定位
 - [ ] 通用的Modal组件
     - [x] block mouse input when popup exists
+- [ ] highlight hovering cell
+    - [ ] implement an item to uncover multiple cells
+- [ ] easter egg
+    - [ ] developer's comment

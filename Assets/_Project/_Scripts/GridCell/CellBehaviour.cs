@@ -62,5 +62,15 @@ namespace SnekTech.GridCell
         {
             transform.localPosition = new Vector3(gridIndex.ColumnIndex, gridIndex.RowIndex, 0);
         }
+
+        public void SetCoverHighlight(bool isHighlight)
+        {
+            if (!IsCovered)
+            {
+                return;
+            }
+            
+            Cover.SetHighlight(isHighlight);
+        }
     }
 }

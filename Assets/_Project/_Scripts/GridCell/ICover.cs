@@ -8,5 +8,6 @@ namespace SnekTech.GridCell
         event Action RevealCompleted, PutCoverCompleted;
         Task<bool> RevealAsync();
         Task<bool> PutCoverAsync();
+        void SetHighlight(bool isHighlight);
     }
 }

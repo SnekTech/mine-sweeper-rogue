@@ -21,5 +21,6 @@ namespace SnekTech.GridCell
         bool IsCovered { get; }
         bool IsRevealed { get; }
         Vector3 WorldPosition { get; }
+        void SetCoverHighlight(bool isHighlight);
     }
 }

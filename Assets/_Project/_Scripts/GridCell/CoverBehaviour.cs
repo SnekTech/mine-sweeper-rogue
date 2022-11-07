@@ -12,7 +12,8 @@ namespace SnekTech.GridCell
         private static readonly int RevealTrigger = Animator.StringToHash("Reveal");
         private static readonly int PutCoverTrigger = Animator.StringToHash("PutCover");
         private static readonly int InitPutCoverTrigger = Animator.StringToHash("InitPutCover");
-        
+
+        private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         private TaskCompletionSource<bool> _revealCompletionSource = new TaskCompletionSource<bool>();
         private TaskCompletionSource<bool> _putCoverCompletionSource = new TaskCompletionSource<bool>();
@@ -22,6 +23,7 @@ namespace SnekTech.GridCell
         
         private void Awake()
         {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             PutCoverAfterInit();
             
@@ -78,6 +80,11 @@ namespace SnekTech.GridCell
         private void PutCoverAfterInit()
         {
             _animator.SetTrigger(InitPutCoverTrigger);
+        }
+
+        public void SetHighlight(bool isHighlight)
+        {
+            _spriteRenderer.color = isHighlight ? Color.red : Color.white;
         }
     }
 }

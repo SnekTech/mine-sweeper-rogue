@@ -86,6 +86,7 @@ namespace SnekTech.Grid
             inputEventManager.LeftClickPerformed += OnLeftClickAsync;
             inputEventManager.LeftDoubleClickPerformed += OnLeftDoubleClickAsync;
             inputEventManager.RightClickPerformed += OnRightClickAsync;
+            inputEventManager.MovePerformed += OnMove;
 
             uiEventManager.ResetButtonClicked += OnResetButtonClicked;
         }
@@ -95,6 +96,7 @@ namespace SnekTech.Grid
             inputEventManager.LeftClickPerformed -= OnLeftClickAsync;
             inputEventManager.LeftDoubleClickPerformed -= OnLeftDoubleClickAsync;
             inputEventManager.RightClickPerformed -= OnRightClickAsync;
+            inputEventManager.MovePerformed -= OnMove;
 
             uiEventManager.ResetButtonClicked -= OnResetButtonClicked;
         }
@@ -104,6 +106,66 @@ namespace SnekTech.Grid
             InitCells(gridDataIn);
         }
 
+        public async void OnLeftClickAsync(Vector2 mousePosition)
+        {
+            ICell cell = GetMouseHoveringCell(mousePosition);
+            if (cell == null)
+            {
+                return;
+            }
+
+            await RevealCellAsync(CellIndexDict[cell]);
+
+            if (IsAllCleared)
+            {
+                gridEventManager.InvokeGridCleared(this);
+            }
+        }
+
+        public async void OnLeftDoubleClickAsync(Vector2 mousePosition)
+        {
+            ICell cell = GetMouseHoveringCell(mousePosition);
+            if (cell == null || !cell.IsRevealed || cell.HasBomb)
+            {
+                return;
+            }
+
+            int userConfirmedBombCount = 0;
+            _gridBrain.ForEachNeighbor(cell, neighborCell =>
+            {
+                if (neighborCell.IsFlagged || neighborCell.HasBomb && neighborCell.IsRevealed)
+                {
+                    userConfirmedBombCount++;
+                }
+            });
+
+            int neighborBombCount = _gridBrain.GetNeighborBombCount(cell);
+            if (userConfirmedBombCount != neighborBombCount)
+            {
+                return;
+            }
+
+            await RevealNeighbors(cell);
+        }
+
+        public async void OnRightClickAsync(Vector2 mousePosition)
+        {
+            ICell cell = GetMouseHoveringCell(mousePosition);
+            if (cell == null)
+            {
+                return;
+            }
+
+            await cell.OnRightClick();
+            gridEventManager.InvokeCellFlagOperated(this);
+        }
+
+        private void OnMove(Vector2 mousePosition)
+        {
+            ICell cellHovering = GetMouseHoveringCell(mousePosition);
+            UpdateCellHighlight(cellHovering);
+        }
+        
         private async Task RevealCellAsync(GridIndex cellGridIndex)
         {
             if (!_gridBrain.IsIndexWithinGrid(cellGridIndex))
@@ -139,48 +201,6 @@ namespace SnekTech.Grid
             await RevealNeighbors(cell);
         }
 
-        public async void OnLeftClickAsync(Vector2 mousePosition)
-        {
-            ICell cell = GetClickedCell(mousePosition);
-            if (cell == null)
-            {
-                return;
-            }
-
-            await RevealCellAsync(CellIndexDict[cell]);
-
-            if (IsAllCleared)
-            {
-                gridEventManager.InvokeGridCleared(this);
-            }
-        }
-
-        public async void OnLeftDoubleClickAsync(Vector2 mousePosition)
-        {
-            ICell cell = GetClickedCell(mousePosition);
-            if (cell == null || !cell.IsRevealed || cell.HasBomb)
-            {
-                return;
-            }
-
-            int userConfirmedBombCount = 0;
-            _gridBrain.ForEachNeighbor(cell, neighborCell =>
-            {
-                if (neighborCell.IsFlagged || neighborCell.HasBomb && neighborCell.IsRevealed)
-                {
-                    userConfirmedBombCount++;
-                }
-            });
-
-            int neighborBombCount = _gridBrain.GetNeighborBombCount(cell);
-            if (userConfirmedBombCount != neighborBombCount)
-            {
-                return;
-            }
-
-            await RevealNeighbors(cell);
-        }
-
         private Task RevealNeighbors(ICell cell)
         {
             var revealNeighborTasks = new List<Task>();
@@ -193,19 +213,7 @@ namespace SnekTech.Grid
             return Task.WhenAll(revealNeighborTasks);
         }
 
-        public async void OnRightClickAsync(Vector2 mousePosition)
-        {
-            ICell cell = GetClickedCell(mousePosition);
-            if (cell == null)
-            {
-                return;
-            }
-
-            await cell.OnRightClick();
-            gridEventManager.InvokeCellFlagOperated(this);
-        }
-
-        private ICell GetClickedCell(Vector2 mousePosition)
+        private ICell GetMouseHoveringCell(Vector2 mousePosition)
         {
             if (uiState.isBlockingRaycast)
             {
@@ -294,6 +302,15 @@ namespace SnekTech.Grid
             {
                 cell.Reset();
             }
+        }
+
+        private void UpdateCellHighlight(ICell cellHovering)
+        {
+            foreach (ICell cell in Cells)
+            {
+                cell.SetCoverHighlight(false);
+            }
+            cellHovering?.SetCoverHighlight(true);
         }
     }
 }
