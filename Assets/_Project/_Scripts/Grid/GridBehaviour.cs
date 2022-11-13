@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SnekTech.GridCell;
+using SnekTech.Player;
 using SnekTech.UI;
 using UnityEngine;
 
@@ -26,6 +27,9 @@ namespace SnekTech.Grid
 
         [SerializeField]
         private GridData gridData;
+
+        [SerializeField]
+        private PlayerData playerData;
 
         [SerializeField]
         private UIState uiState;
@@ -163,7 +167,7 @@ namespace SnekTech.Grid
         private void OnMove(Vector2 mousePosition)
         {
             ICell cellHovering = GetMouseHoveringCell(mousePosition);
-            UpdateCellHighlight(cellHovering);
+            UpdateGridHighlight(cellHovering);
         }
         
         private async Task RevealCellAsync(GridIndex cellGridIndex)
@@ -266,7 +270,7 @@ namespace SnekTech.Grid
                     CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
                     ICell cell = cellMono;
                     var cellIndex = new GridIndex(i, j);
-                    cell.SetPosition(cellIndex);
+                    cell.SetPosition(cellIndex); // TODO: relative position for centering the grid
 
                     bool hasBomb = _bombGenerator.Next();
                     if (hasBomb)
@@ -304,13 +308,50 @@ namespace SnekTech.Grid
             }
         }
 
-        private void UpdateCellHighlight(ICell cellHovering)
+        private List<ICell> GetAffectedCellsWithinScope(ICell cellHovering, int sweepScope)
+        {
+            int cornerOffset = sweepScope / 2;
+            var topLeftIndex = new GridIndex(CellIndexDict[cellHovering]);
+            topLeftIndex.RowIndex -= cornerOffset;
+            topLeftIndex.ColumnIndex -= cornerOffset;
+
+            List<ICell> affectedCells = new List<ICell>();
+            for (int i = 0; i < playerData.SweepScope; i++)
+            {
+                for (int j = 0; j < playerData.SweepScope; j++)
+                {
+                    var cellIndex = new GridIndex(topLeftIndex.RowIndex + i, topLeftIndex.ColumnIndex + j);
+                    if (_gridBrain.IsIndexWithinGrid(cellIndex))
+                    {
+                        affectedCells.Add(_gridBrain.GetCellAt(cellIndex));
+                    }
+                }
+            }
+
+            return affectedCells;
+        }
+
+        private void UpdateGridHighlight(ICell cellHovering)
+        {
+            RemoveGridHighlight();
+            if (cellHovering == null)
+            {
+                return;
+            }
+
+            List<ICell> affectedCells = GetAffectedCellsWithinScope(cellHovering, playerData.SweepScope);
+            foreach (ICell cell in affectedCells)
+            {
+                cell.SetCoverHighlight(true);
+            }
+        }
+
+        private void RemoveGridHighlight()
         {
             foreach (ICell cell in Cells)
             {
                 cell.SetCoverHighlight(false);
             }
-            cellHovering?.SetCoverHighlight(true);
         }
     }
 }

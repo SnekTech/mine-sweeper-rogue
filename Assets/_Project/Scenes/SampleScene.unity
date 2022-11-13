@@ -158,6 +158,7 @@ MonoBehaviour:
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   gridData: {fileID: 11400000, guid: ce10669f59fff5e4baa36174691c6b0c, type: 2}
+  playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   uiState: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
 --- !u!4 &58783577
 Transform:
@@ -389,7 +390,7 @@ PrefabInstance:
     - target: {fileID: 7543813015449449414, guid: fceff04baae7bf44f8cdc823fd0730db, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -58913773, guid: 660d36d6b4cc5dd408e93edfb94607f9, type: 3}
+      objectReference: {fileID: 1370975917, guid: 43349e75f3d6fce43bbfe2b24a716523, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fceff04baae7bf44f8cdc823fd0730db, type: 3}
 --- !u!224 &247280842 stripped

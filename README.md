@@ -47,3 +47,6 @@ Roguelike 扫雷
     - [ ] implement an item to uncover multiple cells
 - [ ] easter egg
     - [ ] developer's comment
+- [ ] mechanisms
+    - [ ] revenge
+    - [ ] copy & paste

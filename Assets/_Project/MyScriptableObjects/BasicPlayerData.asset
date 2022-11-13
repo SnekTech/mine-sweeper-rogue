@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   inventory: {fileID: 11400000, guid: 438726502eade1e478b2880dd7bfe1b4, type: 2}
+  sweepScope: 3

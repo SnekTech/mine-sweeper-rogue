@@ -15,6 +15,10 @@ namespace SnekTech.Player
         [SerializeField]
         private Inventory inventory;
 
+        [Range(1, 5)]
+        [SerializeField]
+        private int sweepScope = 1;
+
         private const int DamagePerBomb = 3;
 
         public event Action DataChanged;
@@ -23,6 +27,12 @@ namespace SnekTech.Player
         public HealthArmour HealthArmour { get; private set; } = HealthArmour.Default;
 
         public Inventory Inventory => inventory;
+
+        public int SweepScope
+        {
+            get => sweepScope;
+            set => sweepScope = value;
+        }
 
         private void OnEnable()
         {
