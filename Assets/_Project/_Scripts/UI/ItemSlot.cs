@@ -18,9 +18,9 @@ namespace SnekTech.UI
         
         public void SetContent(InventoryItem item)
         {
-            label.text = item.ItemData.label;
+            label.text = item.ItemData.Label;
             stackSize.text = item.StackSize.ToString();
-            icon.sprite = item.ItemData.icon;
+            icon.sprite = item.ItemData.Icon;
         }
     }
 }

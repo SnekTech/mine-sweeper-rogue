@@ -45,7 +45,7 @@ namespace SnekTech.InventorySystem
         {
             if (!_dictionary.ContainsKey(itemData))
             {
-                throw new ArgumentException($"item: {itemData.label} does not exist in the player inventory");
+                throw new ArgumentException($"item: {itemData.Label} does not exist in the player inventory");
             }
             
             _dictionary[itemData].RemoveStack();

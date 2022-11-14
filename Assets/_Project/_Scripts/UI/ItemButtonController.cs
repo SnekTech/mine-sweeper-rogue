@@ -41,8 +41,8 @@ namespace SnekTech.UI
 
         private void UpdateButtonContent()
         {
-            _text.text = _itemData.label;
-            _image.sprite = _itemData.icon;
+            _text.text = _itemData.Label;
+            _image.sprite = _itemData.Icon;
         }
 
         public void HandleItemButtonClicked()
