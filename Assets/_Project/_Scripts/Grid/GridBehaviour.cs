@@ -118,7 +118,14 @@ namespace SnekTech.Grid
                 return;
             }
 
-            await RevealCellAsync(CellIndexDict[cell]);
+            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerData.SweepScope);
+            List<Task> revealCellTasks = new List<Task>();
+            foreach (ICell affectedCell in affectedCells)
+            {
+                revealCellTasks.Add(RevealCellAsync(CellIndexDict[affectedCell]));
+            }
+
+            await Task.WhenAll(revealCellTasks);
 
             if (IsAllCleared)
             {
@@ -183,6 +190,9 @@ namespace SnekTech.Grid
                 return;
             }
 
+            // if last click action has not finished,
+            // the task will return false,
+            // to throttle the player input frequency
             bool isLeftClickSucceeded = await cell.OnLeftClick();
             if (!isLeftClickSucceeded)
             {
@@ -308,29 +318,6 @@ namespace SnekTech.Grid
             }
         }
 
-        private List<ICell> GetAffectedCellsWithinScope(ICell cellHovering, int sweepScope)
-        {
-            int cornerOffset = sweepScope / 2;
-            var topLeftIndex = new GridIndex(CellIndexDict[cellHovering]);
-            topLeftIndex.RowIndex -= cornerOffset;
-            topLeftIndex.ColumnIndex -= cornerOffset;
-
-            List<ICell> affectedCells = new List<ICell>();
-            for (int i = 0; i < playerData.SweepScope; i++)
-            {
-                for (int j = 0; j < playerData.SweepScope; j++)
-                {
-                    var cellIndex = new GridIndex(topLeftIndex.RowIndex + i, topLeftIndex.ColumnIndex + j);
-                    if (_gridBrain.IsIndexWithinGrid(cellIndex))
-                    {
-                        affectedCells.Add(_gridBrain.GetCellAt(cellIndex));
-                    }
-                }
-            }
-
-            return affectedCells;
-        }
-
         private void UpdateGridHighlight(ICell cellHovering)
         {
             RemoveGridHighlight();
@@ -339,7 +326,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            List<ICell> affectedCells = GetAffectedCellsWithinScope(cellHovering, playerData.SweepScope);
+            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerData.SweepScope);
             foreach (ICell cell in affectedCells)
             {
                 cell.SetCoverHighlight(true);

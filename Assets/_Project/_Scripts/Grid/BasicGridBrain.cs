@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SnekTech.GridCell;
 
 namespace SnekTech.Grid
@@ -77,6 +78,29 @@ namespace SnekTech.Grid
             });
 
             return count;
+        }
+
+        public List<ICell> GetAffectedCellsWithinScope(ICell cellHovering, int sweepScope)
+        {
+            int cornerOffset = sweepScope / 2;
+            var topLeftIndex = new GridIndex(_grid.CellIndexDict[cellHovering]);
+            topLeftIndex.RowIndex -= cornerOffset;
+            topLeftIndex.ColumnIndex -= cornerOffset;
+
+            var affectedCells = new List<ICell>();
+            for (int i = 0; i < sweepScope; i++)
+            {
+                for (int j = 0; j < sweepScope; j++)
+                {
+                    var cellIndex = new GridIndex(topLeftIndex.RowIndex + i, topLeftIndex.ColumnIndex + j);
+                    if (IsIndexWithinGrid(cellIndex))
+                    {
+                        affectedCells.Add(GetCellAt(cellIndex));
+                    }
+                }
+            }
+
+            return affectedCells;
         }
     }
 }
