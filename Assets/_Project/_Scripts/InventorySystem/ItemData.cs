@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SnekTech.Player;
+using UnityEngine;
 
 namespace SnekTech.InventorySystem
 {
@@ -15,5 +16,14 @@ namespace SnekTech.InventorySystem
         public string Label => label;
         public string Description => description;
         public Sprite Icon => icon;
+
+
+        public virtual void OnAdd(PlayerData playerData)
+        {
+        }
+
+        public virtual void OnRemove(PlayerData playerData)
+        {
+        }
     }
 }

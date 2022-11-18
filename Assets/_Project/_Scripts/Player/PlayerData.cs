@@ -38,6 +38,8 @@ namespace SnekTech.Player
         {
             gridEventManager.BombRevealed += OnBombRevealed;
             gridEventManager.GridInitCompleted += OnGridInitCompleted;
+            
+            Inventory.SetPlayerData(this);
         }
 
         private void OnDisable()

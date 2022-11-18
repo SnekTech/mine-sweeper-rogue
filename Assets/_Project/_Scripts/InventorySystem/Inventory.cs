@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SnekTech.Player;
 using UnityEngine;
 
 namespace SnekTech.InventorySystem
@@ -16,13 +17,53 @@ namespace SnekTech.InventorySystem
 
         public List<InventoryItem> Items => items;
 
-        private void OnEnable()
+        private PlayerData _playerData;
+
+        public void SetPlayerData(PlayerData playerData)
+        {
+            _playerData = playerData;
+        }
+
+        private void RefreshDictionary()
         {
             _dictionary.Clear();
             foreach (InventoryItem item in Items)
             {
                 _dictionary.Add(item.ItemData, item);
             }
+        }
+
+        private void ActivateItems()
+        {
+            foreach (InventoryItem item in Items)
+            {
+                for (int i = 0; i < item.StackSize; i++)
+                {
+                    item.ItemData.OnAdd(_playerData);
+                }
+            }
+        }
+
+        private void DeactivateItems()
+        {
+            foreach (InventoryItem item in Items)
+            {
+                for (int i = 0; i < item.StackSize; i++)
+                {
+                    item.ItemData.OnRemove(_playerData);
+                }
+            }
+        }
+        
+        private void OnEnable()
+        {
+            RefreshDictionary();
+            ActivateItems();
+        }
+
+        private void OnDisable()
+        {
+            DeactivateItems();
         }
 
         public void AddItem(ItemData itemData)
@@ -38,6 +79,9 @@ namespace SnekTech.InventorySystem
                 _dictionary.Add(itemData, newItem);
                 Items.Add(newItem);
             }
+            
+            itemData.OnAdd(_playerData);
+            
             ItemsUpdated?.Invoke(Items);
         }
 
@@ -49,6 +93,9 @@ namespace SnekTech.InventorySystem
             }
             
             _dictionary[itemData].RemoveStack();
+            
+            itemData.OnRemove(_playerData);
+            
             if (_dictionary[itemData].StackSize <= 0)
             {
                 Items.Remove(_dictionary[itemData]);
