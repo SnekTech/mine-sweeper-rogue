@@ -280,7 +280,7 @@ namespace SnekTech.Grid
                     CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
                     ICell cell = cellMono;
                     var cellIndex = new GridIndex(i, j);
-                    cell.SetPosition(cellIndex); // TODO: relative position for centering the grid
+                    cell.SetPosition(cellIndex);
 
                     bool hasBomb = _bombGenerator.Next();
                     if (hasBomb)
@@ -293,6 +293,9 @@ namespace SnekTech.Grid
                     Cells.Add(cell);
                 }
             }
+
+            // centering the grid
+            transform.localPosition = new Vector3(-gridSize.columnCount / 2f, -gridSize.rowCount / 2f, 0);
         }
 
         private void InitCellsContent()
