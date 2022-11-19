@@ -36,17 +36,28 @@ Roguelike 扫雷
 - [ ] 可替换的雷区背景
 - [ ] 修复同时按左右键会在空地上插旗的bug
 - [ ] 反向扫雷，尽快找出所有地雷
-- [ ] 选择道具页面的道具数量可变
 - [ ] 道具池SO使用脚本初始化替代手工拖拽
 - [ ] 随机种子
 - [ ] 弹出菜单时背景模糊
-- [ ] 变更雷区大小时自动定位
+- [x] 变更雷区大小时自动定位
 - [ ] 通用的Modal组件
     - [x] block mouse input when popup exists
 - [x] highlight hovering cell
     - [x] implement an item to uncover multiple cells
 - [ ] easter egg
     - [ ] developer's comment
-- [ ] mechanisms
-    - [ ] revenge
-    - [ ] copy & paste
+- [ ] 道具机制
+    - [ ] 复仇
+    - [x] 放大扫雷范围
+    - [ ] 影响道具可选数量
+    - [ ] 接下来的几次操作有特殊效果
+        - [ ] 踩雷加生命值
+        - [ ] 不踩雷加生命值
+- [ ] 开始界面
+- [ ] 胜负判定
+    - [ ] 生命值耗尽
+    - [ ] 计时模式
+- [ ] 结束界面 -> 回到开始界面
+- [ ] 存档系统
+    - [ ] 存档界面
+    - [ ] 多个存档
