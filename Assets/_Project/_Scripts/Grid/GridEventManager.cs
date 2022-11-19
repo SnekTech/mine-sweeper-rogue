@@ -1,10 +1,11 @@
 ﻿using System;
+using SnekTech.Constants;
 using SnekTech.GridCell;
 using UnityEngine;
 
 namespace SnekTech.Grid
 {
-    [CreateAssetMenu(fileName = nameof(GridEventManager), menuName = Utils.MyEventManagerMenuName + "/" + nameof(GridEventManager))]
+    [CreateAssetMenu(fileName = nameof(GridEventManager), menuName = MenuName.EventManager + MenuName.Slash + nameof(GridEventManager))]
     public class GridEventManager : ScriptableObject
     {
         public event Action<IGrid> GridInitCompleted;

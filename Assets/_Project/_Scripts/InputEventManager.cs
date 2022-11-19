@@ -1,9 +1,10 @@
 ﻿using System;
+using SnekTech.Constants;
 using UnityEngine;
 
 namespace SnekTech
 {
-    [CreateAssetMenu(fileName = nameof(InputEventManager), menuName = Utils.MyEventManagerMenuName + "/" + nameof(InputEventManager))]
+    [CreateAssetMenu(fileName = nameof(InputEventManager), menuName = MenuName.EventManager + MenuName.Slash + nameof(InputEventManager))]
     public class InputEventManager : ScriptableObject
     {
         public event Action<Vector2> LeftClickPerformed;

@@ -43,8 +43,8 @@ Roguelike 扫雷
 - [ ] 变更雷区大小时自动定位
 - [ ] 通用的Modal组件
     - [x] block mouse input when popup exists
-- [ ] highlight hovering cell
-    - [ ] implement an item to uncover multiple cells
+- [x] highlight hovering cell
+    - [x] implement an item to uncover multiple cells
 - [ ] easter egg
     - [ ] developer's comment
 - [ ] mechanisms

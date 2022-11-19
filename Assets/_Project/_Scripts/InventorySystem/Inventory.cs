@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using SnekTech.Constants;
 using SnekTech.Player;
 using UnityEngine;
 
 namespace SnekTech.InventorySystem
 {
-    [CreateAssetMenu(fileName = "New " + nameof(Inventory), menuName = Utils.MyInventoryMenuName + "/" + nameof(Inventory))]
+    [CreateAssetMenu(fileName = "New " + nameof(Inventory), menuName = MenuName.Inventory + MenuName.Slash + nameof(Inventory))]
     public class Inventory : ScriptableObject
     {
         public event Action<List<InventoryItem>> ItemsUpdated;

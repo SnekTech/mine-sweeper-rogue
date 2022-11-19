@@ -1,9 +1,10 @@
-﻿using SnekTech.Player;
+﻿using SnekTech.Constants;
+using SnekTech.Player;
 using UnityEngine;
 
 namespace SnekTech.InventorySystem
 {
-    [CreateAssetMenu(fileName = nameof(ItemData), menuName = Utils.MyInventoryMenuName + "/" + nameof(ItemData))]
+    [CreateAssetMenu(fileName = nameof(ItemData), menuName = MenuName.Items + MenuName.Slash + nameof(ItemData))]
     public class ItemData : ScriptableObject
     {
         [SerializeField]
