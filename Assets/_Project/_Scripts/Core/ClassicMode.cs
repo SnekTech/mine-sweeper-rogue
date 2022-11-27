@@ -32,7 +32,7 @@ namespace SnekTech.Core
         protected override void OnStop()
         {
             _gridEventManager.GridCleared -= OnGridCleared;
-            PlayerData.HealthArmour.HealthRanOut += OnPlayerHealthRanOut;
+            PlayerData.HealthArmour.HealthRanOut -= OnPlayerHealthRanOut;
         }
     }
 }
