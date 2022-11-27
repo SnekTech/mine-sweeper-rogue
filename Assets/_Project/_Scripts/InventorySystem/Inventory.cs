@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SnekTech.Constants;
 using SnekTech.Player;
 using UnityEngine;
@@ -28,6 +29,10 @@ namespace SnekTech.InventorySystem
         private void RefreshDictionary()
         {
             _dictionary.Clear();
+            foreach (InventoryItem item in items.Where(item => item.StackSize <= 0))
+            {
+                items.Remove(item);
+            }
             foreach (InventoryItem item in Items)
             {
                 _dictionary.Add(item.ItemData, item);
