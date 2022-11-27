@@ -1,5 +1,6 @@
 ﻿using System;
 using SnekTech.Grid;
+using SnekTech.Player;
 using UnityEngine;
 
 namespace SnekTech.Core
@@ -8,18 +9,23 @@ namespace SnekTech.Core
     {
         [SerializeField]
         private GridEventManager gridEventManager;
+        [SerializeField]
+        private PlayerData playerData;
         
-        private IGameMode _gameMode;
-        private bool _hasGivenJudgement;
+        private GameMode _gameMode;
+
+        private Timer _timer;
 
         private void Awake()
         {
-            _gameMode = new ClassicGameMode(gridEventManager);
+            _gameMode = new ClassicMode(gridEventManager, playerData);
+            _timer = new Timer();
         }
 
         private void OnEnable()
         {
             gridEventManager.GridInitCompleted += OnGridInitCompleted;
+            _gameMode.LevelCompleted += OnLevelCompleted;
         }
 
         private void OnDisable()
@@ -29,27 +35,41 @@ namespace SnekTech.Core
 
         private void Update()
         {
-            if (_hasGivenJudgement)
-            {
-                return;
-            }
+            _timer.Tick(Time.deltaTime);
+        }
+        
+        private void StartGame()
+        {
+            _gameMode.Start();
+            _gameMode.LevelCompleted += OnLevelCompleted;
             
-            if (_gameMode.HasLevelCleared)
+            _timer.StartCountDown(10); // todo: replace magic number
+        }
+
+        private void StopGame(bool hasFailed)
+        {
+            _gameMode.Stop();
+            _gameMode.LevelCompleted -= OnLevelCompleted;
+            
+            if (hasFailed)
             {
-                // todo: load next level &| congratulate
-                _hasGivenJudgement = true;
+                Debug.Log("level failed");
+            }
+            else
+            {
+                Debug.Log("level passed");
             }
         }
 
         private void OnGridInitCompleted(IGrid obj)
         {
-            Init();
+            StartGame();
         }
-        
-        private void Init()
+
+        private void OnLevelCompleted(bool hasFailed)
         {
-            _hasGivenJudgement = false;
+            StopGame(hasFailed);
         }
-        
+
     }
 }

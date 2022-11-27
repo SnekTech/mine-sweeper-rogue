@@ -2146,6 +2146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
 --- !u!1 &1731161037
 GameObject:
   m_ObjectHideFlags: 0
