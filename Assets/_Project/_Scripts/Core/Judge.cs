@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SnekTech.Grid;
 using SnekTech.Player;
 using UnityEngine;
@@ -12,20 +13,30 @@ namespace SnekTech.Core
         [SerializeField]
         private PlayerData playerData;
         
-        private GameMode _gameMode;
+        private GameMode _currentGameMode;
 
         private Timer _timer;
 
+        private List<GameMode> _availableGameModes;
+
         private void Awake()
         {
-            _gameMode = new ClassicMode(gridEventManager, playerData);
             _timer = new Timer();
+            
+            var classicMode = new ClassicMode(gridEventManager, playerData);
+            var countDownMode = new WithCountDown(classicMode, _timer);
+            
+            _availableGameModes = new List<GameMode>
+            {
+                classicMode,
+                countDownMode,
+            };
+            
         }
 
         private void OnEnable()
         {
             gridEventManager.GridInitCompleted += OnGridInitCompleted;
-            _gameMode.LevelCompleted += OnLevelCompleted;
         }
 
         private void OnDisable()
@@ -40,16 +51,14 @@ namespace SnekTech.Core
         
         private void StartGame()
         {
-            _gameMode.Start();
-            _gameMode.LevelCompleted += OnLevelCompleted;
-            
-            _timer.StartCountDown(10); // todo: replace magic number
+            _currentGameMode.Start();
+            _currentGameMode.LevelCompleted += OnLevelCompleted;
         }
 
         private void StopGame(bool hasFailed)
         {
-            _gameMode.Stop();
-            _gameMode.LevelCompleted -= OnLevelCompleted;
+            _currentGameMode.Stop();
+            _currentGameMode.LevelCompleted -= OnLevelCompleted;
             
             if (hasFailed)
             {
@@ -63,6 +72,7 @@ namespace SnekTech.Core
 
         private void OnGridInitCompleted(IGrid obj)
         {
+            _currentGameMode = ChooseGameMode();
             StartGame();
         }
 
@@ -71,5 +81,9 @@ namespace SnekTech.Core
             StopGame(hasFailed);
         }
 
+        private GameMode ChooseGameMode()
+        {
+            return _availableGameModes[1];
+        }
     }
 }

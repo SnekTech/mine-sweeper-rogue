@@ -37,7 +37,7 @@ namespace SnekTech.Core
 
         public void Tick(float deltaTime)
         {
-            if (!_isTicking)
+            if (!_isTicking || _hasTimedOut)
             {
                 return;
             }

@@ -7,7 +7,7 @@ namespace SnekTech.Core
     {
         public event Action<bool> LevelCompleted;
 
-        protected readonly PlayerData PlayerData;
+        public readonly PlayerData PlayerData;
 
         protected GameMode(PlayerData playerData)
         {
@@ -16,12 +16,18 @@ namespace SnekTech.Core
 
         public void Start()
         {
+            ClearEventSubscriptions();
             OnStart();
         }
 
         public void Stop()
         {
             OnStop();
+        }
+
+        private void ClearEventSubscriptions()
+        {
+            LevelCompleted = null;
         }
 
         protected abstract void OnStart();
