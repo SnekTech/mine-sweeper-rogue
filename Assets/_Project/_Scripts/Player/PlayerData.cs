@@ -2,6 +2,8 @@
 using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.InventorySystem;
+using SnekTech.Constants;
+using SnekTech.Core;
 using UnityEngine;
 
 namespace SnekTech.Player
@@ -15,11 +17,9 @@ namespace SnekTech.Player
         [SerializeField]
         private Inventory inventory;
 
-        [Range(1, 5)]
-        [SerializeField]
-        private int sweepScope = 1;
+        private int _sweepScope = 1;
 
-        private const int DamagePerBomb = 3;
+        private const int DamagePerBomb = GameData.DamagePerBomb;
 
         public event Action DataChanged;
         public event Action<IGrid, ICell, int> TakenDamage;
@@ -30,8 +30,22 @@ namespace SnekTech.Player
 
         public int SweepScope
         {
-            get => sweepScope;
-            set => sweepScope = value;
+            get => _sweepScope;
+            set
+            {
+                const int min = GameData.SweepScopeMin, max = GameData.SweepScopeMax;
+                int originalValue = _sweepScope;
+                _sweepScope = Mathf.Clamp(value, min, max);
+                
+                if (value < min)
+                {
+                    throw new ReachLimitException<int>(min - originalValue);
+                }
+                if (value > max)
+                {
+                    throw new ReachLimitException<int>(max - originalValue);
+                }
+            }
         }
 
         private void OnEnable()

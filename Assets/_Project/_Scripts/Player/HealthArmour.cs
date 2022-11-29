@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace SnekTech.Player
 {
@@ -41,12 +42,24 @@ namespace SnekTech.Player
 
         public void AddHealth(int amount)
         {
-            Health += amount;
+            int newHealth = Health + amount;
+            if (newHealth <= 0)
+            {
+                HealthRanOut?.Invoke();
+            }
+
+            Health = Mathf.Max(0, newHealth);
         }
 
         public void AddArmour(int amount)
         {
-            Armour += amount;
+            int newArmour = Armour + amount;
+            if (newArmour <= 0)
+            {
+                ArmourRanOut?.Invoke();
+            }
+
+            Armour = Mathf.Max(0, newArmour);
         }
     }
 }

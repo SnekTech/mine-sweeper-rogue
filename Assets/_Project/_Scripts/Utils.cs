@@ -14,5 +14,12 @@
             public const string UI = "MyUI";
             public const string Items = "MyItems";
         }
+
+        public static class GameData
+        {
+            public const int DamagePerBomb = 3;
+            public const int SweepScopeMin = 1;
+            public const int SweepScopeMax = 5;
+        }
     }
 }

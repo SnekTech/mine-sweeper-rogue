@@ -1,6 +1,8 @@
-﻿using SnekTech.Player;
+﻿using System;
+using SnekTech.Player;
 using UnityEngine;
 using SnekTech.Constants;
+using SnekTech.InventorySystem.Items;
 
 namespace SnekTech.InventorySystem
 {
@@ -8,18 +10,21 @@ namespace SnekTech.InventorySystem
         menuName = MenuName.Items + MenuName.Slash + nameof(MultipleSweep))]
     public class MultipleSweep : ItemData
     {
-        [Range(1, 5)]
+        [Range(GameData.SweepScopeMin, GameData.SweepScopeMax)]
         [SerializeField]
         private int sweepScope = 1;
-        
+
+        private PlayerPropertyModifier _propertyModifier;
+
         public override void OnAdd(PlayerData playerData)
         {
-            playerData.SweepScope += sweepScope;
+            _propertyModifier = new SweepScopeModifier(sweepScope);
+            _propertyModifier.Apply(playerData);
         }
 
         public override void OnRemove(PlayerData playerData)
         {
-            playerData.SweepScope -= sweepScope;
+            _propertyModifier.Resume(playerData);
         }
     }
 }
