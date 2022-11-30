@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using SnekTech.Player;
+using SnekTech.SceneManagement;
 using UnityEngine;
 
 namespace SnekTech.Core
@@ -55,17 +57,18 @@ namespace SnekTech.Core
             _currentGameMode.LevelCompleted += OnLevelCompleted;
         }
 
-        private void StopGame(bool hasFailed)
+        private async UniTask StopGame(bool hasFailed)
         {
             _currentGameMode.Stop();
             _currentGameMode.LevelCompleted -= OnLevelCompleted;
             
             if (hasFailed)
             {
-                Debug.Log("level failed");
+                await MySceneManager.LoadSceneAsync(SceneIndex.GameOver);
             }
             else
             {
+                // todo: load next level or win the game
                 Debug.Log("level passed");
             }
         }
@@ -76,13 +79,14 @@ namespace SnekTech.Core
             StartGame();
         }
 
-        private void OnLevelCompleted(bool hasFailed)
+        private async void OnLevelCompleted(bool hasFailed)
         {
-            StopGame(hasFailed);
+            await StopGame(hasFailed);
         }
 
         private GameMode ChooseGameMode()
         {
+            // todo: random set game mode?
             return _availableGameModes[1];
         }
     }
