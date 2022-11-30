@@ -12,27 +12,29 @@ namespace SnekTech.InventorySystem
     {
         public event Action<List<InventoryItem>> ItemsUpdated;
 
-        private Dictionary<ItemData, InventoryItem> _dictionary = new Dictionary<ItemData, InventoryItem>();
+        [SerializeField]
+        private PlayerData playerData;
 
         [SerializeField]
         private List<InventoryItem> items = new List<InventoryItem>();
 
         public List<InventoryItem> Items => items;
+        
+        private readonly Dictionary<ItemData, InventoryItem> _dictionary = new Dictionary<ItemData, InventoryItem>();
 
-        private PlayerData _playerData;
-
-        public void SetPlayerData(PlayerData playerData)
+        private void RemoveItemsWithZeroStackSize()
         {
-            _playerData = playerData;
-        }
-
-        private void RefreshDictionary()
-        {
-            _dictionary.Clear();
             foreach (InventoryItem item in items.Where(item => item.StackSize <= 0))
             {
                 items.Remove(item);
             }
+        }
+        
+        private void RefreshDictionary()
+        {
+            RemoveItemsWithZeroStackSize();
+            
+            _dictionary.Clear();
             foreach (InventoryItem item in Items)
             {
                 _dictionary.Add(item.ItemData, item);
@@ -45,7 +47,7 @@ namespace SnekTech.InventorySystem
             {
                 for (int i = 0; i < item.StackSize; i++)
                 {
-                    item.ItemData.OnAdd(_playerData);
+                    item.ItemData.OnAdd(playerData);
                 }
             }
         }
@@ -56,7 +58,7 @@ namespace SnekTech.InventorySystem
             {
                 for (int i = 0; i < item.StackSize; i++)
                 {
-                    item.ItemData.OnRemove(_playerData);
+                    item.ItemData.OnRemove(playerData);
                 }
             }
         }
@@ -86,7 +88,7 @@ namespace SnekTech.InventorySystem
                 Items.Add(newItem);
             }
             
-            itemData.OnAdd(_playerData);
+            itemData.OnAdd(playerData);
             
             ItemsUpdated?.Invoke(Items);
         }
@@ -100,7 +102,7 @@ namespace SnekTech.InventorySystem
             
             _dictionary[itemData].RemoveStack();
             
-            itemData.OnRemove(_playerData);
+            itemData.OnRemove(playerData);
             
             if (_dictionary[itemData].StackSize <= 0)
             {
