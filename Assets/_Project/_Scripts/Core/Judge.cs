@@ -15,25 +15,24 @@ namespace SnekTech.Core
         [SerializeField]
         private PlayerData playerData;
         
+        [SerializeField]
+        private CountDownText countDownText;
+        
         private GameMode _currentGameMode;
-
-        private Timer _timer;
 
         private List<GameMode> _availableGameModes;
 
         private void Awake()
         {
-            _timer = new Timer();
-            
             var classicMode = new ClassicMode(gridEventManager, playerData);
-            var countDownMode = new WithCountDown(classicMode, _timer);
+            var countDownMode = new WithCountDown(classicMode, Constants.GameData.DefaultCountDownDuration, countDownText);
             
             _availableGameModes = new List<GameMode>
             {
                 classicMode,
                 countDownMode,
             };
-            
+
         }
 
         private void OnEnable()
@@ -45,11 +44,6 @@ namespace SnekTech.Core
         {
             gridEventManager.GridInitCompleted -= OnGridInitCompleted;
         }
-
-        private void Update()
-        {
-            _timer.Tick(Time.deltaTime);
-        }
         
         private void StartGame()
         {
@@ -57,7 +51,7 @@ namespace SnekTech.Core
             _currentGameMode.LevelCompleted += OnLevelCompleted;
         }
 
-        private async UniTask StopGame(bool hasFailed)
+        private async UniTaskVoid StopGame(bool hasFailed)
         {
             _currentGameMode.Stop();
             _currentGameMode.LevelCompleted -= OnLevelCompleted;
@@ -79,9 +73,9 @@ namespace SnekTech.Core
             StartGame();
         }
 
-        private async void OnLevelCompleted(bool hasFailed)
+        private void OnLevelCompleted(bool hasFailed)
         {
-            await StopGame(hasFailed);
+            StopGame(hasFailed).Forget();
         }
 
         private GameMode ChooseGameMode()

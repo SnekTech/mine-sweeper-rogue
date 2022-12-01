@@ -1,15 +1,23 @@
-﻿using SnekTech.Player;
+﻿
+using System;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace SnekTech.Core
 {
     public class WithCountDown : GameMode
     {
-        private readonly Timer _timer;
+        private const float CountDownIntervalSeconds = 0.1f;
+        
+        private float _durationSeconds;
         private readonly GameMode _decoratedMode;
-        public WithCountDown(GameMode decoratedMode, Timer timer) : base(decoratedMode.PlayerData)
+        private readonly ICountDownDisplay _countDownDisplay;
+
+        public WithCountDown(GameMode decoratedMode, float durationSeconds, ICountDownDisplay countDownDisplay = null) : base(decoratedMode.PlayerData)
         {
             _decoratedMode = decoratedMode;
-            _timer = timer;
+            _durationSeconds = durationSeconds;
+            _countDownDisplay = countDownDisplay;
         }
 
         protected override void OnStart()
@@ -17,26 +25,33 @@ namespace SnekTech.Core
             _decoratedMode.Start();
             _decoratedMode.LevelCompleted += OnDecoratedModeLevelCompleted;
             
-            _timer.StartCountDown(3); // todo: replace magic number
-            _timer.TimedOut += OnTimedOut;
+            StartTimerAsync().Forget();
         }
 
         protected override void OnStop()
         {
             _decoratedMode.Stop();
             _decoratedMode.LevelCompleted -= OnDecoratedModeLevelCompleted;
-            
-            _timer.TimedOut -= OnTimedOut;
-        }
-
-        private void OnTimedOut()
-        {
-            InvokeLevelCompleted(true);
         }
 
         private void OnDecoratedModeLevelCompleted(bool hasFailed)
         {
             InvokeLevelCompleted(hasFailed);
+        }
+
+        private async UniTaskVoid StartTimerAsync()
+        {
+           _countDownDisplay?.SetActive(true); 
+            
+            while (_durationSeconds > 0)
+            {
+                _countDownDisplay?.UpdateDurationRemaining(_durationSeconds);
+                await UniTask.Delay(TimeSpan.FromSeconds(CountDownIntervalSeconds));
+                _durationSeconds -= CountDownIntervalSeconds;
+            }
+            _countDownDisplay?.SetActive(false);
+            
+            InvokeLevelCompleted(true);
         }
     }
 }
