@@ -1,6 +1,5 @@
 ﻿using SnekTech.Core;
 using SnekTech.Player;
-using UnityEngine;
 
 namespace SnekTech.InventorySystem.Items
 {

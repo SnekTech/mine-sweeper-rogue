@@ -3,7 +3,7 @@ using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.InventorySystem;
 using SnekTech.Constants;
-using SnekTech.Core;
+using SnekTech.InventorySystem.Items;
 using UnityEngine;
 
 namespace SnekTech.Player

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SnekTech.Core
+namespace SnekTech.InventorySystem.Items
 {
     public class ReachLimitException<T> : Exception
     {
