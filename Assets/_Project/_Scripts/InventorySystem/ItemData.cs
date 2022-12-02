@@ -19,11 +19,11 @@ namespace SnekTech.InventorySystem
         public Sprite Icon => icon;
 
 
-        public virtual void OnAdd(PlayerData playerData)
+        public virtual void OnAdd(PlayerState playerState)
         {
         }
 
-        public virtual void OnRemove(PlayerData playerData)
+        public virtual void OnRemove(PlayerState playerState)
         {
         }
     }

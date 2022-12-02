@@ -29,7 +29,7 @@ namespace SnekTech.Grid
         private GridData gridData;
 
         [SerializeField]
-        private PlayerData playerData;
+        private PlayerState playerState;
 
         [SerializeField]
         private UIState uiState;
@@ -118,7 +118,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerData.SweepScope);
+            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerState.SweepScope);
             List<Task> revealCellTasks = new List<Task>();
             foreach (ICell affectedCell in affectedCells)
             {
@@ -329,7 +329,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerData.SweepScope);
+            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerState.SweepScope);
             foreach (ICell cell in affectedCells)
             {
                 cell.SetCoverHighlight(true);

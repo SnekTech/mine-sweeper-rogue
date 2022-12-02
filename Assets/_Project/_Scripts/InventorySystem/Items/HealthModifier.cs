@@ -12,14 +12,14 @@ namespace SnekTech.InventorySystem.Items
             _changeAmount = changeAmount;
         }
 
-        protected override void DoApply(PlayerData playerData)
+        protected override void DoApply(PlayerState playerState)
         {
-            playerData.HealthArmour.AddHealth(_changeAmount);
+            playerState.HealthArmour.AddHealth(_changeAmount);
         }
 
-        protected override void DoResume(PlayerData playerData)
+        protected override void DoResume(PlayerState playerState)
         {
-            playerData.HealthArmour.AddHealth(-_changeAmount);
+            playerState.HealthArmour.AddHealth(-_changeAmount);
         }
     }
 }

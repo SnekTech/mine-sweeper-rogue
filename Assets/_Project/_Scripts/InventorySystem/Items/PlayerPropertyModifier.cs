@@ -12,19 +12,19 @@ namespace SnekTech.InventorySystem.Items
         }
 
 
-        public void Apply(PlayerData playerData)
+        public void Apply(PlayerState playerState)
         {
-            _decoratedModifier?.Apply(playerData);
-            DoApply(playerData);
+            _decoratedModifier?.Apply(playerState);
+            DoApply(playerState);
         }
 
-        public void Resume(PlayerData playerData)
+        public void Resume(PlayerState playerState)
         {
-            _decoratedModifier?.Resume(playerData);
-            DoResume(playerData);
+            _decoratedModifier?.Resume(playerState);
+            DoResume(playerState);
         }
 
-        protected abstract void DoApply(PlayerData playerData);
-        protected abstract void DoResume(PlayerData playerData);
+        protected abstract void DoApply(PlayerState playerState);
+        protected abstract void DoResume(PlayerState playerState);
     }
 }

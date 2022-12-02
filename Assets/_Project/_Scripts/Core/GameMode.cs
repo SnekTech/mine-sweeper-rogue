@@ -7,11 +7,11 @@ namespace SnekTech.Core
     {
         public event Action<bool> LevelCompleted;
 
-        public readonly PlayerData PlayerData;
+        public readonly PlayerState PlayerState;
 
-        protected GameMode(PlayerData playerData)
+        protected GameMode(PlayerState playerState)
         {
-            PlayerData = playerData;
+            PlayerState = playerState;
         }
 
         public void Start()

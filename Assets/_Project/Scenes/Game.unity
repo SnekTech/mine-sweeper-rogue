@@ -191,7 +191,7 @@ MonoBehaviour:
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   gridData: {fileID: 11400000, guid: ce10669f59fff5e4baa36174691c6b0c, type: 2}
-  playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   uiState: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
 --- !u!4 &58783577
 Transform:
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthLabel: {fileID: 431378547}
   armourLabel: {fileID: 247280843}
-  playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   damageEffectPrefab: {fileID: 3520347169591930366, guid: 271919b17e0bf4a46afaf80b984f8c2b, type: 3}
 --- !u!114 &655018824
 MonoBehaviour:
@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
-  playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   countDownText: {fileID: 445048134}
 --- !u!1 &1731161037
 GameObject:
@@ -3021,7 +3021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
-  playerData: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  playerState: {fileID: 0}
   itemPool: {fileID: 11400000, guid: e947ffa8cce25404aadffe2abb01f8fe, type: 2}
   itemButtonPrefab: {fileID: -2741922143246006417, guid: 57e52a9aaea56784ab6906f4b04382a5, type: 3}
   itemChoiceCount: 3

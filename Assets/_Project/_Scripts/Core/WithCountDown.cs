@@ -13,7 +13,7 @@ namespace SnekTech.Core
         private readonly GameMode _decoratedMode;
         private readonly ICountDownDisplay _countDownDisplay;
 
-        public WithCountDown(GameMode decoratedMode, float durationSeconds, ICountDownDisplay countDownDisplay = null) : base(decoratedMode.PlayerData)
+        public WithCountDown(GameMode decoratedMode, float durationSeconds, ICountDownDisplay countDownDisplay = null) : base(decoratedMode.PlayerState)
         {
             _decoratedMode = decoratedMode;
             _durationSeconds = durationSeconds;

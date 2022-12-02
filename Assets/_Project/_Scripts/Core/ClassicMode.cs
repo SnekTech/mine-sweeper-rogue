@@ -7,8 +7,8 @@ namespace SnekTech.Core
     {
         private readonly GridEventManager _gridEventManager;
 
-        public ClassicMode(GridEventManager gridEventManager, PlayerData playerData)
-            : base(playerData)
+        public ClassicMode(GridEventManager gridEventManager, PlayerState playerState)
+            : base(playerState)
         {
             _gridEventManager = gridEventManager;
         }
@@ -21,7 +21,7 @@ namespace SnekTech.Core
         protected override void OnStart()
         {
             _gridEventManager.GridCleared += OnGridCleared;
-            PlayerData.HealthArmour.HealthRanOut += OnPlayerHealthRanOut;
+            PlayerState.HealthArmour.HealthRanOut += OnPlayerHealthRanOut;
         }
 
         private void OnPlayerHealthRanOut()
@@ -32,7 +32,7 @@ namespace SnekTech.Core
         protected override void OnStop()
         {
             _gridEventManager.GridCleared -= OnGridCleared;
-            PlayerData.HealthArmour.HealthRanOut -= OnPlayerHealthRanOut;
+            PlayerState.HealthArmour.HealthRanOut -= OnPlayerHealthRanOut;
         }
     }
 }

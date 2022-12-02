@@ -10,7 +10,7 @@ namespace SnekTech.UI
         private UIEventManager uiEventManager;
         
         [SerializeField]
-        private PlayerData playerData;
+        private PlayerState playerState;
         
         [SerializeField]
         private ItemPool itemPool;
@@ -45,7 +45,7 @@ namespace SnekTech.UI
 
         private void OnItemChosen(ItemData item)
         {
-            playerData.Inventory.AddItem(item);
+            playerState.Inventory.AddItem(item);
         }
     }
 }

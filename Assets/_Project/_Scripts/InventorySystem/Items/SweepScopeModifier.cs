@@ -13,11 +13,11 @@ namespace SnekTech.InventorySystem.Items
             _changeAmount = changeAmount;
         }
         
-        protected override void DoApply(PlayerData playerData)
+        protected override void DoApply(PlayerState playerState)
         {
             try
             {
-                playerData.SweepScope += _changeAmount;
+                playerState.SweepScope += _changeAmount;
             }
             catch (ReachLimitException<int> reachLimitException)
             {
@@ -25,9 +25,9 @@ namespace SnekTech.InventorySystem.Items
             }
         }
 
-        protected override void DoResume(PlayerData playerData)
+        protected override void DoResume(PlayerState playerState)
         {
-            playerData.SweepScope -= _changeAmount;
+            playerState.SweepScope -= _changeAmount;
         }
     }
 }

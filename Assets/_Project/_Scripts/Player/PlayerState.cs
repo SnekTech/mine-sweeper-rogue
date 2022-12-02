@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace SnekTech.Player
 {
-    [CreateAssetMenu(fileName = nameof(PlayerData), menuName = nameof(PlayerData))]
-    public class PlayerData : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(PlayerState), menuName = nameof(PlayerState))]
+    public class PlayerState : ScriptableObject
     {
         [SerializeField]
         private GridEventManager gridEventManager;

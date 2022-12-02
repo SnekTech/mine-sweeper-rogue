@@ -17,33 +17,33 @@ namespace SnekTech.UI
         private LabelController armourLabel;
 
         [SerializeField]
-        private PlayerData playerData;
+        private PlayerState playerState;
 
         [SerializeField]
         private DamageEffectController damageEffectPrefab;
 
         private void OnEnable()
         {
-            playerData.DataChanged += UpdatePlayerData;
-            playerData.TakenDamage += OnPlayerTakenDamage;
+            playerState.DataChanged += UpdatePlayerState;
+            playerState.TakenDamage += OnPlayerTakenDamage;
         }
 
         private async void OnPlayerTakenDamage(IGrid grid, ICell cell, int damage)
         {
             await DamageEffectTask(cell.WorldPosition, damage);
-            playerData.InvokeDataChanged();
+            playerState.InvokeDataChanged();
         }
 
         private void OnDisable()
         {
-            playerData.DataChanged -= UpdatePlayerData;
-            playerData.TakenDamage -= OnPlayerTakenDamage;
+            playerState.DataChanged -= UpdatePlayerState;
+            playerState.TakenDamage -= OnPlayerTakenDamage;
         }
 
-        private void UpdatePlayerData()
+        private void UpdatePlayerState()
         {
-            healthLabel.SetText(playerData.HealthArmour.Health);
-            armourLabel.SetText(playerData.HealthArmour.Armour);
+            healthLabel.SetText(playerState.HealthArmour.Health);
+            armourLabel.SetText(playerState.HealthArmour.Armour);
         }
 
         private async Task DamageEffectTask(Vector3 damageSourcePosition, int damage)

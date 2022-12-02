@@ -13,7 +13,7 @@ namespace SnekTech.InventorySystem
         public event Action<List<InventoryItem>> ItemsUpdated;
 
         [SerializeField]
-        private PlayerData playerData;
+        private PlayerState playerState;
 
         [SerializeField]
         private List<InventoryItem> items = new List<InventoryItem>();
@@ -47,7 +47,7 @@ namespace SnekTech.InventorySystem
             {
                 for (int i = 0; i < item.StackSize; i++)
                 {
-                    item.ItemData.OnAdd(playerData);
+                    item.ItemData.OnAdd(playerState);
                 }
             }
         }
@@ -58,13 +58,14 @@ namespace SnekTech.InventorySystem
             {
                 for (int i = 0; i < item.StackSize; i++)
                 {
-                    item.ItemData.OnRemove(playerData);
+                    item.ItemData.OnRemove(playerState);
                 }
             }
         }
         
         private void OnEnable()
         {
+            // todo: find a better way to apply items on SO start up
             RefreshDictionary();
             ActivateItems();
         }
@@ -88,7 +89,7 @@ namespace SnekTech.InventorySystem
                 Items.Add(newItem);
             }
             
-            itemData.OnAdd(playerData);
+            itemData.OnAdd(playerState);
             
             ItemsUpdated?.Invoke(Items);
         }
@@ -102,7 +103,7 @@ namespace SnekTech.InventorySystem
             
             _dictionary[itemData].RemoveStack();
             
-            itemData.OnRemove(playerData);
+            itemData.OnRemove(playerState);
             
             if (_dictionary[itemData].StackSize <= 0)
             {

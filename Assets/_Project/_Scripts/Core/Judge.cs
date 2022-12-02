@@ -13,7 +13,7 @@ namespace SnekTech.Core
         [SerializeField]
         private GridEventManager gridEventManager;
         [SerializeField]
-        private PlayerData playerData;
+        private PlayerState playerState;
         
         [SerializeField]
         private CountDownText countDownText;
@@ -24,7 +24,7 @@ namespace SnekTech.Core
 
         private void Awake()
         {
-            var classicMode = new ClassicMode(gridEventManager, playerData);
+            var classicMode = new ClassicMode(gridEventManager, playerState);
             var countDownMode = new WithCountDown(classicMode, Constants.GameData.DefaultCountDownDuration, countDownText);
             
             _availableGameModes = new List<GameMode>
