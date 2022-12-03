@@ -20,12 +20,12 @@ namespace SnekTech.UI
 
         private void OnEnable()
         {
-            inventory.ItemsUpdated += HandleInventoryItemsUpdated;
+            inventory.ItemsChanged += HandleInventoryItemsChanged;
         }
 
         private void OnDisable()
         {
-            inventory.ItemsUpdated -= HandleInventoryItemsUpdated;
+            inventory.ItemsChanged -= HandleInventoryItemsChanged;
         }
 
         private void DestroyAllChildren()
@@ -53,7 +53,7 @@ namespace SnekTech.UI
             }
         }
 
-        private void HandleInventoryItemsUpdated(List<InventoryItem> items)
+        private void HandleInventoryItemsChanged(List<InventoryItem> items)
         {
             RefreshPanel(items);
         }

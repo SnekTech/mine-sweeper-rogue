@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using SnekTech.Constants;
+using SnekTech.InventorySystem;
 
 namespace SnekTech.Player
 {
@@ -10,6 +12,7 @@ namespace SnekTech.Player
         public int sweepScope;
         public int itemChoiceCount;
         public HealthArmour healthArmour;
+        public List<InventoryItem> items;
 
         public PlayerData()
         {
@@ -17,6 +20,7 @@ namespace SnekTech.Player
             sweepScope = GameConstants.SweepScopeMin;
             itemChoiceCount = GameConstants.InitialItemChoiceCount;
             healthArmour = HealthArmour.Default;
+            items = new List<InventoryItem>();
         }
 
         public PlayerData(PlayerData other)
@@ -25,6 +29,7 @@ namespace SnekTech.Player
             sweepScope = other.sweepScope;
             itemChoiceCount = other.itemChoiceCount;
             healthArmour = new HealthArmour(other.healthArmour.Health, other.healthArmour.Armour);
+            items = new List<InventoryItem>(other.items);
         }
     }
 }

@@ -4,13 +4,14 @@ using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.InventorySystem;
 using SnekTech.Constants;
+using SnekTech.DataPersistence;
 using SnekTech.InventorySystem.Items;
 using UnityEngine;
 
 namespace SnekTech.Player
 {
     [CreateAssetMenu(fileName = nameof(PlayerState), menuName = nameof(PlayerState))]
-    public class PlayerState : ScriptableObject
+    public class PlayerState : ScriptableObject, IPersistentDataHolder
     {
         #region Events
 
@@ -41,18 +42,17 @@ namespace SnekTech.Player
         private void OnEnable()
         {
             gridEventManager.BombRevealed += OnBombRevealed;
-            gridEventManager.GridInitCompleted += OnGridInitCompleted;
             DataChanged += OnPlayerDataChanged;
         }
+
 
         private void OnDisable()
         {
             gridEventManager.BombRevealed -= OnBombRevealed;
-            gridEventManager.GridInitCompleted -= OnGridInitCompleted;
             DataChanged -= OnPlayerDataChanged;
         }
 
-        public void OnPlayerDataChanged()
+        private void OnPlayerDataChanged()
         {
             CalculatePlayerData();
         }
@@ -63,10 +63,16 @@ namespace SnekTech.Player
             TakenDamage?.Invoke(grid, cell, DamagePerBomb);
         }
 
-        private void OnGridInitCompleted(IGrid grid)
+        public void LoadData(GameData gameData)
         {
-            HealthArmour = HealthArmour.Default;
-            InvokeDataChanged();
+            _basicPlayerData = gameData.playerData;
+            inventory.Load(_basicPlayerData.items);
+        }
+
+        public void SaveData(GameData gameData)
+        {
+            _basicPlayerData.items = inventory.Items;
+            gameData.playerData = _basicPlayerData;
         }
 
         public void InvokeDataChanged()

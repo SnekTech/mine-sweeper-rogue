@@ -10,23 +10,22 @@ namespace SnekTech.InventorySystem
     [CreateAssetMenu(fileName = "New " + nameof(Inventory), menuName = MenuName.Inventory + MenuName.Slash + nameof(Inventory))]
     public class Inventory : ScriptableObject
     {
-        public event Action<List<InventoryItem>> ItemsUpdated;
+        public event Action<List<InventoryItem>> ItemsChanged;
 
         [SerializeField]
         private PlayerState playerState;
 
-        [SerializeField]
-        private List<InventoryItem> items = new List<InventoryItem>();
+        private List<InventoryItem> _items = new List<InventoryItem>();
 
-        public List<InventoryItem> Items => items;
+        public List<InventoryItem> Items => _items;
         
         private readonly Dictionary<ItemData, InventoryItem> _dictionary = new Dictionary<ItemData, InventoryItem>();
 
         private void RemoveItemsWithZeroStackSize()
         {
-            foreach (InventoryItem item in items.Where(item => item.StackSize <= 0))
+            foreach (InventoryItem item in _items.Where(item => item.StackSize <= 0))
             {
-                items.Remove(item);
+                _items.Remove(item);
             }
         }
         
@@ -52,27 +51,11 @@ namespace SnekTech.InventorySystem
             }
         }
 
-        private void DeactivateItems()
+        public void Load(List<InventoryItem> savedItems)
         {
-            foreach (InventoryItem item in Items)
-            {
-                for (int i = 0; i < item.StackSize; i++)
-                {
-                    item.ItemData.OnRemove(playerState);
-                }
-            }
-        }
-        
-        private void OnEnable()
-        {
-            // todo: find a better way to apply items on SO start up
+            _items = savedItems;
             RefreshDictionary();
             ActivateItems();
-        }
-
-        private void OnDisable()
-        {
-            DeactivateItems();
         }
 
         public void AddItem(ItemData itemData)
@@ -91,7 +74,7 @@ namespace SnekTech.InventorySystem
             
             itemData.OnAdd(playerState);
             
-            ItemsUpdated?.Invoke(Items);
+            ItemsChanged?.Invoke(Items);
         }
 
         public void RemoveItem(ItemData itemData)
@@ -110,7 +93,7 @@ namespace SnekTech.InventorySystem
                 Items.Remove(_dictionary[itemData]);
                 _dictionary.Remove(itemData);
             }
-            ItemsUpdated?.Invoke(Items);
+            ItemsChanged?.Invoke(Items);
         }
     }
 }
