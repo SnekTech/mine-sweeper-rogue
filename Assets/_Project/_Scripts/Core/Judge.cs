@@ -81,7 +81,7 @@ namespace SnekTech.Core
         private GameMode ChooseGameMode()
         {
             // todo: random set game mode?
-            return _availableGameModes[1];
+            return _availableGameModes[0];
         }
     }
 }

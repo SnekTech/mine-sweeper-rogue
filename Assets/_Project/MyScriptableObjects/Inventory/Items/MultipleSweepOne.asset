@@ -15,4 +15,4 @@ MonoBehaviour:
   label: MultiSweep
   description: Magnify the sweep scope
   icon: {fileID: -1673696135, guid: 43349e75f3d6fce43bbfe2b24a716523, type: 3}
-  sweepScope: 5
+  sweepScope: 1

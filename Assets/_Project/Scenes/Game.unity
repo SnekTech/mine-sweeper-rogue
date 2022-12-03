@@ -3021,7 +3021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
-  playerState: {fileID: 0}
+  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   itemPool: {fileID: 11400000, guid: e947ffa8cce25404aadffe2abb01f8fe, type: 2}
   itemButtonPrefab: {fileID: -2741922143246006417, guid: 57e52a9aaea56784ab6906f4b04382a5, type: 3}
   itemChoiceCount: 3

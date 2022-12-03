@@ -1,4 +1,5 @@
-﻿using SnekTech.Core;
+﻿using System;
+using SnekTech.Core;
 using SnekTech.Player;
 
 namespace SnekTech.InventorySystem.Items
@@ -12,22 +13,18 @@ namespace SnekTech.InventorySystem.Items
         {
             _changeAmount = changeAmount;
         }
-        
-        protected override void DoApply(PlayerState playerState)
+
+        protected override void DoAccumulate(PlayerData playerData)
         {
             try
             {
-                playerState.SweepScope += _changeAmount;
+                playerData.sweepScope += _changeAmount;
             }
             catch (ReachLimitException<int> reachLimitException)
             {
-                _changeAmount = reachLimitException.ActualChangeAmount;
+                // swallow for now
+                Console.WriteLine(reachLimitException);
             }
-        }
-
-        protected override void DoResume(PlayerState playerState)
-        {
-            playerState.SweepScope -= _changeAmount;
         }
     }
 }

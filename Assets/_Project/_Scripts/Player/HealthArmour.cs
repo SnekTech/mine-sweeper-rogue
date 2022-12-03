@@ -1,42 +1,50 @@
 ﻿using System;
+using SnekTech.Constants;
 using UnityEngine;
 
 namespace SnekTech.Player
 {
+    [Serializable]
     public class HealthArmour
     {
         public event Action ArmourRanOut;
         public event Action HealthRanOut;
-        
-        public int Health { get; private set; }
-        public int Armour { get; private set; }
-        public static HealthArmour Default => new HealthArmour(10, 10);
+
+        [SerializeField]
+        private int health;
+
+        [SerializeField]
+        private int armour;
+
+        public int Health => health;
+        public int Armour => armour;
+        public static HealthArmour Default => new HealthArmour(GameData.InitialHealth,GameData.InitialArmour);
 
         public HealthArmour(int health, int armour)
         {
-            Health = health;
-            Armour = armour;
+            this.health = health;
+            this.armour = armour;
         }
 
         public void TakeDamage(int damage)
         {
             if (damage < Armour)
             {
-                Armour -= damage;
+                armour -= damage;
                 return;
             }
             
             damage -= Armour;
-            Armour = 0;
+            armour = 0;
             ArmourRanOut?.Invoke();
 
             if (damage < Health)
             {
-                Health -= damage;
+                health -= damage;
                 return;
             }
 
-            Health = 0;
+            health = 0;
             HealthRanOut?.Invoke();
         }
 
@@ -48,7 +56,7 @@ namespace SnekTech.Player
                 HealthRanOut?.Invoke();
             }
 
-            Health = Mathf.Max(0, newHealth);
+            health = Mathf.Max(0, newHealth);
         }
 
         public void AddArmour(int amount)
@@ -59,7 +67,7 @@ namespace SnekTech.Player
                 ArmourRanOut?.Invoke();
             }
 
-            Armour = Mathf.Max(0, newArmour);
+            armour = Mathf.Max(0, newArmour);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SnekTech.InventorySystem.Items
 {
-    public abstract class PlayerPropertyModifier
+    public abstract class PlayerPropertyModifier : IPlayerDataAccumulator
     {
         private PlayerPropertyModifier _decoratedModifier;
 
@@ -12,19 +12,12 @@ namespace SnekTech.InventorySystem.Items
         }
 
 
-        public void Apply(PlayerState playerState)
+        public void Accumulate(PlayerData playerData)
         {
-            _decoratedModifier?.Apply(playerState);
-            DoApply(playerState);
+            _decoratedModifier?.Accumulate(playerData);
+            DoAccumulate(playerData);
         }
 
-        public void Resume(PlayerState playerState)
-        {
-            _decoratedModifier?.Resume(playerState);
-            DoResume(playerState);
-        }
-
-        protected abstract void DoApply(PlayerState playerState);
-        protected abstract void DoResume(PlayerState playerState);
+        protected abstract void DoAccumulate(PlayerData playerData);
     }
 }

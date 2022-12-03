@@ -19,12 +19,12 @@ namespace SnekTech.InventorySystem
         public override void OnAdd(PlayerState playerState)
         {
             _propertyModifier = new SweepScopeModifier(sweepScope);
-            _propertyModifier.Apply(playerState);
+            playerState.AddDataAccumulator(_propertyModifier);
         }
 
         public override void OnRemove(PlayerState playerState)
         {
-            _propertyModifier.Resume(playerState);
+            playerState.RemoveDataAccumulator(_propertyModifier);
         }
     }
 }
