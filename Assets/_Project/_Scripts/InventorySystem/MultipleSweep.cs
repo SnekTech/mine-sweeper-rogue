@@ -10,7 +10,7 @@ namespace SnekTech.InventorySystem
         menuName = MenuName.Items + MenuName.Slash + nameof(MultipleSweep))]
     public class MultipleSweep : ItemData
     {
-        [Range(GameData.SweepScopeMin, GameData.SweepScopeMax)]
+        [Range(GameConstants.SweepScopeMin, GameConstants.SweepScopeMax)]
         [SerializeField]
         private int sweepScope = 1;
 

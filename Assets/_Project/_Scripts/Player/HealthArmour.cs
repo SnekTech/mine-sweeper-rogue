@@ -18,7 +18,7 @@ namespace SnekTech.Player
 
         public int Health => health;
         public int Armour => armour;
-        public static HealthArmour Default => new HealthArmour(GameData.InitialHealth,GameData.InitialArmour);
+        public static HealthArmour Default => new HealthArmour(GameConstants.InitialHealth,GameConstants.InitialArmour);
 
         public HealthArmour(int health, int armour)
         {

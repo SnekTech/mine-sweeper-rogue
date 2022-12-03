@@ -13,9 +13,9 @@ namespace SnekTech.Player
 
         public PlayerData()
         {
-            damagePerBomb = GameData.DamagePerBomb;
-            sweepScope = GameData.SweepScopeMin;
-            itemChoiceCount = GameData.InitialItemChoiceCount;
+            damagePerBomb = GameConstants.DamagePerBomb;
+            sweepScope = GameConstants.SweepScopeMin;
+            itemChoiceCount = GameConstants.InitialItemChoiceCount;
             healthArmour = HealthArmour.Default;
         }
 

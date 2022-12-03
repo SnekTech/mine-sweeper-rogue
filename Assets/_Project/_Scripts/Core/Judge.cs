@@ -25,7 +25,7 @@ namespace SnekTech.Core
         private void Awake()
         {
             var classicMode = new ClassicMode(gridEventManager, playerState);
-            var countDownMode = new WithCountDown(classicMode, Constants.GameData.DefaultCountDownDuration, countDownText);
+            var countDownMode = new WithCountDown(classicMode, Constants.GameConstants.DefaultCountDownDuration, countDownText);
             
             _availableGameModes = new List<GameMode>
             {

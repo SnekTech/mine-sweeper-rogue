@@ -15,7 +15,7 @@
             public const string Items = "MyItems";
         }
 
-        public static class GameData
+        public static class GameConstants
         {
             public const int DamagePerBomb = 3;
             public const int SweepScopeMin = 1;

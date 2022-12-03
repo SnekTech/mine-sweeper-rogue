@@ -82,7 +82,7 @@ namespace SnekTech.Player
                 accumulator.Accumulate(dataCopy);
             }
 
-            dataCopy.sweepScope = Mathf.Clamp(dataCopy.sweepScope, GameData.SweepScopeMin, GameData.SweepScopeMax);
+            dataCopy.sweepScope = Mathf.Clamp(dataCopy.sweepScope, GameConstants.SweepScopeMin, GameConstants.SweepScopeMax);
 
             _calculatedPlayerData = dataCopy;
         }
