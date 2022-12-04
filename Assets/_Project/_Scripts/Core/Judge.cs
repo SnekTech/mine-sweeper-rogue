@@ -14,6 +14,8 @@ namespace SnekTech.Core
         private GridEventManager gridEventManager;
         [SerializeField]
         private PlayerState playerState;
+        [SerializeField]
+        private MySceneManager mySceneManager;
         
         [SerializeField]
         private CountDownText countDownText;
@@ -58,7 +60,7 @@ namespace SnekTech.Core
             
             if (hasFailed)
             {
-                await MySceneManager.LoadSceneAsync(SceneIndex.GameOver);
+                await mySceneManager.LoadSceneAsync(SceneIndex.GameOver);
             }
             else
             {

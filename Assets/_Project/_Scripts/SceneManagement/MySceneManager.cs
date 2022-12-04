@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,19 +8,26 @@ namespace SnekTech.SceneManagement
     [CreateAssetMenu(menuName = nameof(MySceneManager))]
     public class MySceneManager : ScriptableObject
     {
-        public async void HandleLoadGameRequest()
+        private SceneIndex _currentScene = SceneIndex.Root;
+
+        public async UniTask LoadSceneAsync(SceneIndex sceneIndex)
         {
-            await LoadSceneAsync(SceneIndex.Game);
+            if (_currentScene != SceneIndex.Root)
+            {
+                await UnloadSceneAsync(_currentScene);
+            }
+            await SceneManager.LoadSceneAsync((int) sceneIndex, LoadSceneMode.Additive);
+            _currentScene = sceneIndex;
         }
 
-        public async void HandleLoadMainMenuRequest()
+        private async UniTask UnloadSceneAsync(SceneIndex sceneIndex)
         {
-            await LoadSceneAsync(SceneIndex.MainMenu);
+            await SceneManager.UnloadSceneAsync((int) sceneIndex);
         }
 
-        public static async UniTask LoadSceneAsync(SceneIndex sceneIndex)
+        public void Init()
         {
-            await SceneManager.LoadSceneAsync((int) sceneIndex);
+            _currentScene = SceneIndex.Root;
         }
     }
 }

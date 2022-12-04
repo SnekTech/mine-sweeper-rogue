@@ -45,7 +45,7 @@ namespace SnekTech.UI
             _image.sprite = _itemData.Icon;
         }
 
-        public void HandleItemButtonClicked()
+        private void HandleItemButtonClicked()
         {
             uiEventManager.InvokeItemChosen(_itemData);
         }

@@ -67,6 +67,7 @@ namespace SnekTech.Player
         {
             _basicPlayerData = gameData.playerData;
             inventory.Load(_basicPlayerData.items);
+            CalculatePlayerData();
         }
 
         public void SaveData(GameData gameData)

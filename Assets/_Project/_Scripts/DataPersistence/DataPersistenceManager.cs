@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace SnekTech.DataPersistence
 {
-    public class DataPersistenceManager : MonoBehaviour
+    [CreateAssetMenu(menuName = nameof(DataPersistenceManager))]
+    public class DataPersistenceManager : ScriptableObject
     {
         [Header("File Storage Config")]
         [SerializeField]
@@ -16,64 +17,61 @@ namespace SnekTech.DataPersistence
         private PlayerState playerState;
 
         private GameData _gameData;
-        private FileDataHandler _dataHandler;
+        private FileDataHandler _fileDataHandler;
+
+        public bool HasSavedGameData => _fileDataHandler.HasFileData;
 
         private List<IPersistentDataHolder> PersistentDataHolders => new List<IPersistentDataHolder>
         {
             playerState,
         };
-        
-        public DataPersistenceManager Instance { get; private set; }
 
-        private void Awake()
+        private void OnEnable()
         {
-            if (Instance != null)
-            {
-                Debug.LogError($"{nameof(DataPersistenceManager)}.{nameof(Instance)} should be null on awake");
-            }
-
-            Instance = this;
-        }
-
-        private void Start()
-        {
-            _dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-            LoadGame();
-        }
-
-        private void OnApplicationQuit()
-        {
-            SaveGame();
+            _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
         }
 
         public void NewGame()
         {
             _gameData = new GameData();
+            FulfillDataHolders(_gameData);
+            SaveGame();
         }
 
         public void LoadGame()
         {
-            _gameData = _dataHandler.Load();
+            _gameData = _fileDataHandler.Load();
             
             if (_gameData == null)
             {
-                NewGame();
+                Debug.Log("no saved data found, return");
+                return;
             }
 
-            foreach (IPersistentDataHolder dataHolder in PersistentDataHolders)
-            {
-                dataHolder.LoadData(_gameData);
-            }
+            FulfillDataHolders(_gameData);
         }
 
         public void SaveGame()
         {
+            CollectGameData(_gameData);
+            
+            _fileDataHandler.Save(_gameData);
+        }
+
+        private void FulfillDataHolders(GameData gameData)
+        {
             foreach (IPersistentDataHolder dataHolder in PersistentDataHolders)
             {
-                dataHolder.SaveData(_gameData);
+                dataHolder.LoadData(gameData);
             }
-            
-            _dataHandler.Save(_gameData);
+        }
+
+        private void CollectGameData(GameData gameData)
+        {
+            foreach (IPersistentDataHolder dataHolder in PersistentDataHolders)
+            {
+                dataHolder.SaveData(gameData);
+            }
         }
     }
 }

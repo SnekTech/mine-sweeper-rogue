@@ -11,6 +11,8 @@ namespace SnekTech.DataPersistence
 
         private string FullPath => Path.Combine(_dataDirPath, _dataFileName);
 
+        public bool HasFileData => File.Exists(FullPath);
+
         public FileDataHandler(string dataDirPath, string dataFileName)
         {
             _dataDirPath = dataDirPath;
