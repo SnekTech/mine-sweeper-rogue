@@ -34,7 +34,8 @@ namespace SnekTech.Grid
         [SerializeField]
         private UIState uiState;
 
-        private Camera _mainCamera;
+        [SerializeField]
+        private Camera mainCamera;
         private int _cellLayer;
 
         private ISequence<bool> _bombGenerator;
@@ -66,7 +67,6 @@ namespace SnekTech.Grid
         {
             _gridBrain = new BasicGridBrain(this);
 
-            _mainCamera = Camera.main;
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
         }
 
@@ -234,7 +234,7 @@ namespace SnekTech.Grid
                 return null;
             }
             
-            Ray ray = _mainCamera.ScreenPointToRay(mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(mousePosition);
             RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
 
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;

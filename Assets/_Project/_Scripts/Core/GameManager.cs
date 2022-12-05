@@ -1,4 +1,5 @@
-﻿using SnekTech.DataPersistence;
+﻿using System;
+using SnekTech.DataPersistence;
 using SnekTech.SceneManagement;
 using UnityEngine;
 
@@ -12,9 +13,12 @@ namespace SnekTech.Core
         [SerializeField]
         private MySceneManager mySceneManager;
 
-        private async void Start()
+        [SerializeField]
+        private GameObject loadingScreen;
+
+        private async void Awake()
         {
-            mySceneManager.Init();
+            mySceneManager.Init(loadingScreen);
             await mySceneManager.LoadSceneAsync(SceneIndex.MainMenu);
         }
         

@@ -9,15 +9,20 @@ namespace SnekTech.SceneManagement
     public class MySceneManager : ScriptableObject
     {
         private SceneIndex _currentScene = SceneIndex.Root;
+        private GameObject _loadingScreen;
 
         public async UniTask LoadSceneAsync(SceneIndex sceneIndex)
         {
+            ShowLoading();
+            
             if (_currentScene != SceneIndex.Root)
             {
                 await UnloadSceneAsync(_currentScene);
             }
             await SceneManager.LoadSceneAsync((int) sceneIndex, LoadSceneMode.Additive);
+            
             _currentScene = sceneIndex;
+            HideLoading();
         }
 
         private async UniTask UnloadSceneAsync(SceneIndex sceneIndex)
@@ -25,9 +30,20 @@ namespace SnekTech.SceneManagement
             await SceneManager.UnloadSceneAsync((int) sceneIndex);
         }
 
-        public void Init()
+        public void Init(GameObject loadingScreen)
         {
             _currentScene = SceneIndex.Root;
+            _loadingScreen = loadingScreen;
+        }
+
+        private void ShowLoading()
+        {
+            _loadingScreen.SetActive(true);
+        }
+
+        private void HideLoading()
+        {
+            _loadingScreen.SetActive(false);
         }
     }
 }
