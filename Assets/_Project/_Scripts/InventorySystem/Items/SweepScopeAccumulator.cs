@@ -4,12 +4,12 @@ using SnekTech.Player;
 
 namespace SnekTech.InventorySystem.Items
 {
-    public class SweepScopeModifier : PlayerPropertyModifier
+    public class SweepScopeAccumulator : PlayerDataAccumulator
     {
         private int _changeAmount;
 
-        public SweepScopeModifier(int changeAmount, PlayerPropertyModifier decoratedModifier = null)
-            : base(decoratedModifier)
+        public SweepScopeAccumulator(int changeAmount, PlayerDataAccumulator decoratedAccumulator = null)
+            : base(decoratedAccumulator)
         {
             _changeAmount = changeAmount;
         }

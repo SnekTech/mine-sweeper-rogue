@@ -14,17 +14,17 @@ namespace SnekTech.InventorySystem
         [SerializeField]
         private int sweepScope = 1;
 
-        private PlayerPropertyModifier _propertyModifier;
+        private PlayerDataAccumulator _dataAccumulator;
 
         public override void OnAdd(PlayerState playerState)
         {
-            _propertyModifier = new SweepScopeModifier(sweepScope);
-            playerState.AddDataAccumulator(_propertyModifier);
+            _dataAccumulator = new SweepScopeAccumulator(sweepScope);
+            playerState.AddDataAccumulator(_dataAccumulator);
         }
 
         public override void OnRemove(PlayerState playerState)
         {
-            playerState.RemoveDataAccumulator(_propertyModifier);
+            playerState.RemoveDataAccumulator(_dataAccumulator);
         }
     }
 }
