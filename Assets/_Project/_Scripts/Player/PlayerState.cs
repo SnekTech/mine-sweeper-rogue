@@ -59,7 +59,7 @@ namespace SnekTech.Player
         
         private void OnBombRevealed(IGrid grid, ICell cell)
         {
-            HealthArmour.TakeDamage(DamagePerBomb);
+            _basicPlayerData.healthArmour.TakeDamage(DamagePerBomb);
             TakenDamage?.Invoke(grid, cell, DamagePerBomb);
         }
 

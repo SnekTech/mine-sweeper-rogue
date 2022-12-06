@@ -22,9 +22,14 @@ namespace SnekTech.UI
         [SerializeField]
         private DamageEffectController damageEffectPrefab;
 
+        private void Awake()
+        {
+            UpdatePlayerStateDisplay();
+        }
+
         private void OnEnable()
         {
-            playerState.DataChanged += UpdatePlayerState;
+            playerState.DataChanged += UpdatePlayerStateDisplay;
             playerState.TakenDamage += OnPlayerTakenDamage;
         }
 
@@ -36,11 +41,11 @@ namespace SnekTech.UI
 
         private void OnDisable()
         {
-            playerState.DataChanged -= UpdatePlayerState;
+            playerState.DataChanged -= UpdatePlayerStateDisplay;
             playerState.TakenDamage -= OnPlayerTakenDamage;
         }
 
-        private void UpdatePlayerState()
+        private void UpdatePlayerStateDisplay()
         {
             healthLabel.SetText(playerState.HealthArmour.Health);
             armourLabel.SetText(playerState.HealthArmour.Armour);
