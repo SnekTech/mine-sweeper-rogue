@@ -5,7 +5,7 @@ using SnekTech.GridCell;
 using SnekTech.InventorySystem;
 using SnekTech.Constants;
 using SnekTech.DataPersistence;
-using SnekTech.InventorySystem.Items;
+using SnekTech.Player.PlayerDataAccumulator;
 using UnityEngine;
 
 namespace SnekTech.Player

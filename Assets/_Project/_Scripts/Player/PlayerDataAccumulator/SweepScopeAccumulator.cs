@@ -1,8 +1,4 @@
-﻿using System;
-using SnekTech.Core;
-using SnekTech.Player;
-
-namespace SnekTech.InventorySystem.Items
+﻿namespace SnekTech.Player.PlayerDataAccumulator
 {
     public class SweepScopeAccumulator : PlayerDataAccumulator
     {
@@ -16,15 +12,7 @@ namespace SnekTech.InventorySystem.Items
 
         protected override void DoAccumulate(PlayerData playerData)
         {
-            try
-            {
-                playerData.sweepScope += _changeAmount;
-            }
-            catch (ReachLimitException<int> reachLimitException)
-            {
-                // swallow for now
-                Console.WriteLine(reachLimitException);
-            }
+            playerData.sweepScope += _changeAmount;
         }
     }
 }

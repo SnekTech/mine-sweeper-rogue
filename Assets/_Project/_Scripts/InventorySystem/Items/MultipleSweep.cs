@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SnekTech.Constants;
 using SnekTech.Player;
+using SnekTech.Player.PlayerDataAccumulator;
 using UnityEngine;
-using SnekTech.Constants;
-using SnekTech.InventorySystem.Items;
 
-namespace SnekTech.InventorySystem
+namespace SnekTech.InventorySystem.Items
 {
     [CreateAssetMenu(fileName = nameof(MultipleSweep),
         menuName = MenuName.Items + MenuName.Slash + nameof(MultipleSweep))]

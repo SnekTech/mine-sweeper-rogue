@@ -1,6 +1,4 @@
-﻿using SnekTech.Player;
-
-namespace SnekTech.InventorySystem.Items
+﻿namespace SnekTech.Player.PlayerDataAccumulator
 {
     public abstract class PlayerDataAccumulator : IPlayerDataAccumulator
     {
