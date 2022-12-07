@@ -1,14 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using SnekTech.Grid;
-using SnekTech.GridCell;
 using SnekTech.Player;
 using UnityEngine;
 
 namespace SnekTech.UI
 {
-    public class PlayerDataPanel : MonoBehaviour
+    public class PlayerDataPanel : MonoBehaviour, IPlayerDataChangePerformer
     {
         [SerializeField]
         private LabelController healthLabel;
@@ -24,25 +21,18 @@ namespace SnekTech.UI
 
         private void Awake()
         {
+            playerState.AddDataChangePerformer(this);
             UpdatePlayerStateDisplay();
         }
 
         private void OnEnable()
         {
             playerState.DataChanged += UpdatePlayerStateDisplay;
-            playerState.TakenDamage += OnPlayerTakenDamage;
-        }
-
-        private async void OnPlayerTakenDamage(IGrid grid, ICell cell, int damage)
-        {
-            await DamageEffectTask(cell.WorldPosition, damage);
-            playerState.InvokeDataChanged();
         }
 
         private void OnDisable()
         {
             playerState.DataChanged -= UpdatePlayerStateDisplay;
-            playerState.TakenDamage -= OnPlayerTakenDamage;
         }
 
         private void UpdatePlayerStateDisplay()
@@ -51,13 +41,13 @@ namespace SnekTech.UI
             armourLabel.SetText(playerState.HealthArmour.Armour);
         }
 
-        private async Task DamageEffectTask(Vector3 damageSourcePosition, int damage)
+        public async UniTask PerformDamage(Vector3 damageSourcePosition, int damage)
         {
             DamageEffectController damageEffect = Instantiate(damageEffectPrefab, transform);
             damageEffect.SetText(-damage);
             var damageEffectTransform = damageEffect.GetComponent<RectTransform>();
             damageEffectTransform.position = damageSourcePosition;
-            await damageEffectTransform.DOPath(new[] {transform.position}, 1f, PathType.CatmullRom).AsyncWaitForCompletion();
+            await damageEffectTransform.DOPath(new[] {transform.position}, 1f, PathType.CatmullRom);
             
             Destroy(damageEffect.gameObject);
         }

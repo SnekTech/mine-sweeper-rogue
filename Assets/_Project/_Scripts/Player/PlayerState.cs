@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.InventorySystem;
@@ -16,21 +17,17 @@ namespace SnekTech.Player
         #region Events
 
         public event Action DataChanged;
-        public event Action<IGrid, ICell, int> TakenDamage;
 
         #endregion
       
         
+        [Header("DI")]
         [SerializeField]
         private GridEventManager gridEventManager;
 
         [SerializeField]
         private Inventory inventory;
 
-        private PlayerData _basicPlayerData;
-        private PlayerData _calculatedPlayerData;
-
-        private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
 
         public Inventory Inventory => inventory;
 
@@ -38,6 +35,14 @@ namespace SnekTech.Player
         public int DamagePerBomb => _calculatedPlayerData.damagePerBomb;
         public HealthArmour HealthArmour => _calculatedPlayerData.healthArmour;
 
+
+        private PlayerData _basicPlayerData;
+        private PlayerData _calculatedPlayerData;
+
+        private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
+
+        private readonly List<IPlayerDataChangePerformer> _playerDataChangePerformers =
+            new List<IPlayerDataChangePerformer>();
 
         private void OnEnable()
         {
@@ -57,10 +62,12 @@ namespace SnekTech.Player
             CalculatePlayerData();
         }
         
-        private void OnBombRevealed(IGrid grid, ICell cell)
+        private async UniTaskVoid OnBombRevealed(IGrid grid, ICell cell)
         {
+            await UniTask.WhenAll(_playerDataChangePerformers
+                .Select(performer => performer.PerformDamage(cell.WorldPosition, DamagePerBomb)));
             _basicPlayerData.healthArmour.TakeDamage(DamagePerBomb);
-            TakenDamage?.Invoke(grid, cell, DamagePerBomb);
+            InvokeDataChanged();
         }
 
         public void LoadData(GameData gameData)
@@ -76,7 +83,7 @@ namespace SnekTech.Player
             gameData.playerData = _basicPlayerData;
         }
 
-        public void InvokeDataChanged()
+        private void InvokeDataChanged()
         {
             DataChanged?.Invoke();
         }
@@ -104,6 +111,11 @@ namespace SnekTech.Player
         {
             _playerDataAccumulators.Remove(accumulator);
             InvokeDataChanged();
+        }
+
+        public void AddDataChangePerformer(IPlayerDataChangePerformer performer)
+        {
+            _playerDataChangePerformers.Add(performer);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using SnekTech.Constants;
 using SnekTech.GridCell;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace SnekTech.Grid
     public class GridEventManager : ScriptableObject
     {
         public event Action<IGrid> GridInitCompleted;
-        public event Action<IGrid, ICell> BombRevealed;
+        public event Func<IGrid, ICell, UniTaskVoid> BombRevealed;
         public event Action<IGrid> EmptyCellRevealed;
         public event Action<IGrid> CellFlagOperated;
         public event Action<IGrid> GridCleared;
