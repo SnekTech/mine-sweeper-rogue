@@ -13,7 +13,7 @@
         protected override void DoAccumulate(PlayerData playerData)
         {
             // todo: add max-health related feature
-            playerData.healthArmour.AddHealth(_changeAmount);
+            playerData.maxHealth += _changeAmount;
         }
     }
 }
