@@ -5,14 +5,14 @@ namespace SnekTech
     public class RandomBombGenerator : ISequence<bool>
     {
         private readonly int _seed;
-        private readonly float _bombPercentage;
+        private readonly float _threshHold;
         
         private Random _random;
 
         public RandomBombGenerator(int seed, float bombPercentage)
         {
             _seed = seed;
-            _bombPercentage = bombPercentage;
+            _threshHold = int.MaxValue * bombPercentage;
             Reset();
         }
 
@@ -23,7 +23,7 @@ namespace SnekTech
 
         public bool Next()
         {
-            return _random.Next() < int.MaxValue * _bombPercentage;
+            return _random.Next() < _threshHold;
         }
     }
 }
