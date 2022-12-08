@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SnekTech.UI
 {
-    public class PlayerDataPanel : MonoBehaviour, IPlayerDataChangePerformer
+    public class PlayerStatePanel : MonoBehaviour, IPlayerStateDisplay
     {
         [SerializeField]
         private LabelController healthLabel;
@@ -21,27 +21,16 @@ namespace SnekTech.UI
 
         private void Awake()
         {
-            playerState.AddDataChangePerformer(this);
-            UpdatePlayerStateDisplay();
+            playerState.AddDataChangeDisplay(this);
         }
 
-        private void OnEnable()
+        public void UpdateDisplay()
         {
-            playerState.DataChanged += UpdatePlayerStateDisplay;
+            healthLabel.SetText(playerState.Health);
+            armourLabel.SetText(playerState.Armour);
         }
 
-        private void OnDisable()
-        {
-            playerState.DataChanged -= UpdatePlayerStateDisplay;
-        }
-
-        private void UpdatePlayerStateDisplay()
-        {
-            healthLabel.SetText(playerState.HealthArmour.Health);
-            armourLabel.SetText(playerState.HealthArmour.Armour);
-        }
-
-        public async UniTask PerformDamage(Vector3 damageSourcePosition, int damage)
+        public async UniTask PerformDamageEffectAsync(Vector3 damageSourcePosition, int damage)
         {
             DamageEffectController damageEffect = Instantiate(damageEffectPrefab, transform);
             damageEffect.SetText(-damage);

@@ -21,7 +21,7 @@ namespace SnekTech.Core
         protected override void OnStart()
         {
             _gridEventManager.GridCleared += OnGridCleared;
-            PlayerState.HealthArmour.HealthRanOut += OnPlayerHealthRanOut;
+            PlayerState.HealthRanOut += OnPlayerHealthRanOut;
         }
 
         private void OnPlayerHealthRanOut()
@@ -32,7 +32,7 @@ namespace SnekTech.Core
         protected override void OnStop()
         {
             _gridEventManager.GridCleared -= OnGridCleared;
-            PlayerState.HealthArmour.HealthRanOut -= OnPlayerHealthRanOut;
+            PlayerState.HealthRanOut -= OnPlayerHealthRanOut;
         }
     }
 }

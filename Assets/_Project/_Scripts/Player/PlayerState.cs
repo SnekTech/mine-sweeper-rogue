@@ -16,7 +16,7 @@ namespace SnekTech.Player
     {
         #region Events
 
-        public event Action DataChanged;
+        public event Action HealthRanOut;
 
         #endregion
       
@@ -33,46 +33,56 @@ namespace SnekTech.Player
 
         public int SweepScope => _calculatedPlayerData.sweepScope;
         public int DamagePerBomb => _calculatedPlayerData.damagePerBomb;
-        public HealthArmour HealthArmour => _calculatedPlayerData.healthArmour;
+
+        public int Health => _healthArmour.Health;
+        public int Armour => _healthArmour.Armour;
 
 
         private PlayerData _basicPlayerData;
         private PlayerData _calculatedPlayerData;
+        private readonly HealthArmour _healthArmour = HealthArmour.Default;
 
         private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
 
-        private readonly List<IPlayerDataChangePerformer> _playerDataChangePerformers =
-            new List<IPlayerDataChangePerformer>();
+        private readonly List<IPlayerStateDisplay> _playerStateDisplays =
+            new List<IPlayerStateDisplay>();
 
         private void OnEnable()
         {
             gridEventManager.BombRevealed += OnBombRevealed;
-            DataChanged += OnPlayerDataChanged;
+            _healthArmour.HealthRanOut += OnHealthRanOut;
         }
 
 
         private void OnDisable()
         {
             gridEventManager.BombRevealed -= OnBombRevealed;
-            DataChanged -= OnPlayerDataChanged;
+            _healthArmour.HealthRanOut -= OnHealthRanOut;
         }
 
-        private void OnPlayerDataChanged()
+        private void OnHealthRanOut()
         {
-            CalculatePlayerData();
+            HealthRanOut?.Invoke();
         }
         
         private async UniTaskVoid OnBombRevealed(IGrid grid, ICell cell)
         {
-            await UniTask.WhenAll(_playerDataChangePerformers
-                .Select(performer => performer.PerformDamage(cell.WorldPosition, DamagePerBomb)));
-            _basicPlayerData.healthArmour.TakeDamage(DamagePerBomb);
-            InvokeDataChanged();
+            await PerformAllDamageEffectAsync(cell);
+            
+            TakeDamage(DamagePerBomb);
+        }
+        
+        private void TakeDamage(int damage)
+        {
+            _healthArmour.TakeDamage(damage);
+            UpdateAllDisplays();
         }
 
         public void LoadData(GameData gameData)
         {
             _basicPlayerData = gameData.playerData;
+            _healthArmour.ResetWith(gameData.healthArmour);
+            
             inventory.Load(_basicPlayerData.items);
             CalculatePlayerData();
         }
@@ -80,12 +90,9 @@ namespace SnekTech.Player
         public void SaveData(GameData gameData)
         {
             _basicPlayerData.items = inventory.Items;
+            
             gameData.playerData = _basicPlayerData;
-        }
-
-        private void InvokeDataChanged()
-        {
-            DataChanged?.Invoke();
+            gameData.healthArmour = _healthArmour;
         }
 
         private void CalculatePlayerData()
@@ -104,18 +111,34 @@ namespace SnekTech.Player
         public void AddDataAccumulator(IPlayerDataAccumulator accumulator)
         {
             _playerDataAccumulators.Add(accumulator);
-            InvokeDataChanged();
+            CalculatePlayerData();
         }
 
         public void RemoveDataAccumulator(IPlayerDataAccumulator accumulator)
         {
             _playerDataAccumulators.Remove(accumulator);
-            InvokeDataChanged();
+            CalculatePlayerData();
         }
 
-        public void AddDataChangePerformer(IPlayerDataChangePerformer performer)
+        public void AddDataChangeDisplay(IPlayerStateDisplay display)
         {
-            _playerDataChangePerformers.Add(performer);
+            display.UpdateDisplay();
+            _playerStateDisplays.Add(display);
+        }
+
+        private UniTask PerformAllDamageEffectAsync(ICell cell)
+        {
+            return UniTask.WhenAll(_playerStateDisplays
+                .Select(display => display
+                    .PerformDamageEffectAsync(cell.WorldPosition, DamagePerBomb)));
+        }
+
+        private void UpdateAllDisplays()
+        {
+            foreach (IPlayerStateDisplay display in _playerStateDisplays)
+            {
+                display.UpdateDisplay();
+            }
         }
     }
 }

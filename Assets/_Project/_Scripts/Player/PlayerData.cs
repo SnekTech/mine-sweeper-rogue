@@ -11,7 +11,8 @@ namespace SnekTech.Player
         public int damagePerBomb;
         public int sweepScope;
         public int itemChoiceCount;
-        public HealthArmour healthArmour;
+        public int maxHealth;
+        
         public List<InventoryItem> items;
 
         public PlayerData()
@@ -19,7 +20,8 @@ namespace SnekTech.Player
             damagePerBomb = GameConstants.DamagePerBomb;
             sweepScope = GameConstants.SweepScopeMin;
             itemChoiceCount = GameConstants.InitialItemChoiceCount;
-            healthArmour = HealthArmour.Default;
+            maxHealth = GameConstants.InitialMaxHealth;
+            
             items = new List<InventoryItem>();
         }
 
@@ -28,7 +30,7 @@ namespace SnekTech.Player
             damagePerBomb = other.damagePerBomb;
             sweepScope = other.sweepScope;
             itemChoiceCount = other.itemChoiceCount;
-            healthArmour = new HealthArmour(other.healthArmour.Health, other.healthArmour.Armour);
+            maxHealth = other.maxHealth;
             items = new List<InventoryItem>(other.items);
         }
     }

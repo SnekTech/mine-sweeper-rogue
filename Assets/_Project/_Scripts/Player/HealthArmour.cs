@@ -26,6 +26,18 @@ namespace SnekTech.Player
             this.armour = armour;
         }
 
+        public void ResetWith(int newHealth, int newArmour)
+        {
+            // todo: necessary param validation
+            health = newHealth;
+            armour = newArmour;
+        }
+
+        public void ResetWith(HealthArmour other)
+        {
+            ResetWith(other.health, other.Armour);
+        }
+
         public void TakeDamage(int damage)
         {
             if (damage < Armour)
