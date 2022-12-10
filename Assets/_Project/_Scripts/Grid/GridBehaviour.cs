@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SnekTech.GridCell;
 using SnekTech.Player;
+using SnekTech.Roguelike;
 using SnekTech.UI;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ namespace SnekTech.Grid
         private Camera mainCamera;
         private int _cellLayer;
 
-        private ISequence<bool> _bombGenerator;
+        private IRandomSequence<bool> _bombGenerator;
         private IGridBrain _gridBrain;
 
 
@@ -269,7 +270,7 @@ namespace SnekTech.Grid
         {
             DisposeCells();
 
-            _bombGenerator = new RandomBombGenerator(newGridData.BombGeneratorSeed, newGridData.BombPercent);
+            _bombGenerator = new RandomBoolSequence(newGridData.BombGeneratorSeed, newGridData.BombPercent);
             BombCount = 0;
 
             GridSize gridSize = newGridData.GridSize;
