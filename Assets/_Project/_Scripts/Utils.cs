@@ -13,6 +13,7 @@
             public const string Inventory = "MyInventory";
             public const string UI = "MyUI";
             public const string Items = "MyItems";
+            public const string GameEvents = "MyGameEvents";
         }
 
         public static class GameConstants

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SnekTech.Core.History;
 using SnekTech.Grid;
 using SnekTech.Player;
 using SnekTech.SceneManagement;
@@ -16,6 +17,9 @@ namespace SnekTech.Core
         private PlayerState playerState;
         [SerializeField]
         private MySceneManager mySceneManager;
+
+        [SerializeField]
+        private GameHistory gameHistory;
         
         [SerializeField]
         private CountDownText countDownText;
@@ -58,6 +62,8 @@ namespace SnekTech.Core
             _currentGameMode.Stop();
             _currentGameMode.LevelCompleted -= OnLevelCompleted;
             
+            StoreCurrentRecord();
+            
             if (hasFailed)
             {
                 await mySceneManager.LoadSceneAsync(SceneIndex.GameOver);
@@ -84,6 +90,12 @@ namespace SnekTech.Core
         {
             // todo: random set game mode?
             return _availableGameModes[0];
+        }
+
+        private void StoreCurrentRecord()
+        {
+            playerState.CurrentRecord.SetCreatedAt(DateTime.UtcNow.Ticks);
+            gameHistory.AddRecord(playerState.CurrentRecord);
         }
     }
 }

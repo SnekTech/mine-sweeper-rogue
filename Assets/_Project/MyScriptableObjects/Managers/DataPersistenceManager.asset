@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: save01.game.json
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  history: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}

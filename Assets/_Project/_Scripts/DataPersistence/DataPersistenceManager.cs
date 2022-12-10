@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SnekTech.Core.History;
 using SnekTech.Player;
 using UnityEngine;
 
@@ -12,9 +13,12 @@ namespace SnekTech.DataPersistence
         [SerializeField]
         private string fileName;
 
-        [Header("Scriptable Objects to Save")]
+        [Header("Persistent Data Holders")]
         [SerializeField]
         private PlayerState playerState;
+        
+        [SerializeField]
+        private GameHistory gameHistory;
 
         private GameData _gameData;
         private FileDataHandler _fileDataHandler;
@@ -24,6 +28,7 @@ namespace SnekTech.DataPersistence
         private List<IPersistentDataHolder> PersistentDataHolders => new List<IPersistentDataHolder>
         {
             playerState,
+            gameHistory,
         };
 
         private void OnEnable()

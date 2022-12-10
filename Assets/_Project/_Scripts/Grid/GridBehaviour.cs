@@ -111,6 +111,7 @@ namespace SnekTech.Grid
             InitCells(gridDataIn);
         }
 
+        // todo: use UniTask for click related async stuff
         public async void OnLeftClickAsync(Vector2 mousePosition)
         {
             ICell cell = GetMouseHoveringCell(mousePosition);
@@ -118,6 +119,8 @@ namespace SnekTech.Grid
             {
                 return;
             }
+            
+            playerState.TriggerAllClickEffects();
 
             List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerState.SweepScope);
             List<Task> revealCellTasks = new List<Task>();
@@ -127,6 +130,8 @@ namespace SnekTech.Grid
             }
 
             await Task.WhenAll(revealCellTasks);
+
+            gridEventManager.InvokeCellRevealOperated();
 
             if (IsAllCleared)
             {
