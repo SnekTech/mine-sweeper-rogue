@@ -15,7 +15,7 @@ namespace SnekTech
         private InputAction _moveAction;
         private InputAction _pauseAction;
 
-        private Vector2 MousePosition => _moveAction.ReadValue<Vector2>();
+        public Vector2 MousePosition => _moveAction.ReadValue<Vector2>();
 
         private void Awake()
         {
