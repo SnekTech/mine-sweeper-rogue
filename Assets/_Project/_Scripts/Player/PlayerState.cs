@@ -106,6 +106,9 @@ namespace SnekTech.Player
             _healthArmour.ResetWith(gameData.healthArmour);
 
             _currentRecord = new Record(this);
+            _playerDataAccumulators.Clear();
+            _playerStateDisplays.Clear();
+            _clickEffects.Clear();
             
             inventory.Load(_basicPlayerData.items);
             CalculatePlayerData();
