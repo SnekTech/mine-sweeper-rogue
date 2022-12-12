@@ -6,6 +6,7 @@ namespace SnekTech.UI
 {
     public class PopupPanel : MonoBehaviour
     {
+        // todo: move the popup stuff to root scene
         [Header("DI")]
         [SerializeField]
         private InputEventManager inputEventManager;

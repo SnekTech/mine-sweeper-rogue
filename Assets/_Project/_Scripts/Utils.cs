@@ -8,6 +8,7 @@
     {
         public static class MenuName
         {
+            // todo: refactor create menu names
             public const string Slash = "/";
             public const string EventManager = "MyEventManager";
             public const string Inventory = "MyInventory";

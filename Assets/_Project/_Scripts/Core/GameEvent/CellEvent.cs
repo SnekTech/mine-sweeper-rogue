@@ -24,7 +24,7 @@ namespace SnekTech.Core.GameEvent
             cellEventData.Emit(playerState);
         }
 
-        // todo: make use of cell event meta data
+        // todo: make use of cell event meta data, use tooltip to display active events
         public string EmittedLevel => emittedLevel;
     }
 }

@@ -32,6 +32,7 @@ namespace SnekTech.UI
 
         public async UniTask PerformDamageEffectAsync(Vector3 damageSourcePosition, int damage)
         {
+            // todo: use vertical floating effect
             DamageEffectController damageEffect = Instantiate(damageEffectPrefab, transform);
             damageEffect.SetText(-damage);
             var damageEffectTransform = damageEffect.GetComponent<RectTransform>();
