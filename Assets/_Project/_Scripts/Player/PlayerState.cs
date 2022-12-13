@@ -20,6 +20,7 @@ namespace SnekTech.Player
     {
         #region Events
 
+        public event Action DataChanged;
         public event Action HealthRanOut;
 
         #endregion
@@ -57,12 +58,12 @@ namespace SnekTech.Player
 
         private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
         private readonly List<IClickEffect> _clickEffects = new List<IClickEffect>();
-        private readonly List<IPlayerStateDisplay> _playerStateDisplays = new List<IPlayerStateDisplay>();
 
         private void OnEnable()
         {
             gridEventManager.BombRevealed += OnBombRevealed;
             gridEventManager.CellRevealOperated += OnCellRevealOperated;
+            _healthArmour.Changed += OnHealthArmourChanged;
             _healthArmour.HealthRanOut += OnHealthRanOut;
         }
 
@@ -71,7 +72,13 @@ namespace SnekTech.Player
         {
             gridEventManager.BombRevealed -= OnBombRevealed;
             gridEventManager.CellRevealOperated -= OnCellRevealOperated;
+            _healthArmour.Changed -= OnHealthArmourChanged;
             _healthArmour.HealthRanOut -= OnHealthRanOut;
+        }
+
+        private void OnHealthArmourChanged()
+        {
+            DataChanged?.Invoke();
         }
 
         private void OnHealthRanOut()
@@ -79,11 +86,9 @@ namespace SnekTech.Player
             HealthRanOut?.Invoke();
         }
         
-        private async UniTaskVoid OnBombRevealed(IGrid grid, ICell cell)
+        private void OnBombRevealed(IGrid grid, ICell cell)
         {
-            await PerformAllDamageEffectAsync(cell);
-            
-            TakeDamage(DamagePerBomb);
+            TakeDamage(DamagePerBomb).Forget();
         }
 
         private void OnCellRevealOperated()
@@ -94,12 +99,12 @@ namespace SnekTech.Player
             }
         }
         
-        public void TakeDamage(int damage)
+        public async UniTaskVoid TakeDamage(int damage)
         {
-            _healthArmour.TakeDamage(damage);
-            UpdateAllDisplays();
+            await _healthArmour.TakeDamage(damage);
         }
 
+        // entry point
         public void LoadData(GameData gameData)
         {
             _basicPlayerData = gameData.playerData;
@@ -107,7 +112,6 @@ namespace SnekTech.Player
 
             _currentRecord = new Record(this);
             _playerDataAccumulators.Clear();
-            _playerStateDisplays.Clear();
             _clickEffects.Clear();
             
             inventory.Load(_basicPlayerData.items);
@@ -147,25 +151,10 @@ namespace SnekTech.Player
             CalculatePlayerData();
         }
 
-        public void AddDataChangeDisplay(IPlayerStateDisplay display)
+        public void AddHealthArmourDisplay(IHealthArmourDisplay display)
         {
-            display.UpdateDisplay();
-            _playerStateDisplays.Add(display);
-        }
-
-        private UniTask PerformAllDamageEffectAsync(ICell cell)
-        {
-            return UniTask.WhenAll(_playerStateDisplays
-                .Select(display => display
-                    .PerformDamageEffectAsync(cell.WorldPosition, DamagePerBomb)));
-        }
-
-        private void UpdateAllDisplays()
-        {
-            foreach (IPlayerStateDisplay display in _playerStateDisplays)
-            {
-                display.UpdateDisplay();
-            }
+            display.UpdateContent();
+            _healthArmour.AddDisplay(display);
         }
 
         public void AddClickEffect(IClickEffect clickEffect)

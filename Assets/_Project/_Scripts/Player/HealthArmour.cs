@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using SnekTech.Constants;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ namespace SnekTech.Player
     [Serializable]
     public class HealthArmour
     {
+        public event Action Changed;
         public event Action ArmourRanOut;
         public event Action HealthRanOut;
 
@@ -20,6 +23,8 @@ namespace SnekTech.Player
         public int Armour => armour;
         public static HealthArmour Default => new HealthArmour(GameConstants.InitialHealth,GameConstants.InitialArmour);
 
+        private List<IHealthArmourDisplay> _displays = new List<IHealthArmourDisplay>();
+
         public HealthArmour(int health, int armour)
         {
             this.health = health;
@@ -31,6 +36,8 @@ namespace SnekTech.Player
             // todo: necessary param validation
             health = newHealth;
             armour = newArmour;
+            
+            _displays.Clear();
         }
 
         public void ResetWith(HealthArmour other)
@@ -38,26 +45,43 @@ namespace SnekTech.Player
             ResetWith(other.health, other.Armour);
         }
 
-        public void TakeDamage(int damage)
+        public async UniTask TakeDamage(int damage)
         {
-            if (damage < Armour)
+            if (health <= 0)
             {
-                armour -= damage;
+                // damage a dead object is pointless
+                return;
+            }
+
+            int damageRemaining = damage - Armour;
+            bool isArmourRanOut = damageRemaining >= 0;
+            armour = Mathf.Max(0, Armour - damage);
+            // todo: perform lose armour
+            Changed?.Invoke();
+            if (!isArmourRanOut)
+            {
                 return;
             }
             
-            damage -= Armour;
-            armour = 0;
             ArmourRanOut?.Invoke();
-
-            if (damage < Health)
+            damage = damageRemaining;
+            
+            if (damage == 0)
             {
-                health -= damage;
+                // after break the armour, an armour break effect has been performed,
+                // so no need to perform zero-valued damage for health
                 return;
             }
-
-            health = 0;
-            HealthRanOut?.Invoke();
+            
+            
+            bool isHealthRanOut = damage > Health;
+            health = Mathf.Max(0, health - damage);
+            await PerformAllDamageEffectAsync(damage);
+            Changed?.Invoke();
+            if (isHealthRanOut)
+            {
+                HealthRanOut?.Invoke();
+            }
         }
 
         public void AddHealth(int amount)
@@ -80,6 +104,16 @@ namespace SnekTech.Player
             }
 
             armour = Mathf.Max(0, newArmour);
+        }
+
+        public void AddDisplay(IHealthArmourDisplay display)
+        {
+            _displays.Add(display);
+        }
+
+        private UniTask PerformAllDamageEffectAsync(int damage)
+        {
+            return UniTask.WhenAll(_displays.Select(display => display.PerformDamageEffectAsync(damage)));
         }
     }
 }

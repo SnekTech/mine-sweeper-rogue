@@ -15,7 +15,7 @@
         {
             _decoratedClickEffect?.Take(playerState);
             
-            playerState.TakeDamage(_damagePerClick);
+            playerState.TakeDamage(_damagePerClick).Forget();
         }
     }
 }
