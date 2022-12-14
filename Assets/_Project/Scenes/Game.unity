@@ -1239,6 +1239,7 @@ GameObject:
   - component: {fileID: 655018825}
   - component: {fileID: 655018824}
   - component: {fileID: 655018823}
+  - component: {fileID: 655018826}
   m_Layer: 5
   m_Name: Player State Panel
   m_TagString: Untagged
@@ -1284,7 +1285,6 @@ MonoBehaviour:
   healthLabel: {fileID: 431378547}
   armourLabel: {fileID: 247280843}
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
-  damageEffectPrefab: {fileID: 3520347169591930366, guid: 271919b17e0bf4a46afaf80b984f8c2b, type: 3}
 --- !u!114 &655018824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,6 +1323,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655018821}
   m_CullTransparentMesh: 1
+--- !u!114 &655018826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655018821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496826b639b443f6ab4221207ec85992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 769049669}
+  floatingTextEffectPrefab: {fileID: 3520347169591930366, guid: 271919b17e0bf4a46afaf80b984f8c2b, type: 3}
+  floatDistance: 10
+  duration: 0.3
 --- !u!1001 &677342214
 PrefabInstance:
   m_ObjectHideFlags: 0

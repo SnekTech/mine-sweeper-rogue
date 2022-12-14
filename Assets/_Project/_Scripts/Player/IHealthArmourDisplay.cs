@@ -5,6 +5,7 @@ namespace SnekTech.Player
     public interface IHealthArmourDisplay
     {
         void UpdateContent();
-        UniTask PerformDamageEffectAsync(int damage);
+        UniTask PerformHealthDamageAsync(int damage);
+        UniTask PerformArmourDamageAsync(int damage);
     }
 }

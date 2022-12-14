@@ -3,10 +3,12 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SnekTech.Player;
+using SnekTech.UI.Effect;
 using UnityEngine;
 
 namespace SnekTech.UI
 {
+    [RequireComponent(typeof(EffectEmitter))]
     public class PlayerStatePanel : MonoBehaviour, IHealthArmourDisplay
     {
         [SerializeField]
@@ -18,12 +20,17 @@ namespace SnekTech.UI
         [SerializeField]
         private PlayerState playerState;
 
-        [SerializeField]
-        private DamageEffectController damageEffectPrefab;
+        private EffectEmitter _effectEmitter;
+        private RectTransform _healthRectTransform;
+        private RectTransform _armourRectTransform;
 
         private void Awake()
         {
             playerState.AddHealthArmourDisplay(this);
+            
+            _effectEmitter = GetComponent<EffectEmitter>();
+            _healthRectTransform = healthLabel.transform as RectTransform;
+            _armourRectTransform = armourLabel.transform as RectTransform;
         }
 
         private void OnEnable()
@@ -47,19 +54,14 @@ namespace SnekTech.UI
             armourLabel.SetText(playerState.Armour);
         }
 
-        public async UniTask PerformDamageEffectAsync(int damage)
+        public UniTask PerformHealthDamageAsync(int damage)
         {
-            // todo: use vertical floating effect
-            DamageEffectController damageEffect = Instantiate(damageEffectPrefab, transform);
-            damageEffect.SetText(-damage);
-            var damageEffectTransform = damageEffect.GetComponent<RectTransform>();
+            return _effectEmitter.PerformFloatingTextAsync(-damage, _healthRectTransform);
+        }
 
-            await damageEffectTransform.DOAnchorPosY(damageEffectTransform.anchoredPosition.y + 10, 1f);
-
-            if (damageEffect != null)
-            {
-                Destroy(damageEffect.gameObject);
-            }
+        public UniTask PerformArmourDamageAsync(int damage)
+        {
+            return _effectEmitter.PerformFloatingTextAsync(-damage, _armourRectTransform);
         }
     }
 }

@@ -49,22 +49,25 @@ namespace SnekTech.Player
         {
             if (health <= 0)
             {
-                // damage a dead object is pointless
+                // to damage a dead object is pointless
                 return;
             }
 
-            int damageRemaining = damage - Armour;
-            bool isArmourRanOut = damageRemaining >= 0;
-            armour = Mathf.Max(0, Armour - damage);
-            // todo: perform lose armour
-            Changed?.Invoke();
-            if (!isArmourRanOut)
+            if (Armour > 0)
             {
-                return;
+                int damageRemaining = damage - Armour;
+                bool isArmourRanOut = damageRemaining >= 0;
+                armour = Mathf.Max(0, Armour - damage);
+                await PerformAllArmourDamageAsync(damage);
+                Changed?.Invoke();
+                if (!isArmourRanOut)
+                {
+                    return;
+                }
+                ArmourRanOut?.Invoke();
+                
+                damage = damageRemaining;
             }
-            
-            ArmourRanOut?.Invoke();
-            damage = damageRemaining;
             
             if (damage == 0)
             {
@@ -76,7 +79,7 @@ namespace SnekTech.Player
             
             bool isHealthRanOut = damage > Health;
             health = Mathf.Max(0, health - damage);
-            await PerformAllDamageEffectAsync(damage);
+            await PerformAllHealthDamageAsync(damage);
             Changed?.Invoke();
             if (isHealthRanOut)
             {
@@ -111,9 +114,14 @@ namespace SnekTech.Player
             _displays.Add(display);
         }
 
-        private UniTask PerformAllDamageEffectAsync(int damage)
+        private UniTask PerformAllHealthDamageAsync(int damage)
         {
-            return UniTask.WhenAll(_displays.Select(display => display.PerformDamageEffectAsync(damage)));
+            return UniTask.WhenAll(_displays.Select(display => display.PerformHealthDamageAsync(damage)));
+        }
+
+        private UniTask PerformAllArmourDamageAsync(int damage)
+        {
+            return UniTask.WhenAll(_displays.Select(display => display.PerformArmourDamageAsync(damage)));
         }
     }
 }

@@ -54,7 +54,8 @@ namespace SnekTech.Player
         private Record _currentRecord;
 
         // todo: deal with magic number
-        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 0.1f);
+        // todo: set to zero for debug, remove later
+        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 0f);
 
         private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
         private readonly List<IClickEffect> _clickEffects = new List<IClickEffect>();
