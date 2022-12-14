@@ -56,12 +56,14 @@ namespace SnekTech.UI
 
         public UniTask PerformHealthDamageAsync(int damage)
         {
-            return _effectEmitter.PerformFloatingTextAsync(-damage, _healthRectTransform);
+            var damageStr = new SignedIntStr(-damage);
+            return _effectEmitter.PerformFloatingTextAsync(damageStr, _healthRectTransform);
         }
 
         public UniTask PerformArmourDamageAsync(int damage)
         {
-            return _effectEmitter.PerformFloatingTextAsync(-damage, _armourRectTransform);
+            var damageStr = new SignedIntStr(-damage);
+            return _effectEmitter.PerformFloatingTextAsync(damageStr, _armourRectTransform);
         }
     }
 }
