@@ -42,6 +42,7 @@ namespace SnekTech.Player
         public int DamagePerBomb => _calculatedPlayerData.damagePerBomb;
 
         public int Health => _healthArmour.Health;
+        public int MaxHealth => _healthArmour.MaxHealth;
         public int Armour => _healthArmour.Armour;
 
         public Record CurrentRecord => _currentRecord;
@@ -95,6 +96,11 @@ namespace SnekTech.Player
         public async UniTaskVoid TakeDamage(int damage)
         {
             await _healthArmour.TakeDamage(damage);
+        }
+
+        public async UniTaskVoid AddHealth(int healthIncrement)
+        {
+            await _healthArmour.AddHealth(healthIncrement);
         }
 
         // entry point

@@ -16,18 +16,31 @@ namespace SnekTech.Player
         private int health;
 
         [SerializeField]
+        private int maxHealth;
+
+        [SerializeField]
         private int armour;
 
         public int Health => health;
+        public int MaxHealth => maxHealth;
         public int Armour => armour;
         public static HealthArmour Default => new HealthArmour(GameConstants.InitialHealth,GameConstants.InitialArmour);
 
         private List<IHealthArmourDisplay> _displays = new List<IHealthArmourDisplay>();
 
-        public HealthArmour(int health, int armour)
+        public HealthArmour(int health, int maxHealth, int armour)
         {
+            if (maxHealth < health)
+            {
+                throw new ArgumentException($"maxHealth[{maxHealth}] < health[{health}], invalid");
+            }
             this.health = health;
+            this.maxHealth = maxHealth;
             this.armour = armour;
+        }
+
+        public HealthArmour(int health, int armour): this(health, health, armour)
+        {
         }
 
         public void ResetWith(int newHealth, int newArmour)
@@ -86,19 +99,42 @@ namespace SnekTech.Player
             }
         }
 
-        public void AddHealth(int amount)
+        /// <summary>
+        /// adjust the max health, roughly maxHealth += <see cref="amount"/>
+        /// </summary>
+        /// <param name="amount">how much to increase, can be negative</param>
+        public void AdjustMaxHealth(int amount)
         {
-            int newHealth = Health + amount;
-            if (newHealth <= 0)
+            // todo: deal with decreasing later
+            if (amount <= 0)
             {
-                HealthRanOut?.Invoke();
+                return;
             }
 
-            health = Mathf.Max(0, newHealth);
+            maxHealth += amount;
+            AddHealth(amount).Forget();
+        }
+
+        /// <summary>
+        /// heal the target
+        /// </summary>
+        /// <param name="increment">how much to heal, must be >= 0</param>
+        public async UniTask AddHealth(int increment)
+        {
+            if (Health == MaxHealth)
+            {
+                return;
+            }
+            int newHealth = Mathf.Min(Health + increment, MaxHealth);
+            int addedAmount = newHealth - Health;
+            health = newHealth;
+            await PerformAllAddHealthAsync(addedAmount);
+            UpdateAllDisplays();
         }
 
         public void AddArmour(int amount)
         {
+            // todo: perform add armour
             int newArmour = Armour + amount;
             if (newArmour <= 0)
             {
@@ -130,6 +166,11 @@ namespace SnekTech.Player
         private UniTask PerformAllArmourDamageAsync(int damage)
         {
             return UniTask.WhenAll(_displays.Select(display => display.PerformArmourDamageAsync(damage)));
+        }
+
+        private UniTask PerformAllAddHealthAsync(int healthAddAmount)
+        {
+            return UniTask.WhenAll(_displays.Select(display => display.PerformAddHealthAsync(healthAddAmount)));
         }
     }
 }
