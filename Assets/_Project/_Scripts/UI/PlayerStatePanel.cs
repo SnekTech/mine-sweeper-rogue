@@ -33,21 +33,6 @@ namespace SnekTech.UI
             _armourRectTransform = armourLabel.transform as RectTransform;
         }
 
-        private void OnEnable()
-        {
-            playerState.DataChanged += OnPlayerStateDataChanged;
-        }
-
-        private void OnDisable()
-        {
-            playerState.DataChanged -= OnPlayerStateDataChanged;
-        }
-
-        private void OnPlayerStateDataChanged()
-        {
-            UpdateContent();
-        }
-
         public void UpdateContent()
         {
             healthLabel.SetText(playerState.Health);

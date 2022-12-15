@@ -20,7 +20,6 @@ namespace SnekTech.Player
     {
         #region Events
 
-        public event Action DataChanged;
         public event Action HealthRanOut;
 
         #endregion
@@ -64,7 +63,6 @@ namespace SnekTech.Player
         {
             gridEventManager.BombRevealed += OnBombRevealed;
             gridEventManager.CellRevealOperated += OnCellRevealOperated;
-            _healthArmour.Changed += OnHealthArmourChanged;
             _healthArmour.HealthRanOut += OnHealthRanOut;
         }
 
@@ -73,13 +71,7 @@ namespace SnekTech.Player
         {
             gridEventManager.BombRevealed -= OnBombRevealed;
             gridEventManager.CellRevealOperated -= OnCellRevealOperated;
-            _healthArmour.Changed -= OnHealthArmourChanged;
             _healthArmour.HealthRanOut -= OnHealthRanOut;
-        }
-
-        private void OnHealthArmourChanged()
-        {
-            DataChanged?.Invoke();
         }
 
         private void OnHealthRanOut()
@@ -154,7 +146,6 @@ namespace SnekTech.Player
 
         public void AddHealthArmourDisplay(IHealthArmourDisplay display)
         {
-            display.UpdateContent();
             _healthArmour.AddDisplay(display);
         }
 

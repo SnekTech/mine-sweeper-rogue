@@ -9,7 +9,6 @@ namespace SnekTech.Player
     [Serializable]
     public class HealthArmour
     {
-        public event Action Changed;
         public event Action ArmourRanOut;
         public event Action HealthRanOut;
 
@@ -59,7 +58,7 @@ namespace SnekTech.Player
                 bool isArmourRanOut = damageRemaining >= 0;
                 armour = Mathf.Max(0, Armour - damage);
                 await PerformAllArmourDamageAsync(damage);
-                Changed?.Invoke();
+                UpdateAllDisplays();
                 if (!isArmourRanOut)
                 {
                     return;
@@ -80,7 +79,7 @@ namespace SnekTech.Player
             bool isHealthRanOut = damage > Health;
             health = Mathf.Max(0, health - damage);
             await PerformAllHealthDamageAsync(damage);
-            Changed?.Invoke();
+            UpdateAllDisplays();
             if (isHealthRanOut)
             {
                 HealthRanOut?.Invoke();
@@ -111,7 +110,16 @@ namespace SnekTech.Player
 
         public void AddDisplay(IHealthArmourDisplay display)
         {
+            display.UpdateContent();
             _displays.Add(display);
+        }
+
+        private void UpdateAllDisplays()
+        {
+            foreach (IHealthArmourDisplay display in _displays)
+            {
+                display.UpdateContent();
+            }
         }
 
         private UniTask PerformAllHealthDamageAsync(int damage)
