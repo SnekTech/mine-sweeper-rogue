@@ -24,6 +24,9 @@ namespace SnekTech.UI
         private RectTransform _healthRectTransform;
         private RectTransform _armourRectTransform;
 
+        private readonly Color _damageColor = PalettePico8.Brown;
+        private readonly Color _healthColor = PalettePico8.Green;
+
         private void Awake()
         {
             playerState.AddHealthArmourDisplay(this);
@@ -42,13 +45,13 @@ namespace SnekTech.UI
         public UniTask PerformHealthDamageAsync(int damage)
         {
             var damageStr = new SignedIntStr(-damage);
-            return _effectEmitter.PerformFloatingTextAsync(damageStr, _healthRectTransform);
+            return _effectEmitter.PerformFloatingTextAsync(damageStr, _damageColor, _healthRectTransform);
         }
 
         public UniTask PerformArmourDamageAsync(int damage)
         {
             var damageStr = new SignedIntStr(-damage);
-            return _effectEmitter.PerformFloatingTextAsync(damageStr, _armourRectTransform);
+            return _effectEmitter.PerformFloatingTextAsync(damageStr, _damageColor, _armourRectTransform);
         }
     }
 }

@@ -20,10 +20,10 @@ namespace SnekTech.UI.Effect
         private Ease ease = Ease.OutQuint;
         
         
-        public async UniTask PerformFloatingTextAsync<T>(T textObj, RectTransform target)
+        public async UniTask PerformFloatingTextAsync<T>(T textObj, Color color, RectTransform target)
         {
             FloatingTextEffect floatingTextEffect = Instantiate(floatingTextEffectPrefab);
-            floatingTextEffect.SetText(textObj);
+            floatingTextEffect.SetText(textObj, color);
             var effectTransform = floatingTextEffect.GetComponent<RectTransform>();
             effectTransform.MoveToTopRightOf(target);
 
