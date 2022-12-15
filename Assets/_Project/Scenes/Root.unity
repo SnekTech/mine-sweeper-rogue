@@ -319,8 +319,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: header text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 421ca0211ddd31b40924701dc1daab8c, type: 2}
-  m_sharedMaterial: {fileID: 5614570144776889627, guid: 421ca0211ddd31b40924701dc1daab8c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
+  m_sharedMaterial: {fileID: 614707346233058595, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -344,8 +344,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -709,8 +709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 32
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
@@ -737,7 +737,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_SortingLayerID: 0
   m_SortingOrder: 2358
   m_TargetDisplay: 0
@@ -899,8 +899,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: tooltip body text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 421ca0211ddd31b40924701dc1daab8c, type: 2}
-  m_sharedMaterial: {fileID: 5614570144776889627, guid: 421ca0211ddd31b40924701dc1daab8c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
+  m_sharedMaterial: {fileID: 614707346233058595, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -924,8 +924,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
