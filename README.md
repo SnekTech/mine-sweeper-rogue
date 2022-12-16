@@ -70,3 +70,4 @@ Roguelike 扫雷
 - [ ] 最大血量
   - [ ] 血条
 - [x] 历史记录
+- [ ] 引用字体：[凤凰点阵体](https://timothyqiu.itch.io/vonwaon-bitmap)
