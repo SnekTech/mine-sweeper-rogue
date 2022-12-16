@@ -11,6 +11,8 @@ namespace SnekTech.SceneManagement
         private SceneIndex _currentScene = SceneIndex.Root;
         private GameObject _loadingScreen;
 
+        public SceneIndex CurrentScene => _currentScene;
+
         public async UniTask LoadSceneAsync(SceneIndex sceneIndex)
         {
             ShowLoading();

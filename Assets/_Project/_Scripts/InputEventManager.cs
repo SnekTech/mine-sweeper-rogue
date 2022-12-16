@@ -1,5 +1,6 @@
 ﻿using System;
 using SnekTech.Constants;
+using SnekTech.SceneManagement;
 using UnityEngine;
 
 namespace SnekTech
@@ -12,6 +13,9 @@ namespace SnekTech
         public event Action<Vector2> RightClickPerformed;
         public event Action<Vector2> MovePerformed; 
         public event Action PausePerformed;
+
+        [SerializeField]
+        private MySceneManager mySceneManager;
 
         public void InvokeLeftClickPerformed(Vector2 mousePosition)
         {
@@ -35,6 +39,10 @@ namespace SnekTech
 
         public void InvokePausePerformed()
         {
+            if (mySceneManager.CurrentScene != SceneIndex.Game)
+            {
+                return;
+            }
             PausePerformed?.Invoke();
         }
     }
