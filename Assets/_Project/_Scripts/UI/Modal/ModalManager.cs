@@ -16,6 +16,12 @@ namespace SnekTech.UI.Modal
         [SerializeField]
         [Min(0)]
         private float duration = 0.3f;
+
+        [SerializeField]
+        private Ease easeShow = Ease.OutQuint;
+
+        [SerializeField]
+        private Ease easeHide = Ease.InQuint;
         
         private Modal _modal;
         private CanvasGroup _alphaGroup;
@@ -34,16 +40,16 @@ namespace SnekTech.UI.Modal
             _alphaGroup.alpha = 0;
 
             await UniTask.WhenAll(
-                _alphaGroup.DOFade(targetBackgroundAlpha, duration).ToUniTask(), 
-                _modal.ParentRect.DOAnchorPosY(0, duration).ToUniTask()
+                _alphaGroup.DOFade(targetBackgroundAlpha, duration).SetEase(easeShow).ToUniTask(), 
+                _modal.ParentRect.DOAnchorPosY(0, duration).SetEase(easeShow).ToUniTask()
             );
         }
 
         public async UniTask Hide()
         {
             await UniTask.WhenAll(
-                _alphaGroup.DOFade(0, duration).ToUniTask(), 
-                _modal.ParentRect.DOAnchorPosY(Screen.height, duration).ToUniTask()
+                _alphaGroup.DOFade(0, duration).SetEase(easeHide).ToUniTask(), 
+                _modal.ParentRect.DOAnchorPosY(Screen.height, duration).SetEase(easeHide).ToUniTask()
             );
 
             uiState.isBlockingRaycast = false;

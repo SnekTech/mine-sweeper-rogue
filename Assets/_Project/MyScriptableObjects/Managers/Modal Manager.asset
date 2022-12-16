@@ -15,3 +15,5 @@ MonoBehaviour:
   uiState: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
   targetBackgroundAlpha: 0.6
   duration: 0.3
+  easeShow: 15
+  easeHide: 14
