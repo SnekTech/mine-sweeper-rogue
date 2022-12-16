@@ -1,7 +1,21 @@
-﻿namespace SnekTech
+﻿using UnityEngine;
+
+namespace SnekTech
 {
-    public static class Utils
+    public static class Extensions
     {
+        public static void DestroyAllChildren(this Transform transform)
+        {
+            foreach (Transform child in transform)
+            {
+                Object.Destroy(child);
+            }
+        }
+
+        public static void DetachFromParent(this GameObject gameObject)
+        {
+            gameObject.transform.SetParent(null, true);
+        }
     }
 
     namespace Constants

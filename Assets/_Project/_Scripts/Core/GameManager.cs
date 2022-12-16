@@ -1,5 +1,6 @@
 ﻿using SnekTech.DataPersistence;
 using SnekTech.SceneManagement;
+using SnekTech.UI.Modal;
 using SnekTech.UI.Tooltip;
 using UnityEngine;
 
@@ -23,10 +24,17 @@ namespace SnekTech.Core
         [SerializeField]
         private Tooltip tooltip;
 
+        [Header("Modal")]
+        [SerializeField]
+        private ModalManager modalManager;
+        [SerializeField]
+        private Modal modal;
+
         private async void Awake()
         {
             mySceneManager.Init(loadingScreen);
             tooltipManager.Init(tooltip);
+            modalManager.Init(modal);
             await mySceneManager.LoadSceneAsync(SceneIndex.MainMenu);
         }
         

@@ -1,12 +1,11 @@
-using System;
 using SnekTech.InventorySystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SnekTech.UI
+namespace SnekTech.UI.ChooseItem
 {
-    public class ItemButtonController : MonoBehaviour
+    public class ItemButton : MonoBehaviour
     {
         [SerializeField]
         private UIEventManager uiEventManager;
@@ -19,8 +18,8 @@ namespace SnekTech.UI
         private void Awake()
         {
             _text = GetComponentInChildren<TMP_Text>();
-            _image = GetComponent<Image>();
-            _button = GetComponent<Button>();
+            _image = GetComponentInChildren<Image>();
+            _button = GetComponentInChildren<Button>();
         }
 
         private void OnEnable()

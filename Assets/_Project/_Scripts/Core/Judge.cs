@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SnekTech.Core.History;
 using SnekTech.Grid;
+using SnekTech.InventorySystem;
 using SnekTech.Player;
 using SnekTech.SceneManagement;
+using SnekTech.UI;
+using SnekTech.UI.ChooseItem;
+using SnekTech.UI.Modal;
 using UnityEngine;
 
 namespace SnekTech.Core
@@ -20,6 +24,14 @@ namespace SnekTech.Core
 
         [SerializeField]
         private GameHistory gameHistory;
+
+        [SerializeField]
+        private ModalManager modalManager;
+        [SerializeField]
+        private UIEventManager uiEventManager;
+
+        [SerializeField]
+        private ChooseItemPanel chooseItemPanelPrefab;
         
         [SerializeField]
         private CountDownText countDownText;
@@ -70,8 +82,21 @@ namespace SnekTech.Core
             }
             else
             {
-                // todo: load next level or win the game
-                Debug.Log("level passed");
+                ChooseItemPanel chooseItemPanel = Instantiate(chooseItemPanelPrefab);
+
+                await modalManager.Show(new ModalContent(ChooseItemPanel.HeaderText, chooseItemPanel.gameObject));
+
+                // close modal when item picked
+                async void OnItemPicked(ItemData itemData)
+                {
+                    await modalManager.Hide();
+                    uiEventManager.ItemChosen -= OnItemPicked;
+                    
+                    // todo: load next level
+                    Debug.Log("time to load next level");
+                }
+
+                uiEventManager.ItemChosen += OnItemPicked;
             }
         }
 

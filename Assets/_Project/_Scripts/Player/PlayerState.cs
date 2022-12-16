@@ -40,6 +40,7 @@ namespace SnekTech.Player
 
         public int SweepScope => _calculatedPlayerData.sweepScope;
         public int DamagePerBomb => _calculatedPlayerData.damagePerBomb;
+        public int ItemChoiceCount => _calculatedPlayerData.itemChoiceCount;
 
         public int Health => _healthArmour.Health;
         public int MaxHealth => _healthArmour.MaxHealth;

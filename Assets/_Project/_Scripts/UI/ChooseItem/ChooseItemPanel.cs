@@ -2,9 +2,9 @@
 using SnekTech.Player;
 using UnityEngine;
 
-namespace SnekTech.UI
+namespace SnekTech.UI.ChooseItem
 {
-    public class ChooseItemPanelController : MonoBehaviour
+    public class ChooseItemPanel : MonoBehaviour
     {
         [SerializeField]
         private UIEventManager uiEventManager;
@@ -16,21 +16,13 @@ namespace SnekTech.UI
         private ItemPool itemPool;
         
         [SerializeField]
-        private ItemButtonController itemButtonPrefab;
+        private ItemButton itemButtonPrefab;
 
-        [SerializeField]
-        private int itemChoiceCount = 3;
-
-        [SerializeField]
-        private RectTransform itemButtonParentPanel;
+        public const string HeaderText = "Choose An Item";
 
         private void Awake()
         {
-            for (int i = 0; i < itemChoiceCount; i++)
-            {
-                ItemButtonController button = Instantiate(itemButtonPrefab, itemButtonParentPanel);
-                button.SetItem(itemPool.GetRandom());
-            }
+            GenerateItemButtons();
         }
 
         private void OnEnable()
@@ -46,6 +38,15 @@ namespace SnekTech.UI
         private void OnItemChosen(ItemData item)
         {
             playerState.Inventory.AddItem(item);
+        }
+
+        private void GenerateItemButtons()
+        {
+            for (int i = 0; i < playerState.ItemChoiceCount; i++)
+            {
+                ItemButton button = Instantiate(itemButtonPrefab, transform);
+                button.SetItem(itemPool.GetRandom());
+            }
         }
     }
 }
