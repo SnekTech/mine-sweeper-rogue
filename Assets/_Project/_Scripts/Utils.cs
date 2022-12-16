@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 namespace SnekTech
 {
@@ -6,9 +8,11 @@ namespace SnekTech
     {
         public static void DestroyAllChildren(this Transform transform)
         {
-            foreach (Transform child in transform)
+            List<Transform> children = transform.Cast<Transform>().ToList();
+            transform.DetachChildren();
+            foreach (Transform child in children)
             {
-                Object.Destroy(child);
+                Object.Destroy(child.gameObject);
             }
         }
 
