@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b94b31f96d498a8d9c4a955e49729e, type: 3}
   m_Name: Modal Manager
   m_EditorClassIdentifier: 
+  uiState: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
   targetBackgroundAlpha: 0.6
   duration: 0.3

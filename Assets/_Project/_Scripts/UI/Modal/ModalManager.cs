@@ -8,6 +8,8 @@ namespace SnekTech.UI.Modal
     public class ModalManager : ScriptableObject
     {
         [SerializeField]
+        private UIState uiState;
+        [SerializeField]
         [Range(0, 1)]
         private float targetBackgroundAlpha = 0.6f;
 
@@ -22,10 +24,12 @@ namespace SnekTech.UI.Modal
         {
             _modal = modal;
             _alphaGroup = _modal.BackgroundGroup;
+            uiState.isBlockingRaycast = false;
         }
         
         public async UniTask Show(ModalContent modalContent)
         {
+            uiState.isBlockingRaycast = true;
             _modal.SetContent(modalContent);
             _alphaGroup.alpha = 0;
 
@@ -41,6 +45,8 @@ namespace SnekTech.UI.Modal
                 _alphaGroup.DOFade(0, duration).ToUniTask(), 
                 _modal.ParentRect.DOAnchorPosY(Screen.height, duration).ToUniTask()
             );
+
+            uiState.isBlockingRaycast = false;
         }
     }
 }
