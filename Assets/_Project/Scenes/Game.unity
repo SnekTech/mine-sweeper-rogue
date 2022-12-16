@@ -1692,10 +1692,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 871134007}
-  - component: {fileID: 871134011}
   - component: {fileID: 871134010}
   - component: {fileID: 871134009}
   - component: {fileID: 871134008}
+  - component: {fileID: 871134011}
   m_Layer: 5
   m_Name: ItemListPanel
   m_TagString: Untagged
@@ -1784,21 +1784,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 871134006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 4
     m_Right: 0
-    m_Top: 0
+    m_Top: 4
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 64, y: 64}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Spacing: 4
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!224 &956498733 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7543813013980050130, guid: fceff04baae7bf44f8cdc823fd0730db, type: 3}
