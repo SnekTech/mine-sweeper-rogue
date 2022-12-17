@@ -62,6 +62,26 @@ namespace SnekTech.Player
             ResetWith(other.health, other.MaxHealth, other.Armour);
         }
 
+        /// <summary>
+        /// take damage on health, ignore the armour, like poison
+        /// </summary>
+        /// <param name="damage"></param>
+        public async UniTask TakeDamageOnHealth(int damage)
+        {
+            bool isHealthRanOut = damage >= Health;
+            health = Mathf.Max(0, health - damage);
+            await PerformAllHealthDamageAsync(damage);
+            UpdateAllDisplays();
+            if (isHealthRanOut)
+            {
+                HealthRanOut?.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// take damage on armour first, consume health after armour ran out
+        /// </summary>
+        /// <param name="damage"></param>
         public async UniTask TakeDamage(int damage)
         {
             if (health <= 0)
@@ -92,16 +112,8 @@ namespace SnekTech.Player
                 // so no need to perform zero-valued damage for health
                 return;
             }
-            
-            
-            bool isHealthRanOut = damage > Health;
-            health = Mathf.Max(0, health - damage);
-            await PerformAllHealthDamageAsync(damage);
-            UpdateAllDisplays();
-            if (isHealthRanOut)
-            {
-                HealthRanOut?.Invoke();
-            }
+
+            await TakeDamageOnHealth(damage);
         }
 
         /// <summary>
@@ -110,14 +122,25 @@ namespace SnekTech.Player
         /// <param name="amount">how much to increase, can be negative</param>
         public void AdjustMaxHealth(int amount)
         {
-            // todo: deal with decreasing later
-            if (amount <= 0)
+            if (amount == 0)
             {
                 return;
             }
 
-            maxHealth += amount;
-            AddHealth(amount).Forget();
+            if (amount > 0)
+            {
+                maxHealth += amount;
+                AddHealth(amount).Forget();
+            }
+            else
+            {
+                int newMaxHealth = Mathf.Max(0, maxHealth + amount);
+                int newHealth = Mathf.Min(health, newMaxHealth);
+                int damageOnHealth = health - newHealth;
+                maxHealth = newMaxHealth;
+                health = newHealth;
+                TakeDamageOnHealth(damageOnHealth).Forget();
+            }
         }
 
         /// <summary>
@@ -126,14 +149,9 @@ namespace SnekTech.Player
         /// <param name="increment">how much to heal, must be >= 0</param>
         public async UniTask AddHealth(int increment)
         {
-            if (Health == MaxHealth)
-            {
-                return;
-            }
             int newHealth = Mathf.Min(Health + increment, MaxHealth);
-            int addedAmount = newHealth - Health;
             health = newHealth;
-            await PerformAllAddHealthAsync(addedAmount);
+            await PerformAllAddHealthAsync(increment);
             UpdateAllDisplays();
         }
 
