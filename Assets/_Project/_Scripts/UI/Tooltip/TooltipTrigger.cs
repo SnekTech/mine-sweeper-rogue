@@ -18,7 +18,7 @@ namespace SnekTech.UI.Tooltip
         
         public void OnPointerEnter(PointerEventData eventData)
         {
-            tooltipManager.Show(_tooltipContent);
+            tooltipManager.ShowAsync(_tooltipContent).Forget();
         }
 
         public void OnPointerExit(PointerEventData eventData)

@@ -16,6 +16,8 @@ namespace SnekTech.UI.Tooltip
 
         private RectTransform _rectTransform;
 
+        public RectTransform Rect => _rectTransform;
+
         private Vector2 MousePosition => inputListener.MouseCanvasPosition;
 
         private void Awake()
@@ -42,7 +44,6 @@ namespace SnekTech.UI.Tooltip
             _rectTransform.pivot = new Vector2(pivotX, pivotY);
             
             _rectTransform.anchoredPosition = MousePosition;
-            
         }
     }
 }
