@@ -52,7 +52,7 @@ namespace SnekTech.Grid
         public GridData GridData
         {
             get => gridData;
-            set => gridData = value;
+            private set => gridData = value;
         }
 
         private GridSize GridSize => GridData.GridSize;
@@ -62,7 +62,7 @@ namespace SnekTech.Grid
         public int RevealedCellCount => Cells.Count(cell => cell.IsRevealed);
         public int FlaggedCellCount => Cells.Count(cell => cell.IsFlagged);
 
-        private bool IsAllCleared => RevealedCellCount == CellCount - BombCount;
+        private bool IsAllCleared => Cells.Where(cell => !cell.HasBomb).All(cell => cell.IsRevealed);
 
         private void Awake()
         {
@@ -308,14 +308,7 @@ namespace SnekTech.Grid
         {
             foreach (ICell cell in Cells)
             {
-                if (cell.HasBomb)
-                {
-                    cell.SetContent(BombSprite);
-                }
-                else
-                {
-                    cell.SetContent(NoBombSprites[_gridBrain.GetNeighborBombCount(cell)]);
-                }
+                cell.SetContent(cell.HasBomb ? BombSprite : NoBombSprites[_gridBrain.GetNeighborBombCount(cell)]);
             }
         }
 
