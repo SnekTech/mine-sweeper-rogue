@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f60e349e2564258a34509aa6adca200, type: 3}
-  m_Name: itemC
+  m_Script: {fileID: 11500000, guid: 610ec8698f7c48a297b00f9feca632a1, type: 3}
+  m_Name: Biscuit
   m_EditorClassIdentifier: 
-  label: c
-  description: item c
-  icon: {fileID: 1772921578, guid: de4862888eb0b964daeea72e8348af73, type: 3}
+  label: Biscuit
+  description: Increase 4 max health.
+  icon: {fileID: -1989531792, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
+  amount: 4

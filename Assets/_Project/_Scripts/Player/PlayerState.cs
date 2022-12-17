@@ -104,6 +104,11 @@ namespace SnekTech.Player
             await _healthArmour.AddHealth(healthIncrement);
         }
 
+        public void AdjustMaxHealth(int amount)
+        {
+            _healthArmour.AdjustMaxHealth(amount);
+        }
+
         // entry point
         public void LoadData(GameData gameData)
         {
