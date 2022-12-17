@@ -6,6 +6,11 @@ Roguelike 扫雷
 
 > Powered by Unity 2021 LTS
 
+## 使用以下开源项目
+
+- [UniTask](https://github.com/Cysharp/UniTask)
+- [凤凰点阵体](https://timothyqiu.itch.io/vonwaon-bitmap)
+
 ## Todo
 
 - [x] 揭开状态下正确渲染格子
@@ -47,6 +52,7 @@ Roguelike 扫雷
 - [ ] 彩蛋
     - [ ] 开发者吐槽
 - [ ] 道具机制
+    - [x] tooltip
     - [ ] 复仇
     - [x] 放大扫雷范围
     - [ ] 影响道具可选数量
