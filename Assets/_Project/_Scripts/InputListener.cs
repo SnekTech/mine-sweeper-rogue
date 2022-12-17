@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SnekTech.UI;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace SnekTech
@@ -6,7 +7,8 @@ namespace SnekTech
     [RequireComponent(typeof(PlayerInput))]
     public class InputListener : MonoBehaviour
     {
-        public InputEventManager inputEventManager;
+        [SerializeField]
+        private InputEventManager inputEventManager;
 
         private PlayerInput _playerInput;
         private InputAction _leftClickAction;
@@ -15,7 +17,8 @@ namespace SnekTech
         private InputAction _moveAction;
         private InputAction _pauseAction;
 
-        public Vector2 MousePosition => _moveAction.ReadValue<Vector2>();
+        private Vector2 MousePosition => _moveAction.ReadValue<Vector2>();
+        public Vector2 MouseCanvasPosition => MousePosition / CanvasInfo.Instance.ScaleFactor;
 
         private void Awake()
         {

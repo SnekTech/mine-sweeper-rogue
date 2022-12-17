@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace SnekTech.UI.Tooltip
@@ -17,7 +16,7 @@ namespace SnekTech.UI.Tooltip
 
         private RectTransform _rectTransform;
 
-        private Vector2 MousePosition => inputListener.MousePosition;
+        private Vector2 MousePosition => inputListener.MouseCanvasPosition;
 
         private void Awake()
         {
@@ -38,8 +37,8 @@ namespace SnekTech.UI.Tooltip
 
         public void MoveToMouse()
         {
-            float pivotX = MousePosition.x / Screen.width;
-            float pivotY = MousePosition.y / Screen.height;
+            float pivotX = MousePosition.x / CanvasInfo.Instance.ReferenceWidth;
+            float pivotY = MousePosition.y / CanvasInfo.Instance.ReferenceHeight;
             _rectTransform.pivot = new Vector2(pivotX, pivotY);
             
             _rectTransform.anchoredPosition = MousePosition;

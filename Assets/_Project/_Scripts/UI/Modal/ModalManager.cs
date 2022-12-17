@@ -49,7 +49,7 @@ namespace SnekTech.UI.Modal
         {
             await UniTask.WhenAll(
                 _alphaGroup.DOFade(0, duration).SetEase(easeHide).ToUniTask(), 
-                _modal.ParentRect.DOAnchorPosY(Screen.height, duration).SetEase(easeHide).ToUniTask()
+                _modal.ParentRect.DOAnchorPosY(CanvasInfo.Instance.ReferenceHeight, duration).SetEase(easeHide).ToUniTask()
             );
 
             uiState.isBlockingRaycast = false;
