@@ -43,10 +43,15 @@ namespace SnekTech.Player
         {
         }
 
-        public void ResetWith(int newHealth, int newArmour)
+        public void ResetWith(int newHealth, int newMaxHealth, int newArmour)
         {
-            // todo: necessary param validation
+            if (newHealth < 0 || newHealth > newMaxHealth || newArmour < 0)
+            {
+                throw new ArgumentException();
+            }
+            
             health = newHealth;
+            maxHealth = newMaxHealth;
             armour = newArmour;
             
             _displays.Clear();
@@ -54,7 +59,7 @@ namespace SnekTech.Player
 
         public void ResetWith(HealthArmour other)
         {
-            ResetWith(other.health, other.Armour);
+            ResetWith(other.health, other.MaxHealth, other.Armour);
         }
 
         public async UniTask TakeDamage(int damage)
