@@ -17,12 +17,12 @@ namespace SnekTech.UI.Debug
 
         public void OnAddHealthButtonClick()
         {
-            playerState.AddHealth(healthIncrement).Forget();
+            playerState.AddHealth(healthIncrement);
         }
 
         public void OnTakeDamageButtonClick()
         {
-            playerState.TakeDamage(damageAmount).Forget();
+            playerState.TakeDamage(damageAmount);
         }
     }
 }

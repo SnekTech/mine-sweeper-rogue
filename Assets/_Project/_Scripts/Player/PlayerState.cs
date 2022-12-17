@@ -83,7 +83,7 @@ namespace SnekTech.Player
         
         private void OnBombRevealed(IGrid grid, ICell cell)
         {
-            TakeDamage(DamagePerBomb).Forget();
+            TakeDamage(DamagePerBomb);
         }
 
         private void OnCellRevealOperated()
@@ -94,14 +94,14 @@ namespace SnekTech.Player
             }
         }
         
-        public async UniTaskVoid TakeDamage(int damage)
+        public void TakeDamage(int damage)
         {
-            await _healthArmour.TakeDamage(damage);
+            _healthArmour.TakeDamage(damage).Forget();
         }
 
-        public async UniTaskVoid AddHealth(int healthIncrement)
+        public void AddHealth(int healthIncrement)
         {
-            await _healthArmour.AddHealth(healthIncrement);
+            _healthArmour.AddHealth(healthIncrement).Forget();
         }
 
         public void AdjustMaxHealth(int amount)
