@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace SnekTech
 {
@@ -19,6 +21,15 @@ namespace SnekTech
         public static void DetachFromParent(this GameObject gameObject)
         {
             gameObject.transform.SetParent(null, true);
+        }
+
+        public static bool WithinRange<T>(this T value, T min, T max) where T : IComparable<T>
+        {
+            if (min.CompareTo(max) > 0)
+            {
+                throw new ArgumentException($"min[{min}] > max[{max}]");
+            }
+            return value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0;
         }
     }
 

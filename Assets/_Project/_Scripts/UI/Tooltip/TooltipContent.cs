@@ -1,6 +1,6 @@
 ﻿namespace SnekTech.UI.Tooltip
 {
-    public class TooltipContent
+    public struct TooltipContent
     {
         public readonly string Header;
         public readonly string Body;

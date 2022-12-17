@@ -4,19 +4,19 @@ using SnekTech.Player;
 using SnekTech.UI.Effect;
 using UnityEngine;
 
-namespace SnekTech.UI
+namespace SnekTech.UI.PlayerStatePanel
 {
     [RequireComponent(typeof(EffectEmitter))]
     public class PlayerStatePanel : MonoBehaviour, IHealthArmourDisplay
     {
         [SerializeField]
-        private LabelController healthLabel;
+        private ProgressBar healthBar;
 
         [SerializeField]
         private LabelController armourLabel;
 
         [SerializeField]
-        private PlayerState playerState;
+        private Player.PlayerState playerState;
 
         private EffectEmitter _effectEmitter;
         private RectTransform _healthRectTransform;
@@ -30,13 +30,13 @@ namespace SnekTech.UI
             playerState.AddHealthArmourDisplay(this);
             
             _effectEmitter = GetComponent<EffectEmitter>();
-            _healthRectTransform = healthLabel.transform as RectTransform;
+            _healthRectTransform = healthBar.transform as RectTransform;
             _armourRectTransform = armourLabel.transform as RectTransform;
         }
 
         public void UpdateContent()
         {
-            healthLabel.SetText(playerState.Health);
+            healthBar.Init(0, playerState.MaxHealth, playerState.Health);
             armourLabel.SetText(playerState.Armour);
         }
 
