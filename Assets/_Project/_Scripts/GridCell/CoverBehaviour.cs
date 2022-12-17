@@ -81,10 +81,5 @@ namespace SnekTech.GridCell
         {
             _animator.SetTrigger(InitPutCoverTrigger);
         }
-
-        public void SetHighlight(bool isHighlight)
-        {
-            _spriteRenderer.color = isHighlight ? Color.red : Color.white;
-        }
     }
 }

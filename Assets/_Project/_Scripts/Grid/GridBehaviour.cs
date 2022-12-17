@@ -331,7 +331,7 @@ namespace SnekTech.Grid
             List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerState.SweepScope);
             foreach (ICell cell in affectedCells)
             {
-                cell.SetCoverHighlight(true);
+                cell.SetHighlight(true);
             }
         }
 
@@ -339,7 +339,7 @@ namespace SnekTech.Grid
         {
             foreach (ICell cell in Cells)
             {
-                cell.SetCoverHighlight(false);
+                cell.SetHighlight(false);
             }
         }
     }
