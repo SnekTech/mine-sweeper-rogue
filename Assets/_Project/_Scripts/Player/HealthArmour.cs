@@ -63,11 +63,37 @@ namespace SnekTech.Player
         }
 
         /// <summary>
+        /// damage on armour, won't put remaining damage on health
+        /// </summary>
+        /// <param name="damage">must >= 0</param>
+        public async UniTask TakeDamageOnArmour(int damage)
+        {
+            if (Armour <= 0 || damage < 0)
+            {
+                // prevent from unnecessary multiple async operation
+                return;
+            }
+            bool isArmourRanOut = damage >= armour;
+            armour = Mathf.Max(0, Armour - damage);
+            await PerformAllArmourDamageAsync(damage);
+            UpdateAllDisplays();
+            if (isArmourRanOut)
+            {
+                ArmourRanOut?.Invoke();
+            }
+        }
+
+        /// <summary>
         /// take damage on health, ignore the armour, like poison
         /// </summary>
-        /// <param name="damage"></param>
+        /// <param name="damage">must >= 0</param>
         public async UniTask TakeDamageOnHealth(int damage)
         {
+            if (Health <= 0 || damage < 0)
+            {
+                // prevent from unnecessary multiple async operation
+                return;
+            }
             bool isHealthRanOut = damage >= Health;
             health = Mathf.Max(0, health - damage);
             await PerformAllHealthDamageAsync(damage);
@@ -92,18 +118,10 @@ namespace SnekTech.Player
 
             if (Armour > 0)
             {
-                int damageRemaining = damage - Armour;
-                bool isArmourRanOut = damageRemaining >= 0;
-                armour = Mathf.Max(0, Armour - damage);
-                await PerformAllArmourDamageAsync(damage);
-                UpdateAllDisplays();
-                if (!isArmourRanOut)
-                {
-                    return;
-                }
-                ArmourRanOut?.Invoke();
+                int damageAfterBreakArmour = damage - Armour;
+                await TakeDamageOnArmour(damage);
                 
-                damage = damageRemaining;
+                damage = damageAfterBreakArmour;
             }
             
             if (damage == 0)
@@ -149,22 +167,30 @@ namespace SnekTech.Player
         /// <param name="increment">how much to heal, must be >= 0</param>
         public async UniTask AddHealth(int increment)
         {
+            if (increment < 0)
+            {
+                return;
+            }
+            
             int newHealth = Mathf.Min(Health + increment, MaxHealth);
             health = newHealth;
             await PerformAllAddHealthAsync(increment);
             UpdateAllDisplays();
         }
 
-        public void AddArmour(int amount)
+        /// <summary>
+        /// add armour
+        /// </summary>
+        /// <param name="increment">must >= 0</param>
+        public async UniTask AddArmour(int increment)
         {
-            // todo: perform add armour
-            int newArmour = Armour + amount;
-            if (newArmour <= 0)
+            if (increment < 0)
             {
-                ArmourRanOut?.Invoke();
+                return;
             }
-
-            armour = Mathf.Max(0, newArmour);
+            armour += increment;
+            await PerformAllAddArmourAsync(increment);
+            UpdateAllDisplays();
         }
 
         public void AddDisplay(IHealthArmourDisplay display)
@@ -194,6 +220,11 @@ namespace SnekTech.Player
         private UniTask PerformAllAddHealthAsync(int healthAddAmount)
         {
             return UniTask.WhenAll(_displays.Select(display => display.PerformAddHealthAsync(healthAddAmount)));
+        }
+
+        private UniTask PerformAllAddArmourAsync(int armourIncrement)
+        {
+            return UniTask.WhenAll(_displays.Select(display => display.PerformAddArmourAsync(armourIncrement)));
         }
     }
 }

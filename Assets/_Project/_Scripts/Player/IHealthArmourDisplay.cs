@@ -8,5 +8,6 @@ namespace SnekTech.Player
         UniTask PerformHealthDamageAsync(int damage);
         UniTask PerformArmourDamageAsync(int damage);
         UniTask PerformAddHealthAsync(int health);
+        UniTask PerformAddArmourAsync(int armour);
     }
 }

@@ -99,9 +99,24 @@ namespace SnekTech.Player
             _healthArmour.TakeDamage(damage).Forget();
         }
 
+        public void TakeDamageOnHealth(int damage)
+        {
+            _healthArmour.TakeDamageOnHealth(damage).Forget();
+        }
+
+        public void TakeDamageOnArmour(int damage)
+        {
+            _healthArmour.TakeDamageOnArmour(damage).Forget();
+        }
+
         public void AddHealth(int healthIncrement)
         {
             _healthArmour.AddHealth(healthIncrement).Forget();
+        }
+
+        public void AddArmour(int armourIncrement)
+        {
+            _healthArmour.AddArmour(armourIncrement).Forget();
         }
 
         public void AdjustMaxHealth(int amount)

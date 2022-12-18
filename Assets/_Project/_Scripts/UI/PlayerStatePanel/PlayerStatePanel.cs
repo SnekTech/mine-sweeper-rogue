@@ -24,6 +24,7 @@ namespace SnekTech.UI.PlayerStatePanel
 
         private readonly Color _damageColor = PalettePico8.Brown;
         private readonly Color _healthColor = PalettePico8.Green;
+        private readonly Color _armourColor = PalettePico8.Blue;
 
         private void Awake()
         {
@@ -56,6 +57,12 @@ namespace SnekTech.UI.PlayerStatePanel
         {
             var healthStr = new SignedIntStr(health);
             return _effectEmitter.PerformFloatingTextAsync(healthStr, _healthColor, _healthRectTransform);
+        }
+
+        public UniTask PerformAddArmourAsync(int armour)
+        {
+            var armourStr = new SignedIntStr(armour);
+            return _effectEmitter.PerformFloatingTextAsync(armourStr, _armourColor, _armourRectTransform);
         }
     }
 }
