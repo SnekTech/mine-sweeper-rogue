@@ -15,6 +15,7 @@ namespace SnekTech.InventorySystem
 
         public ItemData GetRandom()
         {
+            // todo: use global random seed
             int index = _random.Next() % items.Count;
             return items[index];
         }

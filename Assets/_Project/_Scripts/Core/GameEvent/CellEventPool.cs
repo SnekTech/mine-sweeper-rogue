@@ -12,6 +12,7 @@ namespace SnekTech.Core.GameEvent
         public CellEventData GetRandom()
         {
             // todo: randomize this behaviour
+            // todo: use global random seed
             return cellEventsAvailable[0];
         }
     }
