@@ -13,6 +13,12 @@ namespace SnekTech.UI.Debug
         private int healthIncrement = 1;
 
         [SerializeField]
+        private int armourIncrement = 1;
+
+        [SerializeField]
+        private int maxHealthIncrement = 1;
+
+        [SerializeField]
         private int damageAmount = 1;
 
         public void OnAddHealthButtonClick()
@@ -20,9 +26,29 @@ namespace SnekTech.UI.Debug
             playerState.AddHealth(healthIncrement);
         }
 
+        public void OnAddArmourButtonClick()
+        {
+            playerState.AddArmour(armourIncrement);
+        }
+
         public void OnTakeDamageButtonClick()
         {
             playerState.TakeDamage(damageAmount);
+        }
+
+        public void OnTakeDamageOnArmourButtonClick()
+        {
+            playerState.TakeDamageOnArmour(damageAmount);
+        }
+
+        public void OnTakeDamageOnHealthButtonClick()
+        {
+            playerState.TakeDamageOnHealth(damageAmount);
+        }
+
+        public void OnAdjustMaxHealthButtonClick()
+        {
+            playerState.AdjustMaxHealth(maxHealthIncrement);
         }
     }
 }

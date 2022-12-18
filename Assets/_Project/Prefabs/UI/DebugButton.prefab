@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1475377537542809957, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_text
-      value: default
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1475377537542809957, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_fontSizeBase
@@ -165,3 +165,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
+--- !u!1 &2528359208370357943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1475377537582754427, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
+  m_PrefabInstance: {fileID: 3994430362866756812}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2552765793136907331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528359208370357943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9f161ed488486da25b6529d3040dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipManager: {fileID: 11400000, guid: d608049128ae8804ba070154b4301c9f, type: 2}
+--- !u!114 &8967003124905549778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2528359208370357943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad1bc18dc764c0e844934ba817c8960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
