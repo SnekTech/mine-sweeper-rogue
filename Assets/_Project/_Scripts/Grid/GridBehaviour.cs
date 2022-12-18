@@ -276,7 +276,7 @@ namespace SnekTech.Grid
             DisposeCells();
 
             // todo: use global random seed
-            _bombGenerator = new RandomBoolSequence(newGridData.BombGeneratorSeed, newGridData.BombPercent);
+            _bombGenerator = new RandomBoolSequence(0, newGridData.BombPercent);
             BombCount = 0;
 
             GridSize gridSize = newGridData.GridSize;

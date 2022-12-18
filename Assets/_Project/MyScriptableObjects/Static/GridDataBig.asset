@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1894e4c1bfaa46c68da3093e54231d18, type: 3}
   m_Name: GridDataBig
   m_EditorClassIdentifier: 
-  GridSize:
+  gridSize:
     rowCount: 20
     columnCount: 20
-  BombPercent: 0.4
-  BombGeneratorSeed: 0
+  bombPercent: 0.4

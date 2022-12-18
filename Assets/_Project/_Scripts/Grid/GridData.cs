@@ -5,10 +5,13 @@ namespace SnekTech.Grid
     [CreateAssetMenu(fileName = nameof(GridData))]
     public class GridData : ScriptableObject
     {
-        public GridSize GridSize = new GridSize(15, 15);
-        [Range(0, 1)]
-        public float BombPercent = 0.2f;
-        [Min(0)]
-        public int BombGeneratorSeed;
+        [SerializeField]
+        private GridSize gridSize = new GridSize(15, 15);
+
+        [SerializeField]
+        private float bombPercent = 0.2f;
+
+        public GridSize GridSize => gridSize;
+        public float BombPercent => bombPercent;
     }
 }
