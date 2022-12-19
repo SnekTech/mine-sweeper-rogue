@@ -1,18 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SnekTech.Grid
 {
-    public struct GridIndex
+    [Serializable]
+    public class GridIndex
     {
-        public int RowIndex;
-        public int ColumnIndex;
+        [SerializeField]
+        private int rowIndex;
+        [SerializeField]
+        private int columnIndex;
+
+        public int RowIndex
+        {
+            get => rowIndex;
+            set => rowIndex = value;
+        }
+
+        public int ColumnIndex
+        {
+            get => columnIndex;
+            set => columnIndex = value;
+        }
 
         public static GridIndex Zero = new GridIndex(0, 0);
 
         public GridIndex(int rowIndex, int columnIndex)
         {
-            RowIndex = rowIndex;
-            ColumnIndex = columnIndex;
+            this.rowIndex = rowIndex;
+            this.columnIndex = columnIndex;
         }
 
         public GridIndex(GridIndex other): this(other.RowIndex, other.ColumnIndex)
