@@ -18,7 +18,6 @@ namespace SnekTech.Core.GameEvent
         protected override void OnEmit(PlayerState playerState)
         {
             _takeDamageFiniteTimesEffect = new FiniteClickEffect(repeatTimes, new TakeDamageClickEffect(singleDamage));
-            _takeDamageFiniteTimesEffect.RepeatStopped += () => IsActive = false;
             
             playerState.AddClickEffect(_takeDamageFiniteTimesEffect);
         }
