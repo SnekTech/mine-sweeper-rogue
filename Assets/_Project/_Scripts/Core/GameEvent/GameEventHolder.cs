@@ -25,7 +25,7 @@ namespace SnekTech.Core.GameEvent
 
         // todo: deal with magic number
         // todo: set to zero for debug, remove later
-        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 1f);
+        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 0f);
 
         private void OnEnable()
         {
