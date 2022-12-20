@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SnekTech.Constants;
+using SnekTech.Roguelike;
 using UnityEngine;
 using Random = System.Random;
 
@@ -11,13 +12,9 @@ namespace SnekTech.InventorySystem
         [SerializeField]
         private List<ItemData> items;
 
-        private readonly Random _random = new Random();
-
         public ItemData GetRandom()
         {
-            // todo: use global random seed
-            int index = _random.Next() % items.Count;
-            return items[index];
+            return items.GetRandom();
         }
     }
 }

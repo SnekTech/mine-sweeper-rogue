@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SnekTech.Roguelike;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
@@ -11,9 +12,7 @@ namespace SnekTech.Core.GameEvent
 
         public CellEventData GetRandom()
         {
-            // todo: randomize this behaviour
-            // todo: use global random seed
-            return cellEventsAvailable[0];
+            return cellEventsAvailable.GetRandom();
         }
     }
 }
