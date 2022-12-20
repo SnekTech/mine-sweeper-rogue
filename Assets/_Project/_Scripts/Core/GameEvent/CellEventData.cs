@@ -1,10 +1,13 @@
-﻿using SnekTech.Player;
+﻿using System;
+using SnekTech.Player;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
     public class CellEventData : ScriptableObject
     {
+        public event Action Completed;
+        
         [SerializeField]
         private string label;
 
@@ -14,16 +17,19 @@ namespace SnekTech.Core.GameEvent
         [SerializeField]
         private string description;
 
-        protected bool IsActive = true;
-
-        public void Emit(PlayerState playerState)
+        public void Trigger(PlayerState playerState)
         {
-            OnEmit(playerState);
+            OnTrigger(playerState);
         }
 
-        protected virtual void OnEmit(PlayerState playerState)
+        protected virtual void OnTrigger(PlayerState playerState)
         {
             
+        }
+
+        protected void InvokeCompleted()
+        {
+            Completed?.Invoke();
         }
     }
 }

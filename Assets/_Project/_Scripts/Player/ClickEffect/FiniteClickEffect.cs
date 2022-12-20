@@ -4,8 +4,12 @@ namespace SnekTech.Player.ClickEffect
 {
     public class FiniteClickEffect : IClickEffect
     {
+        public event Action Completed;
+
         private int _repeatTime;
         private readonly IClickEffect _decoratedClickEffect;
+
+        public bool IsActive => IsValidRepeatTime(_repeatTime);
         
         public FiniteClickEffect(int repeatTime, IClickEffect decoratedClickEffect)
         {
@@ -29,7 +33,7 @@ namespace SnekTech.Player.ClickEffect
 
             if (!IsValidRepeatTime(_repeatTime))
             {
-                playerState.RemoveClickEffect(this);
+                Completed?.Invoke();
             }
         }
 

@@ -8,6 +8,8 @@ namespace SnekTech.SceneManagement
     [CreateAssetMenu(menuName = nameof(MySceneManager))]
     public class MySceneManager : ScriptableObject
     {
+        public event Action GameSceneLoaded;
+        
         private SceneIndex _currentScene = SceneIndex.Root;
         private GameObject _loadingScreen;
 
@@ -22,6 +24,12 @@ namespace SnekTech.SceneManagement
                 await UnloadSceneAsync(_currentScene);
             }
             await SceneManager.LoadSceneAsync((int) sceneIndex, LoadSceneMode.Additive);
+
+            if (sceneIndex == SceneIndex.Game)
+            {
+                // main game entry point
+                GameSceneLoaded?.Invoke();
+            }
             
             _currentScene = sceneIndex;
             HideLoading();

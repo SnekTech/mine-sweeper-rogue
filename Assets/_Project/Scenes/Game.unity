@@ -3062,6 +3062,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1702819272}
   - component: {fileID: 1702819273}
+  - component: {fileID: 1702819274}
   m_Layer: 0
   m_Name: Judge
   m_TagString: Untagged
@@ -3097,13 +3098,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
-  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
-  gameHistory: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}
+  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  grid: {fileID: 58783576}
+  gridData: {fileID: 11400000, guid: ce10669f59fff5e4baa36174691c6b0c, type: 2}
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   chooseItemPanelPrefab: {fileID: 2048121283351070288, guid: 3677107efcdfc664ab744f23447f0e30, type: 3}
   countDownText: {fileID: 445048134}
+--- !u!114 &1702819274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702819271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67b90fee508e486cae79410cca61a322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  history: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}
+  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
 --- !u!1001 &1703574933
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,35 +13,44 @@ using UnityEngine;
 
 namespace SnekTech.Core
 {
+    [RequireComponent(typeof(RecordHolder))]
     public class Judge : MonoBehaviour
     {
+        [Header("DI")]
         [SerializeField]
         private GridEventManager gridEventManager;
         [SerializeField]
-        private PlayerState playerState;
-        [SerializeField]
         private MySceneManager mySceneManager;
-
         [SerializeField]
-        private GameHistory gameHistory;
+        private PlayerState playerState;
 
+        [Header("Levels")]
+        [SerializeField]
+        private GridBehaviour grid;
+        [SerializeField]
+        private GridData gridData; // todo: replace with level data
+
+        [Header("Choose Item")]
         [SerializeField]
         private ModalManager modalManager;
         [SerializeField]
         private UIEventManager uiEventManager;
-
         [SerializeField]
         private ChooseItemPanel chooseItemPanelPrefab;
         
+        [Header("Game Mode")]
         [SerializeField]
         private CountDownText countDownText;
         
         private GameMode _currentGameMode;
 
         private List<GameMode> _availableGameModes;
+        private RecordHolder _recordHolder;
 
         private void Awake()
         {
+            _recordHolder = GetComponent<RecordHolder>();
+            
             var classicMode = new ClassicMode(gridEventManager, playerState);
             var countDownMode = new WithCountDown(classicMode, Constants.GameConstants.DefaultCountDownDuration, countDownText);
             
@@ -55,12 +64,12 @@ namespace SnekTech.Core
 
         private void OnEnable()
         {
-            gridEventManager.GridInitCompleted += OnGridInitCompleted;
+            mySceneManager.GameSceneLoaded += OnGameSceneLoaded;
         }
 
         private void OnDisable()
         {
-            gridEventManager.GridInitCompleted -= OnGridInitCompleted;
+            mySceneManager.GameSceneLoaded -= OnGameSceneLoaded;
         }
         
         private void StartGame()
@@ -74,7 +83,7 @@ namespace SnekTech.Core
             _currentGameMode.Stop();
             _currentGameMode.LevelCompleted -= OnLevelCompleted;
             
-            StoreCurrentRecord();
+            _recordHolder.StoreCurrentRecord(hasFailed);
             
             if (hasFailed)
             {
@@ -100,14 +109,19 @@ namespace SnekTech.Core
             }
         }
 
-        private void OnGridInitCompleted(IGrid obj)
+        private void OnGameSceneLoaded()
         {
             _currentGameMode = ChooseGameMode();
+            _recordHolder.Init();
+            
+            grid.InitCells(gridData);
+            
             StartGame();
         }
 
         private void OnLevelCompleted(bool hasFailed)
         {
+            // bug: level completion shouldn't stop game, if there are levels remaining
             StopGame(hasFailed).Forget();
         }
 
@@ -115,12 +129,6 @@ namespace SnekTech.Core
         {
             // todo: random set game mode?
             return _availableGameModes[0];
-        }
-
-        private void StoreCurrentRecord()
-        {
-            playerState.CurrentRecord.SetCreatedAt(DateTime.UtcNow.Ticks);
-            gameHistory.AddRecord(playerState.CurrentRecord);
         }
     }
 }

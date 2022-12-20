@@ -1,5 +1,5 @@
 ﻿using System;
-using SnekTech.Player;
+using SnekTech.Grid;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
@@ -7,24 +7,36 @@ namespace SnekTech.Core.GameEvent
     [Serializable]
     public class CellEvent
     {
-        // todo: more cell event meta data
-        [SerializeField]
-        private string emittedLevel = "default level";
-
         [SerializeField]
         private CellEventData cellEventData;
+
+        [SerializeField]
+        private bool isActive = true;
+
+        [SerializeField]
+        private GridIndex gridIndex;
+
+        [SerializeField]
+        private int levelIndex;
         
-        public CellEvent(CellEventData cellEventData)
+        public CellEventData CellEventData => cellEventData;
+        public bool IsActive => isActive;
+        public int LevelIndex => levelIndex;
+        public GridIndex GridIndex => gridIndex;
+        
+        public CellEvent(CellEventData cellEventData, GridIndex gridIndex, int levelIndex)
         {
+            this.gridIndex = gridIndex;
+            this.levelIndex = levelIndex;
             this.cellEventData = cellEventData;
+
+            this.cellEventData.Completed += OnCellEventCompleted;
         }
 
-        public void Emit(PlayerState playerState)
+        private void OnCellEventCompleted()
         {
-            cellEventData.Emit(playerState);
+            isActive = false;
+            cellEventData.Completed -= OnCellEventCompleted;
         }
-
-        // todo: make use of cell event meta data, use tooltip to display active events
-        public string EmittedLevel => emittedLevel;
     }
 }

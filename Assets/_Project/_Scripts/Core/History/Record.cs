@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SnekTech.Core.GameEvent;
-using SnekTech.Player;
+using SnekTech.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.Core.History
@@ -9,20 +9,22 @@ namespace SnekTech.Core.History
     [Serializable]
     public class Record : IComparable<Record>
     {
-        [SerializeField]
-        private List<CellEvent> cellEvents = new List<CellEvent>();
 
         [SerializeField]
         private long createdAt;
+        [SerializeField]
+        private bool hasFailed;
 
-        private PlayerState _playerState;
+        [SerializeField]
+        private List<InventoryItem> items;
+        [SerializeField]
+        private List<CellEvent> cellEvents;
 
+
+        public long CreatedAt => createdAt;
+        public bool HasFailed => hasFailed;
+        public List<InventoryItem> Items => items;
         public List<CellEvent> CellEvents => cellEvents;
-
-        public Record(PlayerState playerState)
-        {
-            _playerState = playerState;
-        }
 
         public int CompareTo(Record other)
         {
@@ -35,10 +37,19 @@ namespace SnekTech.Core.History
             createdAt = ticks;
         }
 
-        public void AddCellEvent(CellEvent cellEvent)
+        public void SetItems(in List<InventoryItem> itemsIn)
         {
-            cellEvent.Emit(_playerState);
-            cellEvents.Add(cellEvent);
+            items = itemsIn;
+        }
+
+        public void SetCellEvents(in List<CellEvent> cellEventsIn)
+        {
+            cellEvents = cellEventsIn;
+        }
+
+        public void SetResult(bool hasFailedIn)
+        {
+            hasFailed = hasFailedIn;
         }
     }
 }

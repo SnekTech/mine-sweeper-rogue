@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SnekTech.Constants;
+using SnekTech.Core.GameEvent;
 using SnekTech.InventorySystem;
 
 namespace SnekTech.Player
@@ -13,6 +14,7 @@ namespace SnekTech.Player
         public int itemChoiceCount;
         
         public List<InventoryItem> items;
+        public List<CellEvent> cellEvents;
 
         public PlayerData()
         {
@@ -21,6 +23,7 @@ namespace SnekTech.Player
             itemChoiceCount = GameConstants.InitialItemChoiceCount;
             
             items = new List<InventoryItem>();
+            cellEvents = new List<CellEvent>();
         }
 
         public PlayerData(PlayerData other)
@@ -29,6 +32,7 @@ namespace SnekTech.Player
             sweepScope = other.sweepScope;
             itemChoiceCount = other.itemChoiceCount;
             items = new List<InventoryItem>(other.items);
+            cellEvents = new List<CellEvent>(other.cellEvents);
         }
     }
 }

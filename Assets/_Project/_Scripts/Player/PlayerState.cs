@@ -6,11 +6,9 @@ using SnekTech.GridCell;
 using SnekTech.InventorySystem;
 using SnekTech.Constants;
 using SnekTech.Core.GameEvent;
-using SnekTech.Core.History;
 using SnekTech.DataPersistence;
 using SnekTech.Player.ClickEffect;
 using SnekTech.Player.PlayerDataAccumulator;
-using SnekTech.Roguelike;
 using UnityEngine;
 
 namespace SnekTech.Player
@@ -30,13 +28,14 @@ namespace SnekTech.Player
         private GridEventManager gridEventManager;
 
         [SerializeField]
-        private CellEventPool cellEventPool;
+        private Inventory inventory;
 
         [SerializeField]
-        private Inventory inventory;
+        private GameEventHolder gameEventHolder;
 
 
         public Inventory Inventory => inventory;
+        public GameEventHolder GameEventHolder => gameEventHolder;
 
         public int SweepScope => _calculatedPlayerData.sweepScope;
         public int DamagePerBomb => _calculatedPlayerData.damagePerBomb;
@@ -46,17 +45,10 @@ namespace SnekTech.Player
         public int MaxHealth => _healthArmour.MaxHealth;
         public int Armour => _healthArmour.Armour;
 
-        public Record CurrentRecord => _currentRecord;
-
 
         private PlayerData _basicPlayerData;
         private PlayerData _calculatedPlayerData;
         private readonly HealthArmour _healthArmour = HealthArmour.Default;
-        private Record _currentRecord;
-
-        // todo: deal with magic number
-        // todo: set to zero for debug, remove later
-        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 0f);
 
         private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
         private readonly List<IClickEffect> _clickEffects = new List<IClickEffect>();
@@ -64,7 +56,6 @@ namespace SnekTech.Player
         private void OnEnable()
         {
             gridEventManager.BombRevealed += OnBombRevealed;
-            gridEventManager.CellRevealOperated += OnCellRevealOperated;
             _healthArmour.HealthRanOut += OnHealthRanOut;
         }
 
@@ -72,7 +63,6 @@ namespace SnekTech.Player
         private void OnDisable()
         {
             gridEventManager.BombRevealed -= OnBombRevealed;
-            gridEventManager.CellRevealOperated -= OnCellRevealOperated;
             _healthArmour.HealthRanOut -= OnHealthRanOut;
         }
 
@@ -84,14 +74,6 @@ namespace SnekTech.Player
         private void OnBombRevealed(IGrid grid, ICell cell)
         {
             TakeDamage(DamagePerBomb);
-        }
-
-        private void OnCellRevealOperated()
-        {
-            if (_cellEventGenerator.Next())
-            {
-                _currentRecord.AddCellEvent(new CellEvent(cellEventPool.GetRandom()));
-            }
         }
         
         public void TakeDamage(int damage)
@@ -130,17 +112,19 @@ namespace SnekTech.Player
             _basicPlayerData = gameData.playerData;
             _healthArmour.ResetWith(gameData.healthArmour);
 
-            _currentRecord = new Record(this);
             _playerDataAccumulators.Clear();
             _clickEffects.Clear();
             
             inventory.Load(_basicPlayerData.items);
             CalculatePlayerData();
+            
+            gameEventHolder.Load(gameData.playerData);
         }
 
         public void SaveData(GameData gameData)
         {
             _basicPlayerData.items = inventory.Items;
+            _basicPlayerData.cellEvents = gameEventHolder.CellEvents;
             
             gameData.playerData = _basicPlayerData;
             gameData.healthArmour = _healthArmour;
@@ -181,13 +165,10 @@ namespace SnekTech.Player
             _clickEffects.Add(clickEffect);
         }
 
-        public void RemoveClickEffect(IClickEffect clickEffect)
-        {
-            _clickEffects.Remove(clickEffect);
-        }
-
         public void TriggerAllClickEffects()
         {
+            _clickEffects.RemoveAll(clickEffect => !clickEffect.IsActive);
+
             foreach (IClickEffect clickEffect in _clickEffects)
             {
                 clickEffect.Take(this);
