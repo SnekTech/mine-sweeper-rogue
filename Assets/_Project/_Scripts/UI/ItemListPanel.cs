@@ -13,6 +13,9 @@ namespace SnekTech.UI
         [SerializeField]
         private ItemSlot itemSlotPrefab;
 
+        [SerializeField]
+        private RectTransform gridParentTransform;
+
         private void Awake()
         {
             RefreshPanel(inventory.Items);
@@ -28,27 +31,18 @@ namespace SnekTech.UI
             inventory.ItemsChanged -= HandleInventoryItemsChanged;
         }
 
-        private void DestroyAllChildren()
+        private void DestroyAllItemSlots()
         {
-            var children = new List<GameObject>();
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                children.Add(transform.GetChild(i).gameObject);
-            }
-
-            foreach (GameObject child in children)
-            {
-                DestroyImmediate(child);
-            }
+            gridParentTransform.DestroyAllChildren();
         }
         
         private void RefreshPanel(List<InventoryItem> items)
         {
-            DestroyAllChildren();
+            DestroyAllItemSlots();
             
             foreach (InventoryItem item in items)
             {
-                ItemSlot itemSlot = Instantiate(itemSlotPrefab, transform);
+                ItemSlot itemSlot = Instantiate(itemSlotPrefab, gridParentTransform);
                 itemSlot.SetContent(item);
             }
         }
