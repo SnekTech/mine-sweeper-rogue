@@ -17,6 +17,7 @@ namespace SnekTech.GridCell
         private ICellBrain _cellBrain;
 
         private SpriteRenderer _spriteRenderer;
+        private GridIndex _gridIndex;
         
         public bool HasBomb { get; set; }
         
@@ -25,6 +26,12 @@ namespace SnekTech.GridCell
         public bool IsFlagged => _cellBrain.IsFlagged;
         public bool IsCovered => _cellBrain.IsCovered;
         public bool IsRevealed => _cellBrain.IsRevealed;
+        
+        public GridIndex GridIndex
+        {
+            get => _gridIndex;
+            set => _gridIndex = value;
+        }
 
 
         private void Awake()

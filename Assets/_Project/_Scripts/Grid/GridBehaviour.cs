@@ -131,7 +131,7 @@ namespace SnekTech.Grid
 
             await Task.WhenAll(revealCellTasks);
 
-            gridEventManager.InvokeCellRevealOperated();
+            gridEventManager.InvokeCellRevealOperated(cell);
 
             if (IsAllCleared)
             {
@@ -287,6 +287,7 @@ namespace SnekTech.Grid
                     CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
                     ICell cell = cellMono;
                     var cellIndex = new GridIndex(i, j);
+                    cell.GridIndex = cellIndex;
                     cell.SetPosition(cellIndex);
 
                     bool hasBomb = _bombGenerator.Next();

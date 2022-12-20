@@ -6,6 +6,7 @@ namespace SnekTech.GridCell
 {
     public interface ICell
     {
+        GridIndex GridIndex { get; set; }
         IFlag Flag { get; }
         ICover Cover { get; }
         void Reset();

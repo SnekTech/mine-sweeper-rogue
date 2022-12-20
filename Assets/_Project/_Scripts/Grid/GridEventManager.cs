@@ -13,7 +13,7 @@ namespace SnekTech.Grid
         public event Action<IGrid> EmptyCellRevealed;
         public event Action<IGrid> CellFlagOperated;
         public event Action<IGrid> GridCleared;
-        public event Action CellRevealOperated; // triggers when a batch of recursive revealing operations complete
+        public event Action<ICell> CellRevealOperated; // triggers when a batch of recursive revealing operations complete
 
         public void InvokeGridInitCompleted(IGrid grid)
         {
@@ -40,9 +40,9 @@ namespace SnekTech.Grid
             CellFlagOperated?.Invoke(grid);
         }
 
-        public void InvokeCellRevealOperated()
+        public void InvokeCellRevealOperated(ICell cell)
         {
-            CellRevealOperated?.Invoke();
+            CellRevealOperated?.Invoke(cell);
         }
     }
 }
