@@ -3136,8 +3136,9 @@ MonoBehaviour:
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  dataPersistenceManager: {fileID: 11400000, guid: 2dc096a99b8076e4b8663f6d96b75a40, type: 2}
   grid: {fileID: 58783576}
-  gridData: {fileID: 11400000, guid: ce10669f59fff5e4baa36174691c6b0c, type: 2}
+  gridDataPool: {fileID: 11400000, guid: eab62f1ab063e254b95672bcbeb7e7a2, type: 2}
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   chooseItemPanelPrefab: {fileID: 2048121283351070288, guid: 3677107efcdfc664ab744f23447f0e30, type: 3}

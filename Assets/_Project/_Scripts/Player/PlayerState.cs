@@ -112,9 +112,8 @@ namespace SnekTech.Player
             _basicPlayerData = gameData.playerData;
             _healthArmour.ResetWith(gameData.healthArmour);
 
-            _playerDataAccumulators.Clear();
-            _clickEffects.Clear();
-            
+            ClearAllEffects();
+
             inventory.Load(_basicPlayerData.items);
             CalculatePlayerData();
             
@@ -173,6 +172,12 @@ namespace SnekTech.Player
             {
                 clickEffect.Take(this);
             }
+        }
+
+        private void ClearAllEffects()
+        {
+            _playerDataAccumulators.Clear();
+            _clickEffects.Clear();
         }
     }
 }

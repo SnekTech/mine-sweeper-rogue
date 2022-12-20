@@ -1626,7 +1626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3dc7849fa77470ead5e2fe75b9ba4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataPersistenceManager: {fileID: 11400000, guid: 2dc096a99b8076e4b8663f6d96b75a40, type: 2}
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
   loadingScreen: {fileID: 1400686898}
   tooltipManager: {fileID: 11400000, guid: d608049128ae8804ba070154b4301c9f, type: 2}

@@ -8,9 +8,6 @@ namespace SnekTech.Core
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField]
-        private DataPersistenceManager dataPersistenceManager;
-
         [Header("Scene")]
         [SerializeField]
         private MySceneManager mySceneManager;
@@ -36,11 +33,6 @@ namespace SnekTech.Core
             tooltipManager.Init(tooltip);
             modalManager.Init(modal);
             await mySceneManager.LoadSceneAsync(SceneIndex.MainMenu);
-        }
-        
-        private void OnApplicationQuit()
-        {
-            dataPersistenceManager.SaveGame();
         }
     }
 }

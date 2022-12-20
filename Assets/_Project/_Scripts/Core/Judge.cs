@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SnekTech.Core.History;
+using SnekTech.DataPersistence;
 using SnekTech.Grid;
 using SnekTech.InventorySystem;
 using SnekTech.Player;
@@ -23,12 +23,14 @@ namespace SnekTech.Core
         private MySceneManager mySceneManager;
         [SerializeField]
         private PlayerState playerState;
+        [SerializeField]
+        private DataPersistenceManager dataPersistenceManager;
 
         [Header("Levels")]
         [SerializeField]
         private GridBehaviour grid;
         [SerializeField]
-        private GridData gridData; // todo: replace with level data
+        private GridDataPool gridDataPool;
 
         [Header("Choose Item")]
         [SerializeField]
@@ -46,6 +48,11 @@ namespace SnekTech.Core
 
         private List<GameMode> _availableGameModes;
         private RecordHolder _recordHolder;
+
+
+        private const int LevelCount = 3;
+        private int _currentLevelIndex;
+        private List<Level> _levels;
 
         private void Awake()
         {
@@ -71,17 +78,30 @@ namespace SnekTech.Core
         {
             mySceneManager.GameSceneLoaded -= OnGameSceneLoaded;
         }
-        
-        private void StartGame()
+
+        private void OnGameSceneLoaded()
         {
+            _recordHolder.Init();
+            GenerateLevels();
+
+            _currentLevelIndex = 0;
+            LoadLevel(_currentLevelIndex);
+        }
+        
+        private void LoadLevel(int levelIndex)
+        {
+            dataPersistenceManager.SaveGame();
+            
+            Level currentLevel = _levels[levelIndex];
+            grid.InitCells(currentLevel.GridData);
+            _currentGameMode = currentLevel.GameMode;
+            
             _currentGameMode.Start();
             _currentGameMode.LevelCompleted += OnLevelCompleted;
         }
 
         private async UniTaskVoid StopGame(bool hasFailed)
         {
-            _currentGameMode.Stop();
-            _currentGameMode.LevelCompleted -= OnLevelCompleted;
             
             _recordHolder.StoreCurrentRecord(hasFailed);
             
@@ -91,6 +111,26 @@ namespace SnekTech.Core
             }
             else
             {
+                // todo: load winning scene
+                Debug.Log("You won!");
+            }
+        }
+
+        private async void OnLevelCompleted(bool hasFailed)
+        {
+            _currentLevelIndex++;
+            dataPersistenceManager.SaveGame();
+            
+            _currentGameMode.Stop();
+            _currentGameMode.LevelCompleted -= OnLevelCompleted;
+
+            if (hasFailed || _currentLevelIndex >= LevelCount)
+            {
+                StopGame(hasFailed).Forget();
+            }
+            else
+            {
+                
                 ChooseItemPanel chooseItemPanel = Instantiate(chooseItemPanelPrefab);
 
                 await modalManager.Show(new ModalContent(ChooseItemPanel.HeaderText, chooseItemPanel.gameObject));
@@ -101,28 +141,20 @@ namespace SnekTech.Core
                     await modalManager.Hide();
                     uiEventManager.ItemChosen -= OnItemPicked;
                     
-                    // todo: load next level
-                    Debug.Log("time to load next level");
+                    LoadLevel(_currentLevelIndex);
                 }
 
                 uiEventManager.ItemChosen += OnItemPicked;
             }
         }
 
-        private void OnGameSceneLoaded()
+        private void GenerateLevels()
         {
-            _currentGameMode = ChooseGameMode();
-            _recordHolder.Init();
-            
-            grid.InitCells(gridData);
-            
-            StartGame();
-        }
-
-        private void OnLevelCompleted(bool hasFailed)
-        {
-            // bug: level completion shouldn't stop game, if there are levels remaining
-            StopGame(hasFailed).Forget();
+            _levels = new List<Level>(LevelCount);
+            for (int i = 0; i < LevelCount; i++)
+            {
+                _levels.Add(new Level(gridDataPool.GetRandom(), ChooseGameMode()));
+            }
         }
 
         private GameMode ChooseGameMode()
