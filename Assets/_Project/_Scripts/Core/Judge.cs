@@ -158,7 +158,7 @@ namespace SnekTech.Core
             _levels = new List<Level>(LevelCount);
             for (int i = 0; i < LevelCount; i++)
             {
-                _levels.Add(new Level(gridDataPool.GetRandom(), ChooseGameMode()));
+                _levels.Add(new Level(gridDataPool.GetRandom(), ChooseGameMode(), i));
             }
         }
 
