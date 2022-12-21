@@ -1,7 +1,7 @@
 ﻿using SnekTech.Grid;
 using SnekTech.Player;
 
-namespace SnekTech.Core
+namespace SnekTech.Core.GameModeSystem
 {
     public class ClassicMode : GameMode
     {

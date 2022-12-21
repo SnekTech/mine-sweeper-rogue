@@ -1,10 +1,33 @@
-﻿
-using System;
+﻿using System;
+using System.Globalization;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
-namespace SnekTech.Core
+namespace SnekTech.Core.GameModeSystem
 {
+    public class CountDownText : MonoBehaviour, ICountDownDisplay
+    {
+        [SerializeField]
+        private TMP_Text text;
+
+        public void UpdateDurationRemaining(float durationRemaining)
+        {
+            text.text = durationRemaining.ToString("F1", CultureInfo.InvariantCulture);
+        }
+
+        public void SetActive(bool isActive)
+        {
+            text.gameObject.SetActive(isActive);
+        }
+    }
+    
+    public interface ICountDownDisplay
+    {
+        void UpdateDurationRemaining(float durationRemaining);
+        void SetActive(bool isActive);
+    }
+    
     public class WithCountDown : GameMode
     {
         private const float CountDownIntervalSeconds = 0.1f;

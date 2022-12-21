@@ -1,10 +1,11 @@
 ﻿using System;
 using SnekTech.Player;
 
-namespace SnekTech.Core
+namespace SnekTech.Core.GameModeSystem
 {
     public abstract class GameMode
     {
+        // todo: add name property, convert to SO
         public event Action<bool> LevelCompleted;
 
         public readonly PlayerState PlayerState;
