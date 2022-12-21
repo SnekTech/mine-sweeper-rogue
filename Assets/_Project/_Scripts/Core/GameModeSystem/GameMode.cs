@@ -8,11 +8,16 @@ namespace SnekTech.Core.GameModeSystem
         // todo: add name property, convert to SO
         public event Action<bool> LevelCompleted;
 
-        public readonly PlayerState PlayerState;
+        private readonly GameModeInfo _gameModeInfo;
+        private readonly PlayerState _playerState;
 
-        protected GameMode(PlayerState playerState)
+        public GameModeInfo Info => _gameModeInfo;
+        public PlayerState PlayerState => _playerState;
+
+        protected GameMode(GameModeInfo gameModeInfo, PlayerState playerState)
         {
-            PlayerState = playerState;
+            _gameModeInfo = gameModeInfo;
+            _playerState = playerState;
         }
 
         public void Start()

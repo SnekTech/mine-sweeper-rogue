@@ -40,8 +40,12 @@ namespace SnekTech.Core
         private UIEventManager uiEventManager;
         [SerializeField]
         private ChooseItemPanel chooseItemPanelPrefab;
-        
+
         [Header("Game Mode")]
+        [SerializeField]
+        private GameModeInfo classicModeInfo;
+        [SerializeField]
+        private GameModeInfo countDownModeInfo;
         [SerializeField]
         private CountDownText countDownText;
         
@@ -59,8 +63,8 @@ namespace SnekTech.Core
         {
             _recordHolder = GetComponent<RecordHolder>();
             
-            var classicMode = new ClassicMode(gridEventManager, playerState);
-            var countDownMode = new WithCountDown(classicMode, Constants.GameConstants.DefaultCountDownDuration, countDownText);
+            var classicMode = new ClassicMode(gridEventManager, classicModeInfo, playerState);
+            var countDownMode = new WithCountDown(countDownModeInfo, classicMode, WithCountDown.DefaultDuration, countDownText);
             
             _availableGameModes = new List<GameMode>
             {

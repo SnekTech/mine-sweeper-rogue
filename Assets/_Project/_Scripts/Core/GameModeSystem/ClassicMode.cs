@@ -7,8 +7,8 @@ namespace SnekTech.Core.GameModeSystem
     {
         private readonly GridEventManager _gridEventManager;
 
-        public ClassicMode(GridEventManager gridEventManager, PlayerState playerState)
-            : base(playerState)
+        public ClassicMode(GridEventManager gridEventManager, GameModeInfo gameModeInfo, PlayerState playerState)
+            : base(gameModeInfo, playerState)
         {
             _gridEventManager = gridEventManager;
         }

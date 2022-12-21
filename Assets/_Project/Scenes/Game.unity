@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 445048132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 555471e9a0fd4f56981c2cdce0050fac, type: 3}
+  m_Script: {fileID: 11500000, guid: 04acc393bdd84cdf92dbaf7839f70a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 465840660}
@@ -3142,6 +3142,8 @@ MonoBehaviour:
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   chooseItemPanelPrefab: {fileID: 2048121283351070288, guid: 3677107efcdfc664ab744f23447f0e30, type: 3}
+  classicModeInfo: {fileID: 11400000, guid: 11134928df80cfd4b9dbbf3997312b44, type: 2}
+  countDownModeInfo: {fileID: 11400000, guid: 3c87a5a35575713408fa3c3f389d4241, type: 2}
   countDownText: {fileID: 445048134}
 --- !u!114 &1702819274
 MonoBehaviour:

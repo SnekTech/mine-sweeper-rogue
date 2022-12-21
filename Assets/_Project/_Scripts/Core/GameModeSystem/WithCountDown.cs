@@ -6,22 +6,6 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameModeSystem
 {
-    public class CountDownText : MonoBehaviour, ICountDownDisplay
-    {
-        [SerializeField]
-        private TMP_Text text;
-
-        public void UpdateDurationRemaining(float durationRemaining)
-        {
-            text.text = durationRemaining.ToString("F1", CultureInfo.InvariantCulture);
-        }
-
-        public void SetActive(bool isActive)
-        {
-            text.gameObject.SetActive(isActive);
-        }
-    }
-    
     public interface ICountDownDisplay
     {
         void UpdateDurationRemaining(float durationRemaining);
@@ -31,12 +15,14 @@ namespace SnekTech.Core.GameModeSystem
     public class WithCountDown : GameMode
     {
         private const float CountDownIntervalSeconds = 0.1f;
+        public const float DefaultDuration = 3f;// todo: randomize this across different levels
         
         private float _durationSeconds;
         private readonly GameMode _decoratedMode;
         private readonly ICountDownDisplay _countDownDisplay;
 
-        public WithCountDown(GameMode decoratedMode, float durationSeconds, ICountDownDisplay countDownDisplay = null) : base(decoratedMode.PlayerState)
+        public WithCountDown(GameModeInfo gameModeInfo, GameMode decoratedMode, float durationSeconds,
+            ICountDownDisplay countDownDisplay = null) : base(gameModeInfo, decoratedMode.PlayerState)
         {
             _decoratedMode = decoratedMode;
             _durationSeconds = durationSeconds;
