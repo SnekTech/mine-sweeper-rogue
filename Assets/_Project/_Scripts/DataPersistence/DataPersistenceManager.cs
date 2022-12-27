@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SnekTech.Core.History;
 using SnekTech.Player;
 using UnityEngine;
@@ -27,6 +26,7 @@ namespace SnekTech.DataPersistence
 
         private List<IPersistentDataHolder> PersistentDataHolders => new List<IPersistentDataHolder>
         {
+            // todo: separate save&load of player state & history
             playerState,
             gameHistory,
         };
@@ -34,6 +34,7 @@ namespace SnekTech.DataPersistence
         private void OnEnable()
         {
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            LoadGame();
         }
 
         public void NewGame()

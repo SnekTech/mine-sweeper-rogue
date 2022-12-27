@@ -109,6 +109,7 @@ namespace SnekTech.Core
         {
             
             _recordHolder.StoreCurrentRecord(hasFailed);
+            dataPersistenceManager.SaveGame();
             
             if (hasFailed)
             {

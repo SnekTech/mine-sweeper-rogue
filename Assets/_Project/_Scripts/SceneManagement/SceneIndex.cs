@@ -6,5 +6,6 @@
         MainMenu,
         Game,
         GameOver,
+        History,
     }
 }

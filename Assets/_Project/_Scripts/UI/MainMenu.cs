@@ -1,9 +1,7 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using SnekTech.DataPersistence;
 using SnekTech.SceneManagement;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 namespace SnekTech.UI
@@ -22,6 +20,9 @@ namespace SnekTech.UI
         [SerializeField]
         private Button continueButton;
 
+        [SerializeField]
+        private Button historyButton;
+
         private void Awake()
         {
             if (!dataPersistenceManager.HasSavedGameData)
@@ -34,29 +35,36 @@ namespace SnekTech.UI
         {
             newGameButton.onClick.AddListener(OnNewGameButtonClicked);
             continueButton.onClick.AddListener(OnContinueButtonClicked);
+            historyButton.onClick.AddListener(LoadHistorySceneAsync);
         }
 
         private void OnDisable()
         {
             newGameButton.onClick.RemoveAllListeners();
-            newGameButton.onClick.RemoveAllListeners();
+            continueButton.onClick.RemoveAllListeners();
+            historyButton.onClick.RemoveAllListeners();
         }
 
-        private async void OnNewGameButtonClicked()
+        private void OnNewGameButtonClicked()
         {
             dataPersistenceManager.NewGame();
-            await LoadGameSceneAsync();
+            LoadGameSceneAsync();
         }
 
-        private async void OnContinueButtonClicked()
+        private void OnContinueButtonClicked()
         {
-            await LoadGameSceneAsync();
+            LoadGameSceneAsync();
         }
 
-        private async UniTask LoadGameSceneAsync()
+        private void LoadGameSceneAsync()
         {
             dataPersistenceManager.LoadGame();
-            await mySceneManager.LoadSceneAsync(SceneIndex.Game);
+            mySceneManager.LoadSceneAsync(SceneIndex.Game).Forget();
+        }
+
+        private void LoadHistorySceneAsync()
+        {
+            mySceneManager.LoadSceneAsync(SceneIndex.History).Forget();
         }
     }
 }
