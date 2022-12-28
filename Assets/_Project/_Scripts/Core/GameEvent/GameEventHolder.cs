@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SnekTech.DataPersistence;
 using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.Player;
@@ -8,7 +9,7 @@ using UnityEngine;
 namespace SnekTech.Core.GameEvent
 {
     [CreateAssetMenu]
-    public class GameEventHolder : ScriptableObject
+    public class GameEventHolder : ScriptableObject, IPersistentDataHolder
     {
         [SerializeField]
         private PlayerState playerState;
@@ -25,7 +26,7 @@ namespace SnekTech.Core.GameEvent
 
         // todo: deal with magic number
         // todo: set to zero for debug, remove later
-        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 0f);
+        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 1f);
 
         private void OnEnable()
         {
@@ -48,15 +49,15 @@ namespace SnekTech.Core.GameEvent
             }
         }
 
-        public void Load(PlayerData playerData)
+        public void LoadData(GameData gameData)
         {
-            List<CellEvent> savedEvents = playerData.cellEvents;
-            _cellEvents = new List<CellEvent>();
+            List<CellEvent> savedEvents = gameData.playerData.cellEvents;
+            _cellEvents = new List<CellEvent>(savedEvents);
+        }
 
-            foreach (CellEvent savedEvent in savedEvents)
-            {
-                AddCellEvent(savedEvent);
-            }
+        public void SaveData(GameData gameData)
+        {
+            gameData.playerData.cellEvents = _cellEvents;
         }
 
         private void AddCellEvent(CellEvent cellEvent)

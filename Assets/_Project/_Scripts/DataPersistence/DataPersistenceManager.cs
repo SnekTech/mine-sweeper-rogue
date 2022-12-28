@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
 using SnekTech.Player;
 using UnityEngine;
@@ -19,6 +20,9 @@ namespace SnekTech.DataPersistence
         [SerializeField]
         private GameHistory gameHistory;
 
+        [SerializeField]
+        private GameEventHolder gameEventHolder;
+
         private GameData _gameData;
         private FileDataHandler _fileDataHandler;
 
@@ -29,6 +33,7 @@ namespace SnekTech.DataPersistence
             // todo: separate save&load of player state & history
             playerState,
             gameHistory,
+            gameEventHolder,
         };
 
         private void OnEnable()

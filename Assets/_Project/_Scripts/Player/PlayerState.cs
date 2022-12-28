@@ -5,7 +5,6 @@ using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.InventorySystem;
 using SnekTech.Constants;
-using SnekTech.Core.GameEvent;
 using SnekTech.DataPersistence;
 using SnekTech.Player.ClickEffect;
 using SnekTech.Player.PlayerDataAccumulator;
@@ -30,12 +29,8 @@ namespace SnekTech.Player
         [SerializeField]
         private Inventory inventory;
 
-        [SerializeField]
-        private GameEventHolder gameEventHolder;
-
 
         public Inventory Inventory => inventory;
-        public GameEventHolder GameEventHolder => gameEventHolder;
 
         public int SweepScope => _calculatedPlayerData.sweepScope;
         public int DamagePerBomb => _calculatedPlayerData.damagePerBomb;
@@ -116,14 +111,11 @@ namespace SnekTech.Player
 
             inventory.Load(_basicPlayerData.items);
             CalculatePlayerData();
-            
-            gameEventHolder.Load(gameData.playerData);
         }
 
         public void SaveData(GameData gameData)
         {
             _basicPlayerData.items = inventory.Items;
-            _basicPlayerData.cellEvents = gameEventHolder.CellEvents;
             
             gameData.playerData = _basicPlayerData;
             gameData.healthArmour = _healthArmour;

@@ -1,4 +1,5 @@
 ﻿using System;
+using SnekTech.Core.GameEvent;
 using SnekTech.Player;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ namespace SnekTech.Core.History
 
         [SerializeField]
         private PlayerState playerState;
+
+        [SerializeField]
+        private GameEventHolder gameEventHolder;
         
         private Record _currentRecord;
 
@@ -23,7 +27,7 @@ namespace SnekTech.Core.History
         {
             _currentRecord.SetCreatedAt(DateTime.UtcNow.Ticks);
             _currentRecord.SetItems(playerState.Inventory.Items);
-            _currentRecord.SetCellEvents(playerState.GameEventHolder.CellEvents);
+            _currentRecord.SetCellEvents(gameEventHolder.CellEvents);
             _currentRecord.SetResult(hasFailed);
             
             history.AddRecord(_currentRecord);
