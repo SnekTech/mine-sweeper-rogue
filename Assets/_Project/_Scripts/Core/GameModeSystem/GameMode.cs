@@ -5,7 +5,6 @@ namespace SnekTech.Core.GameModeSystem
 {
     public abstract class GameMode
     {
-        // todo: add name property, convert to SO
         public event Action<bool> LevelCompleted;
 
         private readonly GameModeInfo _gameModeInfo;

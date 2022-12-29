@@ -2,8 +2,6 @@
 {
     public class AdjustMaxHealthEffect : IOneTimeEffect
     {
-        // bug: when loading from disk, the item maybe activated
-        // again, but max health is also loaded, conflict
         private readonly int _amount;
         private readonly IOneTimeEffect _decoratedEffect;
 

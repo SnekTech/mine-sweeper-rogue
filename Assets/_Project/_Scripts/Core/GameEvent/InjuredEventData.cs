@@ -13,7 +13,6 @@ namespace SnekTech.Core.GameEvent
         [SerializeField]
         private int singleDamage;
         
-        // todo: save & load this with remaining repeat times
         private FiniteClickEffect _takeDamageFiniteTimesEffect;
 
         protected override void OnTrigger(PlayerState playerState)
