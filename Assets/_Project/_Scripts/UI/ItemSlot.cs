@@ -1,9 +1,7 @@
-using System;
 using SnekTech.InventorySystem;
 using SnekTech.UI.Tooltip;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace SnekTech.UI

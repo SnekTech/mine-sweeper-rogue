@@ -62,10 +62,7 @@ namespace SnekTech.Core.GameEvent
 
         private void AddCellEvent(CellEvent cellEvent)
         {
-            if (cellEvent.IsActive)
-            {
-                cellEvent.CellEventData.Trigger(playerState);
-            }
+            cellEvent.CellEventData.Trigger(playerState);
             _cellEvents.Add(cellEvent);
         }
     }

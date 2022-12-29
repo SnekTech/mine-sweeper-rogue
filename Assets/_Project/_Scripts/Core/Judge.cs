@@ -125,6 +125,7 @@ namespace SnekTech.Core
         private async void OnLevelCompleted(bool hasFailed)
         {
             _currentLevelIndex++;
+            playerState.ClearAllEffects();
             dataPersistenceManager.SaveGame();
             
             _currentGameMode.Stop();

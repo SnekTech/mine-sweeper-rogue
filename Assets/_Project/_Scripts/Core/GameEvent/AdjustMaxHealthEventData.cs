@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
+    [CreateAssetMenu(menuName =
+        Constants.MenuName.GameEvents + Constants.MenuName.Slash + nameof(AdjustMaxHealthEventData))]
     public class AdjustMaxHealthEventData : CellEventData
     {
         [SerializeField]
@@ -15,7 +17,6 @@ namespace SnekTech.Core.GameEvent
         {
             _adjustMaxHealthEffect = new AdjustMaxHealthEffect(amount);
             _adjustMaxHealthEffect.Take(playerState);
-            InvokeCompleted();
         }
     }
 }

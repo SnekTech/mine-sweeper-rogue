@@ -46,7 +46,7 @@ namespace SnekTech.Player
         private readonly HealthArmour _healthArmour = HealthArmour.Default;
 
         private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
-        private readonly List<IClickEffect> _clickEffects = new List<IClickEffect>();
+        private List<IClickEffect> _clickEffects = new List<IClickEffect>();
 
         private void OnEnable()
         {
@@ -109,6 +109,7 @@ namespace SnekTech.Player
 
             ClearAllEffects();
 
+            _playerDataAccumulators.Clear();
             inventory.Load(_basicPlayerData.items);
             CalculatePlayerData();
         }
@@ -166,9 +167,8 @@ namespace SnekTech.Player
             }
         }
 
-        private void ClearAllEffects()
+        public void ClearAllEffects()
         {
-            _playerDataAccumulators.Clear();
             _clickEffects.Clear();
         }
     }

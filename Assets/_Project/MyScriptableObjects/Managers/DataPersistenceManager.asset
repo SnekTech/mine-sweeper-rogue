@@ -15,3 +15,4 @@ MonoBehaviour:
   fileName: save01.game.json
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   gameHistory: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}
+  gameEventHolder: {fileID: 11400000, guid: 1134cd3e8ca62d14d8c328c5bf15fea4, type: 2}

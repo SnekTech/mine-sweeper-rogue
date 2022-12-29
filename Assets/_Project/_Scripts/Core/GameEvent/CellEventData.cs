@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    public class CellEventData : ScriptableObject
+    public abstract class CellEventData : ScriptableObject
     {
-        public event Action Completed;
-        
         [SerializeField]
         private string label;
 
@@ -17,19 +15,15 @@ namespace SnekTech.Core.GameEvent
         [SerializeField]
         private string description;
 
+        public string Label => label;
+        public Sprite Icon => icon;
+        public string Description => description;
+
         public void Trigger(PlayerState playerState)
         {
             OnTrigger(playerState);
         }
 
-        protected virtual void OnTrigger(PlayerState playerState)
-        {
-            
-        }
-
-        protected void InvokeCompleted()
-        {
-            Completed?.Invoke();
-        }
+        protected abstract void OnTrigger(PlayerState playerState);
     }
 }

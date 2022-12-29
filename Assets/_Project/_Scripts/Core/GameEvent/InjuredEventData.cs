@@ -27,7 +27,6 @@ namespace SnekTech.Core.GameEvent
         private void OnFiniteClickEffectCompleted()
         {
             _takeDamageFiniteTimesEffect.Completed -= OnFiniteClickEffectCompleted;
-            InvokeCompleted();
         }
     }
 }
