@@ -17,6 +17,7 @@ namespace SnekTech.Core.GameEvent
         {
             _adjustMaxHealthEffect = new AdjustMaxHealthEffect(amount);
             _adjustMaxHealthEffect.Take(playerState);
+            InvokeCompleted();
         }
     }
 }

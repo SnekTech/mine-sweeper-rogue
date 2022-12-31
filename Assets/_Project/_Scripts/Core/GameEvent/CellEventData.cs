@@ -6,6 +6,8 @@ namespace SnekTech.Core.GameEvent
 {
     public abstract class CellEventData : ScriptableObject
     {
+        public event Action Completed;
+        
         [SerializeField]
         private string label;
 
@@ -25,5 +27,10 @@ namespace SnekTech.Core.GameEvent
         }
 
         protected abstract void OnTrigger(PlayerState playerState);
+
+        protected void InvokeCompleted()
+        {
+            Completed?.Invoke();
+        }
     }
 }
