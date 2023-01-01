@@ -30,7 +30,6 @@ namespace SnekTech.UI.Modal
         {
             _modal = modal;
             _alphaGroup = _modal.BackgroundGroup;
-            uiState.isBlockingRaycast = false;
         }
         
         public async UniTask Show(ModalContent modalContent)
