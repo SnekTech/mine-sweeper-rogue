@@ -18,12 +18,6 @@ namespace SnekTech.UI.ChooseItem
         [SerializeField]
         private ItemButton itemButtonPrefab;
 
-        public const string HeaderText = "Choose An Item";
-
-        private void Awake()
-        {
-            GenerateItemButtons();
-        }
 
         private void OnEnable()
         {
@@ -40,8 +34,9 @@ namespace SnekTech.UI.ChooseItem
             playerState.Inventory.AddItem(item);
         }
 
-        private void GenerateItemButtons()
+        public void GenerateItemButtons()
         {
+            transform.DestroyAllChildren();
             for (int i = 0; i < playerState.ItemChoiceCount; i++)
             {
                 ItemButton button = Instantiate(itemButtonPrefab, transform);

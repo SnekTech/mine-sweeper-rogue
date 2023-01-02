@@ -8,7 +8,6 @@ using SnekTech.InventorySystem;
 using SnekTech.Player;
 using SnekTech.SceneManagement;
 using SnekTech.UI;
-using SnekTech.UI.ChooseItem;
 using SnekTech.UI.Modal;
 using UnityEngine;
 
@@ -38,8 +37,6 @@ namespace SnekTech.Core
         private ModalManager modalManager;
         [SerializeField]
         private UIEventManager uiEventManager;
-        [SerializeField]
-        private ChooseItemPanel chooseItemPanelPrefab;
 
         [Header("Game Mode")]
         [SerializeField]
@@ -137,10 +134,7 @@ namespace SnekTech.Core
             }
             else
             {
-                
-                ChooseItemPanel chooseItemPanel = Instantiate(chooseItemPanelPrefab);
-
-                await modalManager.Show(new ModalContent(ChooseItemPanel.HeaderText, chooseItemPanel.gameObject));
+                await modalManager.ShowChooseItemPanel();
 
                 // close modal when item picked
                 async void OnItemPicked(ItemData itemData)

@@ -11,6 +11,7 @@ namespace SnekTech.UI
     {
         public event Action<GridData> ResetButtonClicked;
         public event Action<ItemData> ItemChosen;
+        public event Action ModalOk;
 
         public void InvokeResetButtonClicked(GridData gridData)
         {
@@ -20,6 +21,11 @@ namespace SnekTech.UI
         public void InvokeItemChosen(ItemData itemData)
         {
             ItemChosen?.Invoke(itemData);
+        }
+
+        public void InvokeModalOk()
+        {
+            ModalOk?.Invoke();
         }
     }
 }

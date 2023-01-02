@@ -4,6 +4,8 @@ using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.Player;
 using SnekTech.Roguelike;
+using SnekTech.UI;
+using SnekTech.UI.Modal;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
@@ -19,7 +21,13 @@ namespace SnekTech.Core.GameEvent
 
         [SerializeField]
         private CellEventPool cellEventPool;
-        
+
+        [SerializeField]
+        private ModalManager modalManager;
+
+        [SerializeField]
+        private UIEventManager uiEventManager;
+
         private List<CellEvent> _cellEvents;
 
         public List<CellEvent> CellEvents => _cellEvents;
@@ -27,6 +35,8 @@ namespace SnekTech.Core.GameEvent
         // todo: deal with magic number
         // todo: set to zero for debug, remove later
         private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 1f);
+
+        private const string EventModalHeader = "New Event Triggered";
 
         private void OnEnable()
         {
@@ -38,12 +48,21 @@ namespace SnekTech.Core.GameEvent
             gridEventManager.CellRevealOperated -= OnCellRevealOperated;
         }
 
-        private void OnCellRevealOperated(ICell cell)
+        private async void OnCellRevealOperated(ICell cell)
         {
             bool shouldTriggerEvent = _cellEventGenerator.Next();
             if (shouldTriggerEvent)
             {
                 CellEventData randomCellEventData = cellEventPool.GetRandom();
+                await modalManager.ShowConfirm(EventModalHeader, randomCellEventData.Icon, randomCellEventData.Description);
+
+                async void OnModalOk()
+                {
+                    await modalManager.Hide();
+                    uiEventManager.ModalOk -= OnModalOk;
+                }
+
+                uiEventManager.ModalOk += OnModalOk;
                 
                 AddCellEvent(new CellEvent(randomCellEventData, cell.GridIndex, 0));
             }

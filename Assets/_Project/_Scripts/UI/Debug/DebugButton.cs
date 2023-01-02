@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SnekTech.UI.PlayerStatePanel
+namespace SnekTech.UI.Debug
 {
     [RequireComponent(typeof(Button), typeof(TooltipTrigger))]
     public class DebugButton : MonoBehaviour

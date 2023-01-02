@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -31,11 +32,22 @@ namespace SnekTech.UI.Modal
             _modal = modal;
             _alphaGroup = _modal.BackgroundGroup;
         }
-        
-        public async UniTask Show(ModalContent modalContent)
+
+        public async UniTask ShowChooseItemPanel()
+        {
+            _modal.ChangeToChooseItemPanel();
+            await Show();
+        }
+
+        public async UniTask ShowConfirm(string header, Sprite image, string annotationText)
+        {
+            _modal.ChangeToConfirm(header, image, annotationText);
+            await Show();
+        }
+
+        private async UniTask Show()
         {
             uiState.isBlockingRaycast = true;
-            _modal.SetContent(modalContent);
             _alphaGroup.alpha = 0;
 
             await UniTask.WhenAll(

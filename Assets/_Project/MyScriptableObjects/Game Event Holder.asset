@@ -15,3 +15,5 @@ MonoBehaviour:
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   cellEventPool: {fileID: 11400000, guid: 478e2bc02094a384e85e7b8e7e45f7b1, type: 2}
+  modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
+  uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}

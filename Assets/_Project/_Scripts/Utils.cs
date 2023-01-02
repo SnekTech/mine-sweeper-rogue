@@ -18,11 +18,6 @@ namespace SnekTech
             }
         }
 
-        public static void DetachFromParent(this GameObject gameObject)
-        {
-            gameObject.transform.SetParent(null, true);
-        }
-
         public static bool WithinRange<T>(this T value, T min, T max) where T : IComparable<T>
         {
             if (min.CompareTo(max) > 0)
@@ -30,6 +25,11 @@ namespace SnekTech
                 throw new ArgumentException($"min[{min}] > max[{max}]");
             }
             return value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0;
+        }
+
+        public static void SetActive(this MonoBehaviour monoBehaviour, bool isActive)
+        {
+            monoBehaviour.gameObject.SetActive(isActive);
         }
     }
 
