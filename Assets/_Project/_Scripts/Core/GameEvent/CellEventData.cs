@@ -1,13 +1,12 @@
 ﻿using System;
 using SnekTech.Player;
+using SnekTech.UI;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    public abstract class CellEventData : ScriptableObject
+    public abstract class CellEventData : ScriptableObject, IHoverableIconHolder
     {
-        public event Action Completed;
-        
         [SerializeField]
         private string label;
 
@@ -27,10 +26,5 @@ namespace SnekTech.Core.GameEvent
         }
 
         protected abstract void OnTrigger(PlayerState playerState);
-
-        protected void InvokeCompleted()
-        {
-            Completed?.Invoke();
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using SnekTech.Core;
 using SnekTech.Player;
 using SnekTech.UI.Effect;
@@ -16,7 +17,10 @@ namespace SnekTech.UI.PlayerStatePanel
         private LabelController armourLabel;
 
         [SerializeField]
-        private Player.PlayerState playerState;
+        private PlayerState playerState;
+
+        [SerializeField]
+        private EffectsPanel effectsPanel;
 
         private EffectEmitter _effectEmitter;
         private RectTransform _healthRectTransform;
@@ -33,6 +37,21 @@ namespace SnekTech.UI.PlayerStatePanel
             _effectEmitter = GetComponent<EffectEmitter>();
             _healthRectTransform = healthBar.transform as RectTransform;
             _armourRectTransform = armourLabel.transform as RectTransform;
+        }
+
+        private void OnEnable()
+        {
+            playerState.ClickEffectsChanged += OnClickEffectsChanged;
+        }
+
+        private void OnDisable()
+        {
+            playerState.ClickEffectsChanged -= OnClickEffectsChanged;
+        }
+
+        private void OnClickEffectsChanged()
+        {
+            effectsPanel.UpdateClickEffects(playerState.ActiveClickEffects);
         }
 
         public void UpdateContent()

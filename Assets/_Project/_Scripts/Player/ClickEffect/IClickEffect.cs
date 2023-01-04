@@ -1,8 +1,13 @@
-﻿namespace SnekTech.Player.ClickEffect
+﻿using System;
+using SnekTech.Player.OneTimeEffect;
+using SnekTech.UI;
+
+namespace SnekTech.Player.ClickEffect
 {
-    public interface IClickEffect
+    public interface IClickEffect : IOneTimeEffect
     {
-        bool IsActive { get; }
-        void Take(PlayerState playerState);
+        event Action Changed;
+        bool IsActive { get; set; }
+        IHoverableIconHolder IconHolder { get; set; }
     }
 }

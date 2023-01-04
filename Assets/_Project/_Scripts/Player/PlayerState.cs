@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using SnekTech.GridCell;
@@ -18,6 +19,7 @@ namespace SnekTech.Player
         #region Events
 
         public event Action HealthRanOut;
+        public event Action ClickEffectsChanged;
 
         #endregion
       
@@ -46,12 +48,25 @@ namespace SnekTech.Player
         private readonly HealthArmour _healthArmour = HealthArmour.Default;
 
         private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
-        private List<IClickEffect> _clickEffects = new List<IClickEffect>();
+
+        private List<IClickEffect> ClickEffects => new List<IClickEffect>
+        {
+            LacerationEffect,
+        };
+        
+        public List<IClickEffect> ActiveClickEffects => ClickEffects.Where(effect => effect.IsActive).ToList();
+
+        public readonly LacerationEffect LacerationEffect = new LacerationEffect();
 
         private void OnEnable()
         {
             gridEventManager.BombRevealed += OnBombRevealed;
             _healthArmour.HealthRanOut += OnHealthRanOut;
+
+            foreach (IClickEffect clickEffect in ClickEffects)
+            {
+                clickEffect.Changed += OnClickEffectChanged;
+            }
         }
 
 
@@ -59,6 +74,11 @@ namespace SnekTech.Player
         {
             gridEventManager.BombRevealed -= OnBombRevealed;
             _healthArmour.HealthRanOut -= OnHealthRanOut;
+            
+            foreach (IClickEffect clickEffect in ClickEffects)
+            {
+                clickEffect.Changed -= OnClickEffectChanged;
+            }
         }
 
         private void OnHealthRanOut()
@@ -69,6 +89,11 @@ namespace SnekTech.Player
         private void OnBombRevealed(IGrid grid, ICell cell)
         {
             TakeDamage(DamagePerBomb);
+        }
+
+        private void OnClickEffectChanged()
+        {
+            ClickEffectsChanged?.Invoke();
         }
         
         public void TakeDamage(int damage)
@@ -152,24 +177,20 @@ namespace SnekTech.Player
             _healthArmour.AddDisplay(display);
         }
 
-        public void AddClickEffect(IClickEffect clickEffect)
-        {
-            _clickEffects.Add(clickEffect);
-        }
-
         public void TriggerAllClickEffects()
         {
-            _clickEffects.RemoveAll(clickEffect => !clickEffect.IsActive);
-
-            foreach (IClickEffect clickEffect in _clickEffects)
+            foreach (IClickEffect effect in ActiveClickEffects)
             {
-                clickEffect.Take(this);
+                effect.Take(this);
             }
         }
 
         public void ClearAllEffects()
         {
-            _clickEffects.Clear();
+            foreach (IClickEffect clickEffect in ClickEffects)
+            {
+                clickEffect.IsActive = false;
+            }
         }
     }
 }

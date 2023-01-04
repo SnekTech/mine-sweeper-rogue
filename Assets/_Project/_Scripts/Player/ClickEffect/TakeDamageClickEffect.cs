@@ -1,25 +1,25 @@
-﻿namespace SnekTech.Player.ClickEffect
-{
-    public class TakeDamageClickEffect : IClickEffect
-    {
-        private readonly int _damagePerClick;
-        private readonly IClickEffect _decoratedClickEffect;
-        private bool _isActive = true;
+﻿using SnekTech.Player.OneTimeEffect;
+using SnekTech.UI;
 
-        public bool IsActive => _isActive;
+namespace SnekTech.Player.ClickEffect
+{
+    public class TakeDamageClickEffect : IOneTimeEffect
+    {
+        private readonly IClickEffect _decoratedClickEffect;
+
+        public int DamagePerClick { get; set; }
 
         public TakeDamageClickEffect(int damagePerClick, IClickEffect decoratedClickEffect = null)
         {
-            _damagePerClick = damagePerClick;
+            DamagePerClick = damagePerClick;
             _decoratedClickEffect = decoratedClickEffect;
         }
         
         public void Take(PlayerState playerState)
         {
             _decoratedClickEffect?.Take(playerState);
-            _isActive = false;
             
-            playerState.TakeDamage(_damagePerClick);
+            playerState.TakeDamage(DamagePerClick);
         }
     }
 }

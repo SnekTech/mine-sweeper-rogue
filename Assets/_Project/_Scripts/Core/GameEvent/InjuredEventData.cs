@@ -12,21 +12,21 @@ namespace SnekTech.Core.GameEvent
 
         [SerializeField]
         private int singleDamage;
-        
-        private FiniteClickEffect _takeDamageFiniteTimesEffect;
 
         protected override void OnTrigger(PlayerState playerState)
         {
-            _takeDamageFiniteTimesEffect = new FiniteClickEffect(repeatTimes, new TakeDamageClickEffect(singleDamage));
-            _takeDamageFiniteTimesEffect.Completed += OnFiniteClickEffectCompleted;
-            
-            playerState.AddClickEffect(_takeDamageFiniteTimesEffect);
-        }
-
-        private void OnFiniteClickEffectCompleted()
-        {
-            _takeDamageFiniteTimesEffect.Completed -= OnFiniteClickEffectCompleted;
-            InvokeCompleted();
+            LacerationEffect lacerationEffect = playerState.LacerationEffect;
+            if (!lacerationEffect.IsActive)
+            {
+                lacerationEffect.IconHolder = this;
+                lacerationEffect.RepeatTime = repeatTimes;
+                lacerationEffect.DamagePerClick = singleDamage;
+                lacerationEffect.IsActive = true;
+            }
+            else
+            {
+                lacerationEffect.RepeatTime += repeatTimes;
+            }
         }
     }
 }
