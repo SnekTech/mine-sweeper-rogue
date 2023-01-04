@@ -18,14 +18,14 @@ namespace SnekTech.UI
         private void OnEnable()
         {
             gridEventManager.GridInitCompleted += UpdateGridData;
-            gridEventManager.EmptyCellRevealed += UpdateRemainingCoverCount;
+            gridEventManager.CellRevealed += UpdateRemainingCoverCount;
             gridEventManager.CellFlagOperated += UpdateFlaggedCellCount;
         }
 
         private void OnDisable()
         {
             gridEventManager.GridInitCompleted -= UpdateGridData;
-            gridEventManager.EmptyCellRevealed -= UpdateRemainingCoverCount;
+            gridEventManager.CellRevealed -= UpdateRemainingCoverCount;
             gridEventManager.CellFlagOperated -= UpdateFlaggedCellCount;
         }
 

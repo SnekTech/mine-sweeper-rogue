@@ -205,7 +205,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            gridEventManager.InvokeEmptyCellRevealed(this);
+            gridEventManager.InvokeCellRevealed(this);
 
             if (cell.HasBomb)
             {
