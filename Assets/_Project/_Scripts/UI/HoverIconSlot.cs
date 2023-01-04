@@ -17,11 +17,17 @@ namespace SnekTech.UI
             _tooltipTrigger = GetComponent<TooltipTrigger>();
         }
 
-        public void SetContent(IHoverableIconHolder iconHolder)
+        /// <summary>
+        /// if <paramref name="tooltipContent"/> is null, <paramref name="iconHolder"/>'s label & description
+        /// will be used as tooltip content
+        /// </summary>
+        /// <param name="iconHolder"></param>
+        /// <param name="tooltipContent"></param>
+        public void SetContent(IHoverableIconHolder iconHolder, TooltipContent tooltipContent = null)
         {
             iconImage.sprite = iconHolder.Icon;
 
-            var tooltipContent = new TooltipContent(iconHolder.Label, iconHolder.Description);
+            tooltipContent ??= new TooltipContent(iconHolder.Label, iconHolder.Description);
             _tooltipTrigger.SetContent(tooltipContent);
         }
     }

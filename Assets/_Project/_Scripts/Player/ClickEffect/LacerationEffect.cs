@@ -55,6 +55,9 @@ namespace SnekTech.Player.ClickEffect
         public void Take(PlayerState playerState)
         {
             _finiteClickEffect.Take(playerState);
+            Changed?.Invoke();
         }
+
+        public string Description => $"Take {DamagePerClick} damage per click, {RepeatTime} times remaining.";
     }
 }

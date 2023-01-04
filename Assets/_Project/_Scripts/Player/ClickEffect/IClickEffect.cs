@@ -9,5 +9,6 @@ namespace SnekTech.Player.ClickEffect
         event Action Changed;
         bool IsActive { get; set; }
         IHoverableIconHolder IconHolder { get; set; }
+        string Description { get; }
     }
 }

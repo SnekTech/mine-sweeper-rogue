@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SnekTech.Player.ClickEffect;
+using SnekTech.UI.Tooltip;
 using UnityEngine;
 
 namespace SnekTech.UI.PlayerStatePanel
@@ -18,7 +19,8 @@ namespace SnekTech.UI.PlayerStatePanel
             foreach (IClickEffect effect in clickEffects)
             {
                 HoverIconSlot slot = Instantiate(slotPrefab, gridParentTransform);
-                slot.SetContent(effect.IconHolder);
+                var tooltipContent = new TooltipContent(effect.IconHolder.Label, effect.Description);
+                slot.SetContent(effect.IconHolder, tooltipContent);
             }
         }
     }
