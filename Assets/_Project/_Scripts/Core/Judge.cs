@@ -4,10 +4,8 @@ using SnekTech.Core.GameModeSystem;
 using SnekTech.Core.History;
 using SnekTech.DataPersistence;
 using SnekTech.Grid;
-using SnekTech.InventorySystem;
 using SnekTech.Player;
 using SnekTech.SceneManagement;
-using SnekTech.UI;
 using SnekTech.UI.Modal;
 using UnityEngine;
 
@@ -35,8 +33,6 @@ namespace SnekTech.Core
         [Header("Choose Item")]
         [SerializeField]
         private ModalManager modalManager;
-        [SerializeField]
-        private UIEventManager uiEventManager;
 
         [Header("Game Mode")]
         [SerializeField]
@@ -134,18 +130,7 @@ namespace SnekTech.Core
             }
             else
             {
-                await modalManager.ShowChooseItemPanel();
-
-                // close modal when item picked
-                async void OnItemPicked(ItemData itemData)
-                {
-                    await modalManager.Hide();
-                    uiEventManager.ItemChosen -= OnItemPicked;
-                    
-                    LoadLevel(_currentLevelIndex);
-                }
-
-                uiEventManager.ItemChosen += OnItemPicked;
+                await modalManager.ShowChooseItemPanelAsync(() => LoadLevel(_currentLevelIndex));
             }
         }
 

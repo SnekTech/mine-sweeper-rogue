@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using SnekTech.DataPersistence;
 using SnekTech.Grid;
 using SnekTech.GridCell;
@@ -11,22 +12,16 @@ using UnityEngine;
 namespace SnekTech.Core.GameEvent
 {
     [CreateAssetMenu]
-    public class GameEventHolder : ScriptableObject, IPersistentDataHolder
+    public class GameEventHolder : ScriptableObject, IPersistentDataHolder, ICellRevealOperatedListener
     {
         [SerializeField]
         private PlayerState playerState;
-
-        [SerializeField]
-        private GridEventManager gridEventManager;
 
         [SerializeField]
         private CellEventPool cellEventPool;
 
         [SerializeField]
         private ModalManager modalManager;
-
-        [SerializeField]
-        private UIEventManager uiEventManager;
 
         private List<CellEvent> _cellEvents;
 
@@ -38,31 +33,13 @@ namespace SnekTech.Core.GameEvent
 
         private const string EventModalHeader = "New Event Triggered";
 
-        private void OnEnable()
-        {
-            gridEventManager.CellRevealOperated += OnCellRevealOperated;
-        }
-
-        private void OnDisable()
-        {
-            gridEventManager.CellRevealOperated -= OnCellRevealOperated;
-        }
-
-        private async void OnCellRevealOperated(ICell cell)
+        public async UniTask OnCellRevealOperatedAsync(ICell cell)
         {
             bool shouldTriggerEvent = _cellEventGenerator.Next();
             if (shouldTriggerEvent)
             {
                 CellEventData randomCellEventData = cellEventPool.GetRandom();
-                await modalManager.ShowConfirm(EventModalHeader, randomCellEventData.Icon, randomCellEventData.Description);
-
-                async void OnModalOk()
-                {
-                    await modalManager.Hide();
-                    uiEventManager.ModalOk -= OnModalOk;
-                }
-
-                uiEventManager.ModalOk += OnModalOk;
+                await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon, randomCellEventData.Description);
                 
                 AddCellEvent(new CellEvent(randomCellEventData, cell.GridIndex, 0));
             }

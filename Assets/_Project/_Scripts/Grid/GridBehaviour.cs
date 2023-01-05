@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
+using SnekTech.Core.GameEvent;
 using SnekTech.GridCell;
 using SnekTech.Player;
 using SnekTech.Roguelike;
@@ -37,10 +39,16 @@ namespace SnekTech.Grid
 
         [SerializeField]
         private Camera mainCamera;
+
+        [Header("Event listeners")]
+        [SerializeField]
+        private GameEventHolder gameEventHolder;
+        
         private int _cellLayer;
 
         private IRandomSequence<bool> _bombGenerator;
         private IGridBrain _gridBrain;
+        private List<ICellRevealOperatedListener> cellRevealOperatedListeners;
 
 
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
@@ -69,6 +77,11 @@ namespace SnekTech.Grid
             _gridBrain = new BasicGridBrain(this);
 
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
+
+            cellRevealOperatedListeners = new List<ICellRevealOperatedListener>
+            {
+                gameEventHolder,
+            };
         }
 
         private void Start()
@@ -131,7 +144,7 @@ namespace SnekTech.Grid
 
             await Task.WhenAll(revealCellTasks);
 
-            gridEventManager.InvokeCellRevealOperated(cell);
+            await TriggerCellRevealListeners(cell);
 
             if (IsAllCleared)
             {
@@ -343,6 +356,11 @@ namespace SnekTech.Grid
             {
                 cell.SetHighlight(false);
             }
+        }
+
+        private UniTask TriggerCellRevealListeners(ICell cell)
+        {
+            return UniTask.WhenAll(cellRevealOperatedListeners.Select(listener => listener.OnCellRevealOperatedAsync(cell)));
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using SnekTech.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.UI.Modal
@@ -10,6 +12,10 @@ namespace SnekTech.UI.Modal
     {
         [SerializeField]
         private UIState uiState;
+
+        [SerializeField]
+        private UIEventManager uiEventManager;
+        
         [SerializeField]
         [Range(0, 1)]
         private float targetBackgroundAlpha = 0.6f;
@@ -26,23 +32,77 @@ namespace SnekTech.UI.Modal
         
         private Modal _modal;
         private CanvasGroup _alphaGroup;
+        private readonly Queue<UniTask> _showTaskQueue = new Queue<UniTask>();
 
         public void Init(Modal modal)
         {
             _modal = modal;
             _alphaGroup = _modal.BackgroundGroup;
+            _showTaskQueue.Clear();
+
+            StartWatchingShowTaskQueue().Forget();
         }
 
-        public async UniTask ShowChooseItemPanel()
+        private async UniTaskVoid StartWatchingShowTaskQueue()
+        {
+            while (true)
+            {
+                if (_showTaskQueue.Count > 0)
+                {
+                    UniTask showTask = _showTaskQueue.Dequeue();
+                    await showTask;
+                }
+
+                await UniTask.NextFrame();
+            }
+            // ReSharper disable once FunctionNeverReturns
+        }
+
+        private async UniTask ShowChooseItemPanelTask(UniTaskCompletionSource closeTaskCompletionSource, Action actionAfterModalHide)
         {
             _modal.ChangeToChooseItemPanel();
             await Show();
+
+
+            async void OnItemChosen(ItemData itemData)
+            {
+                await Hide();
+                actionAfterModalHide();
+                uiEventManager.ItemChosen -= OnItemChosen;
+                closeTaskCompletionSource.TrySetResult();
+            }
+
+            uiEventManager.ItemChosen += OnItemChosen;
         }
 
-        public async UniTask ShowConfirm(string header, Sprite image, string annotationText)
+        private async UniTask ShowConfirmTask(UniTaskCompletionSource closeTaskCompletionSource, string header, Sprite image, string annotationText) 
         {
             _modal.ChangeToConfirm(header, image, annotationText);
             await Show();
+
+            async void OnModalOk()
+            {
+                await Hide();
+                uiEventManager.ModalOk -= OnModalOk;
+                closeTaskCompletionSource.TrySetResult();
+            }
+
+            uiEventManager.ModalOk += OnModalOk;
+        }
+
+        public UniTask ShowConfirmAsync(string header, Sprite image, string annotationText)
+        {
+            var closeTaskCompletionSource = new UniTaskCompletionSource();
+            _showTaskQueue.Enqueue(ShowConfirmTask(closeTaskCompletionSource, header, image, annotationText));
+            
+            return closeTaskCompletionSource.Task;
+        }
+
+        public UniTask ShowChooseItemPanelAsync(Action actionAfterModalHide)
+        {
+            var closeTaskCompletionSource = new UniTaskCompletionSource();
+            _showTaskQueue.Enqueue(ShowChooseItemPanelTask(closeTaskCompletionSource, actionAfterModalHide));
+            return closeTaskCompletionSource.Task;
         }
 
         private async UniTask Show()
@@ -56,7 +116,7 @@ namespace SnekTech.UI.Modal
             );
         }
 
-        public async UniTask Hide()
+        private async UniTask Hide()
         {
             await UniTask.WhenAll(
                 _alphaGroup.DOFade(0, duration).SetEase(easeHide).ToUniTask(), 
