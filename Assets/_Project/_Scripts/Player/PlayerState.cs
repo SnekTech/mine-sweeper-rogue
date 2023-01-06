@@ -135,16 +135,15 @@ namespace SnekTech.Player
             ClearAllEffects();
 
             _playerDataAccumulators.Clear();
-            inventory.Load(_basicPlayerData.items);
+            inventory.Load(gameData.items);
             CalculatePlayerData();
         }
 
         public void SaveData(GameData gameData)
         {
-            _basicPlayerData.items = inventory.Items;
-            
             gameData.playerData = _basicPlayerData;
             gameData.healthArmour = _healthArmour;
+            gameData.items = inventory.Items;
         }
 
         private void CalculatePlayerData()

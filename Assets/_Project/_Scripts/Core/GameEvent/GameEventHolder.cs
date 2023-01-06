@@ -47,13 +47,13 @@ namespace SnekTech.Core.GameEvent
 
         public void LoadData(GameData gameData)
         {
-            List<CellEvent> savedEvents = gameData.playerData.cellEvents;
+            List<CellEvent> savedEvents = gameData.cellEvents;
             _cellEvents = new List<CellEvent>(savedEvents);
         }
 
         public void SaveData(GameData gameData)
         {
-            gameData.playerData.cellEvents = _cellEvents;
+            gameData.cellEvents = _cellEvents;
         }
 
         private void AddCellEvent(CellEvent cellEvent)
