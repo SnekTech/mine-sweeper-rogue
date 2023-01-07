@@ -127,7 +127,7 @@ namespace SnekTech.Grid
         public async void OnLeftClickAsync(Vector2 mousePosition)
         {
             ICell cell = GetMouseHoveringCell(mousePosition);
-            if (cell == null)
+            if (cell == null || !cell.IsCovered)
             {
                 return;
             }
