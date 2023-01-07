@@ -46,7 +46,6 @@ namespace SnekTech.Grid
         
         private int _cellLayer;
 
-        private IRandomSequence<bool> _bombGenerator;
         private IGridBrain _gridBrain;
         private List<ICellRevealOperatedListener> cellRevealOperatedListeners;
 
@@ -288,8 +287,7 @@ namespace SnekTech.Grid
         {
             DisposeCells();
 
-            // todo: use global random seed
-            _bombGenerator = new RandomBoolSequence(0, newGridData.BombPercent);
+            IRandomGenerator bombGenerator = RandomGenerator.Instance;
             BombCount = 0;
 
             GridSize gridSize = newGridData.GridSize;
@@ -303,7 +301,7 @@ namespace SnekTech.Grid
                     cell.GridIndex = cellIndex;
                     cell.SetPosition(cellIndex);
 
-                    bool hasBomb = _bombGenerator.Next();
+                    bool hasBomb = bombGenerator.NextBool(newGridData.BombPercent);
                     if (hasBomb)
                     {
                         cell.HasBomb = true;

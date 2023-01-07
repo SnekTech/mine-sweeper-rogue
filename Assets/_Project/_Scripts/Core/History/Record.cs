@@ -9,7 +9,8 @@ namespace SnekTech.Core.History
     [Serializable]
     public class Record : IComparable<Record>
     {
-
+        [SerializeField]
+        private string seed;
         [SerializeField]
         private long createdAt;
         [SerializeField]
@@ -20,6 +21,12 @@ namespace SnekTech.Core.History
         [SerializeField]
         private List<CellEvent> cellEvents;
 
+
+        public string Seed
+        {
+            get => seed;
+            set => seed = value;
+        }
 
         public long CreatedAt => createdAt;
         public bool HasFailed => hasFailed;

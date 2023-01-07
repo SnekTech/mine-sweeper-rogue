@@ -1,6 +1,7 @@
 ﻿using System;
 using SnekTech.Core.GameEvent;
 using SnekTech.Player;
+using SnekTech.Roguelike;
 using UnityEngine;
 
 namespace SnekTech.Core.History
@@ -17,6 +18,7 @@ namespace SnekTech.Core.History
         private GameEventHolder gameEventHolder;
         
         private Record _currentRecord;
+        private readonly IRandomGenerator _randomGenerator = RandomGenerator.Instance;
 
         public void Init()
         {
@@ -29,6 +31,7 @@ namespace SnekTech.Core.History
             _currentRecord.SetItems(playerState.Inventory.Items);
             _currentRecord.SetCellEvents(gameEventHolder.CellEvents);
             _currentRecord.SetResult(hasFailed);
+            _currentRecord.Seed = _randomGenerator.Seed;
             
             history.AddRecord(_currentRecord);
         }

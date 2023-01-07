@@ -5,7 +5,6 @@ using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.Player;
 using SnekTech.Roguelike;
-using SnekTech.UI;
 using SnekTech.UI.Modal;
 using UnityEngine;
 
@@ -41,6 +40,7 @@ namespace SnekTech.Core.GameEvent
                 CellEventData randomCellEventData = cellEventPool.GetRandom();
                 await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon, randomCellEventData.Description);
                 
+                // todo: set correct levelIndex
                 AddCellEvent(new CellEvent(randomCellEventData, cell.GridIndex, 0));
             }
         }

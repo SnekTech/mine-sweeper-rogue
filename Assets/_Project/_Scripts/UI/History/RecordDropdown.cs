@@ -22,6 +22,7 @@ namespace SnekTech.UI.History
         [SerializeField]
         private string loseText;
         
+        // todo: adjust dropdown appearance to pixel art
         private TMP_Dropdown _dropdown;
         private List<Record> _records;
         

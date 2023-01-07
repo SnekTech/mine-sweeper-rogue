@@ -4,12 +4,15 @@ using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
 using SnekTech.InventorySystem;
 using SnekTech.Player;
+using SnekTech.Roguelike;
 
 namespace SnekTech.DataPersistence
 {
     [Serializable]
     public class GameData
     {
+        public SeedData seedData;
+        
         public PlayerData playerData;
         public HealthArmour healthArmour;
         public List<InventoryItem> items;
@@ -19,6 +22,8 @@ namespace SnekTech.DataPersistence
 
         public GameData()
         {
+            seedData = new SeedData();
+            
             playerData = new PlayerData();
             healthArmour = HealthArmour.Default;
             items = new List<InventoryItem>();

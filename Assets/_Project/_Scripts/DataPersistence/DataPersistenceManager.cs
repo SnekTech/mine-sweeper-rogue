@@ -2,6 +2,7 @@
 using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
 using SnekTech.Player;
+using SnekTech.Roguelike;
 using UnityEngine;
 
 namespace SnekTech.DataPersistence
@@ -34,6 +35,7 @@ namespace SnekTech.DataPersistence
             playerState,
             gameHistory,
             gameEventHolder,
+            RandomGenerator.Instance,
         };
 
         private void OnEnable()
