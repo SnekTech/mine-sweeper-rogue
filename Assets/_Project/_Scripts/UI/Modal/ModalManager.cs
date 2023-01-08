@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using SnekTech.Core;
 using SnekTech.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.UI.Modal
 {
     [CreateAssetMenu]
-    public class ModalManager : ScriptableObject
+    public class ModalManager : ScriptableObject, IShouldFinishAfterLevelCompleted
     {
         [SerializeField]
         private UIState uiState;
@@ -47,7 +48,7 @@ namespace SnekTech.UI.Modal
         {
             while (true)
             {
-                if (_showTaskQueue.Count > 0)
+                if (!_showTaskQueue.IsEmpty())
                 {
                     UniTask showTask = _showTaskQueue.Dequeue();
                     await showTask;
@@ -57,6 +58,13 @@ namespace SnekTech.UI.Modal
             }
             // ReSharper disable once FunctionNeverReturns
         }
+
+        public UniTask FinishAsync()
+        {
+            return UniTask.WaitUntil(() => _showTaskQueue.IsEmpty());
+        }
+
+        #region Show Modal Functions
 
         private async UniTask ShowChooseItemPanelTask(UniTaskCompletionSource closeTaskCompletionSource, Action actionAfterModalHide)
         {
@@ -104,7 +112,11 @@ namespace SnekTech.UI.Modal
             _showTaskQueue.Enqueue(ShowChooseItemPanelTask(closeTaskCompletionSource, actionAfterModalHide));
             return closeTaskCompletionSource.Task;
         }
+        
+        #endregion
 
+        #region Show & Hide animation
+        
         private async UniTask Show()
         {
             uiState.isBlockingRaycast = true;
@@ -125,5 +137,7 @@ namespace SnekTech.UI.Modal
 
             uiState.isBlockingRaycast = false;
         }
+        
+        #endregion
     }
 }

@@ -39,15 +39,10 @@ namespace SnekTech.Grid
 
         [SerializeField]
         private Camera mainCamera;
-
-        [Header("Event listeners")]
-        [SerializeField]
-        private GameEventHolder gameEventHolder;
         
         private int _cellLayer;
 
         private IGridBrain _gridBrain;
-        private List<ICellRevealOperatedListener> _cellRevealOperatedListeners;
 
 
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
@@ -76,11 +71,6 @@ namespace SnekTech.Grid
             _gridBrain = new BasicGridBrain(this);
 
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
-
-            _cellRevealOperatedListeners = new List<ICellRevealOperatedListener>
-            {
-                gameEventHolder,
-            };
         }
 
         private void Start()
@@ -143,8 +133,7 @@ namespace SnekTech.Grid
 
             await Task.WhenAll(revealCellTasks);
 
-            // todo: change back to event invoking, try to use async delegate
-            await TriggerCellRevealListeners(cell);
+            gridEventManager.InvokeOnRecursiveRevealComplete(cell);
 
             if (IsAllCleared)
             {
@@ -355,11 +344,6 @@ namespace SnekTech.Grid
             {
                 cell.SetHighlight(false);
             }
-        }
-
-        private UniTask TriggerCellRevealListeners(ICell cell)
-        {
-            return UniTask.WhenAll(_cellRevealOperatedListeners.Select(listener => listener.OnCellRevealOperatedAsync(cell)));
         }
     }
 }

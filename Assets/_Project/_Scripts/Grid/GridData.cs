@@ -8,6 +8,7 @@ namespace SnekTech.Grid
         [SerializeField]
         private GridSize gridSize = new GridSize(15, 15);
 
+        [Range(0, 1)]
         [SerializeField]
         private float bombPercent = 0.2f;
 

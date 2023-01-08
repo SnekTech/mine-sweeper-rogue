@@ -48,6 +48,8 @@ namespace SnekTech.Core
         
         private List<GameMode> _availableGameModes;
 
+        private List<IShouldFinishAfterLevelCompleted> _afterLevelCompletedTasks;
+
         private const int LevelCount = 3;
         public Level CurrentLevel { get; private set; }
         private GameMode CurrentGameMode => CurrentLevel.GameMode;
@@ -57,6 +59,8 @@ namespace SnekTech.Core
             get => currentRecordHolder.CurrentLevelIndex;
             set => currentRecordHolder.CurrentLevelIndex = value;
         }
+        
+        #region Unity callbacks
 
         private void Awake()
         {
@@ -69,9 +73,11 @@ namespace SnekTech.Core
                 countDownMode,
             };
 
+            _afterLevelCompletedTasks = new List<IShouldFinishAfterLevelCompleted>
+            {
+                modalManager,
+            };
         }
-
-        #region event listener regist & deregist
         
         private void OnEnable()
         {
@@ -122,6 +128,8 @@ namespace SnekTech.Core
 
         private async void OnLevelCompleted(bool hasFailed)
         {
+            await UniTask.WhenAll(_afterLevelCompletedTasks.Select(task => task.FinishAsync()));
+            
             CurrentLevelIndex++;
             playerState.ClearAllEffects();
             dataPersistenceManager.SaveGame();

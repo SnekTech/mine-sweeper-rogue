@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SnekTech.DataPersistence;
 using SnekTech.Grid;
@@ -11,7 +12,7 @@ using UnityEngine;
 namespace SnekTech.Core.GameEvent
 {
     [CreateAssetMenu]
-    public class GameEventHolder : ScriptableObject, IPersistentDataHolder, ICellRevealOperatedListener
+    public class GameEventHolder : ScriptableObject, IPersistentDataHolder
     {
         [SerializeField]
         private PlayerState playerState;
@@ -21,6 +22,9 @@ namespace SnekTech.Core.GameEvent
 
         [SerializeField]
         private ModalManager modalManager;
+
+        [SerializeField]
+        private GridEventManager gridEventManager;
 
         private List<CellEvent> _cellEvents;
 
@@ -32,7 +36,21 @@ namespace SnekTech.Core.GameEvent
 
         private const string EventModalHeader = "New Event Triggered";
 
-        public async UniTask OnCellRevealOperatedAsync(ICell cell)
+        #region Unity callbacks
+
+        private void OnEnable()
+        {
+            gridEventManager.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
+        }
+
+        private void OnDisable()
+        {
+            gridEventManager.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
+        }
+
+        #endregion
+
+        private async UniTaskVoid HandleCellRecursiveRevealComplete(ICell cell)
         {
             bool shouldTriggerEvent = _cellEventGenerator.NextBool(CellEventProbability);
             if (shouldTriggerEvent)

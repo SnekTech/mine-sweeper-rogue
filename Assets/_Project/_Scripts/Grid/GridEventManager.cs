@@ -13,6 +13,7 @@ namespace SnekTech.Grid
         public event Action<IGrid> CellRevealed;
         public event Action<IGrid> CellFlagOperated;
         public event Action<IGrid> GridCleared;
+        public event UniAction<ICell> OnCellRecursiveRevealComplete;
 
         public void InvokeGridInitCompleted(IGrid grid)
         {
@@ -38,5 +39,7 @@ namespace SnekTech.Grid
         {
             CellFlagOperated?.Invoke(grid);
         }
+
+        public void InvokeOnRecursiveRevealComplete(ICell cell) => OnCellRecursiveRevealComplete?.Invoke(cell);
     }
 }
