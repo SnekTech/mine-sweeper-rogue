@@ -27,14 +27,14 @@ namespace SnekTech.Core.GameEvent
         public List<CellEvent> CellEvents => _cellEvents;
 
         // todo: deal with magic number
-        // todo: set to zero for debug, remove later
-        private readonly IRandomSequence<bool> _cellEventGenerator = new RandomBoolSequence(0, 1f);
+        private const float CellEventProbability = 1f;
+        private readonly IRandomGenerator _cellEventGenerator = RandomGenerator.Instance;
 
         private const string EventModalHeader = "New Event Triggered";
 
         public async UniTask OnCellRevealOperatedAsync(ICell cell)
         {
-            bool shouldTriggerEvent = _cellEventGenerator.Next();
+            bool shouldTriggerEvent = _cellEventGenerator.NextBool(CellEventProbability);
             if (shouldTriggerEvent)
             {
                 CellEventData randomCellEventData = cellEventPool.GetRandom();
