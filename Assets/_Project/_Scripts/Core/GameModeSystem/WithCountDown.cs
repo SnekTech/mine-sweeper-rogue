@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Globalization;
 using Cysharp.Threading.Tasks;
-using TMPro;
-using UnityEngine;
 
 namespace SnekTech.Core.GameModeSystem
 {
-    public interface ICountDownDisplay
+    public interface ICountDownDisplay : ICanChangeActiveness
     {
         void UpdateDurationRemaining(float durationRemaining);
-        void SetActive(bool isActive);
     }
     
     public class WithCountDown : GameMode
@@ -19,14 +15,14 @@ namespace SnekTech.Core.GameModeSystem
         
         private float _durationSeconds;
         private readonly GameMode _decoratedMode;
-        private readonly ICountDownDisplay _countDownDisplay;
+        private readonly ICountDownDisplay _display;
 
         public WithCountDown(GameModeInfo gameModeInfo, GameMode decoratedMode, float durationSeconds,
             ICountDownDisplay countDownDisplay = null) : base(gameModeInfo, decoratedMode.PlayerState)
         {
             _decoratedMode = decoratedMode;
             _durationSeconds = durationSeconds;
-            _countDownDisplay = countDownDisplay;
+            _display = countDownDisplay;
         }
 
         protected override void OnStart()
@@ -50,17 +46,25 @@ namespace SnekTech.Core.GameModeSystem
 
         private async UniTaskVoid StartTimerAsync()
         {
-           _countDownDisplay?.SetActive(true); 
+            SetDisplayActive(true);
             
             while (_durationSeconds > 0)
             {
-                _countDownDisplay?.UpdateDurationRemaining(_durationSeconds);
+                _display?.UpdateDurationRemaining(_durationSeconds);
                 await UniTask.Delay(TimeSpan.FromSeconds(CountDownIntervalSeconds));
                 _durationSeconds -= CountDownIntervalSeconds;
             }
-            _countDownDisplay?.SetActive(false);
             
+            SetDisplayActive(false);
             InvokeLevelCompleted(true);
+        }
+
+        private void SetDisplayActive(bool isActive)
+        {
+            if (_display != null)
+            {
+                _display.IsActive = isActive;
+            }
         }
     }
 }

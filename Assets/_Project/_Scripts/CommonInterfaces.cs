@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SnekTech
 {
@@ -8,5 +7,10 @@ namespace SnekTech
         void OnLeftClickAsync(Vector2 mousePosition);
         void OnLeftDoubleClickAsync(Vector2 mousePosition);
         void OnRightClickAsync(Vector2 mousePosition);
+    }
+
+    public interface ICanChangeActiveness
+    {
+        bool IsActive { set; }
     }
 }

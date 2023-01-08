@@ -9,14 +9,14 @@ namespace SnekTech.Core.GameModeSystem
         [SerializeField]
         private TMP_Text text;
 
+        public bool IsActive
+        {
+            set => text.SetActive(value);
+        }
+
         public void UpdateDurationRemaining(float durationRemaining)
         {
             text.text = durationRemaining.ToString("F1", CultureInfo.InvariantCulture);
-        }
-
-        public void SetActive(bool isActive)
-        {
-            text.gameObject.SetActive(isActive);
         }
     }
 }
