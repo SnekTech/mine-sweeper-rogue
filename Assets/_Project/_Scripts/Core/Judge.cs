@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SnekTech.Core.GameModeSystem;
 using SnekTech.Core.History;
@@ -13,6 +14,8 @@ namespace SnekTech.Core
 {
     public class Judge : MonoBehaviour
     {
+        public event Action OnLevelLoad;
+        
         [Header("DI")]
         [SerializeField]
         private GridEventManager gridEventManager;
@@ -46,8 +49,8 @@ namespace SnekTech.Core
         private List<GameMode> _availableGameModes;
 
         private const int LevelCount = 3;
-        private Level _currentLevel;
-        private GameMode CurrentGameMode => _currentLevel.GameMode;
+        public Level CurrentLevel { get; private set; }
+        private GameMode CurrentGameMode => CurrentLevel.GameMode;
 
         private int CurrentLevelIndex
         {
@@ -68,6 +71,8 @@ namespace SnekTech.Core
 
         }
 
+        #region event listener regist & deregist
+        
         private void OnEnable()
         {
             mySceneManager.GameSceneLoaded += OnGameSceneLoaded;
@@ -78,6 +83,8 @@ namespace SnekTech.Core
             mySceneManager.GameSceneLoaded -= OnGameSceneLoaded;
         }
 
+        #endregion
+        
         private void OnGameSceneLoaded()
         {
             LoadLevel(GenerateLevel(CurrentLevelIndex));
@@ -85,7 +92,8 @@ namespace SnekTech.Core
         
         private void LoadLevel(Level level)
         {
-            _currentLevel = level;
+            CurrentLevel = level;
+            OnLevelLoad?.Invoke();
             
             grid.InitCells(level.GridData);
             

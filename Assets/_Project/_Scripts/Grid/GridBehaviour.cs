@@ -47,7 +47,7 @@ namespace SnekTech.Grid
         private int _cellLayer;
 
         private IGridBrain _gridBrain;
-        private List<ICellRevealOperatedListener> cellRevealOperatedListeners;
+        private List<ICellRevealOperatedListener> _cellRevealOperatedListeners;
 
 
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
@@ -77,7 +77,7 @@ namespace SnekTech.Grid
 
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
 
-            cellRevealOperatedListeners = new List<ICellRevealOperatedListener>
+            _cellRevealOperatedListeners = new List<ICellRevealOperatedListener>
             {
                 gameEventHolder,
             };
@@ -359,7 +359,7 @@ namespace SnekTech.Grid
 
         private UniTask TriggerCellRevealListeners(ICell cell)
         {
-            return UniTask.WhenAll(cellRevealOperatedListeners.Select(listener => listener.OnCellRevealOperatedAsync(cell)));
+            return UniTask.WhenAll(_cellRevealOperatedListeners.Select(listener => listener.OnCellRevealOperatedAsync(cell)));
         }
     }
 }
