@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using SnekTech.Core.GameEvent;
 using SnekTech.GridCell;
 using SnekTech.Player;
 using SnekTech.Roguelike;
@@ -137,7 +135,7 @@ namespace SnekTech.Grid
 
             if (IsAllCleared)
             {
-                gridEventManager.InvokeGridCleared(this);
+                gridEventManager.InvokeOnGridCleared(this);
             }
         }
 
@@ -176,7 +174,7 @@ namespace SnekTech.Grid
             }
 
             await cell.OnRightClick();
-            gridEventManager.InvokeCellFlagOperated(this);
+            gridEventManager.InvokeOnCellFlagOperated(this, cell);
         }
 
         private void OnMove(Vector2 mousePosition)
@@ -207,11 +205,11 @@ namespace SnekTech.Grid
                 return;
             }
 
-            gridEventManager.InvokeCellRevealed(this);
+            gridEventManager.InvokeOnCellReveal(this, cell);
 
             if (cell.HasBomb)
             {
-                gridEventManager.InvokeBombRevealed(this, cell);
+                gridEventManager.InvokeOnBombReveal(this, cell);
                 return;
             }
 
@@ -252,7 +250,7 @@ namespace SnekTech.Grid
         {
             InstantiateCells(GridData);
             InitCellsContent();
-            gridEventManager.InvokeGridInitCompleted(this);
+            gridEventManager.InvokeOnGridInitComplete(this);
         }
 
         public void InitCells(GridData newGridData)

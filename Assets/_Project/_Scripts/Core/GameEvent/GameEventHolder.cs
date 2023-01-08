@@ -50,7 +50,12 @@ namespace SnekTech.Core.GameEvent
 
         #endregion
 
-        private async UniTaskVoid HandleCellRecursiveRevealComplete(ICell cell)
+        private void HandleCellRecursiveRevealComplete(ICell cell)
+        {
+            TryTriggerCellEventAsync(cell).Forget();
+        }
+        
+        private async UniTaskVoid TryTriggerCellEventAsync(ICell cell)
         {
             bool shouldTriggerEvent = _cellEventGenerator.NextBool(CellEventProbability);
             if (shouldTriggerEvent)

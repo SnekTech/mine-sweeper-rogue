@@ -13,14 +13,14 @@ namespace SnekTech.Core.GameModeSystem
             _gridEventManager = gridEventManager;
         }
 
-        private void OnGridCleared(IGrid grid)
+        private void HandleOnGridClear(IGrid grid)
         {
             InvokeLevelCompleted(false);
         }
 
         protected override void OnStart()
         {
-            _gridEventManager.GridCleared += OnGridCleared;
+            _gridEventManager.OnGridClear += HandleOnGridClear;
             PlayerState.HealthRanOut += OnPlayerHealthRanOut;
         }
 
@@ -31,7 +31,7 @@ namespace SnekTech.Core.GameModeSystem
 
         protected override void OnStop()
         {
-            _gridEventManager.GridCleared -= OnGridCleared;
+            _gridEventManager.OnGridClear -= HandleOnGridClear;
             PlayerState.HealthRanOut -= OnPlayerHealthRanOut;
         }
     }

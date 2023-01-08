@@ -60,7 +60,7 @@ namespace SnekTech.Player
 
         private void OnEnable()
         {
-            gridEventManager.BombRevealed += OnBombRevealed;
+            gridEventManager.OnBombReveal += HandleOnBombReveal;
             _healthArmour.HealthRanOut += OnHealthRanOut;
 
             foreach (IClickEffect clickEffect in ClickEffects)
@@ -72,7 +72,7 @@ namespace SnekTech.Player
 
         private void OnDisable()
         {
-            gridEventManager.BombRevealed -= OnBombRevealed;
+            gridEventManager.OnBombReveal -= HandleOnBombReveal;
             _healthArmour.HealthRanOut -= OnHealthRanOut;
             
             foreach (IClickEffect clickEffect in ClickEffects)
@@ -86,7 +86,7 @@ namespace SnekTech.Player
             HealthRanOut?.Invoke();
         }
         
-        private void OnBombRevealed(IGrid grid, ICell cell)
+        private void HandleOnBombReveal(IGrid grid, ICell cell)
         {
             TakeDamage(DamagePerBomb);
         }

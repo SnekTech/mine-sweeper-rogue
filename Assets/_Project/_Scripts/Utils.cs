@@ -2,22 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace SnekTech
 {
-    #region Delegates
-    
-    // doing this because UniTaskVoid has better performance than async void
-    // according to the UniTask documentation
-    public delegate UniTaskVoid UniAction();
-    public delegate UniTaskVoid UniAction<in T>(T arg);
-    public delegate UniTaskVoid UniAction<in T1, in T2>(T1 arg1, T2 arg2);
-    
-    #endregion
-    
     public static class Extensions
     {
         public static void DestroyAllChildren(this Transform transform)

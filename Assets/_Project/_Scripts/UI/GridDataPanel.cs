@@ -1,5 +1,6 @@
 ﻿using System;
 using SnekTech.Grid;
+using SnekTech.GridCell;
 using UnityEngine;
 
 namespace SnekTech.UI
@@ -17,17 +18,23 @@ namespace SnekTech.UI
 
         private void OnEnable()
         {
-            gridEventManager.GridInitCompleted += UpdateGridData;
-            gridEventManager.CellRevealed += UpdateRemainingCoverCount;
-            gridEventManager.CellFlagOperated += UpdateFlaggedCellCount;
+            gridEventManager.OnGridInitComplete += HandleOnGridInitComplete;
+            gridEventManager.OnCellReveal += HandleOnCellReveal;
+            gridEventManager.OnCellFlagOperateComplete += HandleOnCellFlagOperateComplete;
         }
 
         private void OnDisable()
         {
-            gridEventManager.GridInitCompleted -= UpdateGridData;
-            gridEventManager.CellRevealed -= UpdateRemainingCoverCount;
-            gridEventManager.CellFlagOperated -= UpdateFlaggedCellCount;
+            gridEventManager.OnGridInitComplete -= HandleOnGridInitComplete;
+            gridEventManager.OnCellReveal -= HandleOnCellReveal;
+            gridEventManager.OnCellFlagOperateComplete -= HandleOnCellFlagOperateComplete;
         }
+
+        private void HandleOnGridInitComplete(IGrid grid) => UpdateGridData(grid);
+
+        private void HandleOnCellReveal(IGrid grid, ICell cell) => UpdateRemainingCoverCount(grid);
+
+        private void HandleOnCellFlagOperateComplete(IGrid grid, ICell cell) => UpdateFlaggedCellCount(grid);
 
         private void UpdateGridData(IGrid grid)
         {

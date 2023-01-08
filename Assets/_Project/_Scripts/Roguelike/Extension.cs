@@ -24,7 +24,7 @@ namespace SnekTech.Roguelike
         /// <remarks>
         /// Convert the 128 bits of a <see cref="Guid"/> to a base64 string format.
         /// </remarks>
-        /// <param name="guid">the extension method called <see cref="Guid"/> instance</param>
+        /// <param name="guid">caller <see cref="Guid"/> instance</param>
         /// <returns>a base64 string with the trailing "==" characters removed</returns>
         public static string ToShortString(this Guid guid)
         {
