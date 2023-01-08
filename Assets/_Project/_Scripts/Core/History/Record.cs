@@ -28,35 +28,34 @@ namespace SnekTech.Core.History
             set => seed = value;
         }
 
-        public long CreatedAt => createdAt;
-        public bool HasFailed => hasFailed;
-        public List<InventoryItem> Items => items;
-        public List<CellEvent> CellEvents => cellEvents;
+        public long CreatedAt
+        {
+            get => createdAt;
+            set => createdAt = value;
+        }
+
+        public bool HasFailed
+        {
+            get => hasFailed;
+            set => hasFailed = value;
+        }
+
+        public List<InventoryItem> Items
+        {
+            get => items;
+            set => items = value;
+        }
+
+        public List<CellEvent> CellEvents
+        {
+            get => cellEvents;
+            set => cellEvents = value;
+        }
 
         public int CompareTo(Record other)
         {
             if (ReferenceEquals(this, other)) return 0;
             return createdAt.CompareTo(other.createdAt);
-        }
-
-        public void SetCreatedAt(long ticks)
-        {
-            createdAt = ticks;
-        }
-
-        public void SetItems(in List<InventoryItem> itemsIn)
-        {
-            items = itemsIn;
-        }
-
-        public void SetCellEvents(in List<CellEvent> cellEventsIn)
-        {
-            cellEvents = cellEventsIn;
-        }
-
-        public void SetResult(bool hasFailedIn)
-        {
-            hasFailed = hasFailedIn;
         }
     }
 }

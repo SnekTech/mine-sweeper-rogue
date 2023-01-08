@@ -16,3 +16,4 @@ MonoBehaviour:
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   gameHistory: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}
   gameEventHolder: {fileID: 11400000, guid: 1134cd3e8ca62d14d8c328c5bf15fea4, type: 2}
+  currentRecordHolder: {fileID: 11400000, guid: 24a333e8b5cd0f34cb7dcaf4c8562edd, type: 2}

@@ -3193,7 +3193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1702819272}
   - component: {fileID: 1702819273}
-  - component: {fileID: 1702819274}
   m_Layer: 0
   m_Name: Judge
   m_TagString: Untagged
@@ -3232,28 +3231,13 @@ MonoBehaviour:
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   dataPersistenceManager: {fileID: 11400000, guid: 2dc096a99b8076e4b8663f6d96b75a40, type: 2}
+  currentRecordHolder: {fileID: 11400000, guid: 24a333e8b5cd0f34cb7dcaf4c8562edd, type: 2}
   grid: {fileID: 58783576}
   gridDataPool: {fileID: 11400000, guid: eab62f1ab063e254b95672bcbeb7e7a2, type: 2}
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
-  uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   classicModeInfo: {fileID: 11400000, guid: 11134928df80cfd4b9dbbf3997312b44, type: 2}
   countDownModeInfo: {fileID: 11400000, guid: 3c87a5a35575713408fa3c3f389d4241, type: 2}
   countDownText: {fileID: 445048134}
---- !u!114 &1702819274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1702819271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67b90fee508e486cae79410cca61a322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  history: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}
-  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
-  gameEventHolder: {fileID: 11400000, guid: 1134cd3e8ca62d14d8c328c5bf15fea4, type: 2}
 --- !u!1001 &1703574933
 PrefabInstance:
   m_ObjectHideFlags: 0

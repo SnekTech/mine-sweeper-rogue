@@ -12,6 +12,7 @@ namespace SnekTech.DataPersistence
     public class GameData
     {
         public SeedData seedData;
+        public int currentLevelIndex;
         
         public PlayerData playerData;
         public HealthArmour healthArmour;
@@ -23,6 +24,7 @@ namespace SnekTech.DataPersistence
         public GameData()
         {
             seedData = new SeedData();
+            currentLevelIndex = 0;
             
             playerData = new PlayerData();
             healthArmour = HealthArmour.Default;

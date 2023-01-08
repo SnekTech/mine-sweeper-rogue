@@ -143,6 +143,7 @@ namespace SnekTech.Grid
 
             await Task.WhenAll(revealCellTasks);
 
+            // todo: change back to event invoking, try to use async delegate
             await TriggerCellRevealListeners(cell);
 
             if (IsAllCleared)

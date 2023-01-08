@@ -45,6 +45,8 @@ namespace SnekTech.Roguelike
             }
         }
 
+        #region Generation Functions
+
         public int Next()
         {
             GenerationCount++;
@@ -59,7 +61,7 @@ namespace SnekTech.Roguelike
             {
                 throw new ArgumentException("minValue should be less than or equal to maxValue");
             }
-            
+
             float proportion = Next() / (float) int.MaxValue;
             return (int) (minValue + (maxValue - minValue) * proportion);
         }
@@ -70,11 +72,15 @@ namespace SnekTech.Roguelike
             {
                 throw new ArgumentOutOfRangeException(nameof(probability));
             }
-            
+
             float threshold = int.MaxValue * probability;
 
             return Next() < threshold;
         }
+
+        #endregion
+
+        #region Data Save & Load
 
         public void LoadData(GameData gameData)
         {
@@ -86,5 +92,7 @@ namespace SnekTech.Roguelike
         {
             gameData.seedData = new SeedData(Seed, GenerationCount);
         }
+        
+        #endregion
     }
 }

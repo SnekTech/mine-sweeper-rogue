@@ -24,6 +24,9 @@ namespace SnekTech.DataPersistence
         [SerializeField]
         private GameEventHolder gameEventHolder;
 
+        [SerializeField]
+        private CurrentRecordHolder currentRecordHolder;
+
         private GameData _gameData;
         private FileDataHandler _fileDataHandler;
 
@@ -36,11 +39,14 @@ namespace SnekTech.DataPersistence
             gameHistory,
             gameEventHolder,
             RandomGenerator.Instance,
+            currentRecordHolder,
         };
 
         private void OnEnable()
         {
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            currentRecordHolder.Init(playerState, gameEventHolder, gameHistory);
+            
             LoadGame();
         }
 
