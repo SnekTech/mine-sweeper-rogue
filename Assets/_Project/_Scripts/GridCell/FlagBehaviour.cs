@@ -1,9 +1,10 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace SnekTech.GridCell
 {
+    [RequireComponent(typeof(Animator))]
     public class FlagBehaviour : MonoBehaviour, IFlag
     {
         public event Action LiftCompleted, PutDownCompleted;
@@ -13,59 +14,59 @@ namespace SnekTech.GridCell
 
         private Animator _animator;
         
-        private TaskCompletionSource<bool> _liftCompletionSource = new TaskCompletionSource<bool>();
-        private TaskCompletionSource<bool> _putDownCompletionSource = new TaskCompletionSource<bool>();
+        private UniTaskCompletionSource<bool> _liftCompletionSource = new UniTaskCompletionSource<bool>();
+        private UniTaskCompletionSource<bool> _putDownCompletionSource = new UniTaskCompletionSource<bool>();
 
-        private Task<bool> LiftTask => _liftCompletionSource.Task;
-        private Task<bool> PutDownTask => _putDownCompletionSource.Task;
+        private UniTask<bool> LiftTask => _liftCompletionSource.Task;
+        private UniTask<bool> PutDownTask => _putDownCompletionSource.Task;
 
 
         public bool IsActive
         {
-            get => gameObject.activeSelf;
-            set => gameObject.SetActive(value);
+            get => this.GetActiveSelf();
+            set => this.SetActive(value);
         }
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             
-            _liftCompletionSource.SetResult(true);
-            _putDownCompletionSource.SetResult(true);
+            _liftCompletionSource.TrySetResult(true);
+            _putDownCompletionSource.TrySetResult(true);
         }
 
         public void OnLiftAnimationComplete()
         {
             LiftCompleted?.Invoke();
-            _liftCompletionSource.SetResult(true);
+            _liftCompletionSource.TrySetResult(true);
         }
 
         public void OnPutDownAnimationComplete()
         {
             PutDownCompleted?.Invoke();
-            _putDownCompletionSource.SetResult(true);
+            _putDownCompletionSource.TrySetResult(true);
         }
 
-        public Task<bool> LiftAsync()
+        public UniTask<bool> LiftAsync()
         {
-            if (!LiftTask.IsCompleted)
+            if (LiftTask.IsPending())
             {
-                return Task.FromResult(false);
+                return UniTask.FromResult(false);
             }
 
-            _liftCompletionSource = new TaskCompletionSource<bool>();
+            _liftCompletionSource = new UniTaskCompletionSource<bool>();
             _animator.SetTrigger(LiftTrigger);
             return LiftTask;
         }
 
-        public Task<bool> PutDownAsync()
+        public UniTask<bool> PutDownAsync()
         {
-            if (!PutDownTask.IsCompleted)
+            if (PutDownTask.IsPending())
             {
-                return Task.FromResult(false);
+                return UniTask.FromResult(false);
             }
             
-            _putDownCompletionSource = new TaskCompletionSource<bool>();
+            _putDownCompletionSource = new UniTaskCompletionSource<bool>();
             _animator.SetTrigger(PutDownTrigger);
             return PutDownTask;
         }

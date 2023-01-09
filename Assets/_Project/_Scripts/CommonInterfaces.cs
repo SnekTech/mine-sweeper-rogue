@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace SnekTech
 {
     public interface ICanClickAsync
     {
-        void OnLeftClickAsync(Vector2 mousePosition);
-        void OnLeftDoubleClickAsync(Vector2 mousePosition);
-        void OnRightClickAsync(Vector2 mousePosition);
+        UniTaskVoid ProcessLeftClickAsync(Vector2 mousePosition);
+        UniTaskVoid ProcessLeftDoubleClickAsync(Vector2 mousePosition);
+        UniTaskVoid ProcessRightClickAsync(Vector2 mousePosition);
     }
 
-    public interface ICanChangeActiveness
+    public interface ICanSwitchActiveness
     {
-        bool IsActive { set; }
+        bool IsActive { get; set; }
     }
 }

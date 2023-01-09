@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using SnekTech.GridCell;
 using SnekTech.Player;
 using SnekTech.Roguelike;
@@ -68,45 +68,48 @@ namespace SnekTech.Grid
 
         private void OnEnable()
         {
-            EnableEventListeners();
-        }
-
-        private void OnDisable()
-        {
-            DisableEventListeners();
-        }
-        
-        #endregion
-
-        private void EnableEventListeners()
-        {
-            inputEventManager.LeftClickPerformed += OnLeftClickAsync;
-            inputEventManager.LeftDoubleClickPerformed += OnLeftDoubleClickAsync;
-            inputEventManager.RightClickPerformed += OnRightClickAsync;
+            inputEventManager.LeftClickPerformed += HandleOnLeftClick;
+            inputEventManager.LeftDoubleClickPerformed += HandleOnLeftDoubleClick;
+            inputEventManager.RightClickPerformed += HandleOnRightClick;
             inputEventManager.MovePerformed += OnMove;
 
             uiEventManager.ResetButtonClicked += OnResetButtonClicked;
         }
 
-        private void DisableEventListeners()
+        private void OnDisable()
         {
-            inputEventManager.LeftClickPerformed -= OnLeftClickAsync;
-            inputEventManager.LeftDoubleClickPerformed -= OnLeftDoubleClickAsync;
-            inputEventManager.RightClickPerformed -= OnRightClickAsync;
+            inputEventManager.LeftClickPerformed -= HandleOnLeftClick;
+            inputEventManager.LeftDoubleClickPerformed -= HandleOnLeftDoubleClick;
+            inputEventManager.RightClickPerformed -= HandleOnRightClick;
             inputEventManager.MovePerformed -= OnMove;
 
             uiEventManager.ResetButtonClicked -= OnResetButtonClicked;
         }
+        
+        #endregion
 
-        private void OnResetButtonClicked(GridData gridDataIn)
+        #region Event Handlers
+        
+        private void HandleOnLeftClick(Vector2 mousePosition) => ProcessLeftClickAsync(mousePosition).Forget();
+
+        private void HandleOnLeftDoubleClick(Vector2 mousePosition) =>
+            ProcessLeftDoubleClickAsync(mousePosition).Forget();
+
+        private void HandleOnRightClick(Vector2 mousePosition) => ProcessRightClickAsync(mousePosition).Forget();
+
+        private void OnMove(Vector2 mousePosition)
         {
-            InitCells(gridDataIn);
+            var cellHovering = GetMouseHoveringCell(mousePosition);
+            UpdateGridHighlight(cellHovering);
         }
-
-        // todo: use UniTask for click related async stuff
-        public async void OnLeftClickAsync(Vector2 mousePosition)
+        
+        private void OnResetButtonClicked(GridData gridDataIn) => InitCells(gridDataIn);
+        
+        #endregion
+        
+        public async UniTaskVoid ProcessLeftClickAsync(Vector2 mousePosition)
         {
-            ICell cell = GetMouseHoveringCell(mousePosition);
+            var cell = GetMouseHoveringCell(mousePosition);
             if (cell == null || !cell.IsCovered)
             {
                 return;
@@ -114,14 +117,11 @@ namespace SnekTech.Grid
             
             playerState.TriggerAllClickEffects();
 
-            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerState.SweepScope);
-            List<Task> revealCellTasks = new List<Task>();
-            foreach (ICell affectedCell in affectedCells)
-            {
-                revealCellTasks.Add(RevealCellAsync(CellIndexDict[affectedCell]));
-            }
+            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerState.SweepScope);
+            var revealCellTasks = Enumerable
+                .Select(affectedCells, affectedCell => RevealCellAsync(CellIndexDict[affectedCell])).ToList();
 
-            await Task.WhenAll(revealCellTasks);
+            await UniTask.WhenAll(revealCellTasks);
 
             gridEventManager.InvokeOnRecursiveRevealComplete(cell);
 
@@ -131,9 +131,9 @@ namespace SnekTech.Grid
             }
         }
 
-        public async void OnLeftDoubleClickAsync(Vector2 mousePosition)
+        public async UniTaskVoid ProcessLeftDoubleClickAsync(Vector2 mousePosition)
         {
-            ICell cell = GetMouseHoveringCell(mousePosition);
+            var cell = GetMouseHoveringCell(mousePosition);
             if (cell == null || !cell.IsRevealed || cell.HasBomb)
             {
                 return;
@@ -157,32 +157,30 @@ namespace SnekTech.Grid
             await RevealNeighbors(cell);
         }
 
-        public async void OnRightClickAsync(Vector2 mousePosition)
+        public async UniTaskVoid ProcessRightClickAsync(Vector2 mousePosition)
         {
-            ICell cell = GetMouseHoveringCell(mousePosition);
+            var cell = GetMouseHoveringCell(mousePosition);
             if (cell == null)
             {
                 return;
             }
 
-            await cell.OnRightClick();
-            gridEventManager.InvokeOnCellFlagOperated(this, cell);
-        }
+            bool isClickSuccessful = await cell.OnRightClick();
 
-        private void OnMove(Vector2 mousePosition)
-        {
-            ICell cellHovering = GetMouseHoveringCell(mousePosition);
-            UpdateGridHighlight(cellHovering);
+            if (isClickSuccessful)
+            {
+                gridEventManager.InvokeOnCellFlagOperated(this, cell);
+            }
         }
         
-        private async Task RevealCellAsync(GridIndex cellGridIndex)
+        private async UniTask RevealCellAsync(GridIndex cellGridIndex)
         {
             if (!_gridBrain.IsIndexWithinGrid(cellGridIndex))
             {
                 return;
             }
 
-            ICell cell = _gridBrain.GetCellAt(cellGridIndex);
+            var cell = _gridBrain.GetCellAt(cellGridIndex);
             if (!cell.IsCovered)
             {
                 return;
@@ -191,8 +189,8 @@ namespace SnekTech.Grid
             // if last click action has not finished,
             // the task will return false,
             // to throttle the player input frequency
-            bool isLeftClickSucceeded = await cell.OnLeftClick();
-            if (!isLeftClickSucceeded)
+            bool isLeftClickSuccessful = await cell.OnLeftClick();
+            if (!isLeftClickSuccessful)
             {
                 return;
             }
@@ -213,16 +211,16 @@ namespace SnekTech.Grid
             await RevealNeighbors(cell);
         }
 
-        private Task RevealNeighbors(ICell cell)
+        private UniTask RevealNeighbors(ICell cell)
         {
-            var revealNeighborTasks = new List<Task>();
+            var revealNeighborTasks = new List<UniTask>();
             _gridBrain.ForEachNeighbor(cell,
                 neighborCell =>
                 {
                     revealNeighborTasks.Add(RevealCellAsync(CellIndexDict[neighborCell]));
                 });
 
-            return Task.WhenAll(revealNeighborTasks);
+            return UniTask.WhenAll(revealNeighborTasks);
         }
 
         private ICell GetMouseHoveringCell(Vector2 mousePosition)
@@ -232,8 +230,8 @@ namespace SnekTech.Grid
                 return null;
             }
             
-            Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
+            var ray = mainCamera.ScreenPointToRay(mousePosition);
+            var hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
 
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
         }

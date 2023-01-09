@@ -1,84 +1,87 @@
 ﻿using System.Collections;
-using System.Threading.Tasks;
-using NUnit.Framework;
+using Cysharp.Threading.Tasks;
 using SnekTech.GridCell;
 using Tests.PlayMode.Builder;
-using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class CellTests
+    public class CellTests : TestBase
     {
-        private CellBehaviour _cellBehaviour;
-        private ICell _cell;
-        
-        [SetUp]
-        public void SetUp()
-        {
-            _cellBehaviour = A.CellBehaviour;
-            _cell = _cellBehaviour;
-        }
-        
-        [TearDown]
-        public void TearDown()
-        {
-            Object.Destroy(_cellBehaviour.gameObject);
-        }
-        
         [UnityTest]
         public IEnumerator left_click_a_covered_cell_should_reveal_the_cover()
         {
-            ICellBrain cellBrain = new BasicCellBrain(_cell);
+            var cell = A.CellBehaviour;
+            AddToPool(cell);
+            
+            ICellBrain cellBrain = new BasicCellBrain(cell);
+            var cover = cell.Cover;
 
             bool isCoverRevealCompletedInvoked = false;
-            cellBrain.Cover.RevealCompleted += () => isCoverRevealCompletedInvoked = true;
+            void HandleCoverRevealComplete() => isCoverRevealCompletedInvoked = true;
+            cover.RevealCompleted += HandleCoverRevealComplete;
 
-            async Task Run()
-            {
-                await Utils.AttemptUntilSuccess(cellBrain.OnLeftClick);
+            var testTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(
+                cellBrain.OnLeftClick,
+                () => isCoverRevealCompletedInvoked,
+                () => cover.RevealCompleted -= HandleCoverRevealComplete
+            );
 
-                Assert.That(isCoverRevealCompletedInvoked, Is.True);
-            }
-
-            yield return Run().AsCoroutine();
+            return Utils.AssertTrueAsync(testTask).ToCoroutine();
         }
 
         [UnityTest]
         public IEnumerator right_click_a_covered_cell_should_lift_the_flag()
         {
-            ICellBrain cellBrain = new BasicCellBrain(_cell);
+            var cell = A.CellBehaviour;
+            AddToPool(cell);
+            
+            ICellBrain cellBrain = new BasicCellBrain(cell);
+            var flag = cell.Flag;
 
             bool isLiftFlagCompletedInvoked = false;
-            cellBrain.Flag.LiftCompleted += () => isLiftFlagCompletedInvoked = true;
+            void HandleFlagLiftComplete() => isLiftFlagCompletedInvoked = true;
+            flag.LiftCompleted += HandleFlagLiftComplete;
 
-            async Task Run()
-            {
-                await Utils.AttemptUntilSuccess(cellBrain.OnRightClick);
+            var testTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(
+                cellBrain.OnRightClick,
+                () => isLiftFlagCompletedInvoked,
+                () => flag.LiftCompleted -= HandleFlagLiftComplete
+            );
 
-                Assert.That(isLiftFlagCompletedInvoked, Is.True);
-            }
-
-            yield return Run().AsCoroutine();
+            return Utils.AssertTrueAsync(testTask).ToCoroutine();
         }
  
         [UnityTest]
         public IEnumerator right_click_a_flagged_cell_should_put_down_the_flag()
         {
-            ICellBrain cellBrain = new BasicCellBrain(_cell);
+            var cell = A.CellBehaviour;
+            AddToPool(cell);
 
-            bool isFlagPutDown = false;
-            cellBrain.Flag.PutDownCompleted += () => isFlagPutDown = true;
+            ICellBrain cellBrain = new BasicCellBrain(cell);
+            var flag = cell.Flag;
 
-            async Task Run()
+            bool isFlagPutDownCompleted = false;
+            void HandleFlagPutDownComplete() => isFlagPutDownCompleted = true;
+            flag.PutDownCompleted += HandleFlagPutDownComplete;
+
+            async UniTask<bool> TestPutDownFlagTask()
             {
-                await Utils.AttemptUntilSuccess(cellBrain.OnRightClick);
-                await Utils.AttemptUntilSuccess(cellBrain.OnRightClick);
+                // make it flagged first
+                await cellBrain.OnRightClick();
 
-                Assert.That(isFlagPutDown, Is.True);
+                // try to put down
+                await cellBrain.OnRightClick();
+                return true;
             }
 
-            yield return Run().AsCoroutine();
+            var testTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(
+                TestPutDownFlagTask,
+                () => isFlagPutDownCompleted,
+                () => flag.PutDownCompleted -= HandleFlagPutDownComplete
+            );
+
+            return Utils.AssertTrueAsync(testTask).ToCoroutine();
         }
     }
 }

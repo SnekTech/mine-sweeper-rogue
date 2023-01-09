@@ -1,4 +1,4 @@
-﻿using SnekTech.DataPersistence;
+﻿using Cysharp.Threading.Tasks;
 using SnekTech.SceneManagement;
 using SnekTech.UI.Modal;
 using SnekTech.UI.Tooltip;
@@ -27,7 +27,12 @@ namespace SnekTech.Core
         [SerializeField]
         private Modal modal;
 
-        private async void Awake()
+        private void Awake()
+        {
+            InitGame().Forget();
+        }
+
+        private async UniTaskVoid InitGame()
         {
             mySceneManager.Init(loadingScreen);
             tooltipManager.Init(tooltip);

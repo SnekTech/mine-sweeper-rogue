@@ -1,48 +1,32 @@
 using System.Collections;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using SnekTech.GridCell;
+using Cysharp.Threading.Tasks;
 using Tests.PlayMode.Builder;
-using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class FlagTests
+    public class FlagTests : TestBase
     {
-        private FlagBehaviour _flagBehaviour;
-        private IFlag _flag;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _flagBehaviour = A.FlagBehaviour;
-            _flag = _flagBehaviour;
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            Object.Destroy(_flagBehaviour.gameObject);
-        }
-
         [UnityTest]
         public IEnumerator flag_animation_complete_events_should_emit()
         {
-            bool liftEventInvoked = false, putDownEventInvoked = false;
-            _flag.LiftCompleted += () => liftEventInvoked = true;
-            _flag.PutDownCompleted += () => putDownEventInvoked = true;
+            var flag = A.FlagBehaviour;
+            AddToPool(flag);
+            
+            bool isLiftCompleteInvoked = false, isPutDownCompletedInvoked = false;
+            void HandleLiftComplete() => isLiftCompleteInvoked = true;
+            void HandlePutDownComplete() => isPutDownCompletedInvoked = true;
+            flag.LiftCompleted += HandleLiftComplete;
+            flag.PutDownCompleted += HandlePutDownComplete;
 
-            async Task Run()
-            {
-                await _flag.LiftAsync();
-                await _flag.PutDownAsync();
+            var testLiftTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(flag.LiftAsync,
+                () => isLiftCompleteInvoked,
+                () => flag.LiftCompleted -= HandleLiftComplete);
+            var testPutDownTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(flag.PutDownAsync,
+                () => isPutDownCompletedInvoked,
+                () => flag.PutDownCompleted -= HandlePutDownComplete);
 
-                Assert.That(liftEventInvoked, Is.True);
-                Assert.That(putDownEventInvoked, Is.True);
-            }
-
-            yield return Run().AsCoroutine();
+            return Utils.AssertTrueAsync(testLiftTask, testPutDownTask).ToCoroutine();
         }
     }
 }

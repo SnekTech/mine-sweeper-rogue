@@ -1,10 +1,22 @@
-﻿namespace Tests.PlayMode.Builder
+﻿using SnekTech.GridCell;
+
+namespace Tests.PlayMode.Builder
 {
     public static class A
     {
-        public static FlagBehaviourBuilder FlagBehaviour => new FlagBehaviourBuilder("Flag.prefab");
-        public static CoverBehaviourBuilder CoverBehaviour => new CoverBehaviourBuilder("Cover.prefab");
-        public static CellBehaviourBuilder CellBehaviour => new CellBehaviourBuilder("Cell.prefab");
+        private const string FlagPrefabName = "Flag.prefab";
+        private const string CoverPrefabName = "Cover.prefab";
+        private const string CellPrefabName = "Cell.prefab";
+
+        public static CoverBehaviour CoverBehaviour => new CoverBehaviourBuilder(CoverPrefabName);
+        public static FlagBehaviour FlagBehaviour => new FlagBehaviourBuilder(FlagPrefabName);
+        public static CellBehaviour CellBehaviour => new CellBehaviourBuilder(CellPrefabName);
+
+        public static ICover Cover => CoverBehaviour;
+
+        public static IFlag Flag => FlagBehaviour;
+
+        public static ICell Cell => CellBehaviour;
     }
 
     public static class An

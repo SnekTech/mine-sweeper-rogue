@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 namespace SnekTech.Core.GameModeSystem
 {
-    public interface ICountDownDisplay : ICanChangeActiveness
+    public interface ICountDownDisplay : ICanSwitchActiveness
     {
         void UpdateDurationRemaining(float durationRemaining);
     }

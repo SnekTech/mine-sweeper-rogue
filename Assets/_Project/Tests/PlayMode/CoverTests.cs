@@ -1,49 +1,32 @@
 ﻿using System.Collections;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using SnekTech.GridCell;
+using Cysharp.Threading.Tasks;
 using Tests.PlayMode.Builder;
-using UnityEngine;
 using UnityEngine.TestTools;
 
 namespace Tests.PlayMode
 {
-    public class CoverTests
+    public class CoverTests : TestBase
     {
-        private CoverBehaviour _coverBehaviour;
-        private ICover _cover;
-        
-        [SetUp]
-        public void SetUp()
-        {
-            _coverBehaviour = A.CoverBehaviour;
-            _cover = _coverBehaviour;
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            Object.Destroy(_coverBehaviour.gameObject);
-        }
-        
         [UnityTest]
         public IEnumerator cell_animation_complete_events_should_emit()
         {
+            var cover = A.CoverBehaviour;
+            AddToPool(cover);
+            
+            bool isRevealedCompletedCalled = false, isPutCoverCompletedCalled = false;
+            void HandleRevealComplete() => isRevealedCompletedCalled = true;
+            void HandlePutCoverComplete() => isPutCoverCompletedCalled = true;
+            cover.RevealCompleted += HandleRevealComplete;
+            cover.PutCoverCompleted += HandlePutCoverComplete;
 
-            bool revealedCompletedCalled = false, putCoverCompletedCalled = false;
-            _cover.RevealCompleted += () => revealedCompletedCalled = true;
-            _cover.PutCoverCompleted += () => putCoverCompletedCalled = true;
+            var testRevealTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(cover.RevealAsync,
+                () => isRevealedCompletedCalled,
+                () => cover.RevealCompleted -= HandleRevealComplete);
+            var testPutCoverTask = Utils.IsConditionMetWhenThrottledTaskCompleteAsync(cover.PutCoverAsync,
+                () => isPutCoverCompletedCalled,
+                () => cover.PutCoverCompleted -= HandlePutCoverComplete);
 
-            async Task Run()
-            {
-                await _cover.RevealAsync();
-                await _cover.PutCoverAsync();
-                
-                Assert.That(revealedCompletedCalled, Is.True);
-                Assert.That(putCoverCompletedCalled, Is.True);
-            }
-
-            yield return Run().AsCoroutine();
+            return Utils.AssertTrueAsync(testRevealTask, testPutCoverTask).ToCoroutine();
         }
     }
 }

@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using UnityEngine;
 
@@ -8,42 +8,29 @@ namespace SnekTech.GridCell
     public class CellBehaviour : MonoBehaviour, ICell
     {
         [SerializeField]
-        private FlagBehaviour flagBehaviour;
-        [SerializeField]
-        private CoverBehaviour coverBehaviour;
-        [SerializeField]
         private SpriteRenderer highlightFrame;
 
         private ICellBrain _cellBrain;
-
         private SpriteRenderer _spriteRenderer;
-        private GridIndex _gridIndex;
         
         public bool HasBomb { get; set; }
         
-        public IFlag Flag => flagBehaviour;
-        public ICover Cover => coverBehaviour;
+        public IFlag Flag { get; private set; }
+        public ICover Cover { get; private set; }
         public bool IsFlagged => _cellBrain.IsFlagged;
         public bool IsCovered => _cellBrain.IsCovered;
         public bool IsRevealed => _cellBrain.IsRevealed;
         
-        public GridIndex GridIndex
-        {
-            get => _gridIndex;
-            set => _gridIndex = value;
-        }
+        public GridIndex GridIndex { get; set; }
 
 
         private void Awake()
         {
-            _cellBrain = new BasicCellBrain(this);
-
             _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        public void Reset()
-        {
-            _cellBrain.Reset();
+            Flag = GetComponentInChildren<IFlag>();
+            Cover = GetComponentInChildren<ICover>();
+            
+            _cellBrain = new BasicCellBrain(this);
         }
 
         public void Dispose()
@@ -51,12 +38,12 @@ namespace SnekTech.GridCell
             Destroy(gameObject);
         }
 
-        public Task<bool> OnLeftClick()
+        public UniTask<bool> OnLeftClick()
         {
             return _cellBrain.OnLeftClick();
         }
 
-        public Task<bool> OnRightClick()
+        public UniTask<bool> OnRightClick()
         {
             return _cellBrain.OnRightClick();
         }

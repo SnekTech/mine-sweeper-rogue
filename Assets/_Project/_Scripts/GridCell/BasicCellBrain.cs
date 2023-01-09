@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
@@ -12,9 +11,7 @@ namespace SnekTech.GridCell
         private readonly ICell _cell;
         private CellState _currentState;
 
-        public bool HasBomb { get; private set; }
-        public IFlag Flag => _cell.Flag;
-        public ICover Cover => _cell.Cover;
+        public ICell Cell => _cell;
 
         public bool IsFlagged => _currentState == FlaggedState;
         public bool IsCovered => _currentState == CoveredState;
@@ -24,28 +21,18 @@ namespace SnekTech.GridCell
         {
             _cell = cell;
             
-            InitStates();
-            Reset();
+            GenerateStates();
+            Init();
         }
 
-        private void InitStates()
+        private void GenerateStates()
         {
             CoveredState ??= new CellCoveredState(this);
             FlaggedState ??= new CellFlaggedState(this);
             RevealedState ??= new CellRevealedState(this);
         }
 
-        public void SetBomb()
-        {
-            HasBomb = true;
-        }
-
-        public void RemoveBomb()
-        {
-            HasBomb = false;
-        }
-
-        public void Reset()
+        private void Init()
         {
             SwitchState(CoveredState);
         }
@@ -57,12 +44,12 @@ namespace SnekTech.GridCell
             _currentState.OnEnterState();
         }
 
-        public Task<bool> OnLeftClick()
+        public UniTask<bool> OnLeftClick()
         {
             return _currentState.OnLeftClick();
         }
 
-        public Task<bool> OnRightClick()
+        public UniTask<bool> OnRightClick()
         {
             return _currentState.OnRightLick();
         }

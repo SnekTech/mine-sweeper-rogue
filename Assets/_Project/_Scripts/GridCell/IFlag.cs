@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
     public interface IFlag : ICanSwitchActiveness
     {
         event Action LiftCompleted, PutDownCompleted;
-        Task<bool> LiftAsync();
-        Task<bool> PutDownAsync();
+        UniTask<bool> LiftAsync();
+        UniTask<bool> PutDownAsync();
     }
 }

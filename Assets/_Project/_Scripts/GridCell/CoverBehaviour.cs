@@ -1,5 +1,5 @@
 using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace SnekTech.GridCell
@@ -13,34 +13,32 @@ namespace SnekTech.GridCell
         private static readonly int PutCoverTrigger = Animator.StringToHash("PutCover");
         private static readonly int InitPutCoverTrigger = Animator.StringToHash("InitPutCover");
 
-        private SpriteRenderer _spriteRenderer;
         private Animator _animator;
-        private TaskCompletionSource<bool> _revealCompletionSource = new TaskCompletionSource<bool>();
-        private TaskCompletionSource<bool> _putCoverCompletionSource = new TaskCompletionSource<bool>();
+        private UniTaskCompletionSource<bool> _revealCompletionSource = new UniTaskCompletionSource<bool>();
+        private UniTaskCompletionSource<bool> _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
 
-        private Task<bool> OpenTask => _revealCompletionSource.Task;
-        private Task<bool> CloseTask => _putCoverCompletionSource.Task;
+        private UniTask<bool> OpenTask => _revealCompletionSource.Task;
+        private UniTask<bool> CloseTask => _putCoverCompletionSource.Task;
         
         private void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             PutCoverAfterInit();
             
-            _revealCompletionSource.SetResult(true);
-            _putCoverCompletionSource.SetResult(true);
+            _revealCompletionSource.TrySetResult(true);
+            _putCoverCompletionSource.TrySetResult(true);
         }
 
         public void OnRevealComplete()
         {
             RevealCompleted?.Invoke();
-            _revealCompletionSource.SetResult(true);
+            _revealCompletionSource.TrySetResult(true);
         }
 
         public void OnPutCoverComplete()
         {
             PutCoverCompleted?.Invoke();
-            _putCoverCompletionSource.SetResult(true);
+            _putCoverCompletionSource.TrySetResult(true);
         }
 
         public bool IsActive
@@ -53,26 +51,26 @@ namespace SnekTech.GridCell
             }
         }
         
-        public Task<bool> RevealAsync()
+        public UniTask<bool> RevealAsync()
         {
-            if (!OpenTask.IsCompleted)
+            if (OpenTask.IsPending())
             {
-                return Task.FromResult(false);
+                return UniTask.FromResult(false);
             }
 
-            _revealCompletionSource = new TaskCompletionSource<bool>();
+            _revealCompletionSource = new UniTaskCompletionSource<bool>();
             _animator.SetTrigger(RevealTrigger);
             return OpenTask;
         }
 
-        public Task<bool> PutCoverAsync()
+        public UniTask<bool> PutCoverAsync()
         {
-            if (!CloseTask.IsCompleted)
+            if (CloseTask.IsPending())
             {
-                return Task.FromResult(false);
+                return UniTask.FromResult(false);
             }
 
-            _putCoverCompletionSource = new TaskCompletionSource<bool>();
+            _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
             _animator.SetTrigger(PutCoverTrigger);
             return CloseTask;
         }

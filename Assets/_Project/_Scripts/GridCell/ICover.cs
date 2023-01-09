@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
     public interface ICover : ICanSwitchActiveness
     {
         event Action RevealCompleted, PutCoverCompleted;
-        Task<bool> RevealAsync();
-        Task<bool> PutCoverAsync();
+        UniTask<bool> RevealAsync();
+        UniTask<bool> PutCoverAsync();
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
@@ -14,17 +14,17 @@ namespace SnekTech.GridCell
 
         public override void OnLeaveState()
         {
-            CellBrain.Flag.IsActive = false;
+            Flag.IsActive = false;
         }
 
-        public override Task<bool> OnLeftClick()
+        public override UniTask<bool> OnLeftClick()
         {
-            return Task.FromResult(false);
+            return UniTask.FromResult(false);
         }
 
-        public override async Task<bool> OnRightLick()
+        public override async UniTask<bool> OnRightLick()
         {
-            bool isPutDownCompleted = await CellBrain.Flag.PutDownAsync();
+            bool isPutDownCompleted = await Flag.PutDownAsync();
             if (isPutDownCompleted)
             {
                 CellBrain.SwitchState(CellBrain.CoveredState);

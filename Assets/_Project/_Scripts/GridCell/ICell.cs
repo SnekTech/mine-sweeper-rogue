@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using UnityEngine;
 
@@ -9,11 +9,10 @@ namespace SnekTech.GridCell
         GridIndex GridIndex { get; set; }
         IFlag Flag { get; }
         ICover Cover { get; }
-        void Reset();
         void Dispose();
 
-        Task<bool> OnLeftClick();
-        Task<bool> OnRightClick();
+        UniTask<bool> OnLeftClick();
+        UniTask<bool> OnRightClick();
 
         bool HasBomb { get; set; }
         void SetContent(Sprite sprite);

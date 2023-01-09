@@ -71,6 +71,8 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Custom
+
 .idea
 .vscode
 
@@ -82,3 +84,7 @@ Assets/TextMesh Pro
 
 Assets/DOTween.meta
 Assets/DOTween/*
+
+# playmode test may generate test scene here
+/[Aa]ssets/*.unity
+/[Aa]ssets/*.unity.meta

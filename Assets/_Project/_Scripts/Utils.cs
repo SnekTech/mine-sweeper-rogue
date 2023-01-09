@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -28,12 +29,17 @@ namespace SnekTech
             return value.CompareTo(min) >= 0 && value.CompareTo(max) <= 0;
         }
 
+        public static bool GetActiveSelf(this MonoBehaviour monoBehaviour) => monoBehaviour.gameObject.activeSelf;
+
         public static void SetActive(this MonoBehaviour monoBehaviour, bool isActive)
         {
             monoBehaviour.gameObject.SetActive(isActive);
         }
 
         public static bool IsEmpty(this ICollection collection) => collection.Count == 0;
+
+        public static bool IsPending(this UniTask task) => task.Status == UniTaskStatus.Pending;
+        public static bool IsPending<T>(this UniTask<T> task) => task.Status == UniTaskStatus.Pending;
     }
 
     namespace Constants

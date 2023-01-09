@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
@@ -10,18 +10,16 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
-            CellBrain.Flag.IsActive = false;
+            Flag.IsActive = false;
         }
 
         public override void OnLeaveState()
         {
         }
 
-        public override async Task<bool> OnLeftClick()
+        public override async UniTask<bool> OnLeftClick()
         {
-            ICover cover = CellBrain.Cover;
-            
-            bool isRevealCompleted = await cover.RevealAsync();
+            bool isRevealCompleted = await Cover.RevealAsync();
             if (isRevealCompleted)
             {
                 CellBrain.SwitchState(CellBrain.RevealedState);
@@ -30,14 +28,11 @@ namespace SnekTech.GridCell
             return isRevealCompleted;
         }
 
-        public override async Task<bool> OnRightLick()
+        public override async UniTask<bool> OnRightLick()
         {
-            if (!CellBrain.Flag.IsActive)
-            {
-                CellBrain.Flag.IsActive = true;
-            }
+            Flag.IsActive = true;
 
-            bool isLiftFlagCompleted = await CellBrain.Flag.LiftAsync();
+            bool isLiftFlagCompleted = await Flag.LiftAsync();
             if (isLiftFlagCompleted)
             {
                 CellBrain.SwitchState(CellBrain.FlaggedState);

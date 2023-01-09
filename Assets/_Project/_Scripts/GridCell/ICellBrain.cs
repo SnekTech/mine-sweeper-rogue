@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
@@ -9,11 +9,9 @@ namespace SnekTech.GridCell
         CellState RevealedState { get; }
 
         void SwitchState(CellState state);
-        void Reset();
-        Task<bool> OnLeftClick();
-        Task<bool> OnRightClick();
-        IFlag Flag { get; }
-        ICover Cover { get; }
+        UniTask<bool> OnLeftClick();
+        UniTask<bool> OnRightClick();
+        ICell Cell { get; }
         bool IsFlagged { get; }
         bool IsCovered { get; }
         bool IsRevealed { get; }

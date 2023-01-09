@@ -11,6 +11,7 @@ namespace SnekTech.Core.GameModeSystem
 
         public bool IsActive
         {
+            get => text.GetActiveSelf();
             set => text.SetActive(value);
         }
 

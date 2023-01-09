@@ -1,21 +1,27 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell
 {
     public abstract class CellState
     {
         protected readonly ICellBrain CellBrain;
+        protected readonly ICell Cell;
+        protected readonly IFlag Flag;
+        protected readonly ICover Cover;
 
         protected CellState(ICellBrain cellBrain)
         {
             CellBrain = cellBrain;
+            Cell = cellBrain.Cell;
+            Flag = Cell.Flag;
+            Cover = Cell.Cover;
         }
         
         public abstract void OnEnterState();
         public abstract void OnLeaveState();
         
-        public abstract Task<bool> OnLeftClick();
+        public abstract UniTask<bool> OnLeftClick();
 
-        public abstract Task<bool> OnRightLick();
+        public abstract UniTask<bool> OnRightLick();
     }
 }
