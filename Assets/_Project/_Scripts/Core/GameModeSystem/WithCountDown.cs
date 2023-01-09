@@ -28,7 +28,7 @@ namespace SnekTech.Core.GameModeSystem
         protected override void OnStart()
         {
             _decoratedMode.Start();
-            _decoratedMode.LevelCompleted += OnDecoratedModeLevelCompleted;
+            _decoratedMode.OnLevelComplete += HandleDecoratedModeOnLevelComplete;
             
             StartTimerAsync().Forget();
         }
@@ -36,10 +36,10 @@ namespace SnekTech.Core.GameModeSystem
         protected override void OnStop()
         {
             _decoratedMode.Stop();
-            _decoratedMode.LevelCompleted -= OnDecoratedModeLevelCompleted;
+            _decoratedMode.OnLevelComplete -= HandleDecoratedModeOnLevelComplete;
         }
 
-        private void OnDecoratedModeLevelCompleted(bool hasFailed)
+        private void HandleDecoratedModeOnLevelComplete(bool hasFailed)
         {
             InvokeLevelCompleted(hasFailed);
         }

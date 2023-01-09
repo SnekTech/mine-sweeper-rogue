@@ -44,7 +44,7 @@ namespace SnekTech.UI.Modal
 
         private void OnOkButtonClick()
         {
-            uiEventManager.InvokeModalOk();
+            uiEventManager.InvokeOnModalOk();
         }
 
         public void ChangeToChooseItemPanel()

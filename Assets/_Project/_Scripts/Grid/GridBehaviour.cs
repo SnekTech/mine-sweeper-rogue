@@ -27,9 +27,6 @@ namespace SnekTech.Grid
         private GridEventManager gridEventManager;
 
         [SerializeField]
-        private GridData gridData;
-
-        [SerializeField]
         private PlayerState playerState;
 
         [SerializeField]
@@ -49,11 +46,7 @@ namespace SnekTech.Grid
         public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
 
-        public GridData GridData
-        {
-            get => gridData;
-            private set => gridData = value;
-        }
+        public GridData GridData { get; private set; }
 
         private GridSize GridSize => GridData.GridSize;
         public int CellCount => GridSize.rowCount * GridSize.columnCount;
@@ -64,16 +57,13 @@ namespace SnekTech.Grid
 
         private bool IsAllCleared => Cells.Where(cell => !cell.HasBomb).All(cell => cell.IsRevealed);
 
+        #region Unity callbacks
+        
         private void Awake()
         {
             _gridBrain = new BasicGridBrain(this);
 
             _cellLayer = 1 << LayerMask.NameToLayer("Cell");
-        }
-
-        private void Start()
-        {
-            InitCells();
         }
 
         private void OnEnable()
@@ -85,6 +75,8 @@ namespace SnekTech.Grid
         {
             DisableEventListeners();
         }
+        
+        #endregion
 
         private void EnableEventListeners()
         {
@@ -246,7 +238,7 @@ namespace SnekTech.Grid
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
         }
 
-        public void InitCells()
+        private void InitCells()
         {
             InstantiateCells(GridData);
             InitCellsContent();
@@ -259,10 +251,9 @@ namespace SnekTech.Grid
             InitCells();
         }
 
-        [ContextMenu(nameof(DisposeCells))]
-        public void DisposeCells()
+        private void DisposeCells()
         {
-            foreach (ICell cell in Cells)
+            foreach (var cell in Cells)
             {
                 cell.Dispose();
             }
@@ -278,12 +269,12 @@ namespace SnekTech.Grid
             IRandomGenerator bombGenerator = RandomGenerator.Instance;
             BombCount = 0;
 
-            GridSize gridSize = newGridData.GridSize;
+            var gridSize = newGridData.GridSize;
             for (int i = 0; i < gridSize.rowCount; i++)
             {
                 for (int j = 0; j < gridSize.columnCount; j++)
                 {
-                    CellBehaviour cellMono = Instantiate(cellBehaviour, transform);
+                    var cellMono = Instantiate(cellBehaviour, transform);
                     ICell cell = cellMono;
                     var cellIndex = new GridIndex(i, j);
                     cell.GridIndex = cellIndex;
@@ -312,14 +303,8 @@ namespace SnekTech.Grid
                 cell.SetContent(cell.HasBomb ? BombSprite : NoBombSprites[_gridBrain.GetNeighborBombCount(cell)]);
             }
         }
-
-        public void ResetCells()
-        {
-            foreach (ICell cell in Cells)
-            {
-                cell.Reset();
-            }
-        }
+        
+        #region Cell Highlight
 
         private void UpdateGridHighlight(ICell cellHovering)
         {
@@ -343,5 +328,7 @@ namespace SnekTech.Grid
                 cell.SetHighlight(false);
             }
         }
+
+        #endregion
     }
 }

@@ -46,7 +46,7 @@ namespace SnekTech.UI.ChooseItem
 
         private void HandleItemButtonClicked()
         {
-            uiEventManager.InvokeItemChosen(_itemData);
+            uiEventManager.InvokeOnChooseItem(_itemData);
         }
     }
 }

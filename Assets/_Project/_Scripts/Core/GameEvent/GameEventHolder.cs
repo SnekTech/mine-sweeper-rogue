@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SnekTech.Core.History;
 using SnekTech.DataPersistence;
 using SnekTech.Grid;
 using SnekTech.GridCell;
@@ -25,6 +25,9 @@ namespace SnekTech.Core.GameEvent
 
         [SerializeField]
         private GridEventManager gridEventManager;
+
+        [SerializeField]
+        private CurrentRecordHolder currentRecordHolder;
 
         private List<CellEvent> _cellEvents;
 
@@ -60,11 +63,10 @@ namespace SnekTech.Core.GameEvent
             bool shouldTriggerEvent = _cellEventGenerator.NextBool(CellEventProbability);
             if (shouldTriggerEvent)
             {
-                CellEventData randomCellEventData = cellEventPool.GetRandom();
+                var randomCellEventData = cellEventPool.GetRandom();
                 await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon, randomCellEventData.Description);
                 
-                // todo: set correct levelIndex
-                AddCellEvent(new CellEvent(randomCellEventData, cell.GridIndex, 0));
+                AddCellEvent(new CellEvent(randomCellEventData, cell.GridIndex, currentRecordHolder.CurrentLevelIndex));
             }
         }
 

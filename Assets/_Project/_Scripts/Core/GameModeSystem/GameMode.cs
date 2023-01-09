@@ -5,7 +5,7 @@ namespace SnekTech.Core.GameModeSystem
 {
     public abstract class GameMode
     {
-        public event Action<bool> LevelCompleted;
+        public event Action<bool> OnLevelComplete;
 
         private readonly GameModeInfo _gameModeInfo;
         private readonly PlayerState _playerState;
@@ -32,15 +32,12 @@ namespace SnekTech.Core.GameModeSystem
 
         private void ClearEventSubscriptions()
         {
-            LevelCompleted = null;
+            OnLevelComplete = null;
         }
 
         protected abstract void OnStart();
         protected abstract void OnStop();
 
-        protected void InvokeLevelCompleted(bool hasFailed)
-        {
-            LevelCompleted?.Invoke(hasFailed);
-        }
+        protected void InvokeLevelCompleted(bool hasFailed) => OnLevelComplete?.Invoke(hasFailed);
     }
 }

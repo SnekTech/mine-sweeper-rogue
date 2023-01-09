@@ -10,22 +10,22 @@ namespace SnekTech.UI
     public class UIEventManager : ScriptableObject
     {
         public event Action<GridData> ResetButtonClicked;
-        public event Action<ItemData> ItemChosen;
-        public event Action ModalOk;
+        public event Action<ItemData> OnChooseItem;
+        public event Action OnModalOk;
 
         public void InvokeResetButtonClicked(GridData gridData)
         {
             ResetButtonClicked?.Invoke(gridData);
         }
 
-        public void InvokeItemChosen(ItemData itemData)
+        public void InvokeOnChooseItem(ItemData itemData)
         {
-            ItemChosen?.Invoke(itemData);
+            OnChooseItem?.Invoke(itemData);
         }
 
-        public void InvokeModalOk()
+        public void InvokeOnModalOk()
         {
-            ModalOk?.Invoke();
+            OnModalOk?.Invoke();
         }
     }
 }

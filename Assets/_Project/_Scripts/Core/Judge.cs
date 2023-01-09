@@ -53,6 +53,7 @@ namespace SnekTech.Core
         private const int LevelCount = 3;
         public Level CurrentLevel { get; private set; }
         private GameMode CurrentGameMode => CurrentLevel.GameMode;
+        private IGrid Grid => grid;
 
         private int CurrentLevelIndex
         {
@@ -101,10 +102,10 @@ namespace SnekTech.Core
             CurrentLevel = level;
             OnLevelLoad?.Invoke();
             
-            grid.InitCells(level.GridData);
+            Grid.InitCells(level.GridData);
             
             CurrentGameMode.Start();
-            CurrentGameMode.LevelCompleted += OnLevelCompleted;
+            CurrentGameMode.OnLevelComplete += HandleOnLevelComplete;
             
             dataPersistenceManager.SaveGame();
         }
@@ -126,7 +127,9 @@ namespace SnekTech.Core
             }
         }
 
-        private async void OnLevelCompleted(bool hasFailed)
+        private void HandleOnLevelComplete(bool hasFailed) => HandleOnLevelCompleteAsync(hasFailed).Forget();
+
+        private async UniTaskVoid HandleOnLevelCompleteAsync(bool hasFailed)
         {
             await UniTask.WhenAll(_afterLevelCompletedTasks.Select(task => task.FinishAsync()));
             
@@ -136,7 +139,7 @@ namespace SnekTech.Core
             
             
             CurrentGameMode.Stop();
-            CurrentGameMode.LevelCompleted -= OnLevelCompleted;
+            CurrentGameMode.OnLevelComplete -= HandleOnLevelComplete;
 
             if (hasFailed || CurrentLevelIndex >= LevelCount)
             {

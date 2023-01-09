@@ -21,15 +21,15 @@ namespace SnekTech.UI.ChooseItem
 
         private void OnEnable()
         {
-            uiEventManager.ItemChosen += OnItemChosen;
+            uiEventManager.OnChooseItem += HandleOnChooseItem;
         }
 
         private void OnDisable()
         {
-            uiEventManager.ItemChosen -= OnItemChosen;
+            uiEventManager.OnChooseItem -= HandleOnChooseItem;
         }
 
-        private void OnItemChosen(ItemData item)
+        private void HandleOnChooseItem(ItemData item)
         {
             playerState.Inventory.AddItem(item);
         }
@@ -39,7 +39,7 @@ namespace SnekTech.UI.ChooseItem
             transform.DestroyAllChildren();
             for (int i = 0; i < playerState.ItemChoiceCount; i++)
             {
-                ItemButton button = Instantiate(itemButtonPrefab, transform);
+                var button = Instantiate(itemButtonPrefab, transform);
                 button.SetItem(itemPool.GetRandom());
             }
         }

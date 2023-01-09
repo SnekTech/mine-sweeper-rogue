@@ -11,12 +11,19 @@ namespace SnekTech.UI.Modal
     [CreateAssetMenu]
     public class ModalManager : ScriptableObject, IShouldFinishAfterLevelCompleted
     {
+        #region DI
+        
         [SerializeField]
         private UIState uiState;
 
         [SerializeField]
         private UIEventManager uiEventManager;
         
+        #endregion
+        
+        #region Animation Config
+        
+        [Header("Animation Config")]
         [SerializeField]
         [Range(0, 1)]
         private float targetBackgroundAlpha = 0.6f;
@@ -31,9 +38,19 @@ namespace SnekTech.UI.Modal
         [SerializeField]
         private Ease easeHide = Ease.InQuint;
         
+        #endregion
+        
         private Modal _modal;
         private CanvasGroup _alphaGroup;
         private readonly Queue<UniTask> _showTaskQueue = new Queue<UniTask>();
+        private UniTask _currentShowingModalCloseTask; // complete when closed
+
+        #region shortcut getters
+        
+        private bool HasRemainingShowTask => !_showTaskQueue.IsEmpty();
+        private bool IsLastShowTaskPending => _currentShowingModalCloseTask.Status == UniTaskStatus.Pending;
+        
+        #endregion
 
         public void Init(Modal modal)
         {
@@ -48,9 +65,11 @@ namespace SnekTech.UI.Modal
         {
             while (true)
             {
-                if (!_showTaskQueue.IsEmpty())
+                if (HasRemainingShowTask)
                 {
-                    UniTask showTask = _showTaskQueue.Dequeue();
+                    await UniTask.WaitUntil(() => !IsLastShowTaskPending);
+                    var showTask = _showTaskQueue.Dequeue();
+
                     await showTask;
                 }
 
@@ -61,7 +80,7 @@ namespace SnekTech.UI.Modal
 
         public UniTask FinishAsync()
         {
-            return UniTask.WaitUntil(() => _showTaskQueue.IsEmpty());
+            return UniTask.WaitUntil(() => !HasRemainingShowTask && !IsLastShowTaskPending);
         }
 
         #region Show Modal Functions
@@ -71,16 +90,17 @@ namespace SnekTech.UI.Modal
             _modal.ChangeToChooseItemPanel();
             await Show();
 
+            void HandleOnChooseItem(ItemData itemData) => HandleOnChooseItemAsync().Forget();
 
-            async void OnItemChosen(ItemData itemData)
+            async UniTaskVoid HandleOnChooseItemAsync()
             {
                 await Hide();
                 actionAfterModalHide();
-                uiEventManager.ItemChosen -= OnItemChosen;
+                uiEventManager.OnChooseItem -= HandleOnChooseItem;
                 closeTaskCompletionSource.TrySetResult();
             }
 
-            uiEventManager.ItemChosen += OnItemChosen;
+            uiEventManager.OnChooseItem += HandleOnChooseItem;
         }
 
         private async UniTask ShowConfirmTask(UniTaskCompletionSource closeTaskCompletionSource, string header, Sprite image, string annotationText) 
@@ -88,29 +108,36 @@ namespace SnekTech.UI.Modal
             _modal.ChangeToConfirm(header, image, annotationText);
             await Show();
 
-            async void OnModalOk()
+            void HandleOnModalOk() => HandleOnModalOkAsync().Forget();
+
+            async UniTaskVoid HandleOnModalOkAsync()
             {
                 await Hide();
-                uiEventManager.ModalOk -= OnModalOk;
+                uiEventManager.OnModalOk -= HandleOnModalOk;
                 closeTaskCompletionSource.TrySetResult();
             }
 
-            uiEventManager.ModalOk += OnModalOk;
+            uiEventManager.OnModalOk += HandleOnModalOk;
         }
 
-        public UniTask ShowConfirmAsync(string header, Sprite image, string annotationText)
-        {
-            var closeTaskCompletionSource = new UniTaskCompletionSource();
-            _showTaskQueue.Enqueue(ShowConfirmTask(closeTaskCompletionSource, header, image, annotationText));
-            
-            return closeTaskCompletionSource.Task;
-        }
+        public UniTask ShowConfirmAsync(string header, Sprite image, string annotationText) =>
+            AppendShowTask(completionSource => ShowConfirmTask(completionSource, header, image, annotationText));
 
-        public UniTask ShowChooseItemPanelAsync(Action actionAfterModalHide)
+        public UniTask ShowChooseItemPanelAsync(Action actionAfterModalHide) => 
+            AppendShowTask(completionSource => ShowChooseItemPanelTask(completionSource, actionAfterModalHide));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="taskGenerator"></param>
+        /// <returns>current showing modal close task</returns>
+        private UniTask AppendShowTask(Func<UniTaskCompletionSource, UniTask> taskGenerator)
         {
             var closeTaskCompletionSource = new UniTaskCompletionSource();
-            _showTaskQueue.Enqueue(ShowChooseItemPanelTask(closeTaskCompletionSource, actionAfterModalHide));
-            return closeTaskCompletionSource.Task;
+            _showTaskQueue.Enqueue(taskGenerator(closeTaskCompletionSource));
+
+            _currentShowingModalCloseTask = closeTaskCompletionSource.Task;
+            return _currentShowingModalCloseTask;
         }
         
         #endregion

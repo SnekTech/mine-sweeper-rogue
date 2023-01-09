@@ -15,4 +15,4 @@ MonoBehaviour:
   gridSize:
     rowCount: 10
     columnCount: 10
-  bombPercent: 0.026
+  bombPercent: 0.1

@@ -14,10 +14,7 @@ namespace SnekTech.Grid
         int BombCount { get; }
         int RevealedCellCount { get; }
         int FlaggedCellCount { get; }
-        
-        void InitCells();
+
         void InitCells(GridData newGridData);
-        void DisposeCells();
-        void ResetCells();
     }
 }
