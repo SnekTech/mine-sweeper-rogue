@@ -11,5 +11,8 @@ namespace SnekTech.Grid
 
         // todo: random this
         public GridData GetRandom() => gridDataList[0];
+
+        public void Populate(List<GridData> gridDataListIn) => gridDataList = gridDataListIn;
+        public void Clear() => gridDataList.Clear();
     }
 }
