@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SnekTech.Player;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -17,6 +19,7 @@ namespace SnekTech.Editor.Debug
 
         [SerializeField]
         private int damage;
+
         [SerializeField]
         private int addHealth;
 
@@ -31,7 +34,7 @@ namespace SnekTech.Editor.Debug
 
         [SerializeField]
         private int addMaxHealth;
-        
+
         private const string DamageTriggerName = "damageTrigger";
         private const string AddHealthTriggerName = "addHealthTrigger";
         private const string AddArmourTriggerName = "addArmourTrigger";
@@ -53,6 +56,18 @@ namespace SnekTech.Editor.Debug
             panelUxml.CloneTree(rootVisualElement);
             _target = new SerializedObject(this);
 
+            GenerateSceneButtons();
+            
+            InitTriggers();
+
+
+            rootVisualElement.Bind(_target);
+        }
+
+        #region trigger fields
+
+        private void InitTriggers()
+        {
             InitTrigger(DamageTriggerName, nameof(damage),
                 amount => playerState.TakeDamage(amount));
             InitTrigger(AddHealthTriggerName, nameof(addHealth),
@@ -65,16 +80,51 @@ namespace SnekTech.Editor.Debug
                 amount => playerState.TakeDamageOnHealth(amount));
             InitTrigger(AdjustMaxHealthTriggerName, nameof(addMaxHealth),
                 amount => playerState.AdjustMaxHealth(amount), -10);
-
-
-            rootVisualElement.Bind(_target);
         }
 
-        private void InitTrigger(string triggerName, string bindingPath, Action<int> onTrigger, int min = TriggerWithAmount.DefaultMinValue, int max = TriggerWithAmount.DefaultMaxValue)
+        private void InitTrigger(string triggerName, string bindingPath, Action<int> onTrigger,
+            int min = TriggerWithAmount.DefaultMinValue, int max = TriggerWithAmount.DefaultMaxValue)
         {
             var trigger = rootVisualElement.Q<TriggerWithAmount>(triggerName);
             trigger.bindingPath = bindingPath;
             trigger.Init(bindingPath, onTrigger, min, max);
         }
+
+        #endregion
+
+        #region switch scenes
+
+        private void GenerateSceneButtons()
+        {
+            var sceneSwitchRootFoldout = rootVisualElement.Q<Foldout>("sceneSwitchFoldout");
+
+            var sceneNames = new List<string>();
+            var scenePaths = new List<string>();
+
+            var sceneDirPaths = new List<string>
+            {
+                Application.dataPath + "/_Project/Scenes",
+            };
+
+            var sceneFiles = sceneDirPaths.Select(dirPath => FileUtils.GetFilePaths(dirPath, "*Unity"))
+                .Where(filePaths => !filePaths.IsEmpty()).SelectMany(filePaths => filePaths);
+            foreach (string filePath in sceneFiles)
+            {
+                scenePaths.Add(filePath);
+                sceneNames.Add(FileUtils.GetFileName(filePath));
+            }
+            
+            for (int i = 0; i < sceneNames.Count; i++)
+            {
+                string scenePath = scenePaths[i];
+                var button = new Button(() => SceneUtils.OpenScene(scenePath))
+                {
+                    text = sceneNames[i],
+                };
+                sceneSwitchRootFoldout.Add(button);
+            }
+        }
+
+        #endregion
     }
 }

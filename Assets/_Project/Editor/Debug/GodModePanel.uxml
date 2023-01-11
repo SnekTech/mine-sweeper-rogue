@@ -1,4 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    
+    <ui:Foldout name="sceneSwitchFoldout" text="Scenes" view-data-key="scenes-foldout" />
+    
     <ui:Foldout text="Triggers" view-data-key="triggers-foldout">
         <SnekTech.Editor.Debug.TriggerWithAmount name="damageTrigger" />
         <SnekTech.Editor.Debug.TriggerWithAmount name="addHealthTrigger" />
