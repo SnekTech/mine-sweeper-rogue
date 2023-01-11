@@ -1,18 +1,12 @@
-﻿using System.Collections.Generic;
-using SnekTech.Roguelike;
+﻿using SnekTech.Roguelike;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
     [CreateAssetMenu]
-    public class CellEventPool : ScriptableObject
+    public class CellEventPool : RandomPool<CellEventData>
     {
-        [SerializeField]
-        private List<CellEventData> cellEventsAvailable;
-
-        public CellEventData GetRandom()
-        {
-            return cellEventsAvailable.GetRandom();
-        }
+        private const string CellEventDataDir = "/_Project/MyScriptableObjects/CellEvents";
+        public override string AssetDirPath => Application.dataPath + CellEventDataDir;
     }
 }

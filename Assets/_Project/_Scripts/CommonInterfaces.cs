@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace SnekTech
@@ -13,5 +14,12 @@ namespace SnekTech
     public interface ICanSwitchActiveness
     {
         bool IsActive { get; set; }
+    }
+
+    public interface IPool<T>
+    {
+        string AssetDirPath { get; }
+        void Populate(List<T> newElements);
+        void Clear();
     }
 }

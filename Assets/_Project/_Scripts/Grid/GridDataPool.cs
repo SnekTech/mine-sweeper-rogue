@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using SnekTech.Roguelike;
 using UnityEngine;
 
 namespace SnekTech.Grid
 {
     [CreateAssetMenu]
-    public class GridDataPool : ScriptableObject
+    public class GridDataPool : RandomPool<GridData>
     {
-        [SerializeField]
-        private List<GridData> gridDataList;
+        private const string GridDataDir = "/_Project/MyScriptableObjects/Static";
+        public override string AssetDirPath => Application.dataPath + GridDataDir;
 
         // todo: random this
-        public GridData GetRandom() => gridDataList[0];
-
-        public void Populate(List<GridData> gridDataListIn) => gridDataList = gridDataListIn;
-        public void Clear() => gridDataList.Clear();
+        public override GridData GetRandom() => elements[0];
     }
 }
