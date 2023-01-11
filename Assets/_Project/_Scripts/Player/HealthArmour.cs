@@ -152,6 +152,7 @@ namespace SnekTech.Player
             }
             else
             {
+                // bug: unintended behavior when adjust negative max-health
                 int newMaxHealth = Mathf.Max(0, maxHealth + amount);
                 int newHealth = Mathf.Min(health, newMaxHealth);
                 int damageOnHealth = health - newHealth;

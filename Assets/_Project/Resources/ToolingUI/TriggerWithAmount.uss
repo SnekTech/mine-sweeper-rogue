@@ -1,0 +1,20 @@
+.control-group {
+    flex-direction: row;
+    flex-grow: 1;
+    
+    background-color: rgb(29, 43, 83);
+    padding: 6px;
+    margin: 4px;
+}
+
+.control-group .amount-field {
+    flex-basis: 75%;
+}
+
+.control-group .amount-field Label {
+    min-width: 80px;
+}
+
+.control-group Button {
+    flex-basis: 20%;
+}

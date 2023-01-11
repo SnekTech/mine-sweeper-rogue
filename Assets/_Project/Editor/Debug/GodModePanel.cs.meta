@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bbb0fae185764b6e82f6182cadb9bad9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - panelUxml: {fileID: 9197481963319205126, guid: d962c4d6b913ddd459013cdf41dac549, type: 3}
+  - playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

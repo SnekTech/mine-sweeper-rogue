@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Foldout text="Triggers" view-data-key="triggers-foldout">
+        <SnekTech.Editor.Debug.TriggerWithAmount name="damageTrigger" />
+        <SnekTech.Editor.Debug.TriggerWithAmount name="addHealthTrigger" />
+        <SnekTech.Editor.Debug.TriggerWithAmount name="addArmourTrigger" />
+        <SnekTech.Editor.Debug.TriggerWithAmount name="damageOnArmourTrigger" />
+        <SnekTech.Editor.Debug.TriggerWithAmount name="damageOnHealthTrigger" />
+        <SnekTech.Editor.Debug.TriggerWithAmount name="adjustMaxHealthTrigger" />
+    </ui:Foldout>
+</ui:UXML>
