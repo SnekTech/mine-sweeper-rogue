@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SnekTech.Player;
 using UnityEngine;
 
-namespace SnekTech.Editor.Debug
+namespace SnekTech.Editor.Debug.Triggers
 {
     [CreateAssetMenu(menuName = "Editor/" + nameof(TriggersPanelData))]
     public class TriggersPanelData : ScriptableObject

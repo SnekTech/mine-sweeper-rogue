@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace SnekTech.Editor.Debug
+namespace SnekTech.Editor.Debug.Triggers
 {
     public class TriggerWithAmount : BaseField<int>
     {

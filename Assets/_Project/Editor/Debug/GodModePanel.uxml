@@ -1,6 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <ui:Foldout name="sceneSwitchFoldout" text="Scenes" view-data-key="scenes-foldout" />
+    <Style src="project://database/Assets/_Project/Resources/ToolingUI/SceneChangePanel.uss?fileID=7433441132597879392&amp;guid=6087e0830c09b024590b6092d182d4a6&amp;type=3#SceneChangePanel" />
+    <ui:Foldout name="sceneSwitchFoldout" text="Scenes" view-data-key="scenes-foldout">
+        <SnekTech.Editor.Debug.Scenes.SceneChangePanel />
+    </ui:Foldout>
     <ui:Foldout text="Triggers" view-data-key="triggers-foldout">
-        <SnekTech.Editor.Debug.TriggersPanel />
+        <SnekTech.Editor.Debug.Triggers.TriggersPanel />
     </ui:Foldout>
 </ui:UXML>

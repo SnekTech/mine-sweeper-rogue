@@ -1,0 +1,8 @@
+SceneChangePanel {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+SceneChangePanel Button {
+    flex-basis: 45%;
+}
