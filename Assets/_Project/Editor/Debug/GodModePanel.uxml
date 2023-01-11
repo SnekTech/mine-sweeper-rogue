@@ -6,4 +6,5 @@
     <ui:Foldout text="Triggers" view-data-key="triggers-foldout">
         <SnekTech.Editor.Debug.Triggers.TriggersPanel />
     </ui:Foldout>
+    <SnekTech.Editor.Debug.ResetGamePanel />
 </ui:UXML>

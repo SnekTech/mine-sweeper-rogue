@@ -8,6 +8,7 @@ MonoImporter:
   - panelUxml: {fileID: 9197481963319205126, guid: d962c4d6b913ddd459013cdf41dac549, type: 3}
   - playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
   - triggersPanelData: {fileID: 11400000, guid: 0881047207bd560438a3cd0eaaee3177, type: 2}
+  - uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

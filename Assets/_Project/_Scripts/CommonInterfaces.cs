@@ -18,7 +18,6 @@ namespace SnekTech
 
     public interface IPool<T>
     {
-        string AssetDirPath { get; }
         void Populate(List<T> newElements);
         void Clear();
     }

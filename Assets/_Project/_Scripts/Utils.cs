@@ -42,6 +42,7 @@ namespace SnekTech
         public static bool IsPending<T>(this UniTask<T> task) => task.Status == UniTaskStatus.Pending;
     }
 
+    // todo: move these to namespace C 
     namespace Constants
     {
         public static class MenuName

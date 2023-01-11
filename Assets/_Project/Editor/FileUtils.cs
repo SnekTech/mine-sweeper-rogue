@@ -29,7 +29,14 @@ namespace SnekTech.Editor
             return null;
         }
 
-        public static List<string> GetFilePaths(string dirPath, string searchPattern = "*",
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dirPath">directory full path</param>
+        /// <param name="searchPattern"></param>
+        /// <param name="searchOption"></param>
+        /// <returns>path relative to Assets directory</returns>
+        public static List<string> GetFileAssetPaths(string dirPath, string searchPattern = "*",
             SearchOption searchOption = SearchOption.AllDirectories)
         {
             var paths = new List<string>();

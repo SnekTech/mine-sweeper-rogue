@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e571ed328aea4c3680659cb2680a23ad, type: 3}
   m_Name: Grid Data Pool
   m_EditorClassIdentifier: 
-  gridDataList:
-  - {fileID: 11400000, guid: ce10669f59fff5e4baa36174691c6b0c, type: 2}
-  - {fileID: 11400000, guid: 6449146ece2de7d40aace49277726dc9, type: 2}
+  elements:
   - {fileID: 11400000, guid: 069099f3bb015a4489ddebb78e42112d, type: 2}
+  - {fileID: 11400000, guid: 6449146ece2de7d40aace49277726dc9, type: 2}
+  - {fileID: 11400000, guid: ce10669f59fff5e4baa36174691c6b0c, type: 2}

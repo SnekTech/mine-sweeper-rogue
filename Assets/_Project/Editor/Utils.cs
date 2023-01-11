@@ -17,4 +17,18 @@ namespace SnekTech.Editor
                 .ToList();
         }
     }
+
+    namespace C
+    {
+        // relative to "Assets" directory
+        public static class DirPath
+        {
+            public const string ScenesDir = "/_Project/Scenes";
+            
+            private const string ScriptableObjectDir = "/_Project/MyScriptableObjects";
+            public const string GridDataDir = ScriptableObjectDir + "/Static";
+            public const string ItemDataDir = ScriptableObjectDir + "/Inventory/Items";
+            public const string CellEventDataDir = ScriptableObjectDir + "/CellEvents";
+        }
+    }
 }

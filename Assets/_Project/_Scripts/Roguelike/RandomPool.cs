@@ -7,8 +7,6 @@ namespace SnekTech.Roguelike
     {
         [SerializeField]
         protected List<T> elements;
-        
-        public abstract string AssetDirPath { get; }
 
         public void Populate(List<T> newElements) => elements = newElements;
 

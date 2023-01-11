@@ -7,12 +7,13 @@ using UnityEngine.UIElements;
 
 namespace SnekTech.Editor.Pools
 {
-    public abstract class RandomPoolEditor<TPool, TElement> : UnityEditor.Editor
-        where TPool : RandomPool<TElement> where TElement : ScriptableObject
+    public abstract class RandomPoolEditor<TPool, TAsset> : UnityEditor.Editor
+        where TPool : RandomPool<TAsset> where TAsset : ScriptableObject
     {
         private TPool Pool => serializedObject.targetObject as TPool;
         private const string PopulateButtonText = "Populate Pool";
         private const string ClearButtonText = "Clear Pool";
+        protected abstract string AssetDirPath { get; }
 
         public override VisualElement CreateInspectorGUI()
         {
@@ -36,12 +37,12 @@ namespace SnekTech.Editor.Pools
 
         private void Populate()
         {
-            var elementPaths = FileUtils.GetFilePaths(Pool.AssetDirPath);
-            var elements = elementPaths.Select(AssetDatabase.LoadAssetAtPath<TElement>)
-                .Where(element => element != null)
+            var assetPaths = FileUtils.GetFileAssetPaths(Application.dataPath + AssetDirPath);
+            var assets = assetPaths.Select(AssetDatabase.LoadAssetAtPath<TAsset>)
+                .Where(asset => asset != null)
                 .ToList();
             
-            Pool.Populate(elements);
+            Pool.Populate(assets);
         }
     }
 }

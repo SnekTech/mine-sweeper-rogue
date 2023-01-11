@@ -11,7 +11,7 @@ namespace SnekTech.Editor.Debug.Scenes
 
         private readonly List<string> sceneDirPaths = new List<string>
         {
-            Application.dataPath + "/_Project/Scenes",
+            Application.dataPath + C.DirPath.ScenesDir,
         };
         
         private readonly Dictionary<string, string> _scenePathToName = new Dictionary<string, string>();
@@ -28,7 +28,7 @@ namespace SnekTech.Editor.Debug.Scenes
 
         private void FindScenes()
         {
-            var scenePaths = sceneDirPaths.Select(dirPath => FileUtils.GetFilePaths(dirPath, SceneSearchPattern))
+            var scenePaths = sceneDirPaths.Select(dirPath => FileUtils.GetFileAssetPaths(dirPath, SceneSearchPattern))
                 .Where(filePaths => !filePaths.IsEmpty())
                 .SelectMany(filePaths => filePaths);
 
