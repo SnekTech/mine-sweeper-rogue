@@ -14,17 +14,9 @@ namespace SnekTech.Editor.Debug
 
         private readonly List<GridData> _gridDataList;
         private readonly Dictionary<GridData, Button> _gridDataToButton = new Dictionary<GridData, Button>();
-        private readonly Foldout _rootFoldout;
 
         public ResetGamePanel()
         {
-            _rootFoldout = new Foldout
-            {
-                text = "Reset Game Buttons",
-                viewDataKey = nameof(ResetGamePanel),
-            };
-            hierarchy.Add(_rootFoldout);
-
             _gridDataList = FindGridData();
             AddResetButtons();
         }
@@ -47,7 +39,7 @@ namespace SnekTech.Editor.Debug
                     text = $"Reset with {gridData.name}",
                 };
                 _gridDataToButton[gridData] = button;
-                _rootFoldout.Add(button);
+                hierarchy.Add(button);
             }
         }
 
