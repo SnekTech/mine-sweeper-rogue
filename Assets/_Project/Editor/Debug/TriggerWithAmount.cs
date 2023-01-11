@@ -59,14 +59,16 @@ namespace SnekTech.Editor.Debug
             _sliderInt.value = value;
         }
 
-        public void Init(string amountFieldName, Action<int> onTrigger, int min, int max)
+        public void Init(string amountFieldName, Action<int> onTrigger, int min = DefaultMinValue, int max = DefaultMaxValue)
         {
             _sliderInt.label = amountFieldName;
             _sliderInt.lowValue = min;
             _sliderInt.highValue = max;
+            
             if (EditorApplication.isPlaying)
             {
-                _button.clicked += () => onTrigger(value);
+                _button.clickable = null;
+                _button.clickable = new Clickable(() => onTrigger(value));
             }
         }
     }

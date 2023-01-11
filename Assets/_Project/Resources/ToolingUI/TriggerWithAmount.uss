@@ -15,6 +15,15 @@
     min-width: 80px;
 }
 
+.control-group .amount-field {
+    justify-content: space-between;
+}
+
+.control-group .amount-field .unity-base-slider__input {
+    flex-grow: 0;
+    min-width: 200px;
+}
+
 .control-group Button {
     flex-basis: 20%;
 }
