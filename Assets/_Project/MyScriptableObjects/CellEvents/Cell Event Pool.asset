@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f78d38b7bed44799ee03f0f81a91134, type: 3}
   m_Name: Cell Event Pool
   m_EditorClassIdentifier: 
-  cellEventsAvailable:
-  - {fileID: 11400000, guid: 7859ecd4a4fd7c04c947642ccd85d3a8, type: 2}
+  elements:
   - {fileID: 11400000, guid: 4eb6b967d6799304db6d1cd0ddd646c5, type: 2}
+  - {fileID: 11400000, guid: 7859ecd4a4fd7c04c947642ccd85d3a8, type: 2}

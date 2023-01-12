@@ -17,6 +17,8 @@ namespace SnekTech.Editor.Pools
 
         public override VisualElement CreateInspectorGUI()
         {
+            serializedObject.Update();
+            
             var root = new VisualElement();
             InspectorElement.FillDefaultInspector(root, serializedObject, this);
 
@@ -32,6 +34,8 @@ namespace SnekTech.Editor.Pools
             };
             root.Add(clearButton);
 
+            serializedObject.ApplyModifiedProperties();
+
             return root;
         }
 
@@ -43,6 +47,7 @@ namespace SnekTech.Editor.Pools
                 .ToList();
             
             Pool.Populate(assets);
+            EditorUtility.SetDirty(Pool);
         }
     }
 }
