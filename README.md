@@ -94,3 +94,38 @@ User ---> (start2)
 flowchart LR
     id
 ```
+
+## 状态图
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+stateDiagram-v2
+    coveredIdle : 被覆盖
+    revealedIdle : 被揭开
+    reveal : 揭开
+    %% putCover : 覆盖
+    
+    state 单元格盖子 {
+        [*] --> coveredIdle
+        coveredIdle --> reveal : 左键点击单元格
+        reveal --> revealedIdle : 揭开动画结束
+    }
+```
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+stateDiagram-v2
+    state 单元格旗帜 {
+        float: 漂浮
+        hide: 隐藏
+        lift: 升旗
+        putDown: 降旗
+        
+        [*] --> hide
+        
+        hide --> lift : 右键点击单元格
+        lift --> float : 升旗动画结束
+        float --> putDown : 右键点击单元格
+        putDown --> hide : 降旗动画结束
+    }
+```
