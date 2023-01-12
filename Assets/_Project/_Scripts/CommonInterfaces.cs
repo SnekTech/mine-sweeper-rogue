@@ -21,4 +21,9 @@ namespace SnekTech
         void Populate(List<T> newElements);
         void Clear();
     }
+
+    public interface ICanAnimate
+    {
+        Animator Animator { get; }
+    }
 }

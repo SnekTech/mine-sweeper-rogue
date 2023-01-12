@@ -1,4 +1,5 @@
 ﻿using SnekTech.GridCell;
+using SnekTech.GridCell.Cover;
 
 namespace Tests.PlayMode.Builder
 {

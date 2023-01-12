@@ -155,6 +155,8 @@ namespace SnekTech.Grid
             }
 
             await RevealNeighbors(cell);
+            
+            // todo: check winning here? or together in RevealNeighbors-stuff?
         }
 
         public async UniTaskVoid ProcessRightClickAsync(Vector2 mousePosition)

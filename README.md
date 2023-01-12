@@ -100,17 +100,22 @@ flowchart LR
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
 stateDiagram-v2
-    coveredIdle : 被覆盖
-    revealedIdle : 被揭开
-    reveal : 揭开
-    %% putCover : 覆盖
-    
     state 单元格盖子 {
+        coveredIdle : 被覆盖
+        revealedIdle : 被揭开
+        reveal : 揭开
+        putCover : 覆盖
+        any: 任意状态
+        
         [*] --> coveredIdle
-        coveredIdle --> reveal : 左键点击单元格
+        coveredIdle --> reveal : 收到揭开信号
         reveal --> revealedIdle : 揭开动画结束
+        revealedIdle --> putCover : 收到覆盖指令
+        putCover --> coveredIdle : 覆盖动画结束
+        any --> [*] : 本轮游戏结束
     }
 ```
+
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%
@@ -120,12 +125,15 @@ stateDiagram-v2
         hide: 隐藏
         lift: 升旗
         putDown: 降旗
+        any: 任意状态
         
         [*] --> hide
         
-        hide --> lift : 右键点击单元格
+        hide --> lift : 收到升旗信号
         lift --> float : 升旗动画结束
-        float --> putDown : 右键点击单元格
+        float --> putDown : 收到降旗信号
         putDown --> hide : 降旗动画结束
+        
+        any --> [*] : 本轮游戏结束
     }
 ```
