@@ -23,7 +23,8 @@ namespace SnekTech.Editor.Debug
 
         private static List<GridData> FindGridData()
         {
-            var gridDataPaths = FileUtils.GetFileAssetPaths(Application.dataPath + C.DirPath.GridDataDir);
+            string dirPath = Application.dataPath + C.DirPath.AssetTypeToDir[typeof(GridData)];
+            var gridDataPaths = FileUtils.GetFileAssetPaths(dirPath);
             var gridDataList = gridDataPaths.Select(AssetDatabase.LoadAssetAtPath<GridData>)
                 .Where(gridData => gridData != null)
                 .ToList();

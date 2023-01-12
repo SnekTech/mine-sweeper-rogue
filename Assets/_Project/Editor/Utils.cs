@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using SnekTech.Core.GameEvent;
+using SnekTech.Grid;
+using SnekTech.InventorySystem;
 
 namespace SnekTech.Editor
 {
@@ -20,13 +23,19 @@ namespace SnekTech.Editor
         // relative to "Assets" directory
         public static class DirPath
         {
-            // todo: change to dict
             public const string ScenesDir = "/_Project/Scenes";
             
             private const string ScriptableObjectDir = "/_Project/MyScriptableObjects";
-            public const string GridDataDir = ScriptableObjectDir + "/Static";
-            public const string ItemDataDir = ScriptableObjectDir + "/Inventory/Items";
-            public const string CellEventDataDir = ScriptableObjectDir + "/CellEvents";
+            private const string GridDataDir = ScriptableObjectDir + "/Static";
+            private const string ItemDataDir = ScriptableObjectDir + "/Inventory/Items";
+            private const string CellEventDataDir = ScriptableObjectDir + "/CellEvents";
+
+            public static readonly Dictionary<Type, string> AssetTypeToDir = new Dictionary<Type, string>
+            {
+                {typeof(GridData), GridDataDir},
+                {typeof(ItemData), ItemDataDir},
+                {typeof(CellEventData), CellEventDataDir},
+            };
         }
     }
 }
