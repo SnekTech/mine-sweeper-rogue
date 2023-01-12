@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 
 namespace SnekTech.Editor.Debug.Triggers
 {
-    public class TriggerField : Attribute {}
+    [AttributeUsage(AttributeTargets.Field)]
+    public class TriggerFieldAttribute : Attribute {}
     
     public class TriggersPanel : VisualElement
     {
@@ -24,7 +25,7 @@ namespace SnekTech.Editor.Debug.Triggers
 
         private void GenerateTriggers()
         {
-            foreach (var field in typeof(TriggersPanelData).GetInstanceFieldsWithAttributeOfType(typeof(TriggerField)))
+            foreach (var field in typeof(TriggersPanelData).GetInstanceFieldsWithAttributeOfType(typeof(TriggerFieldAttribute)))
             {
                 var trigger = new TriggerWithAmount();
                 _fieldNameToTrigger[field.Name] = trigger;

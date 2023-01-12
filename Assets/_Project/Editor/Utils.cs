@@ -7,13 +7,10 @@ namespace SnekTech.Editor
 {
     public static class Utils
     {
-        public static bool HasAttributeOfType(this FieldInfo field, Type attributeType) =>
-            field.CustomAttributes.Any(attribute => attribute.AttributeType == attributeType);
-
         public static List<FieldInfo> GetInstanceFieldsWithAttributeOfType(this Type type, Type attributeType)
         {
             return type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                .Where(field => field.HasAttributeOfType(attributeType))
+                .Where(field => field.IsDefined(attributeType))
                 .ToList();
         }
     }
@@ -23,6 +20,7 @@ namespace SnekTech.Editor
         // relative to "Assets" directory
         public static class DirPath
         {
+            // todo: change to dict
             public const string ScenesDir = "/_Project/Scenes";
             
             private const string ScriptableObjectDir = "/_Project/MyScriptableObjects";
