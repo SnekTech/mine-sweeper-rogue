@@ -1,10 +1,14 @@
-﻿namespace SnekTech.GridCell.Cover
+﻿using System;
+using SnekTech.Core.Animation;
+
+namespace SnekTech.GridCell.Cover
 {
     namespace Animation
     {
-        public class CoveredIdleState : CoverAnimState
+        public class CoveredIdleState : CoverAnimState<SpriteClipLoop>
         {
-            public CoveredIdleState(ICover context, CoverStateMachine stateMachine, int animHash, bool shouldLoop) : base(context, stateMachine, animHash, shouldLoop)
+            public CoveredIdleState(ICover cover, CoverAnimFSM animFSM, SpriteClipLoop spriteClipLoop) :
+                base(cover, animFSM, spriteClipLoop)
             {
             }
 
@@ -12,21 +16,24 @@
             {
                 base.Exit();
 
-                stateMachine.Triggers.ShouldReveal = false;
+                animFSM.Triggers.ShouldReveal = false;
             }
 
             public override void Update()
             {
-                if (stateMachine.Triggers.ShouldReveal)
+                if (animFSM.Triggers.ShouldReveal)
                 {
-                    stateMachine.ChangeState(context.RevealState);
+                    animFSM.ChangeState(cover.RevealState);
                 }
             }
         }
-        
-        public class RevealState : CoverAnimState
+
+        public class RevealState : CoverAnimState<SpriteClipNonLoop>
         {
-            public RevealState(ICover context, CoverStateMachine stateMachine, int animHash, bool shouldLoop) : base(context, stateMachine, animHash, shouldLoop)
+            public event Action OnComplete;
+            
+            public RevealState(ICover cover, CoverAnimFSM animFSM, SpriteClipNonLoop spriteClipNonLoop) : 
+                base(cover, animFSM, spriteClipNonLoop)
             {
             }
 
@@ -34,15 +41,73 @@
             {
                 base.Enter();
 
-                OnComplete += HandleAnimComplete;
+                spriteClip.OnComplete += HandleAnimComplete;
             }
 
             public override void Exit()
             {
                 base.Exit();
+
+                spriteClip.OnComplete -= HandleAnimComplete;
+            }
+
+            public override void Update()
+            {
+            }
+
+            private void HandleAnimComplete()
+            {
+                animFSM.ChangeState(cover.RevealedIdleState);
+                OnComplete?.Invoke();
+            }
+        }
+
+        public class RevealedIdleState : CoverAnimState<SpriteClipLoop>
+        {
+            public RevealedIdleState(ICover cover, CoverAnimFSM animFSM, SpriteClipLoop spriteClipLoop) :
+                base(cover, animFSM, spriteClipLoop)
+            {
+            }
+
+            public override void Exit()
+            {
+                base.Exit();
+
+                cover.IsActive = true;
+            }
+
+            public override void Update()
+            {
+                if (animFSM.Triggers.ShouldPutCover)
+                {
+                    animFSM.ChangeState(cover.PutCoverState);
+                }
+            }
+        }
+
+        public class PutCoverState : CoverAnimState<SpriteClipNonLoop>
+        {
+            public event Action OnComplete;
+            
+            public PutCoverState(ICover context, CoverAnimFSM animFSM, SpriteClipNonLoop clip) : base(
+                context, animFSM, clip)
+            {
+            }
+
+            public override void Enter()
+            {
+                base.Enter();
+
+                spriteClip.OnComplete -= HandleAnimComplete;
+            }
+
+            public override void Exit()
+            {
+                base.Exit();
+
+                animFSM.Triggers.ShouldPutCover = false;
                 
-                context.IsActive = false;
-                OnComplete -= HandleAnimComplete;
+                spriteClip.OnComplete -= HandleAnimComplete;
             }
 
             public override void Update()
@@ -51,60 +116,8 @@
 
             private void HandleAnimComplete()
             {
-                stateMachine.ChangeState(context.RevealedIdleState);
-            }
-        }
-        
-        public class RevealedIdleState : CoverAnimState
-        {
-            public RevealedIdleState(ICover context, CoverStateMachine stateMachine, int animHash, bool shouldLoop) : base(context, stateMachine, animHash, shouldLoop)
-            {
-            }
-
-            public override void Exit()
-            {
-                base.Exit();
-
-                context.IsActive = true;
-            }
-
-            public override void Update()
-            {
-                if (stateMachine.Triggers.ShouldPutCover)
-                {
-                    stateMachine.ChangeState(context.PutCoverState);
-                }
-            }
-        }
-        
-        public class PutCoverState : CoverAnimState
-        {
-            public PutCoverState(ICover context, CoverStateMachine stateMachine, int animHash, bool shouldLoop) : base(context, stateMachine, animHash, shouldLoop)
-            {
-            }
-
-            public override void Enter()
-            {
-                base.Enter();
-
-                OnComplete += HandleAnimComplete;
-            }
-
-            public override void Exit()
-            {
-                base.Exit();
-
-                stateMachine.Triggers.ShouldPutCover = false;
-                OnComplete -= HandleAnimComplete;
-            }
-
-            public override void Update()
-            {
-            }
-
-            private void HandleAnimComplete()
-            {
-                stateMachine.ChangeState(context.CoveredIdleState);
+                animFSM.ChangeState(cover.CoveredIdleState);
+                OnComplete?.Invoke();
             }
         }
     }

@@ -137,3 +137,45 @@ stateDiagram-v2
         any --> [*] : 本轮游戏结束
     }
 ```
+
+## 类图
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+classDiagram
+    direction BT
+    
+    class State {<<abstract>>}
+    class FSM {<<abstract>>}
+    State ..* FSM : Bridge Pattern
+    
+    class SpriteAnimState {<<abstract>>}
+    class SpriteAnimFSM {<<abstract>>}
+    SpriteAnimState --|> State
+    SpriteAnimFSM --|> FSM
+    
+    class SpriteClip {<<abstract>>}
+    class SpriteClipLoop
+    class SpriteClipNonLoop
+    SpriteClipLoop --|> SpriteClip
+    SpriteClipNonLoop --|> SpriteClip
+    
+    SpriteClip ..* SpriteAnimState
+    
+    class CoverAnimState {<<abstract>>}
+    class CoverAnimFSM
+    CoverAnimState --|> SpriteAnimState
+    CoverAnimFSM --|> SpriteAnimFSM
+    
+    class CoveredIdleState
+    class RevealState
+    class RevealedIdleState
+    class PutCoverState
+    
+    CoveredIdleState --|> CoverAnimState
+    RevealState --|> CoverAnimState
+    RevealedIdleState --|> CoverAnimState
+    PutCoverState --|> CoverAnimState
+    
+    
+```

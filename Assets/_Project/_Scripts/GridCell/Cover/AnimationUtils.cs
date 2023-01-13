@@ -1,5 +1,4 @@
-﻿using SnekTech.Core.FiniteStateMachine;
-using SnekTech.Core.FiniteStateMachine.Animation;
+﻿using SnekTech.Core.Animation;
 
 namespace SnekTech.GridCell.Cover
 {
@@ -19,14 +18,19 @@ namespace SnekTech.GridCell.Cover
             PutCoverState PutCoverState { get; }
         }
 
-        public abstract class CoverAnimState : AnimationState<ICover, CoverAnimState, CoverStateMachine>
+        public abstract class CoverAnimState<T> : SpriteAnimState<T> where T : SpriteClip
         {
-            protected CoverAnimState(ICover context, CoverStateMachine stateMachine, int animHash, bool shouldLoop) : base(context, stateMachine, animHash, shouldLoop)
+            protected readonly ICover cover;
+            protected readonly CoverAnimFSM animFSM;
+            protected CoverAnimState(ICover cover, CoverAnimFSM coverAnimFSM, T spriteClip) : 
+                base(spriteClip)
             {
+                this.cover = cover;
+                animFSM = coverAnimFSM;
             }
         }
-
-        public class CoverStateMachine : StateMachine<ICover, CoverAnimState, CoverStateMachine>
+        
+        public class CoverAnimFSM: SpriteAnimFSM
         {
             public Triggers Triggers = new Triggers
             {

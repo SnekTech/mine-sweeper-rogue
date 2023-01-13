@@ -25,5 +25,6 @@ namespace SnekTech
     public interface ICanAnimate
     {
         Animator Animator { get; }
+        SpriteRenderer SpriteRenderer { get; }
     }
 }

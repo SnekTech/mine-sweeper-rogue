@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using SnekTech.Core.Animation;
 using SnekTech.GridCell.Cover.Animation;
 using UnityEngine;
 
@@ -16,21 +17,20 @@ namespace SnekTech.GridCell.Cover
             set => gameObject.SetActive(value);
         }
 
-        public Animator Animator => _animator;
+        public Animator Animator { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
         
         public CoveredIdleState CoveredIdleState { get; private set; }
         public RevealState RevealState { get; private set; }
         public RevealedIdleState RevealedIdleState { get; private set; }
         public PutCoverState PutCoverState { get; private set; }
-        
 
-        private static readonly int CoveredIdleAnim = Animator.StringToHash("cover-idle-covered");
-        private static readonly int RevealAnim = Animator.StringToHash("cover-reveal");
-        private static readonly int RevealedIdleAnim = Animator.StringToHash("cover-idle-revealed");
-        private static readonly int PutCoverAnim = Animator.StringToHash("cover-put-cover");
+        private static readonly AnimInfo CoveredIdleAnimInfo = new AnimInfo(Animator.StringToHash("cover-idle-covered"), 1);
+        private static readonly AnimInfo RevealAnimInfo = new AnimInfo(Animator.StringToHash("cover-reveal"), 2);
+        private static readonly AnimInfo RevealedIdleAnimInfo = new AnimInfo(Animator.StringToHash("cover-idle-revealed"), 1);
+        private static readonly AnimInfo PutCoverAnimInfo = new AnimInfo(Animator.StringToHash("cover-put-cover"), 2);
 
-        private Animator _animator;
-        private CoverStateMachine _stateMachine;
+        private CoverAnimFSM animFSM;
         
         private UniTaskCompletionSource<bool> _revealCompletionSource = new UniTaskCompletionSource<bool>();
         private UniTaskCompletionSource<bool> _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
@@ -40,19 +40,20 @@ namespace SnekTech.GridCell.Cover
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            Animator = GetComponent<Animator>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
 
             _revealCompletionSource.TrySetResult(true);
             _putCoverCompletionSource.TrySetResult(true);
 
-            _stateMachine = new CoverStateMachine();
-            CoveredIdleState = new CoveredIdleState(this, _stateMachine, CoveredIdleAnim, true);
-            RevealState = new RevealState(this, _stateMachine, RevealAnim, false);
-            RevealedIdleState = new RevealedIdleState(this, _stateMachine, RevealedIdleAnim, true);
-            PutCoverState = new PutCoverState(this, _stateMachine, PutCoverAnim, false);
+            animFSM = new CoverAnimFSM();
+            CoveredIdleState = new CoveredIdleState(this, animFSM, new SpriteClipLoop(this, CoveredIdleAnimInfo));
+            RevealState = new RevealState(this, animFSM, new SpriteClipNonLoop(this, RevealAnimInfo));
+            RevealedIdleState = new RevealedIdleState(this, animFSM, new SpriteClipLoop(this, RevealedIdleAnimInfo));
+            PutCoverState = new PutCoverState(this, animFSM, new SpriteClipNonLoop(this, PutCoverAnimInfo));
             
-            _stateMachine.Init(CoveredIdleState);
-            _stateMachine.CurrentState.Update();
+            animFSM.Init(CoveredIdleState);
+            animFSM.CurrentState.Update();
         }
 
         private void OnEnable()
@@ -86,8 +87,8 @@ namespace SnekTech.GridCell.Cover
                 return UniTask.FromResult(false);
             }
 
-            _stateMachine.Triggers.ShouldReveal = true;
-            _stateMachine.CurrentState.Update();
+            animFSM.Triggers.ShouldReveal = true;
+            animFSM.CurrentState.Update();
 
             _revealCompletionSource = new UniTaskCompletionSource<bool>();
             return RevealTask;
@@ -100,8 +101,8 @@ namespace SnekTech.GridCell.Cover
                 return UniTask.FromResult(false);
             }
 
-            _stateMachine.Triggers.ShouldPutCover = true;
-            _stateMachine.CurrentState.Update();
+            animFSM.Triggers.ShouldPutCover = true;
+            animFSM.CurrentState.Update();
 
             _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
             return PutCoverTask;
