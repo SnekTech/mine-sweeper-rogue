@@ -9,6 +9,7 @@ namespace SnekTech.GridCell
     {
         public event Action LiftCompleted, PutDownCompleted;
         
+        // todo: use FSM, remove Unity triggers
         private static readonly int LiftTrigger = Animator.StringToHash("Lift");
         private static readonly int PutDownTrigger = Animator.StringToHash("PutDown");
 

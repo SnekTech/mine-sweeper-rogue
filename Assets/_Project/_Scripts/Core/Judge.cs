@@ -122,7 +122,7 @@ namespace SnekTech.Core
             }
             else
             {
-                // todo: load winning scene
+                // todo: load winning scene, create an awesome effect using Sprite Mancer
                 Debug.Log("You won!");
             }
         }

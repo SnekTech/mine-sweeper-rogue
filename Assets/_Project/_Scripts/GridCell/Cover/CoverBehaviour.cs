@@ -10,7 +10,7 @@ namespace SnekTech.GridCell.Cover
     public class CoverBehaviour : MonoBehaviour, ICover
     {
 
-        // todo: move these to SO, maybe create editors
+        // todo: move these to SO, create custom editor to set frameCount automatically
         private static readonly AnimInfo CoveredIdleAnimInfo = 
             new AnimInfo(Animator.StringToHash("cover-idle-covered"), 1);
         private static readonly AnimInfo RevealAnimInfo = 

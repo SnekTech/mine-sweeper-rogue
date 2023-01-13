@@ -5,6 +5,7 @@ namespace SnekTech.GridCell
 {
     public abstract class CellState
     {
+        // todo: the abstract Core.FSM
         protected readonly ICellBrain CellBrain;
         protected readonly ICell Cell;
         protected readonly IFlag Flag;
