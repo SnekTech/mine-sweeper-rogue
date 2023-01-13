@@ -2,11 +2,6 @@
 
 namespace SnekTech.Core.Animation
 {
-
-    public interface IAnimationContext : ICanAnimate, ICanSwitchActiveness
-    {
-    }
-
     public struct AnimInfo
     {
         public readonly int Hash;
@@ -21,9 +16,6 @@ namespace SnekTech.Core.Animation
 
     public abstract class SpriteClip
     {
-        private const string EmptyAnimName = "";
-        public static int EmptyAnimHash { get; } = Animator.StringToHash(EmptyAnimName);
-
         public int CurrentFrameIndex => frameIndex;
 
         protected readonly Animator animator;
@@ -33,30 +25,24 @@ namespace SnekTech.Core.Animation
         protected readonly int frameCount;
         protected int frameIndex;
 
-        private readonly IAnimationContext _context;
-
-        protected SpriteClip(IAnimationContext context, AnimInfo animInfo)
+        protected SpriteClip(ICanAnimate context, AnimInfo animInfo)
         {
             animator = context.Animator;
             spriteRenderer = context.SpriteRenderer;
 
-            _context = context;
             _animHash = animInfo.Hash;
             frameCount = animInfo.FrameCount;
         }
 
+        public void StopAndHide()
+        {
+            spriteRenderer.sprite = null;
+            animator.enabled = false;
+        }
+
         public void Play()
         {
-            if (!_context.IsActive)
-            {
-                return;
-            }
-
-            if (_animHash == EmptyAnimHash)
-            {
-                spriteRenderer.sprite = null;
-                return;
-            }
+            animator.enabled = true;
 
             int currentPlayingAnimHash = animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
             if (_animHash == currentPlayingAnimHash)

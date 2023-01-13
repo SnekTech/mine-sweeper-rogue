@@ -7,7 +7,7 @@ namespace SnekTech.Core.Animation
     {
         public event Action OnComplete;
 
-        public SpriteClipNonLoop(IAnimationContext context, AnimInfo animInfo) : base(context, animInfo)
+        public SpriteClipNonLoop(ICanAnimate context, AnimInfo animInfo) : base(context, animInfo)
         {
         }
 

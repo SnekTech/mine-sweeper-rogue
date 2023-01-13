@@ -104,15 +104,11 @@ stateDiagram-v2
         coveredIdle : 被覆盖
         revealedIdle : 被揭开
         reveal : 揭开
-        putCover : 覆盖
-        any: 任意状态
         
         [*] --> coveredIdle
         coveredIdle --> reveal : 收到揭开信号
         reveal --> revealedIdle : 揭开动画结束
-        revealedIdle --> putCover : 收到覆盖指令
-        putCover --> coveredIdle : 覆盖动画结束
-        any --> [*] : 本轮游戏结束
+        revealedIdle --> [*] : 本轮游戏结束
     }
 ```
 
@@ -135,6 +131,24 @@ stateDiagram-v2
         putDown --> hide : 降旗动画结束
         
         any --> [*] : 本轮游戏结束
+    }
+```
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+stateDiagram-v2
+    state 单元格 {
+        covered: 被覆盖
+        revealed: 被揭开
+        flagged: 被标记
+        
+        [*] --> covered
+        
+        covered --> revealed : 收到揭开指令
+        covered --> flagged : 收到标记指令
+        flagged --> covered : 收到取消标记指令
+        
+        revealed --> [*] : 本轮游戏结束
     }
 ```
 
@@ -176,6 +190,4 @@ classDiagram
     RevealState --|> CoverAnimState
     RevealedIdleState --|> CoverAnimState
     PutCoverState --|> CoverAnimState
-    
-    
 ```

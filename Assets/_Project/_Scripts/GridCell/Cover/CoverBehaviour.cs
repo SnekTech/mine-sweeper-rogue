@@ -9,6 +9,16 @@ namespace SnekTech.GridCell.Cover
     [RequireComponent(typeof(Animator))]
     public class CoverBehaviour : MonoBehaviour, ICover
     {
+
+        // todo: move these to SO, maybe create editors
+        private static readonly AnimInfo CoveredIdleAnimInfo = 
+            new AnimInfo(Animator.StringToHash("cover-idle-covered"), 1);
+        private static readonly AnimInfo RevealAnimInfo = 
+            new AnimInfo(Animator.StringToHash("cover-reveal"), 38);
+        private static readonly AnimInfo RevealedIdleAnimInfo = 
+            new AnimInfo(Animator.StringToHash("cover-idle-revealed"), 1);
+        private static readonly AnimInfo PutCoverAnimInfo = 
+            new AnimInfo(Animator.StringToHash("cover-put-cover"), 2);
         public event Action RevealCompleted, PutCoverCompleted;
 
         public bool IsActive
@@ -24,11 +34,6 @@ namespace SnekTech.GridCell.Cover
         public RevealState RevealState { get; private set; }
         public RevealedIdleState RevealedIdleState { get; private set; }
         public PutCoverState PutCoverState { get; private set; }
-
-        private static readonly AnimInfo CoveredIdleAnimInfo = new AnimInfo(Animator.StringToHash("cover-idle-covered"), 1);
-        private static readonly AnimInfo RevealAnimInfo = new AnimInfo(Animator.StringToHash("cover-reveal"), 2);
-        private static readonly AnimInfo RevealedIdleAnimInfo = new AnimInfo(Animator.StringToHash("cover-idle-revealed"), 1);
-        private static readonly AnimInfo PutCoverAnimInfo = new AnimInfo(Animator.StringToHash("cover-put-cover"), 2);
 
         private CoverAnimFSM animFSM;
         

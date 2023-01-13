@@ -4,7 +4,7 @@ namespace SnekTech.Core.Animation
 {
     public class SpriteClipLoop : SpriteClip
     {
-        public SpriteClipLoop(IAnimationContext context, AnimInfo animInfo) : base(context, animInfo)
+        public SpriteClipLoop(ICanAnimate context, AnimInfo animInfo) : base(context, animInfo)
         {
         }
 
@@ -19,7 +19,7 @@ namespace SnekTech.Core.Animation
             frameIndex %= frameCount;
             if (frameIndex == 0)
             {
-                Debug.Log("last loop complete");
+                // Debug.Log("last loop complete");
             }
         }
     }

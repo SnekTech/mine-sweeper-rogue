@@ -10,7 +10,7 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
-            Cover.IsActive = false;
+            // Cover.IsActive = false;
         }
 
         public override void OnLeaveState()
