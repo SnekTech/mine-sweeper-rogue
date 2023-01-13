@@ -110,7 +110,8 @@ namespace SnekTech.Grid
         public async UniTaskVoid ProcessLeftClickAsync(Vector2 mousePosition)
         {
             var cell = GetMouseHoveringCell(mousePosition);
-            if (cell == null || !cell.IsCovered)
+            bool canClickCell = cell is{IsCovered: true};
+            if (!canClickCell)
             {
                 return;
             }
@@ -123,40 +124,37 @@ namespace SnekTech.Grid
 
             await UniTask.WhenAll(revealCellTasks);
 
-            gridEventManager.InvokeOnRecursiveRevealComplete(cell);
-
-            if (IsAllCleared)
-            {
-                gridEventManager.InvokeOnGridCleared(this);
-            }
+            HandleRecursiveRevealCellComplete(cell);
         }
 
         public async UniTaskVoid ProcessLeftDoubleClickAsync(Vector2 mousePosition)
         {
             var cell = GetMouseHoveringCell(mousePosition);
-            if (cell == null || !cell.IsRevealed || cell.HasBomb)
+            bool canDoubleClickCell = cell is {IsRevealed: true, HasBomb: false};
+            if (!canDoubleClickCell)
             {
                 return;
             }
 
             int userConfirmedBombCount = 0;
+            int neighborFlagCount = _gridBrain.GetNeighborFlagCount(cell);
             _gridBrain.ForEachNeighbor(cell, neighborCell =>
             {
-                if (neighborCell.IsFlagged || neighborCell.HasBomb && neighborCell.IsRevealed)
+                if (neighborCell.HasBomb && neighborCell.IsRevealed)
                 {
                     userConfirmedBombCount++;
                 }
             });
 
-            int neighborBombCount = _gridBrain.GetNeighborBombCount(cell);
-            if (userConfirmedBombCount != neighborBombCount)
+            int actualNeighborBombCount = _gridBrain.GetNeighborBombCount(cell);
+            if (userConfirmedBombCount + neighborFlagCount != actualNeighborBombCount)
             {
                 return;
             }
 
             await RevealNeighbors(cell);
             
-            // todo: check winning here? or together in RevealNeighbors-stuff?
+            HandleRecursiveRevealCellComplete(cell);
         }
 
         public async UniTaskVoid ProcessRightClickAsync(Vector2 mousePosition)
@@ -236,6 +234,20 @@ namespace SnekTech.Grid
             var hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, _cellLayer);
 
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
+        }
+
+        private void HandleRecursiveRevealCellComplete(ICell originalCell)
+        {
+            gridEventManager.InvokeOnRecursiveRevealComplete(originalCell);
+            CheckIfAllCleared();
+        }
+
+        private void CheckIfAllCleared()
+        {
+            if (IsAllCleared)
+            {
+                gridEventManager.InvokeOnGridCleared(this);
+            }
         }
 
         private void InitCells()

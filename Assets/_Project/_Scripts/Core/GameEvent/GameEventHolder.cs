@@ -33,8 +33,8 @@ namespace SnekTech.Core.GameEvent
 
         public List<CellEvent> CellEvents => _cellEvents;
 
-        // todo: deal with magic number
-        private const float CellEventProbability = 1f;
+        // todo: deal with magic number(for debugging)
+        private const float CellEventProbability = 0f;
         private readonly IRandomGenerator _cellEventGenerator = RandomGenerator.Instance;
 
         private const string EventModalHeader = "New Event Triggered";

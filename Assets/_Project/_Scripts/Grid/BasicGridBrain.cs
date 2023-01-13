@@ -82,6 +82,7 @@ namespace SnekTech.Grid
 
         public List<ICell> GetAffectedCellsWithinScope(ICell cellHovering, int sweepScope)
         {
+            // todo: better handle the scope when near the edge
             int cornerOffset = sweepScope / 2;
             var topLeftIndex = new GridIndex(_grid.CellIndexDict[cellHovering]);
             topLeftIndex.RowIndex -= cornerOffset;
