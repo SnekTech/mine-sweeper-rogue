@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: BasicCellSprites
   m_EditorClassIdentifier: 
   noBombSprites:
-  - {fileID: -5256807490170685802, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: -8430176965839133841, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: 1962840433704199240, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: 1458276309400476049, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: -2167441847925426877, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: 4087632350999098941, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: -1206278578254024489, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: -9159407240045392395, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  - {fileID: 3370448834173254583, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
-  bombSprite: {fileID: 6290457256320808859, guid: 7bc95845194cb734c9fd2ef0316fec79, type: 3}
+  - {fileID: -244578918, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: -667094892, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: 2087531522, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: 1217077775, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: -899956063, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: -1785595278, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: 1963241809, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: -622427900, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  - {fileID: 30781185, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}
+  bombSprite: {fileID: 1661246644, guid: 03c6b57ba5a70644d9672f9c1bdb0a99, type: 3}

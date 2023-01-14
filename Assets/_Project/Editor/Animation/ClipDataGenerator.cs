@@ -77,8 +77,7 @@ namespace SnekTech.Editor.Animation
             }
 
             AssetDatabase.SaveAssets();
-
-            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(clipDataSaveFolderPath);
         }
     }
 }

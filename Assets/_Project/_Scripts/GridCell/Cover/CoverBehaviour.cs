@@ -12,7 +12,7 @@ namespace SnekTech.GridCell.Cover
         public event Action RevealCompleted, PutCoverCompleted;
 
         [SerializeField]
-        private CoverData data;
+        private CoverAnimData animData;
         
         public bool IsActive
         {
@@ -45,10 +45,10 @@ namespace SnekTech.GridCell.Cover
             _putCoverCompletionSource.TrySetResult(true);
 
             animFSM = new CoverAnimFSM();
-            CoveredIdleState = new CoveredIdleState(this, animFSM, new SpriteClipLoop(this, data.CoveredIdle));
-            RevealState = new RevealState(this, animFSM, new SpriteClipNonLoop(this, data.Reveal));
-            RevealedIdleState = new RevealedIdleState(this, animFSM, new SpriteClipLoop(this, data.RevealedIdle));
-            PutCoverState = new PutCoverState(this, animFSM, new SpriteClipNonLoop(this, data.PutCover));
+            CoveredIdleState = new CoveredIdleState(this, animFSM, new SpriteClipLoop(this, animData.CoveredIdle));
+            RevealState = new RevealState(this, animFSM, new SpriteClipNonLoop(this, animData.Reveal));
+            RevealedIdleState = new RevealedIdleState(this, animFSM, new SpriteClipLoop(this, animData.RevealedIdle));
+            PutCoverState = new PutCoverState(this, animFSM, new SpriteClipNonLoop(this, animData.PutCover));
             
             animFSM.Init(CoveredIdleState);
             animFSM.CurrentState.Update();
