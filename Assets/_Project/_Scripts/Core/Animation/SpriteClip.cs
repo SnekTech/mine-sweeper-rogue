@@ -2,18 +2,6 @@
 
 namespace SnekTech.Core.Animation
 {
-    public struct AnimInfo
-    {
-        public readonly int Hash;
-        public readonly int FrameCount;
-
-        public AnimInfo(int hash, int frameCount)
-        {
-            Hash = hash;
-            FrameCount = frameCount;
-        }
-    }
-
     public abstract class SpriteClip
     {
         public int CurrentFrameIndex => frameIndex;
@@ -25,13 +13,13 @@ namespace SnekTech.Core.Animation
         protected readonly int frameCount;
         protected int frameIndex;
 
-        protected SpriteClip(ICanAnimate context, AnimInfo animInfo)
+        protected SpriteClip(ICanAnimate context, ClipData clipData)
         {
             animator = context.Animator;
             spriteRenderer = context.SpriteRenderer;
 
-            _animHash = animInfo.Hash;
-            frameCount = animInfo.FrameCount;
+            _animHash = clipData.Hash;
+            frameCount = clipData.FrameCount;
         }
 
         public void StopAndHide()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -48,5 +49,14 @@ namespace SnekTech.Editor
 
             return paths;
         }
+
+        public static string GetAssetParentFolder(string assetPath)
+        {
+            int lastSlashIndex = assetPath.LastIndexOf("/", StringComparison.Ordinal);
+            // exclude the last '/' character
+            return assetPath[..lastSlashIndex];
+        }
+
+        public static string AssetPathCombine(string parent, string folderName) => parent + "/" + folderName;
     }
 }

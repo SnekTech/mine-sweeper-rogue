@@ -191,3 +191,15 @@ classDiagram
     RevealedIdleState --|> CoverAnimState
     PutCoverState --|> CoverAnimState
 ```
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+flowchart
+    s(开始)
+    e(结束)
+    s --> step1[导入特效序列帧png文件]
+    step1 --> step2[使用序列帧生成动画切片资源clip]
+    step2 --> step3["读取clip的名称和总长度（帧数）并生成ClipData数据对象"]
+    step3 --> step4[在动画目标GameObject上使用ClipData对象]
+    step4 --> e
+```

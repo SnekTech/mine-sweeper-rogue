@@ -4,7 +4,7 @@ namespace SnekTech.Core.Animation
 {
     public class SpriteClipLoop : SpriteClip
     {
-        public SpriteClipLoop(ICanAnimate context, AnimInfo animInfo) : base(context, animInfo)
+        public SpriteClipLoop(ICanAnimate context, ClipData clipData) : base(context, clipData)
         {
         }
 

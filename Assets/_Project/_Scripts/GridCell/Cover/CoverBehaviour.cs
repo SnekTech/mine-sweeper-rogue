@@ -9,18 +9,11 @@ namespace SnekTech.GridCell.Cover
     [RequireComponent(typeof(Animator))]
     public class CoverBehaviour : MonoBehaviour, ICover
     {
-
-        // todo: move these to SO, create custom editor to set frameCount automatically
-        private static readonly AnimInfo CoveredIdleAnimInfo = 
-            new AnimInfo(Animator.StringToHash("cover-idle-covered"), 1);
-        private static readonly AnimInfo RevealAnimInfo = 
-            new AnimInfo(Animator.StringToHash("cover-reveal"), 38);
-        private static readonly AnimInfo RevealedIdleAnimInfo = 
-            new AnimInfo(Animator.StringToHash("cover-idle-revealed"), 1);
-        private static readonly AnimInfo PutCoverAnimInfo = 
-            new AnimInfo(Animator.StringToHash("cover-put-cover"), 2);
         public event Action RevealCompleted, PutCoverCompleted;
 
+        [SerializeField]
+        private CoverData data;
+        
         public bool IsActive
         {
             get => gameObject.activeSelf;
@@ -52,10 +45,10 @@ namespace SnekTech.GridCell.Cover
             _putCoverCompletionSource.TrySetResult(true);
 
             animFSM = new CoverAnimFSM();
-            CoveredIdleState = new CoveredIdleState(this, animFSM, new SpriteClipLoop(this, CoveredIdleAnimInfo));
-            RevealState = new RevealState(this, animFSM, new SpriteClipNonLoop(this, RevealAnimInfo));
-            RevealedIdleState = new RevealedIdleState(this, animFSM, new SpriteClipLoop(this, RevealedIdleAnimInfo));
-            PutCoverState = new PutCoverState(this, animFSM, new SpriteClipNonLoop(this, PutCoverAnimInfo));
+            CoveredIdleState = new CoveredIdleState(this, animFSM, new SpriteClipLoop(this, data.CoveredIdle));
+            RevealState = new RevealState(this, animFSM, new SpriteClipNonLoop(this, data.Reveal));
+            RevealedIdleState = new RevealedIdleState(this, animFSM, new SpriteClipLoop(this, data.RevealedIdle));
+            PutCoverState = new PutCoverState(this, animFSM, new SpriteClipNonLoop(this, data.PutCover));
             
             animFSM.Init(CoveredIdleState);
             animFSM.CurrentState.Update();
