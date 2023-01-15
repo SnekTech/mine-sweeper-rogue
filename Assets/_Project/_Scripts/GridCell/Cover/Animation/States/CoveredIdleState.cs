@@ -4,8 +4,8 @@ namespace SnekTech.GridCell.Cover.Animation
 {
     public class CoveredIdleState : CoverAnimState<SpriteClipLoop>
     {
-        public CoveredIdleState(ICoverAnimStateProvider coverAnimStateProvider, CoverAnimFSM animFSM, SpriteClipLoop spriteClipLoop) :
-            base(coverAnimStateProvider, animFSM, spriteClipLoop)
+        public CoveredIdleState(CoverAnimFSM animFSM, SpriteClipLoop spriteClipLoop) :
+            base(animFSM, spriteClipLoop)
         {
         }
 
@@ -14,14 +14,13 @@ namespace SnekTech.GridCell.Cover.Animation
             base.Exit();
 
             animFSM.Triggers.ShouldReveal = false;
-            // spriteClip.StopAndHide();
         }
 
         public override void Update()
         {
             if (animFSM.Triggers.ShouldReveal)
             {
-                animFSM.ChangeState(coverAnimStateProvider.RevealState);
+                animFSM.ChangeState(animFSM.RevealState);
             }
         }
     }

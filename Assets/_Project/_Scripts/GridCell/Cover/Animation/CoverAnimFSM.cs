@@ -15,5 +15,19 @@ namespace SnekTech.GridCell.Cover.Animation
             ShouldReveal = false,
             ShouldPutCover = false,
         };
+        
+        public CoveredIdleState CoveredIdleState { get; private set; }
+        public RevealState RevealState { get; private set; }
+        public RevealedIdleState RevealedIdleState { get; private set; }
+        public PutCoverState PutCoverState { get; private set; }
+
+        public void PopulateStates(CoveredIdleState coveredIdleState, RevealState revealState,
+            RevealedIdleState revealedIdleState, PutCoverState putCoverState)
+        {
+            CoveredIdleState = coveredIdleState;
+            RevealState = revealState;
+            RevealedIdleState = revealedIdleState;
+            PutCoverState = putCoverState;
+        }
     }
 }

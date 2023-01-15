@@ -14,7 +14,7 @@ namespace SnekTech.Core.FiniteStateMachine
 
         public void ChangeState(State newState)
         {
-            Debug.Log($"changing from {CurrentState} to {newState}");
+            // Debug.Log($"changing from {CurrentState} to {newState}");
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();

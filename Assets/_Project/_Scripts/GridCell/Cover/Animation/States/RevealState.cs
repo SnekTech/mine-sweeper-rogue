@@ -7,8 +7,8 @@ namespace SnekTech.GridCell.Cover.Animation
     {
         public event Action OnComplete;
             
-        public RevealState(ICoverAnimStateProvider coverAnimStateProvider, CoverAnimFSM animFSM, SpriteClipNonLoop spriteClipNonLoop) : 
-            base(coverAnimStateProvider, animFSM, spriteClipNonLoop)
+        public RevealState(CoverAnimFSM animFSM, SpriteClipNonLoop spriteClipNonLoop) : 
+            base(animFSM, spriteClipNonLoop)
         {
         }
 
@@ -32,7 +32,7 @@ namespace SnekTech.GridCell.Cover.Animation
 
         private void HandleAnimComplete()
         {
-            animFSM.ChangeState(coverAnimStateProvider.RevealedIdleState);
+            animFSM.ChangeState(animFSM.RevealedIdleState);
             OnComplete?.Invoke();
         }
     }

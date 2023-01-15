@@ -1,5 +1,4 @@
-﻿using System;
-using SnekTech.Core.Animation;
+﻿using SnekTech.Core.Animation;
 
 namespace SnekTech.GridCell.Flag
 {

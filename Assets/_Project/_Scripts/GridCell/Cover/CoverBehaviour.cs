@@ -13,7 +13,7 @@ namespace SnekTech.GridCell.Cover
 
         [SerializeField]
         private CoverAnimData animData;
-        
+
         public bool IsActive
         {
             get => gameObject.activeSelf;
@@ -22,14 +22,9 @@ namespace SnekTech.GridCell.Cover
 
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
-        
-        public CoveredIdleState CoveredIdleState { get; private set; }
-        public RevealState RevealState { get; private set; }
-        public RevealedIdleState RevealedIdleState { get; private set; }
-        public PutCoverState PutCoverState { get; private set; }
 
         private CoverAnimFSM animFSM;
-        
+
         private UniTaskCompletionSource<bool> _revealCompletionSource = new UniTaskCompletionSource<bool>();
         private UniTaskCompletionSource<bool> _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
 
@@ -45,25 +40,27 @@ namespace SnekTech.GridCell.Cover
             _putCoverCompletionSource.TrySetResult(true);
 
             animFSM = new CoverAnimFSM();
-            CoveredIdleState = new CoveredIdleState(this, animFSM, new SpriteClipLoop(this, animData.CoveredIdle));
-            RevealState = new RevealState(this, animFSM, new SpriteClipNonLoop(this, animData.Reveal));
-            RevealedIdleState = new RevealedIdleState(this, animFSM, new SpriteClipLoop(this, animData.RevealedIdle));
-            PutCoverState = new PutCoverState(this, animFSM, new SpriteClipNonLoop(this, animData.PutCover));
-            
-            animFSM.Init(CoveredIdleState);
-            animFSM.CurrentState.Update();
+            animFSM.PopulateStates(
+                new CoveredIdleState(animFSM, new SpriteClipLoop(this, animData.CoveredIdle)),
+                new RevealState(animFSM, new SpriteClipNonLoop(this, animData.Reveal)),
+                new RevealedIdleState(animFSM, new SpriteClipLoop(this, animData.RevealedIdle)),
+                new PutCoverState(animFSM, new SpriteClipNonLoop(this, animData.PutCover))
+            );
+
+            animFSM.Init(animFSM.CoveredIdleState);
+            animFSM.Update();
         }
 
         private void OnEnable()
         {
-            RevealState.OnComplete += OnRevealComplete;
-            PutCoverState.OnComplete += OnPutCoverComplete;
+            animFSM.RevealState.OnComplete += OnRevealComplete;
+            animFSM.PutCoverState.OnComplete += OnPutCoverComplete;
         }
 
         private void OnDisable()
         {
-            RevealState.OnComplete -= OnRevealComplete;
-            PutCoverState.OnComplete -= OnPutCoverComplete;
+            animFSM.RevealState.OnComplete -= OnRevealComplete;
+            animFSM.PutCoverState.OnComplete -= OnPutCoverComplete;
         }
 
         private void OnRevealComplete()
@@ -86,7 +83,7 @@ namespace SnekTech.GridCell.Cover
             }
 
             animFSM.Triggers.ShouldReveal = true;
-            animFSM.CurrentState.Update();
+            animFSM.Update();
 
             _revealCompletionSource = new UniTaskCompletionSource<bool>();
             return RevealTask;
@@ -100,7 +97,7 @@ namespace SnekTech.GridCell.Cover
             }
 
             animFSM.Triggers.ShouldPutCover = true;
-            animFSM.CurrentState.Update();
+            animFSM.Update();
 
             _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
             return PutCoverTask;
