@@ -5,7 +5,7 @@ using UnityEditor;
 namespace SnekTech.Editor.Pools
 {
     [CustomEditor(typeof(GridDataPool))]
-    public class GridDataPoolEditor : RandomPoolEditor<GridDataPool, GridData>
+    public class GridDataPoolEditor : RandomPoolEditor<GridData>
     {
         protected override string AssetDirPath => C.DirPath.AssetTypeToDir[typeof(GridData)];
     }

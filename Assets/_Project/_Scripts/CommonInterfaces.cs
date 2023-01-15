@@ -16,12 +16,6 @@ namespace SnekTech
         bool IsActive { get; set; }
     }
 
-    public interface IPool<T>
-    {
-        void Populate(List<T> newElements);
-        void Clear();
-    }
-
     public interface ICanAnimate
     {
         Animator Animator { get; }

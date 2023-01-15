@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using SnekTech.Core.CustomAttributes;
 using SnekTech.Roguelike;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -7,16 +8,16 @@ using UnityEngine.UIElements;
 
 namespace SnekTech.Editor.Pools
 {
-    public abstract class RandomPoolEditor<TPool, TAsset> : UnityEditor.Editor
-        where TPool : RandomPool<TAsset> where TAsset : ScriptableObject
+    public abstract class RandomPoolEditor<TAsset> : UnityEditor.Editor where TAsset : ScriptableObject
     {
-        private TPool Pool => serializedObject.targetObject as TPool;
         private const string PopulateButtonText = "Populate Pool";
         private const string ClearButtonText = "Clear Pool";
+        
         protected abstract string AssetDirPath { get; }
 
         public override VisualElement CreateInspectorGUI()
         {
+            // see: https://docs.unity3d.com/ScriptReference/SerializedObject.html
             serializedObject.Update(); // essential for correct save in editor
             
             var root = new VisualElement();
@@ -28,26 +29,54 @@ namespace SnekTech.Editor.Pools
             };
             root.Add(populateButton);
 
-            var clearButton = new Button(Pool.Clear)
+            var clearButton = new Button(Clear)
             {
                 text = ClearButtonText,
             };
             root.Add(clearButton);
 
-            serializedObject.ApplyModifiedProperties(); // essential for correct save in editor
-
             return root;
         }
 
+        private SerializedProperty GetElementsProProperty()
+        {
+            var elementFields = typeof(RandomPool<TAsset>).GetInstanceFieldsWithAttributeOfType(typeof(PoolElementsFieldAttribute));
+            if (elementFields.Count != 1)
+            {
+                UnityEngine.Debug.LogWarning($"Invalid elements field count : {elementFields.Count}, should be only 1");
+            }
+
+            string fieldName = elementFields[0].Name;
+
+            return serializedObject.FindProperty(fieldName);
+        }
+        
         private void Populate()
         {
+            Clear();
+            
             var assetPaths = FileUtils.GetFileAssetPaths(Application.dataPath + AssetDirPath);
             var assets = assetPaths.Select(AssetDatabase.LoadAssetAtPath<TAsset>)
                 .Where(asset => asset != null)
                 .ToList();
-            
-            Pool.Populate(assets);
-            EditorUtility.SetDirty(Pool); // essential for correct save in editor
+
+            var elementsProperty = GetElementsProProperty();
+
+            for (int i = 0; i < assets.Count; i++)
+            {
+                elementsProperty.InsertArrayElementAtIndex(i);
+                elementsProperty.GetArrayElementAtIndex(i).objectReferenceValue = assets[i];
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
+
+        private void Clear()
+        {
+            var property = GetElementsProProperty();
+            property.ClearArray();
+
+            serializedObject.ApplyModifiedProperties();
         }
     }
 }

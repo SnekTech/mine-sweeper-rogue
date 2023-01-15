@@ -4,7 +4,7 @@ using UnityEditor;
 namespace SnekTech.Editor.Pools
 {
     [CustomEditor(typeof(CellEventPool))]
-    public class CellEventDataPoolEditor : RandomPoolEditor<CellEventPool, CellEventData>
+    public class CellEventDataPoolEditor : RandomPoolEditor<CellEventData>
     {
         protected override string AssetDirPath => C.DirPath.AssetTypeToDir[typeof(CellEventData)];
     }

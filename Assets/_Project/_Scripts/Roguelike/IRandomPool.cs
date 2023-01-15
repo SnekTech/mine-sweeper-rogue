@@ -1,6 +1,6 @@
 ﻿namespace SnekTech.Roguelike
 {
-    public interface IRandomPool<T> : IPool<T>
+    public interface IRandomPool<T>
     {
         T GetRandom();
     }

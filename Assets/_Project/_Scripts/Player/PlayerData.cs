@@ -7,7 +7,7 @@ namespace SnekTech.Player
     public class PlayerData
     {
         public int damagePerBomb;
-        public int sweepScope;
+        public int sweepScope; // todo: add weapon system and put this in it
         public int itemChoiceCount;
 
         public PlayerData()
