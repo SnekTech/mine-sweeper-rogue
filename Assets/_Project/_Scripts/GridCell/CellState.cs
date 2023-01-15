@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using SnekTech.GridCell.Cover;
+using SnekTech.GridCell.Flag;
 
 namespace SnekTech.GridCell
 {

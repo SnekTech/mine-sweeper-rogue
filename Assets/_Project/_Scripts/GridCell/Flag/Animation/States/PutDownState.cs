@@ -1,14 +1,13 @@
-using System;
+﻿using System;
 using SnekTech.Core.Animation;
 
-namespace SnekTech.GridCell.Cover.Animation
+namespace SnekTech.GridCell.Flag
 {
-    public class RevealState : CoverAnimState<SpriteClipNonLoop>
+    public class PutDownState : FlagAnimState<SpriteClipNonLoop>
     {
         public event Action OnComplete;
-            
-        public RevealState(ICoverAnimStateProvider coverAnimStateProvider, CoverAnimFSM animFSM, SpriteClipNonLoop spriteClipNonLoop) : 
-            base(coverAnimStateProvider, animFSM, spriteClipNonLoop)
+        
+        public PutDownState(FlagAnimFSM flagAnimFSM, SpriteClipNonLoop spriteClip) : base(flagAnimFSM, spriteClip)
         {
         }
 
@@ -22,9 +21,8 @@ namespace SnekTech.GridCell.Cover.Animation
         public override void Exit()
         {
             base.Exit();
-
+            
             spriteClip.OnComplete -= HandleAnimComplete;
-            spriteClip.StopAndHide();
         }
 
         public override void Update()
@@ -33,7 +31,7 @@ namespace SnekTech.GridCell.Cover.Animation
 
         private void HandleAnimComplete()
         {
-            animFSM.ChangeState(coverAnimStateProvider.RevealedIdleState);
+            animFSM.ChangeState(animFSM.HideState);
             OnComplete?.Invoke();
         }
     }

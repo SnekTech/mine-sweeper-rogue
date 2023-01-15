@@ -18,14 +18,8 @@ namespace SnekTech.Core.Animation
             animator = context.Animator;
             spriteRenderer = context.SpriteRenderer;
 
-            _animHash = clipData.Hash;
+            _animHash = clipData.NameHash;
             frameCount = clipData.FrameCount;
-        }
-
-        public void StopAndHide()
-        {
-            spriteRenderer.sprite = null;
-            animator.enabled = false;
         }
 
         public void Play()

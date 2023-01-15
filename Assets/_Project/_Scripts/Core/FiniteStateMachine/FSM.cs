@@ -1,4 +1,6 @@
-﻿namespace SnekTech.Core.FiniteStateMachine
+﻿using UnityEngine;
+
+namespace SnekTech.Core.FiniteStateMachine
 {
     public class FSM
     {
@@ -12,9 +14,15 @@
 
         public void ChangeState(State newState)
         {
+            Debug.Log($"changing from {CurrentState} to {newState}");
             CurrentState.Exit();
             CurrentState = newState;
             CurrentState.Enter();
+        }
+
+        public void Update()
+        {
+            CurrentState.Update();
         }
     }
 }

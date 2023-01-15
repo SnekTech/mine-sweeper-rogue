@@ -104,7 +104,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cover-idle-revealed
+  m_Name: cover-revealed-idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -130,7 +130,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cover-idle-covered
+  m_Name: cover-covered-idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

@@ -12,7 +12,7 @@ namespace SnekTech.Core.Animation
         public string ClipName { get; set; }
         
         [field: SerializeField]
-        public int Hash { get; set; }
+        public int NameHash { get; set; }
 
         
         public int FrameCount

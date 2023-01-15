@@ -16,6 +16,7 @@ namespace SnekTech.Core.Animation
             frameIndex++;
             if (frameIndex == frameCount)
             {
+                frameIndex = 0; // get ready for the next run
                 OnComplete?.Invoke();
             }
         }

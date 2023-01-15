@@ -40,6 +40,12 @@ namespace SnekTech
 
         public static bool IsPending(this UniTask task) => task.Status == UniTaskStatus.Pending;
         public static bool IsPending<T>(this UniTask<T> task) => task.Status == UniTaskStatus.Pending;
+
+        public static bool HasDuplicates<T>(this List<T> list) where T : IComparable<T>
+        {
+            var set = new HashSet<T>(list);
+            return set.Count != list.Count;
+        }
     }
 
     // todo: move these to namespace C 
@@ -66,4 +72,7 @@ namespace SnekTech
             public const int InitialItemChoiceCount = 3;
         }
     }
+    
+    [AttributeUsage(AttributeTargets.Field)]
+    public class ClipDataTargetFieldAttribute : Attribute{}
 }

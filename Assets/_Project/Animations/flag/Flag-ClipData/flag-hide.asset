@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1245efa0a10145c3b9bb0dd1ba90763d, type: 3}
   m_Name: flag-hide
   m_EditorClassIdentifier: 
-  frameCount: 20
+  frameCount: 1
   <ClipName>k__BackingField: flag-hide
-  <Hash>k__BackingField: -896999867
+  <NameHash>k__BackingField: -896999867

@@ -14,7 +14,6 @@ namespace SnekTech.GridCell
 
         public override void OnLeaveState()
         {
-            Flag.IsActive = false;
         }
 
         public override UniTask<bool> OnLeftClick()

@@ -1,9 +1,9 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 
-namespace SnekTech.GridCell
+namespace SnekTech.GridCell.Flag
 {
-    public interface IFlag : ICanSwitchActiveness
+    public interface IFlag : ICanSwitchActiveness, ICanAnimate
     {
         event Action LiftCompleted, PutDownCompleted;
         UniTask<bool> LiftAsync();

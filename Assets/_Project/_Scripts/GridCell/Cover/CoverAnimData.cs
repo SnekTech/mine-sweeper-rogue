@@ -3,19 +3,31 @@ using UnityEngine;
 
 namespace SnekTech.GridCell.Cover
 {
-    [CreateAssetMenu(menuName = "Cover/" + nameof(CoverAnimData), order = 0)]
+    [CreateAssetMenu(menuName = nameof(ClipData) + "/Cover", fileName = nameof(CoverAnimData))]
     public class CoverAnimData : ScriptableObject
     {
-        [field: SerializeField]
-        public ClipData CoveredIdle { get; private set; }
-        
-        [field: SerializeField]
-        public ClipData Reveal { get; private set; }
-        
-        [field: SerializeField]
-        public ClipData RevealedIdle { get; private set; }
-        
-        [field: SerializeField]
-        public ClipData PutCover { get; private set; }
+        [ClipDataTargetField]
+        [SerializeField]
+        private ClipData coveredIdle;
+
+        [ClipDataTargetField]
+        [SerializeField]
+        private ClipData putCover;
+
+        [ClipDataTargetField]
+        [SerializeField]
+        private ClipData reveal;
+
+        [ClipDataTargetField]
+        [SerializeField]
+        private ClipData revealedIdle;
+
+        public ClipData CoveredIdle => coveredIdle;
+
+        public ClipData PutCover => putCover;
+
+        public ClipData Reveal => reveal;
+
+        public ClipData RevealedIdle => revealedIdle;
     }
 }

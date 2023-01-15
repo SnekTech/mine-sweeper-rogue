@@ -10,7 +10,6 @@ namespace SnekTech.GridCell
 
         public override void OnEnterState()
         {
-            Flag.IsActive = false;
         }
 
         public override void OnLeaveState()

@@ -1,9 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <ui:VisualElement name="root" style="justify-content: space-around; height: 85px; max-width: 400px;">
-        <ui:TextField picking-mode="Ignore" label="Clip Data Folder Name" value="filler text" text="default" name="folderName" tooltip="A folder name under the anim controller parent folder" style="flex-grow: 0;" />
-        <ui:VisualElement style="flex-direction: row; justify-content: space-around;">
-            <ui:VisualElement name="controllerFields" style="flex-direction: column; justify-content: space-between; height: 45px;">
-                <uie:ObjectField label="Target AC" allow-scene-objects="false" type="UnityEditor.Animations.AnimatorController, UnityEditor" name="targetACField" />
+    <ui:VisualElement name="root" style="justify-content: space-between; height: 98px; max-width: 400px;">
+        <ui:VisualElement name="outputConfig" style="justify-content: space-around;">
+            <uie:ObjectField label="Origin AC" allow-scene-objects="false" type="UnityEditor.Animations.AnimatorController, UnityEditor" name="ac" />
+            <uie:ObjectField label="ClipData Target" name="clipDataTarget" type="UnityEngine.ScriptableObject, UnityEngine.CoreModule" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
+            <ui:VisualElement name="controllerFields" style="flex-direction: column; flex-grow: 1;">
+                <ui:TextField picking-mode="Ignore" label="ClipData Folder Name" value="filler text" text="default" name="folderName" tooltip="A folder name under the anim controller parent folder" style="flex-grow: 0;" />
                 <ui:Toggle label="Overwrite" name="shouldOverwrite" value="true" tooltip="Should overwrite existing folder?" />
             </ui:VisualElement>
             <ui:Button text="Generate" display-tooltip-when-elided="true" style="font-size: 20px;" />

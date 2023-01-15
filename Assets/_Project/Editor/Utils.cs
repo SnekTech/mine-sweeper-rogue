@@ -5,6 +5,7 @@ using System.Reflection;
 using SnekTech.Core.GameEvent;
 using SnekTech.Grid;
 using SnekTech.InventorySystem;
+using UnityEditor.Animations;
 
 namespace SnekTech.Editor
 {
@@ -15,6 +16,11 @@ namespace SnekTech.Editor
             return type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
                 .Where(field => field.IsDefined(attributeType))
                 .ToList();
+        }
+
+        public static IEnumerable<ChildAnimatorState> GetStates(this AnimatorController ac, int layerIndex = 0)
+        {
+            return ac.layers[layerIndex].stateMachine.states;
         }
     }
 
