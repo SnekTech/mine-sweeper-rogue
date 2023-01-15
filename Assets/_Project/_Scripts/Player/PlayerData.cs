@@ -1,5 +1,5 @@
 ﻿using System;
-using SnekTech.Constants;
+using SnekTech.C;
 
 namespace SnekTech.Player
 {

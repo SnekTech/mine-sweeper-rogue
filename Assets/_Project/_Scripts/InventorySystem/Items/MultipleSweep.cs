@@ -1,4 +1,4 @@
-﻿using SnekTech.Constants;
+﻿using SnekTech.C;
 using SnekTech.Player;
 using SnekTech.Player.PlayerDataAccumulator;
 using UnityEngine;

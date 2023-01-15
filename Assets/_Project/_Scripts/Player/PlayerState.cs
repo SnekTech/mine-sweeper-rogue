@@ -5,7 +5,7 @@ using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using SnekTech.GridCell;
 using SnekTech.InventorySystem;
-using SnekTech.Constants;
+using SnekTech.C;
 using SnekTech.DataPersistence;
 using SnekTech.Player.ClickEffect;
 using SnekTech.Player.PlayerDataAccumulator;

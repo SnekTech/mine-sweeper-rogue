@@ -1,11 +1,12 @@
-﻿using SnekTech.Player;
+﻿using SnekTech.C;
+using SnekTech.Player;
 using SnekTech.Player.OneTimeEffect;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
     [CreateAssetMenu(menuName =
-        Constants.MenuName.GameEvents + Constants.MenuName.Slash + nameof(AdjustMaxHealthEventData))]
+        MenuName.GameEvents + MenuName.Slash + nameof(AdjustMaxHealthEventData))]
     public class AdjustMaxHealthEventData : CellEventData
     {
         [SerializeField]

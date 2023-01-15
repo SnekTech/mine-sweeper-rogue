@@ -1,10 +1,11 @@
-﻿using SnekTech.Player;
+﻿using SnekTech.C;
+using SnekTech.Player;
 using SnekTech.Player.ClickEffect;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [CreateAssetMenu(menuName = Constants.MenuName.GameEvents + Constants.MenuName.Slash + nameof(InjuredEventData))]
+    [CreateAssetMenu(menuName = MenuName.GameEvents + MenuName.Slash + nameof(InjuredEventData))]
     public class InjuredEventData : CellEventData
     {
         [SerializeField]

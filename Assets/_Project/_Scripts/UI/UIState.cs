@@ -1,6 +1,5 @@
-﻿using System;
-using UnityEngine;
-using SnekTech.Constants;
+﻿using UnityEngine;
+using SnekTech.C;
 
 namespace SnekTech.UI
 {

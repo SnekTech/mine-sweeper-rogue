@@ -48,8 +48,7 @@ namespace SnekTech
         }
     }
 
-    // todo: move these to namespace C 
-    namespace Constants
+    namespace C // Constants
     {
         public static class MenuName
         {

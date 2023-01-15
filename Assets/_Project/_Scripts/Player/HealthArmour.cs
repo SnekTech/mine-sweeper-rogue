@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using SnekTech.Constants;
+using SnekTech.C;
 using UnityEngine;
 
 namespace SnekTech.Player
