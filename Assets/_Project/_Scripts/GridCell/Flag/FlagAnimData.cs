@@ -1,8 +1,10 @@
 ﻿using SnekTech.Core.Animation;
+using SnekTech.Core.CustomAttributes;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
 {
+    [ClipDataHolder]
     [CreateAssetMenu(menuName = nameof(ClipData) + "/Flag", fileName = nameof(FlagAnimData))]
     public class FlagAnimData : ScriptableObject
     {

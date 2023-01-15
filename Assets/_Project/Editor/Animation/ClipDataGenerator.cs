@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using SnekTech.Core.Animation;
+using SnekTech.Core.CustomAttributes;
 using UnityEditor;
 using UnityEditor.Animations;
+using UnityEditor.Callbacks;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 namespace SnekTech.Editor.Animation
 {
@@ -17,26 +22,57 @@ namespace SnekTech.Editor.Animation
         {
         }
 
-        private readonly ObjectField _acField;
-        private readonly ObjectField _clipDataTargetField;
-        private readonly TextField _clipDataFolderNameField;
-        private readonly Toggle _shouldOverwriteToggle;
+        private static DropdownField s_holderTypeDropdownField;
+        private static Type s_currentClipDataHolderType;
+        private static readonly Dictionary<string, Type> holderTypeNameToType = new Dictionary<string, Type>();
+
+        private readonly VisualElement _root;
+        private ObjectField _acField;
+        private TextField _clipDataFolderNameField;
+        private Toggle _shouldOverwriteToggle;
+        private Button _generateButton;
+
 
         private AnimatorController CurrentAc => _acField.value as AnimatorController;
 
+        private string ClipDataSaveFolderName => _clipDataFolderNameField.value;
+        private bool ShouldOverwrite => _shouldOverwriteToggle.value;
+
         public ClipDataGenerator()
         {
-            var root = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlAssetPath).Instantiate();
-            hierarchy.Add(root);
+            _root = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlAssetPath).Instantiate();
+            hierarchy.Add(_root);
 
-            _acField = root.Q<ObjectField>("ac");
-            _clipDataTargetField = root.Q<ObjectField>("clipDataTarget");
-            _clipDataFolderNameField = root.Q<TextField>();
-            _shouldOverwriteToggle = root.Q<Toggle>();
+            FindControls();
+            SetupHolderTypeDropdown();
+            SetupEventHandlers();
+        }
 
-            var generateButton = root.Q<Button>();
+        private void SetupHolderTypeDropdown()
+        {
+            var dropdownParent = _root.Q("outputConfig");
+            var dropdownPlaceholder = _root.Q<DropdownField>("holderTypePlaceHolder");
+            s_holderTypeDropdownField.label = dropdownPlaceholder.label;
 
-            generateButton.clickable = new Clickable(GenerateClips);
+            dropdownPlaceholder.style.display = DisplayStyle.None;
+            dropdownParent.Add(s_holderTypeDropdownField);
+        }
+
+        private void FindControls()
+        {
+            _acField = _root.Q<ObjectField>("ac");
+            _acField.objectType = typeof(AnimatorController);
+
+            _clipDataFolderNameField = _root.Q<TextField>();
+            _shouldOverwriteToggle = _root.Q<Toggle>();
+            _generateButton = _root.Q<Button>();
+        }
+
+        private void SetupEventHandlers()
+        {
+            _generateButton.clickable = new Clickable(GenerateAssets);
+
+            _acField.RegisterValueChangedCallback(HandleAcChange);
 
             void HandleAcChange(ChangeEvent<Object> changeEvent)
             {
@@ -44,26 +80,57 @@ namespace SnekTech.Editor.Animation
                 _clipDataFolderNameField.value = $"{newAc.name}-ClipData";
             }
 
-            _acField.RegisterValueChangedCallback(HandleAcChange);
+            void HandleHolderTypeDropdownChanged(ChangeEvent<string> evt)
+            {
+                string typeName = evt.newValue;
+                var holderType = holderTypeNameToType[typeName];
+                s_currentClipDataHolderType = holderType;
+            }
+
+            s_holderTypeDropdownField.UnregisterValueChangedCallback(HandleHolderTypeDropdownChanged);
+            s_holderTypeDropdownField.RegisterValueChangedCallback(HandleHolderTypeDropdownChanged);
         }
 
-        private void GenerateClips()
+        private void GenerateAssets()
         {
-            if (CurrentAc == null) return;
+            var clipDataList = GenerateClipDataListAsset();
+            var clipDataHolderAsset = GenerateClipDataHolderAsset(clipDataList);
+            if (clipDataHolderAsset != null)
+            {
+                Selection.activeObject = clipDataHolderAsset;
+            }
 
-            string clipDataSaveFolderName = _clipDataFolderNameField.value;
+            AssetDatabase.SaveAssets();
+        }
 
-            string pathToAc = AssetDatabase.GetAssetPath(CurrentAc);
-            string acParentPath = FileUtils.GetAssetParentFolder(pathToAc);
+        private string GetCurrentAcParentFolder()
+        {
+            return CurrentAc == null ? null : FileUtils.GetAssetParentFolder(AssetDatabase.GetAssetPath(CurrentAc));
+        }
+
+        private List<ClipData> GenerateClipDataListAsset()
+        {
+            if (CurrentAc == null) return null;
+
+            string clipDataSaveFolderName = ClipDataSaveFolderName;
+            if (clipDataSaveFolderName == null)
+            {
+                return null;
+            }
+
+            // the main save folder
+            string acParentPath = GetCurrentAcParentFolder();
+
             string clipDataSaveFolderPath = FileUtils.AssetPathCombine(acParentPath, clipDataSaveFolderName);
-
             bool isTargetFolderExisting = AssetDatabase.GetSubFolders(acParentPath)
                 .Any(subFolderPath => subFolderPath == clipDataSaveFolderPath);
-            if (_shouldOverwriteToggle.value && isTargetFolderExisting)
+
+            if (ShouldOverwrite && isTargetFolderExisting)
             {
                 AssetDatabase.DeleteAsset(clipDataSaveFolderPath);
             }
 
+            // reassign here in case a different folder is created, when we should not overwrite
             string createdFolderGuid = AssetDatabase.CreateFolder(acParentPath, clipDataSaveFolderName);
             clipDataSaveFolderPath = AssetDatabase.GUIDToAssetPath(createdFolderGuid);
 
@@ -73,8 +140,9 @@ namespace SnekTech.Editor.Animation
                 clipNameToClip[animationClip.name] = animationClip;
             }
 
+            // to get the correct hash for a state in Animator Controller,
+            // we need to traverse the states in the Animator Controller StateMachine
             var clipDataList = new List<ClipData>();
-
             foreach (var childAnimatorState in CurrentAc.GetStates())
             {
                 var state = childAnimatorState.state;
@@ -92,18 +160,32 @@ namespace SnekTech.Editor.Animation
                 EditorUtility.SetDirty(newClipData);
             }
 
-            var target = _clipDataTargetField.value;
-            if (target != null)
+            return clipDataList;
+        }
+
+        private ScriptableObject GenerateClipDataHolderAsset(List<ClipData> clipDataList)
+        {
+            string clipDataHolderSavePath = $"{GetCurrentAcParentFolder()}/{s_currentClipDataHolderType.Name}.asset";
+            if (ShouldOverwrite)
             {
-                SetFieldsInNameOrder(clipDataList, target);
-                Selection.activeObject = target;
-            }
-            else
-            {
-                Selection.activeObject = AssetDatabase.LoadAssetAtPath<Object>(clipDataSaveFolderPath);
+                AssetDatabase.DeleteAsset(clipDataHolderSavePath);
             }
 
-            AssetDatabase.SaveAssets();
+            // var clipDataHolderAsset = Activator.CreateInstance(s_currentClipDataHolderType) as ScriptableObject;
+            var clipDataHolderAsset = ScriptableObject.CreateInstance(s_currentClipDataHolderType);
+            
+            if (clipDataHolderAsset == null)
+            {
+                UnityEngine.Debug.Log("ClipDataHolder asset not created");
+                return null;
+            }
+
+            AssetDatabase.CreateAsset(clipDataHolderAsset, clipDataHolderSavePath);
+            EditorUtility.SetDirty(clipDataHolderAsset);
+
+            SetFieldsInNameOrder(clipDataList, clipDataHolderAsset);
+
+            return clipDataHolderAsset;
         }
 
         private static void SetFieldsInNameOrder<T1, T2>(List<T1> values, T2 target)
@@ -135,6 +217,36 @@ namespace SnekTech.Editor.Animation
             }
 
             EditorUtility.SetDirty(target);
+        }
+
+        [DidReloadScripts]
+        private static void UpdateClipDataHolderTypes()
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            var holderTypes = assemblies
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type =>
+                    type.IsDefined(typeof(ClipDataHolderAttribute)) &&
+                    type.IsSubclassOf(typeof(ScriptableObject)))
+                .ToList();
+
+            foreach (var type in holderTypes)
+            {
+                holderTypeNameToType[type.Name] = type;
+            }
+
+            var kvPairs = holderTypeNameToType.ToList();
+            s_holderTypeDropdownField = new DropdownField
+            {
+                choices = kvPairs.Select(kv => kv.Key).ToList(),
+            };
+
+            if (kvPairs.Count > 0)
+            {
+                var firstPair = kvPairs[0];
+                s_holderTypeDropdownField.value = firstPair.Key;
+                s_currentClipDataHolderType = firstPair.Value;
+            }
         }
     }
 }

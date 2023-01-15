@@ -72,7 +72,4 @@ namespace SnekTech
             public const int InitialItemChoiceCount = 3;
         }
     }
-    
-    [AttributeUsage(AttributeTargets.Field)]
-    public class ClipDataTargetFieldAttribute : Attribute{}
 }

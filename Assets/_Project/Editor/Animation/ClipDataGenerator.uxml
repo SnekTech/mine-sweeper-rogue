@@ -2,7 +2,7 @@
     <ui:VisualElement name="root" style="justify-content: space-between; height: 98px; max-width: 400px;">
         <ui:VisualElement name="outputConfig" style="justify-content: space-around;">
             <uie:ObjectField label="Origin AC" allow-scene-objects="false" type="UnityEditor.Animations.AnimatorController, UnityEditor" name="ac" />
-            <uie:ObjectField label="ClipData Target" name="clipDataTarget" type="UnityEngine.ScriptableObject, UnityEngine.CoreModule" />
+            <ui:DropdownField label="ClipData Holder Type" index="0" name="holderTypePlaceHolder" view-data-key="holderTypeDropdown" choices="Type1, Type2" />
         </ui:VisualElement>
         <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
             <ui:VisualElement name="controllerFields" style="flex-direction: column; flex-grow: 1;">
