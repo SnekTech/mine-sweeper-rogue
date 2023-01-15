@@ -157,6 +157,7 @@ namespace SnekTech.Editor.Animation
                 clipDataList.Add(newClipData);
                 AssetDatabase.CreateAsset(newClipData, $"{clipDataSaveFolderPath}/{newClipData.ClipName}.asset");
 
+                new SerializedObject(newClipData).ApplyModifiedProperties();
                 EditorUtility.SetDirty(newClipData);
             }
 
@@ -201,6 +202,8 @@ namespace SnekTech.Editor.Animation
                 return;
             }
 
+            var serializedObject = new SerializedObject(target);
+            
             targetFields.Sort((fieldA, fieldB) => string.CompareOrdinal(fieldA.Name.ToLower(), fieldB.Name.ToLower()));
             values.Sort((a, b) => string.CompareOrdinal(a.name.ToLower(), b.name.ToLower()));
 
@@ -216,6 +219,7 @@ namespace SnekTech.Editor.Animation
                 targetField.SetValue(target, value);
             }
 
+            serializedObject.ApplyModifiedProperties();
             EditorUtility.SetDirty(target);
         }
 
