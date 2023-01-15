@@ -16,15 +16,17 @@ namespace SnekTech.Editor.Animation
 {
     public class ClipDataGenerator : VisualElement
     {
+        #region UI Builder boilerplate
+
         private const string UxmlAssetPath = "Assets/_Project/Editor/Animation/ClipDataGenerator.uxml";
 
         public new class UxmlFactory : UxmlFactory<ClipDataGenerator>
         {
         }
 
-        private static DropdownField s_holderTypeDropdownField;
-        private static Type s_currentClipDataHolderType;
-        private static readonly Dictionary<string, Type> holderTypeNameToType = new Dictionary<string, Type>();
+        #endregion
+
+        #region visual elment fields
 
         private readonly VisualElement _root;
         private ObjectField _acField;
@@ -32,11 +34,23 @@ namespace SnekTech.Editor.Animation
         private Toggle _shouldOverwriteToggle;
         private Button _generateButton;
 
+        #endregion
+
+        #region static fields related to ClipData holder type
+
+        private static DropdownField s_holderTypeDropdownField;
+        private static Type s_currentClipDataHolderType;
+        private static readonly Dictionary<string, Type> holderTypeNameToType = new Dictionary<string, Type>();
+
+        #endregion
+
+        #region getters
 
         private AnimatorController CurrentAc => _acField.value as AnimatorController;
-
         private string ClipDataSaveFolderName => _clipDataFolderNameField.value;
         private bool ShouldOverwrite => _shouldOverwriteToggle.value;
+
+        #endregion
 
         public ClipDataGenerator()
         {
@@ -156,9 +170,6 @@ namespace SnekTech.Editor.Animation
 
                 clipDataList.Add(newClipData);
                 AssetDatabase.CreateAsset(newClipData, $"{clipDataSaveFolderPath}/{newClipData.ClipName}.asset");
-
-                new SerializedObject(newClipData).ApplyModifiedProperties();
-                EditorUtility.SetDirty(newClipData);
             }
 
             return clipDataList;
@@ -174,7 +185,7 @@ namespace SnekTech.Editor.Animation
 
             // var clipDataHolderAsset = Activator.CreateInstance(s_currentClipDataHolderType) as ScriptableObject;
             var clipDataHolderAsset = ScriptableObject.CreateInstance(s_currentClipDataHolderType);
-            
+
             if (clipDataHolderAsset == null)
             {
                 UnityEngine.Debug.Log("ClipDataHolder asset not created");
@@ -182,7 +193,6 @@ namespace SnekTech.Editor.Animation
             }
 
             AssetDatabase.CreateAsset(clipDataHolderAsset, clipDataHolderSavePath);
-            EditorUtility.SetDirty(clipDataHolderAsset);
 
             SetFieldsInNameOrder(clipDataList, clipDataHolderAsset);
 
@@ -202,8 +212,6 @@ namespace SnekTech.Editor.Animation
                 return;
             }
 
-            var serializedObject = new SerializedObject(target);
-            
             targetFields.Sort((fieldA, fieldB) => string.CompareOrdinal(fieldA.Name.ToLower(), fieldB.Name.ToLower()));
             values.Sort((a, b) => string.CompareOrdinal(a.name.ToLower(), b.name.ToLower()));
 
@@ -212,15 +220,21 @@ namespace SnekTech.Editor.Animation
                 UnityEngine.Debug.LogWarning("there are duplicate names in values, unstable sorting");
             }
 
-            for (int i = 0; i < values.Count; i++)
+            using (var serializedObject = new SerializedObject(target))
             {
-                var value = values[i];
-                var targetField = targetFields[i];
-                targetField.SetValue(target, value);
-            }
+                serializedObject.Update();
 
-            serializedObject.ApplyModifiedProperties();
-            EditorUtility.SetDirty(target);
+                for (int i = 0; i < values.Count; i++)
+                {
+                    var value = values[i];
+                    var targetField = targetFields[i];
+
+                    var propertyField = serializedObject.FindProperty(targetField.Name);
+                    propertyField.objectReferenceValue = value;
+                }
+
+                serializedObject.ApplyModifiedProperties();
+            }
         }
 
         [DidReloadScripts]
