@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using SnekTech.Grid;
 using SnekTech.GridCell.Cover;
 using SnekTech.GridCell.Flag;
+using SnekTech.GridCell.FSM;
 using UnityEngine;
 
 namespace SnekTech.GridCell
@@ -12,17 +13,17 @@ namespace SnekTech.GridCell
         [SerializeField]
         private SpriteRenderer highlightFrame;
 
-        private ICellBrain _cellBrain;
         private SpriteRenderer _spriteRenderer;
-        
+        private CellFSM _fsm;
+
         public bool HasBomb { get; set; }
-        
+
         public IFlag Flag { get; private set; }
         public ICover Cover { get; private set; }
-        public bool IsFlagged => _cellBrain.IsFlagged;
-        public bool IsCovered => _cellBrain.IsCovered;
-        public bool IsRevealed => _cellBrain.IsRevealed;
-        
+        public bool IsFlagged => _fsm.IsFlagged;
+        public bool IsCovered => _fsm.IsCovered;
+        public bool IsRevealed => _fsm.IsRevealed;
+
         public GridIndex GridIndex { get; set; }
 
 
@@ -31,8 +32,8 @@ namespace SnekTech.GridCell
             _spriteRenderer = GetComponent<SpriteRenderer>();
             Flag = GetComponentInChildren<IFlag>();
             Cover = GetComponentInChildren<ICover>();
-            
-            _cellBrain = new BasicCellBrain(this);
+
+            _fsm = new CellFSM(this);
         }
 
         public void Dispose()
@@ -40,15 +41,9 @@ namespace SnekTech.GridCell
             Destroy(gameObject);
         }
 
-        public UniTask<bool> OnLeftClick()
-        {
-            return _cellBrain.OnLeftClick();
-        }
+        public UniTask<bool> OnPrimary() => _fsm.OnPrimary();
 
-        public UniTask<bool> OnRightClick()
-        {
-            return _cellBrain.OnRightClick();
-        }
+        public UniTask<bool> OnSecondary() => _fsm.OnSecondary();
 
         public void SetContent(Sprite sprite)
         {

@@ -1,16 +1,18 @@
-﻿using SnekTech.Core.Animation;
-using SnekTech.Core.FiniteStateMachine;
+﻿using SnekTech.Core.FiniteStateMachine;
+using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
 {
     public class FlagAnimFSM : IFiniteStateMachine<IFlagAnimState>
     {
-        private IFlagAnimState _current;
-        
+        public IFlagAnimState Current { get; private set; }
+
         public FloatState FloatState { get; private set; }
         public HideState HideState { get; private set; }
         public LiftState LiftState { get; private set; }
         public PutDownState PutDownState { get; private set; }
+
+        public bool IsInTransitionalState => Current.IsTransitional;
 
         public void PopulateStates(FloatState floatState, HideState hideState, LiftState liftState, PutDownState putDownState)
         {
@@ -22,18 +24,19 @@ namespace SnekTech.GridCell.Flag
 
         public void Init(IFlagAnimState initialState)
         {
-            _current = initialState;
-            _current.Enter();
+            Current = initialState;
+            Current.Enter();
         }
 
         public void ChangeState(IFlagAnimState newState)
         {
-            _current.Exit();
-            _current = newState;
-            _current.Enter();
+            Debug.Log($"{nameof(FlagAnimFSM)} {Current} ---> {newState}");
+            Current.Exit();
+            Current = newState;
+            Current.Enter();
         }
 
-        public void Lift() => _current.Lift();
-        public void PutDown() => _current.PutDown();
+        public void Lift() => Current.Lift();
+        public void PutDown() => Current.PutDown();
     }
 }

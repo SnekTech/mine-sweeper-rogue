@@ -13,8 +13,8 @@ namespace SnekTech.GridCell
         ICover Cover { get; }
         void Dispose();
 
-        UniTask<bool> OnLeftClick();
-        UniTask<bool> OnRightClick();
+        UniTask<bool> OnPrimary();
+        UniTask<bool> OnSecondary();
 
         bool HasBomb { get; set; }
         void SetContent(Sprite sprite);

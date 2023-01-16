@@ -8,5 +8,6 @@ namespace SnekTech.GridCell.Flag
         event Action LiftCompleted, PutDownCompleted;
         UniTask<bool> LiftAsync();
         UniTask<bool> PutDownAsync();
+        bool IsTransitioning { get; }
     }
 }

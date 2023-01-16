@@ -165,7 +165,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            bool isClickSuccessful = await cell.OnRightClick();
+            bool isClickSuccessful = await cell.OnSecondary();
 
             if (isClickSuccessful)
             {
@@ -189,7 +189,7 @@ namespace SnekTech.Grid
             // if last click action has not finished,
             // the task will return false,
             // to throttle the player input frequency
-            bool isLeftClickSuccessful = await cell.OnLeftClick();
+            bool isLeftClickSuccessful = await cell.OnPrimary();
             if (!isLeftClickSuccessful)
             {
                 return;

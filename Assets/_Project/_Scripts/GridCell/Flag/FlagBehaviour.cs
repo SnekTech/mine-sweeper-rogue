@@ -19,24 +19,17 @@ namespace SnekTech.GridCell.Flag
             set => this.SetActive(value);
         }
 
+        public bool IsTransitioning => animFSM.IsInTransitionalState;
+
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
         private FlagAnimFSM animFSM;
 
-        private UniTaskCompletionSource<bool> _liftCompletionSource = new UniTaskCompletionSource<bool>();
-        private UniTaskCompletionSource<bool> _putDownCompletionSource = new UniTaskCompletionSource<bool>();
-
-        private UniTask<bool> LiftTask => _liftCompletionSource.Task;
-        private UniTask<bool> PutDownTask => _putDownCompletionSource.Task;
-
         private void Awake()
         {
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
-
-            _liftCompletionSource.TrySetResult(true);
-            _putDownCompletionSource.TrySetResult(true);
 
             animFSM = new FlagAnimFSM();
             animFSM.PopulateStates(
@@ -45,58 +38,52 @@ namespace SnekTech.GridCell.Flag
                 new LiftState(animFSM, new SpriteClipNonLoop(this, animData.Lift)),
                 new PutDownState(animFSM, new SpriteClipNonLoop(this, animData.PutDown))
             );
-
             animFSM.Init(animFSM.HideState);
-        }
-
-        private void OnEnable()
-        {
-            animFSM.LiftState.OnComplete += OnLiftAnimationComplete;
-            animFSM.PutDownState.OnComplete += OnPutDownAnimationComplete;
-        }
-
-        private void OnDisable()
-        {
-            animFSM.LiftState.OnComplete -= OnLiftAnimationComplete;
-            animFSM.PutDownState.OnComplete -= OnPutDownAnimationComplete;
-        }
-
-        private void OnLiftAnimationComplete()
-        {
-            LiftCompleted?.Invoke();
-            _liftCompletionSource.TrySetResult(true);
-        }
-
-        private void OnPutDownAnimationComplete()
-        {
-            PutDownCompleted?.Invoke();
-            _putDownCompletionSource.TrySetResult(true);
         }
 
         public UniTask<bool> LiftAsync()
         {
-            if (LiftTask.IsPending())
+            if (animFSM.Current != animFSM.HideState)
             {
                 return UniTask.FromResult(false);
             }
 
             animFSM.Lift();
 
-            _liftCompletionSource = new UniTaskCompletionSource<bool>();
-            return LiftTask;
+            var liftCompletionSource = new UniTaskCompletionSource<bool>();
+
+            void HandleListComplete()
+            {
+                liftCompletionSource.TrySetResult(true);
+                LiftCompleted?.Invoke();
+                animFSM.LiftState.OnComplete -= HandleListComplete;
+            }
+
+            animFSM.LiftState.OnComplete += HandleListComplete;
+            
+            return liftCompletionSource.Task;
         }
 
         public UniTask<bool> PutDownAsync()
         {
-            if (PutDownTask.IsPending())
+            if (animFSM.Current != animFSM.FloatState)
             {
                 return UniTask.FromResult(false);
             }
-            
+
             animFSM.PutDown();
 
-            _putDownCompletionSource = new UniTaskCompletionSource<bool>();
-            return PutDownTask;
+            var putDownCompletionSource = new UniTaskCompletionSource<bool>();
+            void HandlePutDownComplete()
+            {
+                putDownCompletionSource.TrySetResult(true);
+                PutDownCompleted?.Invoke();
+                animFSM.PutDownState.OnComplete -= HandlePutDownComplete;
+            }
+            
+            animFSM.PutDownState.OnComplete += HandlePutDownComplete;
+            
+            return putDownCompletionSource.Task;
         }
     }
 }
