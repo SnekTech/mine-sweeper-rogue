@@ -1,4 +1,4 @@
-﻿using SnekTech.Core.Animation;
+﻿using SnekTech.Core.Animation.CustomAnimator;
 using SnekTech.Core.CustomAttributes;
 using UnityEngine;
 
@@ -10,26 +10,26 @@ namespace SnekTech.GridCell.Flag
     {
         [ClipDataTargetField]
         [SerializeField]
-        private ClipData floating;
+        private SnekAnimationClip floating;
 
         [ClipDataTargetField]
         [SerializeField]
-        private ClipData hide;
+        private SnekAnimationClip hide;
 
         [ClipDataTargetField]
         [SerializeField]
-        private ClipData lift;
+        private SnekAnimationClip lift;
 
         [ClipDataTargetField]
         [SerializeField]
-        private ClipData putDown;
+        private SnekAnimationClip putDown;
 
-        public ClipData Float => floating;
+        public SnekAnimationClip Float => floating;
 
-        public ClipData Hide => hide;
+        public SnekAnimationClip Hide => hide;
 
-         public ClipData Lift => lift;
+         public SnekAnimationClip Lift => lift;
 
-          public ClipData PutDown => putDown;
+          public SnekAnimationClip PutDown => putDown;
     }
 }

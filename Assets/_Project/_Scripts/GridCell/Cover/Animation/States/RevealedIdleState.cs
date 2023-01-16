@@ -1,11 +1,11 @@
-using SnekTech.Core.Animation;
+using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public class RevealedIdleState : CoverAnimState<SpriteClipLoop>
+    public class RevealedIdleState : CoverAnimState
     {
-        public RevealedIdleState(CoverAnimFSM animFSM, SpriteClipLoop spriteClipLoop) :
-            base(animFSM, spriteClipLoop)
+        public RevealedIdleState(CoverAnimFSM animFSM, ICanAnimateSnek animContext, SnekAnimationClip clip) :
+            base(animFSM, animContext, clip)
         {
         }
 

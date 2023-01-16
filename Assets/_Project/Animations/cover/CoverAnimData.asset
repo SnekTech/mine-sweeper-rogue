@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07860c8c51fa4c60b6c677c77f74e8db, type: 3}
   m_Name: CoverAnimData
   m_EditorClassIdentifier: 
-  coveredIdle: {fileID: 11400000, guid: 5f259b2af955d444f836b1143a3f3013, type: 2}
-  putCover: {fileID: 11400000, guid: 7f4d9c8b25df90d458dee577ce733ff2, type: 2}
-  reveal: {fileID: 11400000, guid: e9f1585e188f31a4d9eda808a554b43a, type: 2}
-  revealedIdle: {fileID: 11400000, guid: 21046350e3b98db4a982acf7facf9740, type: 2}
+  coveredIdle: {fileID: 11400000, guid: e3e47dae1ce9a9448a2d2cc8b4f3b93d, type: 2}
+  putCover: {fileID: 11400000, guid: e031bc7247e226d4c9b0ec3485098ac4, type: 2}
+  reveal: {fileID: 11400000, guid: 1d9beec1e73321e408caf94a6881f65f, type: 2}
+  revealedIdle: {fileID: 11400000, guid: 217f0bf7a859ccb4ab5ef54b993fb1a0, type: 2}

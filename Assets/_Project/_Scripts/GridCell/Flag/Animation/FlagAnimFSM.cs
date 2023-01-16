@@ -1,23 +1,20 @@
-﻿using SnekTech.Core.Animation;
-using SnekTech.Core.FiniteStateMachine;
+﻿using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Flag
 {
-    public class FlagAnimFSM : FSM<IFlagAnimState>
+    public class FlagAnimFSM : FSM<FlagAnimState>
     {
         public readonly FloatState FloatState;
         public readonly HideState HideState;
         public readonly LiftState LiftState;
         public readonly PutDownState PutDownState;
         
-        public bool IsInTransitionalState => Current.IsTransitional;
-
-        public FlagAnimFSM(ICanAnimate animContext, FlagAnimData animData)
+        public FlagAnimFSM(ICanAnimateSnek animContext, FlagAnimData animData)
         {
-            FloatState = new FloatState(this, new SpriteClipLoop(animContext, animData.Float));
-            HideState = new HideState(this, new SpriteClipLoop(animContext, animData.Hide));
-            LiftState = new LiftState(this, new SpriteClipNonLoop(animContext, animData.Lift));
-            PutDownState = new PutDownState(this, new SpriteClipNonLoop(animContext, animData.PutDown));
+            FloatState = new FloatState(this, animContext, animData.Float);
+            HideState = new HideState(this, animContext, animData.Hide);
+            LiftState = new LiftState(this, animContext, animData.Lift);
+            PutDownState = new PutDownState(this, animContext, animData.PutDown);
             
             Init(HideState);
         }

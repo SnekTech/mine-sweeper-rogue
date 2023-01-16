@@ -1,14 +1,14 @@
 using System;
-using SnekTech.Core.Animation;
+using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public class RevealState : CoverAnimState<SpriteClipNonLoop>
+    public class RevealState : CoverAnimState
     {
         public event Action OnComplete;
             
-        public RevealState(CoverAnimFSM animFSM, SpriteClipNonLoop spriteClipNonLoop) : 
-            base(animFSM, spriteClipNonLoop)
+        public RevealState(CoverAnimFSM animFSM, ICanAnimateSnek animContext, SnekAnimationClip clip) : 
+            base(animFSM, animContext, clip)
         {
         }
 
@@ -16,14 +16,14 @@ namespace SnekTech.GridCell.Cover.Animation
         {
             base.Enter();
 
-            spriteClip.OnComplete += AnimComplete;
+            animator.OnClipComplete += AnimComplete;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            spriteClip.OnComplete -= AnimComplete;
+            animator.OnClipComplete -= AnimComplete;
         }
 
         private void AnimComplete()

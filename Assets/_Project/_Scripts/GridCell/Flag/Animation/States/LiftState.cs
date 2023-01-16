@@ -1,13 +1,14 @@
 ﻿using System;
-using SnekTech.Core.Animation;
+using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.GridCell.Flag
 {
-    public class LiftState : FlagAnimState<SpriteClipNonLoop>
+    public class LiftState : FlagAnimState
     {
         public event Action OnComplete;
-        
-        public LiftState(FlagAnimFSM flagAnimFSM, SpriteClipNonLoop spriteClip) : base(flagAnimFSM, spriteClip)
+
+        public LiftState(FlagAnimFSM flagAnimFSM, ICanAnimateSnek animContext, SnekAnimationClip clip) : base(
+            flagAnimFSM, animContext, clip)
         {
         }
 
@@ -15,17 +16,17 @@ namespace SnekTech.GridCell.Flag
         {
             base.Enter();
 
-            spriteClip.OnComplete += AnimComplete;
+            animator.OnClipComplete += HandleAnimComplete;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            spriteClip.OnComplete -= AnimComplete;
+            animator.OnClipComplete -= HandleAnimComplete;
         }
 
-        private void AnimComplete()
+        private void HandleAnimComplete()
         {
             flagAnimFSM.ChangeState(flagAnimFSM.FloatState);
             OnComplete?.Invoke();

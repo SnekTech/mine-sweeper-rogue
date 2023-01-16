@@ -1,25 +1,17 @@
 ﻿using SnekTech.Core.Animation;
+using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.GridCell.Flag
 {
-    public interface IFlagAnimState : IAnimState
-    {
-        void Lift();
-        void PutDown();
-    }
-
-    public abstract class FlagAnimState<T> : SpriteAnimState<T>, IFlagAnimState where T : SpriteClip
+    public abstract class FlagAnimState : SpriteAnimState
     {
         protected readonly FlagAnimFSM flagAnimFSM;
-        private readonly bool isTransitional;
 
-        protected FlagAnimState(FlagAnimFSM flagAnimFSM, T spriteClip) : base(spriteClip)
+        protected FlagAnimState(FlagAnimFSM flagAnimFSM, ICanAnimateSnek animContext, SnekAnimationClip clip) : base(
+            animContext, clip)
         {
             this.flagAnimFSM = flagAnimFSM;
-            isTransitional = spriteClip is SpriteClipNonLoop;
         }
-
-        public bool IsTransitional => isTransitional;
 
         public abstract void Lift();
         public abstract void PutDown();

@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using SnekTech.Core.Animation.CustomAnimator;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
@@ -10,23 +11,15 @@ namespace SnekTech.GridCell.Flag
         [SerializeField]
         private FlagAnimData animData;
 
-        public bool IsActive
-        {
-            get => this.GetActiveSelf();
-            set => this.SetActive(value);
-        }
-
-        public bool IsTransitioning => animFSM.IsInTransitionalState;
-
-        public Animator Animator { get; private set; }
+        public SnekAnimator SnekAnimator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
         private FlagAnimFSM animFSM;
 
         private void Awake()
         {
-            Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
+            SnekAnimator = GetComponent<SnekAnimator>();
 
             animFSM = new FlagAnimFSM(this, animData);
         }

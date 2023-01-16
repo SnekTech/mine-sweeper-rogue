@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SnekTech.Core.Animation.CustomAnimator;
 using UnityEngine;
 
 namespace SnekTech
@@ -16,9 +17,9 @@ namespace SnekTech
         bool IsActive { get; set; }
     }
 
-    public interface ICanAnimate
+    public interface ICanAnimateSnek
     {
-        Animator Animator { get; }
+        SnekAnimator SnekAnimator { get; }
         SpriteRenderer SpriteRenderer { get; }
     }
 }

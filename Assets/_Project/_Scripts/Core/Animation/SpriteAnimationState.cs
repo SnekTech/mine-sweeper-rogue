@@ -1,26 +1,28 @@
-﻿using SnekTech.Core.FiniteStateMachine;
+﻿using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.Core.Animation
 {
-    public abstract class SpriteAnimState<TClip> : IState
-        where TClip : SpriteClip
+    public abstract class SpriteAnimState : IAnimState
     {
-        protected readonly TClip spriteClip;
+        protected readonly SnekAnimator animator;
+        private readonly SnekAnimationClip clip;
 
-        protected SpriteAnimState(TClip spriteClip)
+        public bool IsTransitional => !clip.IsLooping;
+        
+        protected SpriteAnimState(ICanAnimateSnek animContext, SnekAnimationClip clip)
         {
-            this.spriteClip = spriteClip;
+            animator = animContext.SnekAnimator;
+            animator.Init(animContext.SpriteRenderer);
+            this.clip = clip;
         }
 
         public virtual void Enter()
         {
-            spriteClip.Play();
-            spriteClip.RegisterSpriteChange();
+            animator.Play(clip);
         }
 
         public virtual void Exit()
         {
-            spriteClip.UnregisterSpriteChange();
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288ff81ddcf04212a5bd4396ef45d4a6, type: 3}
   m_Name: FlagAnimData
   m_EditorClassIdentifier: 
-  floating: {fileID: 11400000, guid: 131513c6cda2466459b4c84335030fad, type: 2}
-  hide: {fileID: 11400000, guid: 38012b80950969d4a9b361500d7263e6, type: 2}
-  lift: {fileID: 11400000, guid: fa53963f39095344baf1a243be8fa584, type: 2}
-  putDown: {fileID: 11400000, guid: db2f603e0faf93d4b8400bd136177c5c, type: 2}
+  floating: {fileID: 11400000, guid: 4948342902a29904b9a3b46a6fcbd013, type: 2}
+  hide: {fileID: 11400000, guid: 4305bb818a9d62d4e9bd1736c227fea9, type: 2}
+  lift: {fileID: 11400000, guid: 8c5363eefe48cd1449968dd09b46fbca, type: 2}
+  putDown: {fileID: 11400000, guid: 93c71ec8f92c0f64e9742793c84dc0fa, type: 2}

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbffe24636cc4188a70779472adfc754, type: 3}
+  m_Name: lift
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 525111364, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 294890805, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 792025198, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 717254265, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -25091630, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -1472885200, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -781271553, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 504939378, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -138004340, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 785626150, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 981566296, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 214937378, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -919465799, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -2005944624, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 1155806549, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 686129609, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -1532267303, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 1852830047, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: 2050908977, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  - {fileID: -198056701, guid: 044828393bb23b34d8dd7808be1d0c1f, type: 3}
+  frameDuration: 3
+  isLooping: 0

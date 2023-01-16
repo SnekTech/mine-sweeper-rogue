@@ -1,10 +1,11 @@
-﻿using SnekTech.Core.Animation;
+﻿using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.GridCell.Flag
 {
-    public class HideState : FlagAnimState<SpriteClipLoop>
+    public class HideState : FlagAnimState
     {
-        public HideState(FlagAnimFSM flagAnimFSM, SpriteClipLoop spriteClip) : base(flagAnimFSM, spriteClip)
+        public HideState(FlagAnimFSM flagAnimFSM, ICanAnimateSnek animContext, SnekAnimationClip clip) : base(
+            flagAnimFSM, animContext, clip)
         {
         }
 

@@ -1,25 +1,16 @@
 ﻿using SnekTech.Core.Animation;
+using SnekTech.Core.Animation.CustomAnimator;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public interface ICoverAnimState : IAnimState
-    {
-        void Reveal();
-        void PutCover();
-    }
-    
-    public abstract class CoverAnimState<T> : SpriteAnimState<T>, ICoverAnimState where T : SpriteClip
+    public abstract class CoverAnimState : SpriteAnimState
     {
         protected readonly CoverAnimFSM coverAnimFSM;
-        private readonly bool isTransitional;
 
-        public bool IsTransitional => isTransitional;
-
-        protected CoverAnimState(CoverAnimFSM coverAnimFSM, T spriteClip) :
-            base(spriteClip)
+        protected CoverAnimState(CoverAnimFSM coverAnimFSM, ICanAnimateSnek animContext, SnekAnimationClip spriteClip) :
+            base(animContext, spriteClip)
         {
             this.coverAnimFSM = coverAnimFSM;
-            isTransitional = spriteClip is SpriteClipNonLoop;
         }
 
         public abstract void Reveal();

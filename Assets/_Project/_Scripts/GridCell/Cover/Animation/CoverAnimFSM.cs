@@ -1,9 +1,8 @@
-﻿using SnekTech.Core.Animation;
-using SnekTech.Core.FiniteStateMachine;
+﻿using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public class CoverAnimFSM : FSM<ICoverAnimState>
+    public class CoverAnimFSM : FSM<CoverAnimState>
     {
 
         public readonly CoveredIdleState CoveredIdleState;
@@ -11,14 +10,12 @@ namespace SnekTech.GridCell.Cover.Animation
         public readonly RevealedIdleState RevealedIdleState;
         public readonly PutCoverState PutCoverState;
 
-        public bool IsInTransitionalState => Current.IsTransitional;
-
-        public CoverAnimFSM(ICanAnimate animContext, CoverAnimData animData)
+        public CoverAnimFSM(ICanAnimateSnek animContext, CoverAnimData animData)
         {
-            CoveredIdleState = new CoveredIdleState(this, new SpriteClipLoop(animContext, animData.CoveredIdle));
-            RevealState = new RevealState(this, new SpriteClipNonLoop(animContext, animData.Reveal));
-            RevealedIdleState = new RevealedIdleState(this, new SpriteClipLoop(animContext, animData.RevealedIdle));
-            PutCoverState = new PutCoverState(this, new SpriteClipNonLoop(animContext, animData.PutCover));
+            CoveredIdleState = new CoveredIdleState(this, animContext, animData.CoveredIdle);
+            RevealState = new RevealState(this, animContext, animData.Reveal);
+            RevealedIdleState = new RevealedIdleState(this, animContext, animData.RevealedIdle);
+            PutCoverState = new PutCoverState(this, animContext, animData.PutCover);
             
             Init(CoveredIdleState);
         }

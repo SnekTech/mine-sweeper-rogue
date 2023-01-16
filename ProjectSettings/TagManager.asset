@@ -48,6 +48,9 @@ TagManager:
   - name: Ground
     uniqueID: 3205130785
     locked: 0
+  - name: RevealedImage
+    uniqueID: 3356376745
+    locked: 0
   - name: Cell
     uniqueID: 1914167931
     locked: 0

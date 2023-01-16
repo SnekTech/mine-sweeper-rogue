@@ -1,5 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
+using SnekTech.Core.Animation.CustomAnimator;
 using SnekTech.GridCell.Cover.Animation;
 using UnityEngine;
 
@@ -11,20 +11,14 @@ namespace SnekTech.GridCell.Cover
         [SerializeField]
         private CoverAnimData animData;
 
-        public bool IsActive
-        {
-            get => this.GetActiveSelf();
-            set => this.SetActive(value);
-        }
-
-        public Animator Animator { get; private set; }
+        public SnekAnimator SnekAnimator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
         private CoverAnimFSM animFSM;
 
         private void Awake()
         {
-            Animator = GetComponent<Animator>();
+            SnekAnimator = GetComponent<SnekAnimator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
             animFSM = new CoverAnimFSM(this, animData);
