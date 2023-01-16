@@ -1,15 +1,25 @@
 ﻿using SnekTech.Core.Animation;
+using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public abstract class CoverAnimState<T> : SpriteAnimState<T> where T : SpriteClip
+    public interface ICoverAnimState : IState
     {
-        protected readonly CoverAnimFSM animFSM;
+        void Reveal();
+        void PutCover();
+    }
+    
+    public abstract class CoverAnimState<T> : SpriteAnimState<T>, ICoverAnimState where T : SpriteClip
+    {
+        protected readonly CoverAnimFSM coverAnimFSM;
 
         protected CoverAnimState(CoverAnimFSM coverAnimFSM, T spriteClip) :
             base(spriteClip)
         {
-            animFSM = coverAnimFSM;
+            this.coverAnimFSM = coverAnimFSM;
         }
+
+        public abstract void Reveal();
+        public abstract void PutCover();
     }
 }

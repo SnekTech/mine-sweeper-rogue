@@ -15,24 +15,28 @@ namespace SnekTech.GridCell.Flag
         {
             base.Enter();
 
-            spriteClip.OnComplete += HandleAnimComplete;
+            spriteClip.OnComplete += AnimComplete;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            spriteClip.OnComplete -= HandleAnimComplete;
+            spriteClip.OnComplete -= AnimComplete;
         }
 
-        public override void Update()
+        private void AnimComplete()
         {
-        }
-
-        private void HandleAnimComplete()
-        {
-            animFSM.ChangeState(animFSM.FloatState);
+            flagAnimFSM.ChangeState(flagAnimFSM.FloatState);
             OnComplete?.Invoke();
+        }
+
+        public override void Lift()
+        {
+        }
+
+        public override void PutDown()
+        {
         }
     }
 }

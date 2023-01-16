@@ -47,7 +47,6 @@ namespace SnekTech.GridCell.Flag
             );
 
             animFSM.Init(animFSM.HideState);
-            animFSM.Update();
         }
 
         private void OnEnable()
@@ -81,8 +80,7 @@ namespace SnekTech.GridCell.Flag
                 return UniTask.FromResult(false);
             }
 
-            animFSM.Triggers.ShouldLift = true;
-            animFSM.Update();
+            animFSM.Lift();
 
             _liftCompletionSource = new UniTaskCompletionSource<bool>();
             return LiftTask;
@@ -94,8 +92,8 @@ namespace SnekTech.GridCell.Flag
             {
                 return UniTask.FromResult(false);
             }
-            animFSM.Triggers.ShouldPutDown = true;
-            animFSM.Update();
+            
+            animFSM.PutDown();
 
             _putDownCompletionSource = new UniTaskCompletionSource<bool>();
             return PutDownTask;

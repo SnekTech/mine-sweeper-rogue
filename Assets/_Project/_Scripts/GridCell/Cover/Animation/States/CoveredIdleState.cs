@@ -9,19 +9,13 @@ namespace SnekTech.GridCell.Cover.Animation
         {
         }
 
-        public override void Exit()
+        public override void Reveal()
         {
-            base.Exit();
-
-            animFSM.Triggers.ShouldReveal = false;
+            coverAnimFSM.ChangeState(coverAnimFSM.RevealState);
         }
 
-        public override void Update()
+        public override void PutCover()
         {
-            if (animFSM.Triggers.ShouldReveal)
-            {
-                animFSM.ChangeState(animFSM.RevealState);
-            }
         }
     }
 }

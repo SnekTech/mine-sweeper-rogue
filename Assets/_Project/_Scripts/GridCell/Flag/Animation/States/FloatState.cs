@@ -8,19 +8,13 @@ namespace SnekTech.GridCell.Flag
         {
         }
 
-        public override void Exit()
+        public override void Lift()
         {
-            base.Exit();
-
-            animFSM.Triggers.ShouldPutDown = false;
         }
 
-        public override void Update()
+        public override void PutDown()
         {
-            if (animFSM.Triggers.ShouldPutDown)
-            {
-                animFSM.ChangeState(animFSM.PutDownState);
-            }
+            flagAnimFSM.ChangeState(flagAnimFSM.PutDownState);
         }
     }
 }

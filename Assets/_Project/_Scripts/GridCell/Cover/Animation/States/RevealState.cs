@@ -16,24 +16,28 @@ namespace SnekTech.GridCell.Cover.Animation
         {
             base.Enter();
 
-            spriteClip.OnComplete += HandleAnimComplete;
+            spriteClip.OnComplete += AnimComplete;
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            spriteClip.OnComplete -= HandleAnimComplete;
+            spriteClip.OnComplete -= AnimComplete;
         }
 
-        public override void Update()
+        private void AnimComplete()
         {
-        }
-
-        private void HandleAnimComplete()
-        {
-            animFSM.ChangeState(animFSM.RevealedIdleState);
+            coverAnimFSM.ChangeState(coverAnimFSM.RevealedIdleState);
             OnComplete?.Invoke();
+        }
+
+        public override void Reveal()
+        {
+        }
+
+        public override void PutCover()
+        {
         }
     }
 }

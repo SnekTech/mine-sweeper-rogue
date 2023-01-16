@@ -2,11 +2,7 @@
 
 namespace SnekTech.Core.Animation
 {
-    public abstract class SpriteAnimFSM : FSM
-    {
-    }
-
-    public abstract class SpriteAnimState<TClip> : State
+    public abstract class SpriteAnimState<TClip> : IState
         where TClip : SpriteClip
     {
         protected readonly TClip spriteClip;
@@ -16,13 +12,13 @@ namespace SnekTech.Core.Animation
             this.spriteClip = spriteClip;
         }
 
-        public override void Enter()
+        public virtual void Enter()
         {
             spriteClip.Play();
             spriteClip.RegisterSpriteChange();
         }
 
-        public override void Exit()
+        public virtual void Exit()
         {
             spriteClip.UnregisterSpriteChange();
         }

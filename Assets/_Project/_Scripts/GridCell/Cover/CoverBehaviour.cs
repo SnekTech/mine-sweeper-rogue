@@ -48,7 +48,6 @@ namespace SnekTech.GridCell.Cover
             );
 
             animFSM.Init(animFSM.CoveredIdleState);
-            animFSM.Update();
         }
 
         private void OnEnable()
@@ -82,8 +81,7 @@ namespace SnekTech.GridCell.Cover
                 return UniTask.FromResult(false);
             }
 
-            animFSM.Triggers.ShouldReveal = true;
-            animFSM.Update();
+            animFSM.Reveal();
 
             _revealCompletionSource = new UniTaskCompletionSource<bool>();
             return RevealTask;
@@ -96,8 +94,7 @@ namespace SnekTech.GridCell.Cover
                 return UniTask.FromResult(false);
             }
 
-            animFSM.Triggers.ShouldPutCover = true;
-            animFSM.Update();
+            animFSM.PutCover();
 
             _putCoverCompletionSource = new UniTaskCompletionSource<bool>();
             return PutCoverTask;

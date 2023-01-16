@@ -68,6 +68,7 @@ namespace SnekTech.Core
             var classicMode = new ClassicMode(gridEventManager, classicModeInfo, playerState);
             var countDownMode = new WithCountDown(countDownModeInfo, classicMode, WithCountDown.DefaultDuration, countDownText);
             
+            // todo: maybe use reflection to to these?
             _availableGameModes = new List<GameMode>
             {
                 classicMode,

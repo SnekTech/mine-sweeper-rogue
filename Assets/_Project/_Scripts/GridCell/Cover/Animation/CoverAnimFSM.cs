@@ -1,21 +1,11 @@
-﻿using SnekTech.Core.Animation;
+﻿using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public struct Triggers
+    public class CoverAnimFSM : IFiniteStateMachine<ICoverAnimState>
     {
-        public bool ShouldReveal;
-        public bool ShouldPutCover;
-    }
-    
-    public class CoverAnimFSM : SpriteAnimFSM
-    {
-        public Triggers Triggers = new Triggers
-        {
-            ShouldReveal = false,
-            ShouldPutCover = false,
-        };
-        
+        private ICoverAnimState _current;
+
         public CoveredIdleState CoveredIdleState { get; private set; }
         public RevealState RevealState { get; private set; }
         public RevealedIdleState RevealedIdleState { get; private set; }
@@ -29,5 +19,21 @@ namespace SnekTech.GridCell.Cover.Animation
             RevealedIdleState = revealedIdleState;
             PutCoverState = putCoverState;
         }
+
+        public void Init(ICoverAnimState initialState)
+        {
+            _current = initialState;
+            _current.Enter();
+        }
+
+        public void ChangeState(ICoverAnimState newState)
+        {
+            _current.Exit();
+            _current = newState;
+            _current.Enter();
+        }
+
+        public void Reveal() => _current.Reveal();
+        public void PutCover() => _current.PutCover();
     }
 }

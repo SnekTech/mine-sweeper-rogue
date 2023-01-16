@@ -1,5 +1,5 @@
 using SnekTech.Core.Animation;
-     
+
 namespace SnekTech.GridCell.Cover.Animation
 {
     public class RevealedIdleState : CoverAnimState<SpriteClipLoop>
@@ -9,19 +9,13 @@ namespace SnekTech.GridCell.Cover.Animation
         {
         }
 
-        public override void Exit()
+        public override void Reveal()
         {
-            base.Exit();
-
-            animFSM.Triggers.ShouldPutCover = false;
         }
 
-        public override void Update()
+        public override void PutCover()
         {
-            if (animFSM.Triggers.ShouldPutCover)
-            {
-                animFSM.ChangeState(animFSM.PutCoverState);
-            }
+            coverAnimFSM.ChangeState(coverAnimFSM.PutCoverState);
         }
     }
 }
