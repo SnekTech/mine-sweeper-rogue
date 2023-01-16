@@ -1,39 +1,29 @@
-﻿using SnekTech.Core.FiniteStateMachine;
+﻿using SnekTech.Core.Animation;
+using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public class CoverAnimFSM : IFiniteStateMachine<ICoverAnimState>
+    public class CoverAnimFSM : FSM<ICoverAnimState>
     {
-        private ICoverAnimState _current;
 
-        public CoveredIdleState CoveredIdleState { get; private set; }
-        public RevealState RevealState { get; private set; }
-        public RevealedIdleState RevealedIdleState { get; private set; }
-        public PutCoverState PutCoverState { get; private set; }
+        public readonly CoveredIdleState CoveredIdleState;
+        public readonly RevealState RevealState;
+        public readonly RevealedIdleState RevealedIdleState;
+        public readonly PutCoverState PutCoverState;
 
-        public void PopulateStates(CoveredIdleState coveredIdleState, RevealState revealState,
-            RevealedIdleState revealedIdleState, PutCoverState putCoverState)
+        public bool IsInTransitionalState => Current.IsTransitional;
+
+        public CoverAnimFSM(ICanAnimate animContext, CoverAnimData animData)
         {
-            CoveredIdleState = coveredIdleState;
-            RevealState = revealState;
-            RevealedIdleState = revealedIdleState;
-            PutCoverState = putCoverState;
+            CoveredIdleState = new CoveredIdleState(this, new SpriteClipLoop(animContext, animData.CoveredIdle));
+            RevealState = new RevealState(this, new SpriteClipNonLoop(animContext, animData.Reveal));
+            RevealedIdleState = new RevealedIdleState(this, new SpriteClipLoop(animContext, animData.RevealedIdle));
+            PutCoverState = new PutCoverState(this, new SpriteClipNonLoop(animContext, animData.PutCover));
+            
+            Init(CoveredIdleState);
         }
 
-        public void Init(ICoverAnimState initialState)
-        {
-            _current = initialState;
-            _current.Enter();
-        }
-
-        public void ChangeState(ICoverAnimState newState)
-        {
-            _current.Exit();
-            _current = newState;
-            _current.Enter();
-        }
-
-        public void Reveal() => _current.Reveal();
-        public void PutCover() => _current.PutCover();
+        public void Reveal() => Current.Reveal();
+        public void PutCover() => Current.PutCover();
     }
 }

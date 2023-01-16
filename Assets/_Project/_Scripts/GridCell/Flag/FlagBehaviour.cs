@@ -1,6 +1,5 @@
 using System;
 using Cysharp.Threading.Tasks;
-using SnekTech.Core.Animation;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
@@ -31,14 +30,7 @@ namespace SnekTech.GridCell.Flag
             Animator = GetComponent<Animator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
 
-            animFSM = new FlagAnimFSM();
-            animFSM.PopulateStates(
-                new FloatState(animFSM, new SpriteClipLoop(this, animData.Float)),
-                new HideState(animFSM, new SpriteClipLoop(this, animData.Hide)),
-                new LiftState(animFSM, new SpriteClipNonLoop(this, animData.Lift)),
-                new PutDownState(animFSM, new SpriteClipNonLoop(this, animData.PutDown))
-            );
-            animFSM.Init(animFSM.HideState);
+            animFSM = new FlagAnimFSM(this, animData);
         }
 
         public UniTask<bool> LiftAsync()

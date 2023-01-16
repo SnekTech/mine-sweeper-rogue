@@ -1,11 +1,9 @@
 ﻿using SnekTech.Core.Animation;
-using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Flag
 {
-    public interface IFlagAnimState : IState
+    public interface IFlagAnimState : IAnimState
     {
-        bool IsTransitional { get; }
         void Lift();
         void PutDown();
     }

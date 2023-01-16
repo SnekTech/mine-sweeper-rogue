@@ -1,41 +1,27 @@
-﻿using SnekTech.Core.FiniteStateMachine;
-using UnityEngine;
+﻿using SnekTech.Core.Animation;
+using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Flag
 {
-    public class FlagAnimFSM : IFiniteStateMachine<IFlagAnimState>
+    public class FlagAnimFSM : FSM<IFlagAnimState>
     {
-        public IFlagAnimState Current { get; private set; }
-
-        public FloatState FloatState { get; private set; }
-        public HideState HideState { get; private set; }
-        public LiftState LiftState { get; private set; }
-        public PutDownState PutDownState { get; private set; }
-
+        public readonly FloatState FloatState;
+        public readonly HideState HideState;
+        public readonly LiftState LiftState;
+        public readonly PutDownState PutDownState;
+        
         public bool IsInTransitionalState => Current.IsTransitional;
 
-        public void PopulateStates(FloatState floatState, HideState hideState, LiftState liftState, PutDownState putDownState)
+        public FlagAnimFSM(ICanAnimate animContext, FlagAnimData animData)
         {
-            FloatState = floatState;
-            HideState = hideState;
-            LiftState = liftState;
-            PutDownState = putDownState;
+            FloatState = new FloatState(this, new SpriteClipLoop(animContext, animData.Float));
+            HideState = new HideState(this, new SpriteClipLoop(animContext, animData.Hide));
+            LiftState = new LiftState(this, new SpriteClipNonLoop(animContext, animData.Lift));
+            PutDownState = new PutDownState(this, new SpriteClipNonLoop(animContext, animData.PutDown));
+            
+            Init(HideState);
         }
-
-        public void Init(IFlagAnimState initialState)
-        {
-            Current = initialState;
-            Current.Enter();
-        }
-
-        public void ChangeState(IFlagAnimState newState)
-        {
-            Debug.Log($"{nameof(FlagAnimFSM)} {Current} ---> {newState}");
-            Current.Exit();
-            Current = newState;
-            Current.Enter();
-        }
-
+        
         public void Lift() => Current.Lift();
         public void PutDown() => Current.PutDown();
     }

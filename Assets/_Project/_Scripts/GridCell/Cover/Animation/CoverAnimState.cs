@@ -1,9 +1,8 @@
 ﻿using SnekTech.Core.Animation;
-using SnekTech.Core.FiniteStateMachine;
 
 namespace SnekTech.GridCell.Cover.Animation
 {
-    public interface ICoverAnimState : IState
+    public interface ICoverAnimState : IAnimState
     {
         void Reveal();
         void PutCover();
@@ -12,11 +11,15 @@ namespace SnekTech.GridCell.Cover.Animation
     public abstract class CoverAnimState<T> : SpriteAnimState<T>, ICoverAnimState where T : SpriteClip
     {
         protected readonly CoverAnimFSM coverAnimFSM;
+        private readonly bool isTransitional;
+
+        public bool IsTransitional => isTransitional;
 
         protected CoverAnimState(CoverAnimFSM coverAnimFSM, T spriteClip) :
             base(spriteClip)
         {
             this.coverAnimFSM = coverAnimFSM;
+            isTransitional = spriteClip is SpriteClipNonLoop;
         }
 
         public abstract void Reveal();

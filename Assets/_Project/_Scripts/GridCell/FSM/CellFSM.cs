@@ -11,9 +11,9 @@ namespace SnekTech.GridCell.FSM
         public readonly FlaggedState FlaggedState;
         public readonly RevealedState RevealedState;
 
-        public bool IsCovered => current == CoveredState;
-        public bool IsFlagged => current == FlaggedState;
-        public bool IsRevealed => current == RevealedState;
+        public bool IsCovered => Current == CoveredState;
+        public bool IsFlagged => Current == FlaggedState;
+        public bool IsRevealed => Current == RevealedState;
         
         public CellFSM(ICell cell)
         {
@@ -25,7 +25,7 @@ namespace SnekTech.GridCell.FSM
             Init(CoveredState);
         }
 
-        public UniTask<bool> OnPrimary() => current.OnPrimary();
-        public UniTask<bool> OnSecondary() => current.OnSecondary();
+        public UniTask<bool> OnPrimary() => Current.OnPrimary();
+        public UniTask<bool> OnSecondary() => Current.OnSecondary();
     }
 }

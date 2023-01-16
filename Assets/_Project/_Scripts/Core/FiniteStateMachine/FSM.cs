@@ -4,21 +4,21 @@ namespace SnekTech.Core.FiniteStateMachine
 {
     public class FSM<T> : IFiniteStateMachine<T> where T : class, IState
     {
-        protected T current;
+        public T Current;
         
         public void Init(T initialState)
         {
-            current = initialState;
-            current.Enter();
+            Current = initialState;
+            Current.Enter();
         }
 
         public void ChangeState(T newState)
         {
-            Debug.Log($"{typeof(T).Name} {current.GetType().Name} ---> {current.GetType().Name}");
-            if (newState == current) return;
-            current.Exit();
-            current = newState;
-            current.Enter();
+            Debug.Log($"{typeof(T).Name} {Current.GetType().Name} ---> {Current.GetType().Name}");
+            if (newState == Current) return;
+            Current.Exit();
+            Current = newState;
+            Current.Enter();
         }
     }
 }
