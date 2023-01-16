@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SnekTech.Core.History
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = C.MenuName.GameHistory + "/" + nameof(GameHistory), fileName = nameof(GameHistory))]
     public class GameHistory : ScriptableObject, IPersistentDataHolder
     {
         private HistoryData _historyData;

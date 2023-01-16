@@ -2,7 +2,7 @@
 
 namespace SnekTech.Core.GameModeSystem
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = C.MenuName.GameModeSystem + "/" + nameof(GameModeInfo))]
     public class GameModeInfo : ScriptableObject
     {
         [SerializeField]

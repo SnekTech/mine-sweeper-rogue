@@ -2,7 +2,7 @@
 
 namespace SnekTech.Core.Animation
 {
-    [CreateAssetMenu(menuName = "AnimationData/" + nameof(ClipData))]
+    [CreateAssetMenu(menuName = C.MenuName.Animation + "/" + nameof(ClipData), fileName = nameof(ClipData))]
     public class ClipData : ScriptableObject
     {
         [SerializeField]

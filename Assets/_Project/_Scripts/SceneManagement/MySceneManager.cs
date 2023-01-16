@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace SnekTech.SceneManagement
 {
-    [CreateAssetMenu(menuName = nameof(MySceneManager))]
+    [CreateAssetMenu(menuName = C.MenuName.Managers + "/" + nameof(MySceneManager))]
     public class MySceneManager : ScriptableObject
     {
         public event Action GameSceneLoaded;

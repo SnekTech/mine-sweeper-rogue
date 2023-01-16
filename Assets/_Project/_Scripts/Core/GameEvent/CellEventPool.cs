@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = C.MenuName.GameEventSystem + "/" + nameof(CellEventPool))]
     public class CellEventPool : RandomPool<CellEventData>
     {
     }

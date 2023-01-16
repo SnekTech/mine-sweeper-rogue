@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SnekTech.Core.History
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = C.MenuName.GameHistory + "/" + nameof(CurrentRecordHolder))]
     public class CurrentRecordHolder : ScriptableObject, IPersistentDataHolder
     {
         #region Persistent Data
@@ -19,16 +19,16 @@ namespace SnekTech.Core.History
         #region Record Saving Dependencies
 
         private PlayerState _playerState;
-        private GameEventHolder _gameEventHolder;
+        private CurrentEventsHolder currentEventsHolder;
         private GameHistory _history;
         private readonly IRandomGenerator _randomGenerator = RandomGenerator.Instance;
 
         #endregion
 
-        public void Init(PlayerState playerState, GameEventHolder gameEventHolder, GameHistory history)
+        public void Init(PlayerState playerState, CurrentEventsHolder currentEventsHolder, GameHistory history)
         {
             _playerState = playerState;
-            _gameEventHolder = gameEventHolder;
+            this.currentEventsHolder = currentEventsHolder;
             _history = history;
         }
 
@@ -38,7 +38,7 @@ namespace SnekTech.Core.History
             {
                 CreatedAt = DateTime.UtcNow.Ticks,
                 Items = _playerState.Inventory.Items,
-                CellEvents = _gameEventHolder.CellEvents,
+                CellEvents = currentEventsHolder.CellEvents,
                 HasFailed = hasFailed,
                 Seed = _randomGenerator.Seed,
             };

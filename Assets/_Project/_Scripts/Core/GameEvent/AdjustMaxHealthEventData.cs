@@ -5,8 +5,9 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [CreateAssetMenu(menuName =
-        MenuName.GameEvents + MenuName.Slash + nameof(AdjustMaxHealthEventData))]
+    [CreateAssetMenu(
+        menuName = MenuName.CellEvents + "/" + nameof(AdjustMaxHealthEventData),
+        fileName = nameof(AdjustMaxHealthEventData))]
     public class AdjustMaxHealthEventData : CellEventData
     {
         [SerializeField]

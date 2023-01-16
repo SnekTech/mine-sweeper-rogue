@@ -52,13 +52,29 @@ namespace SnekTech
     {
         public static class MenuName
         {
-            // todo: refactor create menu names
-            public const string Slash = "/";
-            public const string EventManager = "MyEventManager";
-            public const string Inventory = "MyInventory";
-            public const string UI = "MyUI";
-            public const string Items = "MyItems";
-            public const string GameEvents = "MyGameEvents";
+            private const string Root = nameof(SnekTech);
+
+            public const string EditorScripting = Root + "/" + nameof(EditorScripting);
+            public const string TriggersPanel = EditorScripting + "/" + nameof(TriggersPanel);
+
+            public const string Managers = Root + "/" + nameof(Managers);
+            public const string UIManagers = Managers + "/" + nameof(UIManagers);
+            public const string EventManagers = Managers + "/" + nameof(EventManagers);
+            
+            public const string InventorySystem = Root + "/" + nameof(InventorySystem);
+            public const string Items = InventorySystem + "/" + nameof(Items);
+
+            public const string GameModeSystem = Root + "/" + nameof(GameModeSystem);
+            
+            public const string GameEventSystem = Root + "/" + nameof(GameEventSystem);
+            public const string CellEvents = GameEventSystem + "/" + nameof(CellEvents);
+
+            public const string GameHistory = Root + "/" + nameof(GameHistory);
+
+            public const string Grid = Root + "/" + nameof(Grid);
+
+            public const string Animation = Root + "/" + nameof(Animation);
+            public const string ClipDataHolder = Animation + "/" + nameof(ClipDataHolder);
         }
 
         public static class GameConstants

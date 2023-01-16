@@ -2,7 +2,7 @@
 
 namespace SnekTech.Grid
 {
-    [CreateAssetMenu(fileName = nameof(GridData))]
+    [CreateAssetMenu(menuName = C.MenuName.Grid + "/" + nameof(GridData), fileName = nameof(GridData))]
     public class GridData : ScriptableObject
     {
         [SerializeField]

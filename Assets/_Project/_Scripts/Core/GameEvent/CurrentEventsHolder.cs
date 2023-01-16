@@ -11,8 +11,8 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [CreateAssetMenu]
-    public class GameEventHolder : ScriptableObject, IPersistentDataHolder
+    [CreateAssetMenu(menuName = C.MenuName.GameEventSystem + "/" + nameof(CurrentEventsHolder))]
+    public class CurrentEventsHolder : ScriptableObject, IPersistentDataHolder
     {
         [SerializeField]
         private PlayerState playerState;

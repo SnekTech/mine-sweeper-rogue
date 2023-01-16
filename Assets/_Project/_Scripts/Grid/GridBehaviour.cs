@@ -30,7 +30,7 @@ namespace SnekTech.Grid
         private PlayerState playerState;
 
         [SerializeField]
-        private UIState uiState;
+        private UIStateManager uiStateManager;
 
         [SerializeField]
         private Camera mainCamera;
@@ -175,6 +175,7 @@ namespace SnekTech.Grid
         
         private async UniTask RevealCellAsync(GridIndex cellGridIndex)
         {
+            // bug: if first reveal attempt is clearing a cell, it won't recursively reveal neighbors
             if (!_gridBrain.IsIndexWithinGrid(cellGridIndex))
             {
                 return;
@@ -225,7 +226,7 @@ namespace SnekTech.Grid
 
         private ICell GetMouseHoveringCell(Vector2 mousePosition)
         {
-            if (uiState.isBlockingRaycast)
+            if (uiStateManager.isBlockingRaycast)
             {
                 return null;
             }

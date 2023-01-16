@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SnekTech.GridCell.Cover
 {
     [ClipDataHolder]
-    [CreateAssetMenu(menuName = nameof(ClipData) + "/Cover", fileName = nameof(CoverAnimData))]
+    [CreateAssetMenu(menuName = C.MenuName.ClipDataHolder + "/" + nameof(CoverAnimData), fileName = nameof(CoverAnimData))]
     public class CoverAnimData : ScriptableObject
     {
         [ClipDataTargetField]

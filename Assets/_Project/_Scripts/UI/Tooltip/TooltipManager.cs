@@ -1,12 +1,10 @@
-﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
 namespace SnekTech.UI.Tooltip
 {
-    [CreateAssetMenu(fileName = nameof(TooltipManager))]
+    [CreateAssetMenu(menuName = C.MenuName.UIManagers + "/" + nameof(TooltipManager), fileName = nameof(TooltipManager))]
     public class TooltipManager : ScriptableObject
     {
         [SerializeField]

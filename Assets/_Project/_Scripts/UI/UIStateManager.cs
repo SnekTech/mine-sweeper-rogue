@@ -3,8 +3,8 @@ using SnekTech.C;
 
 namespace SnekTech.UI
 {
-    [CreateAssetMenu(fileName = "New UI State", menuName = MenuName.UI + MenuName.Slash + nameof(UIState))]
-    public class UIState : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(UIStateManager), menuName = MenuName.UIManagers+ "/" + nameof(UIStateManager))]
+    public class UIStateManager : ScriptableObject
     {
         public bool isBlockingRaycast;
 

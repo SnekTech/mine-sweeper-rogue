@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SnekTech.InventorySystem.Items
 {
     [CreateAssetMenu(fileName = nameof(MultipleSweep),
-        menuName = MenuName.Items + MenuName.Slash + nameof(MultipleSweep))]
+        menuName = MenuName.Items + "/" + nameof(MultipleSweep))]
     public class MultipleSweep : ItemData
     {
         [Range(GameConstants.SweepScopeMin, GameConstants.SweepScopeMax)]

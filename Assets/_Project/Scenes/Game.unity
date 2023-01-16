@@ -190,7 +190,7 @@ MonoBehaviour:
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
-  uiState: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
+  uiStateManager: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
   mainCamera: {fileID: 1997230523}
 --- !u!4 &58783577
 Transform:

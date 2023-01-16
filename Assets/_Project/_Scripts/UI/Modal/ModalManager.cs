@@ -8,13 +8,13 @@ using UnityEngine;
 
 namespace SnekTech.UI.Modal
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = C.MenuName.UIManagers + "/" + nameof(ModalManager))]
     public class ModalManager : ScriptableObject, IShouldFinishAfterLevelCompleted
     {
         #region DI
         
         [SerializeField]
-        private UIState uiState;
+        private UIStateManager uiStateManager;
 
         [SerializeField]
         private UIEventManager uiEventManager;
@@ -146,7 +146,7 @@ namespace SnekTech.UI.Modal
         
         private async UniTask Show()
         {
-            uiState.isBlockingRaycast = true;
+            uiStateManager.isBlockingRaycast = true;
             _alphaGroup.alpha = 0;
 
             await UniTask.WhenAll(
@@ -162,7 +162,7 @@ namespace SnekTech.UI.Modal
                 _modal.ParentRect.DOAnchorPosY(CanvasInfo.Instance.ReferenceHeight, duration).SetEase(easeHide).ToUniTask()
             );
 
-            uiState.isBlockingRaycast = false;
+            uiStateManager.isBlockingRaycast = false;
         }
         
         #endregion

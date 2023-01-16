@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SnekTech.InventorySystem
 {
-    [CreateAssetMenu(fileName = "New " + nameof(Inventory), menuName = MenuName.Inventory + MenuName.Slash + nameof(Inventory))]
+    [CreateAssetMenu(fileName = nameof(Inventory), menuName = MenuName.InventorySystem + "/" + nameof(Inventory))]
     public class Inventory : ScriptableObject
     {
         public event Action<List<InventoryItem>> ItemsChanged;

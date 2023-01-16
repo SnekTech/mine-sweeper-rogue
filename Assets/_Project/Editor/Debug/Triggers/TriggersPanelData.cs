@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using SnekTech.Player;
+using SnekTech.C;
 using UnityEngine;
 
 namespace SnekTech.Editor.Debug.Triggers
 {
-    [CreateAssetMenu(menuName = "Editor/" + nameof(TriggersPanelData))]
+    [CreateAssetMenu(menuName = MenuName.TriggersPanel + "/" + nameof(TriggersPanelData))]
     public class TriggersPanelData : ScriptableObject
     {
         #region bindable fields

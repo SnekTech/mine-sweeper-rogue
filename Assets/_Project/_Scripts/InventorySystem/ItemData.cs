@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SnekTech.InventorySystem
 {
-    [CreateAssetMenu(fileName = nameof(ItemData), menuName = MenuName.Items + MenuName.Slash + nameof(ItemData))]
+    [CreateAssetMenu(fileName = nameof(ItemData), menuName = MenuName.Items + "/" + nameof(ItemData))]
     public class ItemData : ScriptableObject
     {
         [SerializeField]

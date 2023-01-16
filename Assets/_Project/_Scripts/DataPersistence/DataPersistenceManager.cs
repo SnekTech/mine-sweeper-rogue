@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SnekTech.DataPersistence
 {
-    [CreateAssetMenu(menuName = nameof(DataPersistenceManager))]
+    [CreateAssetMenu(menuName = C.MenuName.Managers + "/" + nameof(DataPersistenceManager))]
     public class DataPersistenceManager : ScriptableObject
     {
         [Header("File Storage Config")]
@@ -22,7 +22,7 @@ namespace SnekTech.DataPersistence
         private GameHistory gameHistory;
 
         [SerializeField]
-        private GameEventHolder gameEventHolder;
+        private CurrentEventsHolder currentEventsHolder;
 
         [SerializeField]
         private CurrentRecordHolder currentRecordHolder;
@@ -37,7 +37,7 @@ namespace SnekTech.DataPersistence
             // todo: separate save&load of player state & history
             playerState,
             gameHistory,
-            gameEventHolder,
+            currentEventsHolder,
             RandomGenerator.Instance,
             currentRecordHolder,
         };
@@ -45,7 +45,7 @@ namespace SnekTech.DataPersistence
         private void OnEnable()
         {
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-            currentRecordHolder.Init(playerState, gameEventHolder, gameHistory);
+            currentRecordHolder.Init(playerState, currentEventsHolder, gameHistory);
             
             LoadGame();
         }

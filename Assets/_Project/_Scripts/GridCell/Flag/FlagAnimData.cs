@@ -5,7 +5,7 @@ using UnityEngine;
 namespace SnekTech.GridCell.Flag
 {
     [ClipDataHolder]
-    [CreateAssetMenu(menuName = nameof(ClipData) + "/Flag", fileName = nameof(FlagAnimData))]
+    [CreateAssetMenu(menuName = C.MenuName.ClipDataHolder + "/" + nameof(FlagAnimData), fileName = nameof(FlagAnimData))]
     public class FlagAnimData : ScriptableObject
     {
         [ClipDataTargetField]

@@ -5,7 +5,8 @@ using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [CreateAssetMenu(menuName = MenuName.GameEvents + MenuName.Slash + nameof(InjuredEventData))]
+    [CreateAssetMenu(menuName = MenuName.CellEvents + "/" + nameof(InjuredEventData),
+        fileName = nameof(InjuredEventData))]
     public class InjuredEventData : CellEventData
     {
         [SerializeField]
