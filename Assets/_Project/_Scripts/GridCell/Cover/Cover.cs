@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SnekTech.GridCell.Cover
 {
     [RequireComponent(typeof(Animator))]
-    public class CoverBehaviour : MonoBehaviour, ICover, ICanAnimate
+    public class Cover : MonoBehaviour, ICover
     {
         [SerializeField]
         private CoverAnimData animData;
@@ -32,7 +32,7 @@ namespace SnekTech.GridCell.Cover
         
         public UniTask<bool> RevealAsync()
         {
-            if (animFSM.IsInTransitionalState)
+            if (animFSM.Current != animFSM.CoveredIdleState)
             {
                 return UniTask.FromResult(false);
             }
@@ -54,7 +54,7 @@ namespace SnekTech.GridCell.Cover
 
         public UniTask<bool> PutCoverAsync()
         {
-            if (animFSM.IsInTransitionalState)
+            if (animFSM.Current != animFSM.RevealedIdleState)
             {
                 return UniTask.FromResult(false);
             }

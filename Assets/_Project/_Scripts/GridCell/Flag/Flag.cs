@@ -1,11 +1,10 @@
-using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
 {
     [RequireComponent(typeof(Animator))]
-    public class FlagBehaviour : MonoBehaviour, IFlag
+    public class Flag : MonoBehaviour, IFlag
     {
 
         [SerializeField]

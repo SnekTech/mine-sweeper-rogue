@@ -9,8 +9,8 @@ namespace SnekTech.GridCell.FSM
     {
         protected readonly CellFSM cellFSM;
 
-        protected IFlag Flag => cellFSM.Cell.Flag;
-        protected ICover Cover => cellFSM.Cell.Cover;
+        protected ILogicFlag Flag => cellFSM.Cell.Flag;
+        protected ILogicCover Cover => cellFSM.Cell.Cover;
 
         protected CellState(CellFSM cellFSM)
         {

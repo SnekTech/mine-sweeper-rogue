@@ -7,7 +7,7 @@ namespace Tests.EditMode.Builder
     public static class A
     {
         public static ILogicCell Cell => new FakeCell();
-        public static ICover Cover => new FakeCover();
-        public static IFlag Flag => new FakeFlag();
+        public static ILogicCover Cover => new FakeCover();
+        public static ILogicFlag Flag => new FakeFlag();
     }
 }

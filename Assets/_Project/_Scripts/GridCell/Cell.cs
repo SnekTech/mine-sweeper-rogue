@@ -18,8 +18,8 @@ namespace SnekTech.GridCell
 
         public bool HasBomb { get; set; }
 
-        public IFlag Flag { get; private set; }
-        public ICover Cover { get; private set; }
+        public ILogicFlag Flag { get; private set; }
+        public ILogicCover Cover { get; private set; }
         public bool IsFlagged => _fsm.IsFlagged;
         public bool IsCovered => _fsm.IsCovered;
         public bool IsRevealed => _fsm.IsRevealed;

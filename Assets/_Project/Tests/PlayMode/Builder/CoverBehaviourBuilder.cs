@@ -2,7 +2,7 @@
 
 namespace Tests.PlayMode.Builder
 {
-    public class CoverBehaviourBuilder : BehaviourBuilder<CoverBehaviour>
+    public class CoverBehaviourBuilder : BehaviourBuilder<Cover>
     {
         public CoverBehaviourBuilder(string prefabName) : base(prefabName)
         {

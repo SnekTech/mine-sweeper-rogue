@@ -3,7 +3,11 @@ using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell.Flag
 {
-    public interface IFlag : ICanSwitchActiveness, ICanAnimate
+    public interface IFlag : ILogicFlag, ICanAnimate
+    {
+    }
+
+    public interface ILogicFlag
     {
         UniTask<bool> LiftAsync();
         UniTask<bool> PutDownAsync();
