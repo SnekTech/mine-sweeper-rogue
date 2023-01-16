@@ -7,14 +7,14 @@ using UnityEngine;
 
 namespace SnekTech.GridCell
 {
-    [RequireComponent(typeof(SpriteRenderer))]
     public class Cell : MonoBehaviour, ICell
     {
         [SerializeField]
         private SpriteRenderer highlightFrame;
 
-        private SpriteRenderer _spriteRenderer;
         private CellFSM _fsm;
+
+        private SpriteSetter _revealedImageSetter;
 
         public bool HasBomb { get; set; }
 
@@ -29,7 +29,7 @@ namespace SnekTech.GridCell
 
         private void Awake()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _revealedImageSetter = transform.Find("Revealed Image").GetComponent<SpriteSetter>();
             Flag = GetComponentInChildren<IFlag>();
             Cover = GetComponentInChildren<ICover>();
 
@@ -42,7 +42,7 @@ namespace SnekTech.GridCell
 
         public void SetContent(Sprite sprite)
         {
-            _spriteRenderer.sprite = sprite;
+            _revealedImageSetter.Sprite = sprite;
         }
 
         public void SetPosition(GridIndex gridIndex)
