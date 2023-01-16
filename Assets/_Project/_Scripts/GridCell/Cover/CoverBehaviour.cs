@@ -6,10 +6,8 @@ using UnityEngine;
 namespace SnekTech.GridCell.Cover
 {
     [RequireComponent(typeof(Animator))]
-    public class CoverBehaviour : MonoBehaviour, ICover
+    public class CoverBehaviour : MonoBehaviour, ICover, ICanAnimate
     {
-        public event Action RevealCompleted, PutCoverCompleted;
-
         [SerializeField]
         private CoverAnimData animData;
 
@@ -47,7 +45,6 @@ namespace SnekTech.GridCell.Cover
             {
                 revealCompletionSource.TrySetResult(true);
                 animFSM.RevealState.OnComplete -= HandleRevealComplete;
-                RevealCompleted?.Invoke();
             }
 
             animFSM.RevealState.OnComplete += HandleRevealComplete;
@@ -70,7 +67,6 @@ namespace SnekTech.GridCell.Cover
             {
                 putCoverCompletionSource.TrySetResult(true);
                 animFSM.PutCoverState.OnComplete -= HandlePutCoverComplete;
-                PutCoverCompleted?.Invoke();
             }
 
             animFSM.PutCoverState.OnComplete -= HandlePutCoverComplete;

@@ -7,7 +7,6 @@ namespace SnekTech.GridCell.Flag
     [RequireComponent(typeof(Animator))]
     public class FlagBehaviour : MonoBehaviour, IFlag
     {
-        public event Action LiftCompleted, PutDownCompleted;
 
         [SerializeField]
         private FlagAnimData animData;
@@ -47,7 +46,6 @@ namespace SnekTech.GridCell.Flag
             void HandleListComplete()
             {
                 liftCompletionSource.TrySetResult(true);
-                LiftCompleted?.Invoke();
                 animFSM.LiftState.OnComplete -= HandleListComplete;
             }
 
@@ -69,7 +67,6 @@ namespace SnekTech.GridCell.Flag
             void HandlePutDownComplete()
             {
                 putDownCompletionSource.TrySetResult(true);
-                PutDownCompleted?.Invoke();
                 animFSM.PutDownState.OnComplete -= HandlePutDownComplete;
             }
             

@@ -1,27 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
-using SnekTech.Grid;
-using SnekTech.GridCell.Cover;
-using SnekTech.GridCell.Flag;
-using UnityEngine;
-
-namespace SnekTech.GridCell
+﻿namespace SnekTech.GridCell
 {
-    public interface ICell
+    public interface ICell : ILogicCell, ICellDisplay
     {
-        GridIndex GridIndex { get; set; }
-        IFlag Flag { get; }
-        ICover Cover { get; }
-        void Dispose();
-
-        UniTask<bool> OnPrimary();
-        UniTask<bool> OnSecondary();
-
-        bool HasBomb { get; set; }
-        void SetContent(Sprite sprite);
-        void SetPosition(GridIndex gridIndex);
-        bool IsFlagged { get; }
-        bool IsCovered { get; }
-        bool IsRevealed { get; }
-        void SetHighlight(bool isHighlight);
     }
 }

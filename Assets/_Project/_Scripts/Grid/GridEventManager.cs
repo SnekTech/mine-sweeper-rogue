@@ -9,22 +9,22 @@ namespace SnekTech.Grid
     public class GridEventManager : ScriptableObject
     {
         public event Action<IGrid> OnGridInitComplete;
-        public event Action<IGrid, ICell> OnBombReveal;
-        public event Action<IGrid, ICell> OnCellReveal;
-        public event Action<IGrid, ICell> OnCellFlagOperateComplete;
+        public event Action<IGrid, ILogicCell> OnBombReveal;
+        public event Action<IGrid, ILogicCell> OnCellReveal;
+        public event Action<IGrid, ILogicCell> OnCellFlagOperateComplete;
         public event Action<IGrid> OnGridClear; // bug: sometimes can't win a level
-        public event Action<ICell> OnCellRecursiveRevealComplete;
+        public event Action<ILogicCell> OnCellRecursiveRevealComplete;
 
         public void InvokeOnGridInitComplete(IGrid grid) => OnGridInitComplete?.Invoke(grid);
 
-        public void InvokeOnBombReveal(IGrid grid, ICell cell) => OnBombReveal?.Invoke(grid, cell);
+        public void InvokeOnBombReveal(IGrid grid, ILogicCell cell) => OnBombReveal?.Invoke(grid, cell);
 
-        public void InvokeOnCellReveal(IGrid grid, ICell cell) => OnCellReveal?.Invoke(grid, cell);
+        public void InvokeOnCellReveal(IGrid grid, ILogicCell cell) => OnCellReveal?.Invoke(grid, cell);
 
         public void InvokeOnGridCleared(IGrid grid) => OnGridClear?.Invoke(grid);
 
-        public void InvokeOnCellFlagOperated(IGrid grid, ICell cell) => OnCellFlagOperateComplete?.Invoke(grid, cell);
+        public void InvokeOnCellFlagOperated(IGrid grid, ILogicCell cell) => OnCellFlagOperateComplete?.Invoke(grid, cell);
 
-        public void InvokeOnRecursiveRevealComplete(ICell cell) => OnCellRecursiveRevealComplete?.Invoke(cell);
+        public void InvokeOnRecursiveRevealComplete(ILogicCell cell) => OnCellRecursiveRevealComplete?.Invoke(cell);
     }
 }

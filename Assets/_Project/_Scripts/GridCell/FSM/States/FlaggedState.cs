@@ -23,11 +23,6 @@ namespace SnekTech.GridCell.FSM
 
         public override async UniTask<bool> OnSecondary()
         {
-            if (Flag.IsTransitioning)
-            {
-                return false;
-            }
-            
             bool isPutDownSuccessful = await Flag.PutDownAsync();
             if (isPutDownSuccessful)
             {

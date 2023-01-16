@@ -12,7 +12,7 @@ namespace SnekTech.Grid
     public class GridBehaviour : MonoBehaviour, IGrid
     {
         [SerializeField]
-        private CellBehaviour cellBehaviour;
+        private Cell cellPrefab;
 
         [SerializeField]
         private CellSprites cellSprites;
@@ -236,7 +236,7 @@ namespace SnekTech.Grid
             return hit.collider != null ? hit.collider.GetComponent<ICell>() : null;
         }
 
-        private void HandleRecursiveRevealCellComplete(ICell originalCell)
+        private void HandleRecursiveRevealCellComplete(ILogicCell originalCell)
         {
             gridEventManager.InvokeOnRecursiveRevealComplete(originalCell);
             CheckIfAllCleared();
@@ -263,12 +263,9 @@ namespace SnekTech.Grid
             InitCells();
         }
 
-        private void DisposeCells()
+        private void ClearCells()
         {
-            foreach (var cell in Cells)
-            {
-                cell.Dispose();
-            }
+            transform.DestroyAllChildren();
 
             Cells.Clear();
             CellIndexDict.Clear();
@@ -276,7 +273,7 @@ namespace SnekTech.Grid
 
         private void InstantiateCells(GridData newGridData)
         {
-            DisposeCells();
+            ClearCells();
 
             IRandomGenerator bombGenerator = RandomGenerator.Instance;
             BombCount = 0;
@@ -286,8 +283,7 @@ namespace SnekTech.Grid
             {
                 for (int j = 0; j < gridSize.columnCount; j++)
                 {
-                    var cellMono = Instantiate(cellBehaviour, transform);
-                    ICell cell = cellMono;
+                    var cell = Instantiate(cellPrefab, transform);
                     var cellIndex = new GridIndex(i, j);
                     cell.GridIndex = cellIndex;
                     cell.SetPosition(cellIndex);
@@ -310,7 +306,7 @@ namespace SnekTech.Grid
 
         private void InitCellsContent()
         {
-            foreach (ICell cell in Cells)
+            foreach (var cell in Cells)
             {
                 cell.SetContent(cell.HasBomb ? BombSprite : NoBombSprites[_gridBrain.GetNeighborBombCount(cell)]);
             }
@@ -326,8 +322,8 @@ namespace SnekTech.Grid
                 return;
             }
 
-            List<ICell> affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerState.SweepScope);
-            foreach (ICell cell in affectedCells)
+            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerState.SweepScope);
+            foreach (var cell in affectedCells)
             {
                 cell.SetHighlight(true);
             }
@@ -335,7 +331,7 @@ namespace SnekTech.Grid
 
         private void RemoveGridHighlight()
         {
-            foreach (ICell cell in Cells)
+            foreach (var cell in Cells)
             {
                 cell.SetHighlight(false);
             }

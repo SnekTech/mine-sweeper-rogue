@@ -1,11 +1,9 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
 namespace SnekTech.GridCell.Cover
 {
-    public interface ICover : ICanAnimate, ICanSwitchActiveness
+    public interface ICover
     {
-        event Action RevealCompleted, PutCoverCompleted;
         UniTask<bool> RevealAsync();
         UniTask<bool> PutCoverAsync();
     }

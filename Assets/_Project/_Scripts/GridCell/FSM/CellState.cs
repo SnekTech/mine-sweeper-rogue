@@ -5,13 +5,7 @@ using SnekTech.GridCell.Flag;
 
 namespace SnekTech.GridCell.FSM
 {
-    public interface ICellState
-    {
-        UniTask<bool> OnPrimary();
-        UniTask<bool> OnSecondary();
-    }
-    
-    public abstract class CellState : IState, ICellState
+    public abstract class CellState : IState
     {
         protected readonly CellFSM cellFSM;
 

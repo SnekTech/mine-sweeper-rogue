@@ -56,9 +56,9 @@ namespace SnekTech.Grid
 
         public void ForEachNeighbor(ICell cell, Action<ICell> processNeighbor)
         {
-            foreach (GridIndex offset in NeighborOffsets)
+            foreach (var offset in NeighborOffsets)
             {
-                GridIndex gridIndex = _grid.CellIndexDict[cell] + offset;
+                var gridIndex = _grid.CellIndexDict[cell] + offset;
                 if (IsIndexWithinGrid(gridIndex))
                 {
                     processNeighbor(GetCellAt(gridIndex));

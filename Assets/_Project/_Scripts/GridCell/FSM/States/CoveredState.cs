@@ -26,8 +26,6 @@ namespace SnekTech.GridCell.FSM
 
         public override async UniTask<bool> OnSecondary()
         {
-            Flag.IsActive = true;
-            
             cellFSM.ChangeState(cellFSM.FlaggedState);
 
             bool isLifFlagSuccessful = await Flag.LiftAsync();

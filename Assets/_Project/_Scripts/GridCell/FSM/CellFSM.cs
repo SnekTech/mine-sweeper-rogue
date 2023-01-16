@@ -5,7 +5,7 @@ namespace SnekTech.GridCell.FSM
 {
     public class CellFSM : FSM<CellState>
     {
-        public readonly ICell Cell;
+        public readonly ILogicCell Cell;
         
         public readonly CoveredState CoveredState;
         public readonly FlaggedState FlaggedState;
@@ -15,7 +15,7 @@ namespace SnekTech.GridCell.FSM
         public bool IsFlagged => Current == FlaggedState;
         public bool IsRevealed => Current == RevealedState;
         
-        public CellFSM(ICell cell)
+        public CellFSM(ILogicCell cell)
         {
             Cell = cell;
             CoveredState = new CoveredState(this);

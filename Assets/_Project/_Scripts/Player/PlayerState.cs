@@ -86,7 +86,7 @@ namespace SnekTech.Player
             HealthRanOut?.Invoke();
         }
         
-        private void HandleOnBombReveal(IGrid grid, ICell cell)
+        private void HandleOnBombReveal(IGrid grid, ILogicCell cell)
         {
             TakeDamage(DamagePerBomb);
         }

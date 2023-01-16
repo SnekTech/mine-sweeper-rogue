@@ -8,7 +8,7 @@ using UnityEngine;
 namespace SnekTech.GridCell
 {
     [RequireComponent(typeof(SpriteRenderer))]
-    public class CellBehaviour : MonoBehaviour, ICell
+    public class Cell : MonoBehaviour, ICell
     {
         [SerializeField]
         private SpriteRenderer highlightFrame;
@@ -34,11 +34,6 @@ namespace SnekTech.GridCell
             Cover = GetComponentInChildren<ICover>();
 
             _fsm = new CellFSM(this);
-        }
-
-        public void Dispose()
-        {
-            Destroy(gameObject);
         }
 
         public UniTask<bool> OnPrimary() => _fsm.OnPrimary();
