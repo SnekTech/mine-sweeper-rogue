@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbffe24636cc4188a70779472adfc754, type: 3}
+  m_Name: lift
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1179886596, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 2007928465, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -780519941, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -762377590, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -800337344, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 2134901679, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1524317139, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 857277218, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1774307521, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1733619924, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1337490531, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -381808917, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -173158525, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 694336646, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -2054190560, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1562434319, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1103257714, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1362874676, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1961331087, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1631301555, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  frameDurations:
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  - 100
+  isLooping: 0

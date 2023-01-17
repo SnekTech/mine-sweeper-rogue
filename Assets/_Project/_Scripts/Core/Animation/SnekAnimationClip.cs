@@ -9,14 +9,13 @@ namespace SnekTech.Core.Animation
         [SerializeField]
         private List<Sprite> sprites;
 
-        [HideInInspector]
         [SerializeField]
         private List<float> frameDurations;
 
         [SerializeField]
         private bool isLooping;
 
-        public int FrameCount => frameDurations.Count;
+        public int FrameCount => sprites.Count;
         public bool IsLooping => isLooping;
 
         public List<Sprite> Sprites

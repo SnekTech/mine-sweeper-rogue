@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288ff81ddcf04212a5bd4396ef45d4a6, type: 3}
+  m_Name: FlagAnimData
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 11400000, guid: 8a2848a05cf80da4c9c22cd2160df746, type: 2}
+  - {fileID: 11400000, guid: 39d75888f6e1ddd49ab7458aeb76c415, type: 2}
+  - {fileID: 11400000, guid: 65cbc871f907b5045ab35668996c7277, type: 2}
+  - {fileID: 11400000, guid: ccc56291be59715408d788c473e99c5a, type: 2}
+  floatClipIndex: 0
+  hideClipIndex: 1
+  liftClipIndex: 2
+  putDownClipIndex: 3

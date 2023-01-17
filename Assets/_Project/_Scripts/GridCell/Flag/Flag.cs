@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
 {
-    [RequireComponent(typeof(Animator))]
     public class Flag : MonoBehaviour, IFlag
     {
 

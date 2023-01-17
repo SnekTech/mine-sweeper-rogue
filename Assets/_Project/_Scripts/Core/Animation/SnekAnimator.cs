@@ -60,10 +60,11 @@ namespace SnekTech.Core.Animation
         {
             while (_frameIndex < clip.FrameCount)
             {
+                Debug.Log($"{_frameIndex}");
                 UpdateSprite(clip.Sprites[_frameIndex]);
-                _frameIndex++;
-                
                 await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex]));
+                
+                _frameIndex++;
             }
             
             OnClipComplete?.Invoke();

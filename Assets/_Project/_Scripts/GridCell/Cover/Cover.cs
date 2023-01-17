@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace SnekTech.GridCell.Cover
 {
-    [RequireComponent(typeof(Animator))]
     public class Cover : MonoBehaviour, ICover
     {
         [SerializeField]

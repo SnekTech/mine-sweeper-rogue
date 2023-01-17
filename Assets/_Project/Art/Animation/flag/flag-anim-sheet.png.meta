@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc3c3e241b3356b48bf619baf59750ae
+guid: cbc6eef74eb17634cbd5f2f302724ba0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_0
+      name: flag-anim-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83e2e99e1ca81514aa284e08f645f32c
-      internalID: 418324044
+      spriteID: 4ccaa02af79bdf64b873ff798cf9af34
+      internalID: -1179886596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_1
+      name: flag-anim-sheet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c468073e486d344897023f4d1ee371
-      internalID: 1456012974
+      spriteID: ea79d9ed5b167974c9ba2d07e44d748b
+      internalID: 2007928465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_2
+      name: flag-anim-sheet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7794daec8cb1f8b4ebbd4e3cc0ea5086
-      internalID: 707206665
+      spriteID: d4624ba909c35544a8f9093489275e49
+      internalID: -780519941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_3
+      name: flag-anim-sheet_3
       rect:
         serializedVersion: 2
         x: 48
@@ -194,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b4daa62748c6864497efc5d8ad5ddb5
-      internalID: 317997980
+      spriteID: 7cc0bd3c19da2e14295b93d6a5b57d49
+      internalID: -762377590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_4
+      name: flag-anim-sheet_4
       rect:
         serializedVersion: 2
         x: 64
@@ -215,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d0e3713d5db7e24daa55ec4c3a37237
-      internalID: 746115400
+      spriteID: 0aaf0b983848db245bd2eb0ba8177e00
+      internalID: -800337344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_5
+      name: flag-anim-sheet_5
       rect:
         serializedVersion: 2
         x: 80
@@ -236,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a879f9ecf23b5eb43aeb7ef7f9d9bac7
-      internalID: 2052193533
+      spriteID: f66736f199366d446a837f26b62db33d
+      internalID: 2134901679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_6
+      name: flag-anim-sheet_6
       rect:
         serializedVersion: 2
         x: 96
@@ -257,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d162d9f86aa3f304cb70e77380498431
-      internalID: 835551915
+      spriteID: f5411acdb28dbb54e8ec90773bb789b8
+      internalID: -1524317139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_7
+      name: flag-anim-sheet_7
       rect:
         serializedVersion: 2
         x: 112
@@ -278,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75119d8727f4a784db2f271dd5ee78d2
-      internalID: -825003579
+      spriteID: 91118f4b94623624dbc9fcabf84ecf94
+      internalID: 857277218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_8
+      name: flag-anim-sheet_8
       rect:
         serializedVersion: 2
         x: 128
@@ -299,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 075d136a04619034e993bee9ec363335
-      internalID: 1612688664
+      spriteID: 047df256030174b42ab88726b2bf8d99
+      internalID: 1774307521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_9
+      name: flag-anim-sheet_9
       rect:
         serializedVersion: 2
         x: 144
@@ -320,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9552f3e5945e8e147955e764751d9f09
-      internalID: -1952576744
+      spriteID: f35f0be85dc345146bb1776e491c6048
+      internalID: -1733619924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_10
+      name: flag-anim-sheet_10
       rect:
         serializedVersion: 2
         x: 160
@@ -341,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc56d07431c19274592363917cbc596b
-      internalID: 450245410
+      spriteID: 7510085a9d56afc47b669bb0afb5cfe3
+      internalID: 1337490531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_11
+      name: flag-anim-sheet_11
       rect:
         serializedVersion: 2
         x: 176
@@ -362,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0acd3269d369c3e47890bcb7a91f94da
-      internalID: 1689094140
+      spriteID: fb061d2ac9eff8a44b7bb770081362ed
+      internalID: -381808917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_12
+      name: flag-anim-sheet_12
       rect:
         serializedVersion: 2
         x: 192
@@ -383,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 196b197fc9316074f8ad532850240563
-      internalID: 98177887
+      spriteID: 820c608b50e35ac4fa7f3cb5d49daa14
+      internalID: -173158525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_13
+      name: flag-anim-sheet_13
       rect:
         serializedVersion: 2
         x: 208
@@ -404,14 +404,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86e4cb762b4ea1a4a88d2dc29a35f5a0
-      internalID: 576201585
+      spriteID: 87d626930534cbc468aa06430d4f23d4
+      internalID: 694336646
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_14
+      name: flag-anim-sheet_14
       rect:
         serializedVersion: 2
         x: 224
@@ -425,14 +425,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89540502456aea44a8188e8b9b866b95
-      internalID: 560063559
+      spriteID: ab10cae95de46744a944d4e8d4574e4a
+      internalID: -2054190560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_15
+      name: flag-anim-sheet_15
       rect:
         serializedVersion: 2
         x: 240
@@ -446,14 +446,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da5454de9684a2b4097dd61db3d8f996
-      internalID: 1951262283
+      spriteID: c2005ceec2010ba42bb5fae05f9abbc5
+      internalID: 1562434319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_16
+      name: flag-anim-sheet_16
       rect:
         serializedVersion: 2
         x: 256
@@ -467,14 +467,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3d42558a74d6a44e86b7d8e5a07439c
-      internalID: 1600034598
+      spriteID: c47c92636c4120e42b06b8ccee8f20c5
+      internalID: -1103257714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_17
+      name: flag-anim-sheet_17
       rect:
         serializedVersion: 2
         x: 272
@@ -488,14 +488,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2eef057dcb3d56d4185ecdc552947c28
-      internalID: -494103066
+      spriteID: 5adff9043526b774fba15e25d7aa7c86
+      internalID: -1362874676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_18
+      name: flag-anim-sheet_18
       rect:
         serializedVersion: 2
         x: 288
@@ -509,14 +509,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52a4742a174d54b43b3997c9ca43bbdf
-      internalID: 1177408811
+      spriteID: fded4b5f56c06fc44af86088d5d785a3
+      internalID: 1961331087
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_19
+      name: flag-anim-sheet_19
       rect:
         serializedVersion: 2
         x: 304
@@ -530,18 +530,858 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53254742539b26e4887ae94d5b8a1bde
-      internalID: -933008583
+      spriteID: 28117bb87476f8a4aa57c002a3b24120
+      internalID: -1631301555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_20
+      name: flag-anim-sheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5564d4463e33c2a4f9c090bda075a0db
+      internalID: 1026390171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_21
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed69b4ecfe6b7a42835e250d341228a
+      internalID: 1584951251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b29cd2a30f3eb0b43a03f4ca44d132f1
+      internalID: 1028813428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c521b7f6f8ca65419b1efbd3bbfb080
+      internalID: 1779203408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30e04314b953bbe4486a739b3f2c7de7
+      internalID: -1778097637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_25
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03dd289482ec17140ae86fc0187324d8
+      internalID: 1400305273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_26
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc4e0383200b762408f01180298b9d1d
+      internalID: 341960123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_27
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ef3ff62d94def4a89c43a01d8d4d56
+      internalID: -1841463342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_28
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3935b12f74d05f4ca1b4c4561b64a21
+      internalID: 1221909463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_29
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5dfc0662285fc94bb7e5e56ffed038c
+      internalID: -1763136207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_30
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57de9f62db44a6f4d99ce26ce4573865
+      internalID: 1133794051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_31
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df15f8945cc417e48a65e2743c3d59b5
+      internalID: -1292473673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_32
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c4e2996d0ff92244b433eb608252349
+      internalID: -656820233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_33
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d883d0454ea6486499f3d92219e510b6
+      internalID: -117253471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_34
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d380feb10e73c314a8b5e4a07057be2a
+      internalID: -879297820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_35
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8b42b24264402d48bac5cf89626578c
+      internalID: -639143788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_36
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0597512f61d6e8540a7b9ff0e6c9e960
+      internalID: -830535816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_37
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53525d76158cbaf4b85387dcff66d159
+      internalID: 725595408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_38
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f103d8415dacfc42b3a43e5adb43ed1
+      internalID: 642998192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_39
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 16
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 581bddf8230aa194a84b3d88e50f1359
+      internalID: -1651402777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 402205eb63a2e6c43bf452c555f8b8c6
+      internalID: -678025408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_41
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5162054e0725e004fb7847b23b5403bd
+      internalID: -1462827111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_42
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3adbb9b590feea941a8cd3f284da3010
+      internalID: 1158422307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_43
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f78b3b0e5187f9c4daf50480ecbc5e3b
+      internalID: -1161317271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_44
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86345766cb5de8b458055c8625ad521e
+      internalID: 979614143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_45
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 090e06411e45bdb4aa3c51565053268b
+      internalID: -1772416402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_46
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c73190fc3147f9439b32d6eb554d744
+      internalID: -2022514530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_47
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c0a57b8abf2714d9646c9536ebf104
+      internalID: -612809770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_48
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d966ee2a5191f0a48a30ab6934c91270
+      internalID: 356059271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_49
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7f0aff09adef4548ac7ad43a8733a40
+      internalID: 2069591937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_50
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dfb1fb873ab3254db8e929d5ffc9863
+      internalID: 273796866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_51
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bab6b680de9462e459ba3f1e7a2e90b9
+      internalID: -838765020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_52
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 815ac05f511d61c4a998e80de2d074df
+      internalID: 1944250521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_53
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9166db3f70c60874ba35b204721d2ae9
+      internalID: 1238190874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_54
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2479eb8636ccff643b2e1821eec02faa
+      internalID: -1345343952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_55
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 546deba5e6ee1be469deb5e80c7fe608
+      internalID: -341955215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_56
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519efc267c1915641b92cb4a8d732f58
+      internalID: 445961595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_57
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb38d9c4f286f8b4c85f35d0197d9717
+      internalID: 1021772285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_58
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c413569e687ac2544845cc07949f3df3
+      internalID: 304214871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_59
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 16
+        height: 16
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 792eddc00f8ad36468bed1977db3ac7a
+      internalID: -1017470702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag-anim-sheet_60
       rect:
         serializedVersion: 2
         x: 320
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -551,18 +1391,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7979ad943054fc942b4815369f834b13
-      internalID: -1299096949
+      spriteID: 76bc0506479b1784bae8819658aeb3ca
+      internalID: 1704350733
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_21
+      name: flag-anim-sheet_61
       rect:
         serializedVersion: 2
         x: 336
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -572,18 +1412,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7287922d3dae9ea46999c1dbcfa03b8f
-      internalID: -1619570822
+      spriteID: 6a6724f9c7f42b143b2514006264e487
+      internalID: -1048458973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_22
+      name: flag-anim-sheet_62
       rect:
         serializedVersion: 2
         x: 352
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -593,18 +1433,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b421a1de4050e9642b85ec3cfdffbdd1
-      internalID: 575187078
+      spriteID: 39e8ece258b8b8d40b3382c1f294870d
+      internalID: 326048541
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_23
+      name: flag-anim-sheet_63
       rect:
         serializedVersion: 2
         x: 368
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -614,18 +1454,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bf1bdd6e1c851648903f571b074d005
-      internalID: 2094996670
+      spriteID: d74e3ab22381bb34ca5c2c190fa5f5dd
+      internalID: -605641577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_24
+      name: flag-anim-sheet_64
       rect:
         serializedVersion: 2
         x: 384
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -635,18 +1475,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 886ffcd75abe84d4987a5791bde78256
-      internalID: -631830853
+      spriteID: 0de784e11cf05634598c73f416fe7ccb
+      internalID: -824962295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_25
+      name: flag-anim-sheet_65
       rect:
         serializedVersion: 2
         x: 400
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -656,18 +1496,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e32e23f605b65640b26afe09cb86dc6
-      internalID: -1904859044
+      spriteID: fd09533b86d43c84f9b5efbb9ec30100
+      internalID: 1789629961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_26
+      name: flag-anim-sheet_66
       rect:
         serializedVersion: 2
         x: 416
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -677,18 +1517,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9feba2cb7b42a1b468982dcfebed36d2
-      internalID: 1767810626
+      spriteID: ea499dc66d07f354e91075bdc4865a13
+      internalID: 1104976202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_27
+      name: flag-anim-sheet_67
       rect:
         serializedVersion: 2
         x: 432
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -698,18 +1538,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16b317ad56854dc4db57512928186143
-      internalID: -1310405677
+      spriteID: d34ad676c73cef541a895284c61083b9
+      internalID: 1304403948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_28
+      name: flag-anim-sheet_68
       rect:
         serializedVersion: 2
         x: 448
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -719,18 +1559,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab63c5424518e734283090d764b26384
-      internalID: -1287981510
+      spriteID: 763f22482714a204aa11d5ce5e4254c5
+      internalID: -1841888266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_29
+      name: flag-anim-sheet_69
       rect:
         serializedVersion: 2
         x: 464
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -740,18 +1580,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1ead144a413d4448923109ba15abdf1
-      internalID: -758199324
+      spriteID: ce25f4f55e73d344eb716cc711dbeca6
+      internalID: 146335406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_30
+      name: flag-anim-sheet_70
       rect:
         serializedVersion: 2
         x: 480
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -761,18 +1601,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e79a9fd3694e4eb4c99ce893eb4c2dcf
-      internalID: -121111806
+      spriteID: 1b98d3ae82ce9684fb627bc966cb8531
+      internalID: 1394103024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_31
+      name: flag-anim-sheet_71
       rect:
         serializedVersion: 2
         x: 496
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -782,18 +1622,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9aa36f2854549441b9ce2393eed28df
-      internalID: -63735566
+      spriteID: 6a553460ec420a64c9f5fbb584e46875
+      internalID: -1794312508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_32
+      name: flag-anim-sheet_72
       rect:
         serializedVersion: 2
         x: 512
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -803,18 +1643,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed6806e44d88b334183e983ed4153d25
-      internalID: 184605218
+      spriteID: d163b0a08738b3244b99617b4eb88dc4
+      internalID: -1166681855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_33
+      name: flag-anim-sheet_73
       rect:
         serializedVersion: 2
         x: 528
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -824,18 +1664,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09c8e2aa9c97f66468bdce8a6381cf32
-      internalID: 1858191953
+      spriteID: 464fdf2afb63d834a9682cc1af5bc5fb
+      internalID: -1405139637
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_34
+      name: flag-anim-sheet_74
       rect:
         serializedVersion: 2
         x: 544
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -845,18 +1685,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 344b48ea2e0684c40986b8428c7431ad
-      internalID: -1368112043
+      spriteID: e35626814af1d8f40b603bcd070c9665
+      internalID: 1586673234
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_35
+      name: flag-anim-sheet_75
       rect:
         serializedVersion: 2
         x: 560
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -866,18 +1706,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7db311a2b2c106646abbc71c9da0ab4e
-      internalID: -1731590537
+      spriteID: 6e210055cebe9e8448cb21c4f2d7b25a
+      internalID: 1907354217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_36
+      name: flag-anim-sheet_76
       rect:
         serializedVersion: 2
         x: 576
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -887,18 +1727,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7362a80e29583aa4a8434e1aad1313c4
-      internalID: 333138073
+      spriteID: 6f719dd4e4e039140a83786910960ce5
+      internalID: 884747153
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_37
+      name: flag-anim-sheet_77
       rect:
         serializedVersion: 2
         x: 592
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -908,18 +1748,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99d499a435e509747b9ce4ec3d295035
-      internalID: 79855558
+      spriteID: 7308881967e765542b9f841651b7a4ec
+      internalID: 792944058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_38
+      name: flag-anim-sheet_78
       rect:
         serializedVersion: 2
         x: 608
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -929,18 +1769,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b0db9e34f9863c439cc4de08719059d
-      internalID: -184152616
+      spriteID: 71a6df6d7d11ab849a5f1fa5b9c87533
+      internalID: 991194298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_39
+      name: flag-anim-sheet_79
       rect:
         serializedVersion: 2
         x: 624
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -950,18 +1790,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e22d2ba328807a42bfa9132de1e596f
-      internalID: 1797287206
+      spriteID: b0f0925e3f958fe4996e99a4c45d1f74
+      internalID: -742363747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_40
+      name: flag-anim-sheet_80
       rect:
         serializedVersion: 2
         x: 640
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -971,18 +1811,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a2639e00e4fac445b18b1bd66a98968
-      internalID: 45084164
+      spriteID: 7709afca2fbb2a34e8dda4a69e6813cd
+      internalID: 688620358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_41
+      name: flag-anim-sheet_81
       rect:
         serializedVersion: 2
         x: 656
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -992,18 +1832,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 223d5ae758c61254ab291bfa5dc08501
-      internalID: -556601568
+      spriteID: 355b5b10c4271e04d8888961fef2fad3
+      internalID: 1062045669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_42
+      name: flag-anim-sheet_82
       rect:
         serializedVersion: 2
         x: 672
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1013,18 +1853,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6419c985d6fc7f34f826e2021ae516bd
-      internalID: -1449201591
+      spriteID: 0fb060e66b5d47b4895f6d4c2e4da7b1
+      internalID: 293710268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_43
+      name: flag-anim-sheet_83
       rect:
         serializedVersion: 2
         x: 688
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1034,18 +1874,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ad4189ec2fbfdc4698c426bfeb175f6
-      internalID: -801121334
+      spriteID: cd615f801788c844986f9a726b6a205e
+      internalID: -488647866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_44
+      name: flag-anim-sheet_84
       rect:
         serializedVersion: 2
         x: 704
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1055,18 +1895,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29824e22e76ac1c4187b23f4f9c5b440
-      internalID: -172951842
+      spriteID: d3e75c198bf771748b4eac70aefe4e59
+      internalID: -517526789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_45
+      name: flag-anim-sheet_85
       rect:
         serializedVersion: 2
         x: 720
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1076,18 +1916,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40abbb383791ff048963af8afa3f53e2
-      internalID: -1422284920
+      spriteID: abc84da0b01c778479acdd83897d5aab
+      internalID: -1604697070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_46
+      name: flag-anim-sheet_86
       rect:
         serializedVersion: 2
         x: 736
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1097,18 +1937,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c9640b0af2a5184d87ae6fa961cf9de
-      internalID: 1059755021
+      spriteID: 2a555cecbbc888748890e4d489864a06
+      internalID: 508376025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_47
+      name: flag-anim-sheet_87
       rect:
         serializedVersion: 2
         x: 752
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1118,18 +1958,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d96e815ab7213134c941276bfa151e01
-      internalID: -2069670815
+      spriteID: 4eafd807786dc5b438366472ee6f5585
+      internalID: 1308042634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_48
+      name: flag-anim-sheet_88
       rect:
         serializedVersion: 2
         x: 768
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1139,18 +1979,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f88f851c9bea9b4ebd0388d877c1cfc
-      internalID: -793133977
+      spriteID: 302750de2cba4ef45b628258934b894c
+      internalID: -1821423043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_49
+      name: flag-anim-sheet_89
       rect:
         serializedVersion: 2
         x: 784
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1160,18 +2000,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bfa959f700ef324a8c80f6c73a1fd11
-      internalID: 1573792549
+      spriteID: b51591ecad265ff4b845eca504247465
+      internalID: -838993214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_50
+      name: flag-anim-sheet_90
       rect:
         serializedVersion: 2
         x: 800
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1181,18 +2021,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84d1a289712397a4d92f5207c429c043
-      internalID: 1067394970
+      spriteID: cf2202c27c4861b4ba7ae0066a2f2a9b
+      internalID: 457231090
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_51
+      name: flag-anim-sheet_91
       rect:
         serializedVersion: 2
         x: 816
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1202,18 +2042,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fdd11d0bc1d2d544b05b4b0e89e7bb1
-      internalID: -22714624
+      spriteID: 51da1a31bdc5fff46a81fe3031328c39
+      internalID: 1722661127
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_52
+      name: flag-anim-sheet_92
       rect:
         serializedVersion: 2
         x: 832
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1223,18 +2063,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fadb4fc7eba0f348adf439d5e0d4b81
-      internalID: 102268957
+      spriteID: 83ea6c3a92084fc4689646826e9de6a5
+      internalID: -1441396071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_53
+      name: flag-anim-sheet_93
       rect:
         serializedVersion: 2
         x: 848
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1244,18 +2084,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11e651383b3377a47ae026d923b88674
-      internalID: 608385871
+      spriteID: e933018c913cae74a928a3cd0c826403
+      internalID: 1404991925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_54
+      name: flag-anim-sheet_94
       rect:
         serializedVersion: 2
         x: 864
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1265,18 +2105,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e169f9200b47f614884d8a0f9adcb22a
-      internalID: 923896599
+      spriteID: d36bd94f5028b2f469bbe7f41cb7e41d
+      internalID: 254567155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_55
+      name: flag-anim-sheet_95
       rect:
         serializedVersion: 2
         x: 880
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1286,18 +2126,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 050210678794a414ab795769c3513c60
-      internalID: 598183286
+      spriteID: bfd639e68b8f8be4e86d831eadff19bd
+      internalID: 1343090827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_56
+      name: flag-anim-sheet_96
       rect:
         serializedVersion: 2
         x: 896
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1307,18 +2147,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7036616f81f566f43bfa7d49fa6fc91c
-      internalID: -477585045
+      spriteID: 58959832af3d9c8458ba8e49b208b99b
+      internalID: 878329625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_57
+      name: flag-anim-sheet_97
       rect:
         serializedVersion: 2
         x: 912
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1328,18 +2168,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ff6aa90c35e6604a88f48257c420555
-      internalID: 520670093
+      spriteID: e9a30ed88e15a0243974c04d87dc24d8
+      internalID: 2097240889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_58
+      name: flag-anim-sheet_98
       rect:
         serializedVersion: 2
         x: 928
-        y: 32
+        y: 0
         width: 16
         height: 16
       alignment: 6
@@ -1349,815 +2189,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a1cbe1560904db41980adc165d514bc
-      internalID: -1432362626
+      spriteID: 368c9154b3e82034cb563cddaa5503fc
+      internalID: -1719278374
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cover-anim-Sheet-16_59
+      name: flag-anim-sheet_99
       rect:
         serializedVersion: 2
         x: 944
-        y: 32
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b11d6bfbf53eb524e9d07e009b537d6d
-      internalID: -187243201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_60
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1dba33d93adecb44d9d56baa8cc3cc7d
-      internalID: 1274586295
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_61
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 136c1bdf9f0b6a549a3df716558598b4
-      internalID: 1306690348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_62
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2326cbe0bc4f7842b339ecb33c0d622
-      internalID: 631202763
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_63
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 238dac806ff4a124c9adc1736021bc65
-      internalID: -1697060714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_64
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fb49e5fd4752954cb8fa5b5415ee566
-      internalID: -116171390
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_65
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a636f8ebc516714a8d9c86c058d40de
-      internalID: -1487806095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_66
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cfca12f046a1d7642b98da932d9a0ae2
-      internalID: -30612704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_67
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63885ca79dde1af43b829b625efbeb84
-      internalID: 126444173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_68
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a644997ee672980409cacd70293d634e
-      internalID: 2091856910
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_69
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f39fa42562fe97541b1c1758f3d4690d
-      internalID: -407004129
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_70
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 487d6ae2474884f41ba234b4fc97836d
-      internalID: -1259804430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_71
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9210e8ffd753dbc4d8e3f955eb18edba
-      internalID: 1941501119
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_72
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 967cf4812f6d19a4589f3676fef90045
-      internalID: 1903832073
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_73
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 14f370dc71d15a043a25a1fa0fb8943a
-      internalID: -986485875
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_74
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98bcaab8dde47fc4e8b1e81f39c76d3e
-      internalID: 528669661
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_75
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f09b13cb3c977e4fb0f37c4b803eb81
-      internalID: 681411963
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_76
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 24028defdd450474cba86dbf0639d67c
-      internalID: -1583992741
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_77
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 69ed268d74ed10e4da268af95177715c
-      internalID: 2008993565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_78
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a46c1d7369d4ecd49b10bbb782e5bde1
-      internalID: 1321448561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_79
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c26dddc6afcdcb449893727e5b1a1e4
-      internalID: -260867999
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_80
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39cbcd4e3228f3b4aa3d511dc834aa13
-      internalID: 1870366490
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_81
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8af713bcdc6efa04289fedd7cbba20b2
-      internalID: 312959899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_82
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80fa0635f300b6d4c83bafc3b3b7614c
-      internalID: -655586688
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_83
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4022f2717c8d2504a94cf08e68249099
-      internalID: 1622481391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_84
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b43c1c0ebb93c6f46a72ee949b807171
-      internalID: -187995293
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_85
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f8691e0066a6f34ab31cfe6fbb326d5
-      internalID: -1292056296
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_86
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 774b7177e5b71254dae928425745c589
-      internalID: 144077241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_87
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c2a30788a835f94cbff6bb0eebaeb1d
-      internalID: 803774331
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_88
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98186dcefc80af942b504c17db92f488
-      internalID: 1243082877
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_89
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 88b6042ce9d0e8643a57d260729da18b
-      internalID: 2016580126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_90
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e5ad16f409fdb847848b7fb4e2de69e
-      internalID: -799129989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_91
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 757924c0e514b174994f48b3d45f2d47
-      internalID: -114475195
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_92
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2fb47a3c24f2ebb44aded1eab4adc15b
-      internalID: 564691479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_93
-      rect:
-        serializedVersion: 2
-        x: 528
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6afa37e8d4ccc9441a7160057ab46ab2
-      internalID: -726781431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_94
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c3b535e16348d3469cf38dad663ec58
-      internalID: -2064080074
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_95
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0a987001b5bc7584086df41fd8092262
-      internalID: 862749502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_96
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 16
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44cde9b437fbe634080a190301e8a085
-      internalID: -387307761
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_97
-      rect:
-        serializedVersion: 2
-        x: 192
         y: 0
         width: 16
         height: 16
@@ -2168,764 +2210,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 466890a9501d0c849b8dcbbc99f46fd4
-      internalID: -168473587
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_98
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dd7edc88ce88924cba407383b018c63
-      internalID: 1302623815
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_99
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e70ae62c8ac6a94c823431c5959baf9
-      internalID: 809477216
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_100
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f82af4cddb5c64d48a80841eb61c0d7c
-      internalID: -1250680547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_101
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cc16e1466aa73e45a46ec41d42f5ec6
-      internalID: 1381544143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_102
-      rect:
-        serializedVersion: 2
-        x: 272
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc7ee08c0c17a7140b16562b5a798b8d
-      internalID: 1019124942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_103
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d82730aad7bdff34c9c034dde00bb774
-      internalID: -862690442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_104
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80583c431f189da4ab1f2ab68aed7a5b
-      internalID: 1910128091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_105
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6c5334d78e3dce247b7a7c4aa32ae9cc
-      internalID: -2076070657
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_106
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e10986384e791394f9a4d063035d4356
-      internalID: -1926176879
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_107
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03ea7c1f4d8c5de498e7b0ba736c7315
-      internalID: -2040108914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_108
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3625c8bcb8e53804a9f46eee45bdfc6e
-      internalID: -640211430
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_109
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4c17536e625276428db9556899dcf9b
-      internalID: 1562313834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_110
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0548dbe353694ff4996d24dc44e7b55b
-      internalID: -895564836
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_111
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4b38a088545ffa4798ba1695dd79027
-      internalID: 700419028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_112
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6b44cee8a907e646a530efb9d892f3f
-      internalID: -1029529386
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_113
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 952351d5874853f4abac2d7f2c163ff8
-      internalID: 265771333
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_114
-      rect:
-        serializedVersion: 2
-        x: 464
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2e0440bc3571107439b29931b67ee9dc
-      internalID: -605521115
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_115
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9d940715310361478346ba2d6904e26
-      internalID: -1809676319
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_116
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbfc128576539e149981f5a7aa598580
-      internalID: -649778732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_117
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ef1dd841b1d326438bc72ed667ecace
-      internalID: 670741946
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_118
-      rect:
-        serializedVersion: 2
-        x: 528
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3456e52b0aacdd446aa2ca6de0c9bd56
-      internalID: 525828887
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_119
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e5b1a635d184644485841b6cc1fc43a
-      internalID: -1864903659
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_120
-      rect:
-        serializedVersion: 2
-        x: 560
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 285a9d8f598a7824fa18aa412139218c
-      internalID: -1026568466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_121
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e084b55baa2921d4f8b0a3bfe5fa136b
-      internalID: -1753379239
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_122
-      rect:
-        serializedVersion: 2
-        x: 592
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae08784bd8f0d7345841ef2bbce80b01
-      internalID: 1799948453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_123
-      rect:
-        serializedVersion: 2
-        x: 608
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35365617e6a94fc47a35ca78967b1f08
-      internalID: -2030063149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_124
-      rect:
-        serializedVersion: 2
-        x: 624
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 744a0d2d7198b3e4084fb3ec2238f1ee
-      internalID: 1802682190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_125
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b0acb388174a8e04b9c725e67dc675d3
-      internalID: 395968142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_126
-      rect:
-        serializedVersion: 2
-        x: 656
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5de1e8875ce797247bcb40039c3eefb0
-      internalID: 1586481630
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_127
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77e9d70a740b30940ae432490da2afa3
-      internalID: -726976484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_128
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b14c818f8502c9448a60e76eec3c3c40
-      internalID: 1661089561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_129
-      rect:
-        serializedVersion: 2
-        x: 704
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4569129b193ae346930fc702e5663af
-      internalID: 1763392328
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_130
-      rect:
-        serializedVersion: 2
-        x: 720
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1eaac972c42f6649ad410ae048fb2f7
-      internalID: 960517732
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_131
-      rect:
-        serializedVersion: 2
-        x: 736
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e061a8dce5f8db24eb4e9879062947a4
-      internalID: -1578044514
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_132
-      rect:
-        serializedVersion: 2
-        x: 752
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 56436c4d23b690d4391e872fd3e6cbde
-      internalID: -7627735
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cover-anim-Sheet-16_133
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 16
-        height: 16
-      alignment: 6
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffa3dcdbe2ca79c4caf8b1a8940b562c
-      internalID: 477106520
+      spriteID: 58629298342b2624f822e4e7e9f680ed
+      internalID: -1534711409
       vertices: []
       indices: 
       edges: []
@@ -2941,140 +2227,106 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      cover-anim-Sheet-16_1: 1456012974
-      cover-anim-Sheet-16_45: -1422284920
-      cover-anim-Sheet-16_95: 862749502
-      cover-anim-Sheet-16_29: -758199324
-      cover-anim-Sheet-16_44: -172951842
-      cover-anim-Sheet-16_11: 1689094140
-      cover-anim-Sheet-16_40: 45084164
-      cover-anim-Sheet-16_118: 525828887
-      cover-anim-Sheet-16_132: -7627735
-      cover-anim-Sheet-16_85: -1292056296
-      cover-anim-Sheet-16_6: 835551915
-      cover-anim-Sheet-16_8: 1612688664
-      cover-anim-Sheet-16_78: 1321448561
-      cover-anim-Sheet-16_107: -2040108914
-      cover-anim-Sheet-16_26: 1767810626
-      cover-anim-Sheet-16_58: -1432362626
-      cover-anim-Sheet-16_60: 1274586295
-      cover-anim-Sheet-16_122: 1799948453
-      cover-anim-Sheet-16_49: 1573792549
-      cover-anim-Sheet-16_33: 1858191953
-      cover-anim-Sheet-16_53: 608385871
-      cover-anim-Sheet-16_133: 477106520
-      cover-anim-Sheet-16_89: 2016580126
-      cover-anim-Sheet-16_54: 923896599
-      cover-anim-Sheet-16_75: 681411963
-      cover-anim-Sheet-16_103: -862690442
-      cover-anim-Sheet-16_37: 79855558
-      cover-anim-Sheet-16_65: -1487806095
-      cover-anim-Sheet-16_15: 1951262283
-      cover-anim-Sheet-16_21: -1619570822
-      cover-anim-Sheet-16_124: 1802682190
-      cover-anim-Sheet-16_32: 184605218
-      cover-anim-Sheet-16_13: 576201585
-      cover-anim-Sheet-16_77: 2008993565
-      cover-anim-Sheet-16_69: -407004129
-      cover-anim-Sheet-16_20: -1299096949
-      cover-anim-Sheet-16_43: -801121334
-      cover-anim-Sheet-16_129: 1763392328
-      cover-anim-Sheet-16_90: -799129989
-      cover-anim-Sheet-16_119: -1864903659
-      cover-anim-Sheet-16_4: 746115400
-      cover-anim-Sheet-16_84: -187995293
-      cover-anim-Sheet-16_0: 418324044
-      cover-anim-Sheet-16_10: 450245410
-      cover-anim-Sheet-16_24: -631830853
-      cover-anim-Sheet-16_28: -1287981510
-      cover-anim-Sheet-16_64: -116171390
-      cover-anim-Sheet-16_22: 575187078
-      cover-anim-Sheet-16_18: 1177408811
-      cover-anim-Sheet-16_88: 1243082877
-      cover-anim-Sheet-16_3: 317997980
-      cover-anim-Sheet-16_105: -2076070657
-      cover-anim-Sheet-16_128: 1661089561
-      cover-anim-Sheet-16_127: -726976484
-      cover-anim-Sheet-16_100: -1250680547
-      cover-anim-Sheet-16_101: 1381544143
-      cover-anim-Sheet-16_16: 1600034598
-      cover-anim-Sheet-16_80: 1870366490
-      cover-anim-Sheet-16_104: 1910128091
-      cover-anim-Sheet-16_120: -1026568466
-      cover-anim-Sheet-16_9: -1952576744
-      cover-anim-Sheet-16_17: -494103066
-      cover-anim-Sheet-16_19: -933008583
-      cover-anim-Sheet-16_61: 1306690348
-      cover-anim-Sheet-16_113: 265771333
-      cover-anim-Sheet-16_51: -22714624
-      cover-anim-Sheet-16_82: -655586688
-      cover-anim-Sheet-16_87: 803774331
-      cover-anim-Sheet-16_112: -1029529386
-      cover-anim-Sheet-16_7: -825003579
-      cover-anim-Sheet-16_97: -168473587
-      cover-anim-Sheet-16_93: -726781431
-      cover-anim-Sheet-16_109: 1562313834
-      cover-anim-Sheet-16_68: 2091856910
-      cover-anim-Sheet-16_126: 1586481630
-      cover-anim-Sheet-16_48: -793133977
-      cover-anim-Sheet-16_66: -30612704
-      cover-anim-Sheet-16_114: -605521115
-      cover-anim-Sheet-16_117: 670741946
-      cover-anim-Sheet-16_131: -1578044514
-      cover-anim-Sheet-16_38: -184152616
-      cover-anim-Sheet-16_41: -556601568
-      cover-anim-Sheet-16_91: -114475195
-      cover-anim-Sheet-16_59: -187243201
-      cover-anim-Sheet-16_23: 2094996670
-      cover-anim-Sheet-16_57: 520670093
-      cover-anim-Sheet-16_42: -1449201591
-      cover-anim-Sheet-16_108: -640211430
-      cover-anim-Sheet-16_46: 1059755021
-      cover-anim-Sheet-16_76: -1583992741
-      cover-anim-Sheet-16_96: -387307761
-      cover-anim-Sheet-16_14: 560063559
-      cover-anim-Sheet-16_63: -1697060714
-      cover-anim-Sheet-16_106: -1926176879
-      cover-anim-Sheet-16_123: -2030063149
-      cover-anim-Sheet-16_92: 564691479
-      cover-anim-Sheet-16_130: 960517732
-      cover-anim-Sheet-16_116: -649778732
-      cover-anim-Sheet-16_67: 126444173
-      cover-anim-Sheet-16_56: -477585045
-      cover-anim-Sheet-16_70: -1259804430
-      cover-anim-Sheet-16_62: 631202763
-      cover-anim-Sheet-16_50: 1067394970
-      cover-anim-Sheet-16_115: -1809676319
-      cover-anim-Sheet-16_39: 1797287206
-      cover-anim-Sheet-16_55: 598183286
-      cover-anim-Sheet-16_25: -1904859044
-      cover-anim-Sheet-16_111: 700419028
-      cover-anim-Sheet-16_99: 809477216
-      cover-anim-Sheet-16_27: -1310405677
-      cover-anim-Sheet-16_2: 707206665
-      cover-anim-Sheet-16_30: -121111806
-      cover-anim-Sheet-16_121: -1753379239
-      cover-anim-Sheet-16_83: 1622481391
-      cover-anim-Sheet-16_102: 1019124942
-      cover-anim-Sheet-16_110: -895564836
-      cover-anim-Sheet-16_5: 2052193533
-      cover-anim-Sheet-16_47: -2069670815
-      cover-anim-Sheet-16_72: 1903832073
-      cover-anim-Sheet-16_81: 312959899
-      cover-anim-Sheet-16_86: 144077241
-      cover-anim-Sheet-16_36: 333138073
-      cover-anim-Sheet-16_31: -63735566
-      cover-anim-Sheet-16_35: -1731590537
-      cover-anim-Sheet-16_125: 395968142
-      cover-anim-Sheet-16_12: 98177887
-      cover-anim-Sheet-16_34: -1368112043
-      cover-anim-Sheet-16_71: 1941501119
-      cover-anim-Sheet-16_79: -260867999
-      cover-anim-Sheet-16_52: 102268957
-      cover-anim-Sheet-16_94: -2064080074
-      cover-anim-Sheet-16_98: 1302623815
-      cover-anim-Sheet-16_74: 528669661
-      cover-anim-Sheet-16_73: -986485875
+      flag-anim-sheet_95: 1343090827
+      flag-anim-sheet_67: 1304403948
+      flag-anim-sheet_25: 1400305273
+      flag-anim-sheet_35: -639143788
+      flag-anim-sheet_21: 1584951251
+      flag-anim-sheet_82: 293710268
+      flag-anim-sheet_33: -117253471
+      flag-anim-sheet_79: -742363747
+      flag-anim-sheet_97: 2097240889
+      flag-anim-sheet_28: 1221909463
+      flag-anim-sheet_27: -1841463342
+      flag-anim-sheet_83: -488647866
+      flag-anim-sheet_98: -1719278374
+      flag-anim-sheet_75: 1907354217
+      flag-anim-sheet_41: -1462827111
+      flag-anim-sheet_39: -1651402777
+      flag-anim-sheet_11: -381808917
+      flag-anim-sheet_45: -1772416402
+      flag-anim-sheet_90: 457231090
+      flag-anim-sheet_85: -1604697070
+      flag-anim-sheet_64: -824962295
+      flag-anim-sheet_36: -830535816
+      flag-anim-sheet_60: 1704350733
+      flag-anim-sheet_3: -762377590
+      flag-anim-sheet_50: 273796866
+      flag-anim-sheet_5: 2134901679
+      flag-anim-sheet_59: -1017470702
+      flag-anim-sheet_20: 1026390171
+      flag-anim-sheet_84: -517526789
+      flag-anim-sheet_65: 1789629961
+      flag-anim-sheet_19: -1631301555
+      flag-anim-sheet_56: 445961595
+      flag-anim-sheet_57: 1021772285
+      flag-anim-sheet_88: -1821423043
+      flag-anim-sheet_78: 991194298
+      flag-anim-sheet_18: 1961331087
+      flag-anim-sheet_92: -1441396071
+      flag-anim-sheet_12: -173158525
+      flag-anim-sheet_66: 1104976202
+      flag-anim-sheet_77: 792944058
+      flag-anim-sheet_4: -800337344
+      flag-anim-sheet_74: 1586673234
+      flag-anim-sheet_30: 1133794051
+      flag-anim-sheet_52: 1944250521
+      flag-anim-sheet_26: 341960123
+      flag-anim-sheet_69: 146335406
+      flag-anim-sheet_55: -341955215
+      flag-anim-sheet_86: 508376025
+      flag-anim-sheet_62: 326048541
+      flag-anim-sheet_14: -2054190560
+      flag-anim-sheet_54: -1345343952
+      flag-anim-sheet_13: 694336646
+      flag-anim-sheet_81: 1062045669
+      flag-anim-sheet_22: 1028813428
+      flag-anim-sheet_31: -1292473673
+      flag-anim-sheet_38: 642998192
+      flag-anim-sheet_23: 1779203408
+      flag-anim-sheet_53: 1238190874
+      flag-anim-sheet_99: -1534711409
+      flag-anim-sheet_49: 2069591937
+      flag-anim-sheet_43: -1161317271
+      flag-anim-sheet_58: 304214871
+      flag-anim-sheet_42: 1158422307
+      flag-anim-sheet_1: 2007928465
+      flag-anim-sheet_76: 884747153
+      flag-anim-sheet_70: 1394103024
+      flag-anim-sheet_7: 857277218
+      flag-anim-sheet_6: -1524317139
+      flag-anim-sheet_68: -1841888266
+      flag-anim-sheet_46: -2022514530
+      flag-anim-sheet_29: -1763136207
+      flag-anim-sheet_40: -678025408
+      flag-anim-sheet_48: 356059271
+      flag-anim-sheet_2: -780519941
+      flag-anim-sheet_51: -838765020
+      flag-anim-sheet_0: -1179886596
+      flag-anim-sheet_89: -838993214
+      flag-anim-sheet_73: -1405139637
+      flag-anim-sheet_63: -605641577
+      flag-anim-sheet_80: 688620358
+      flag-anim-sheet_93: 1404991925
+      flag-anim-sheet_34: -879297820
+      flag-anim-sheet_91: 1722661127
+      flag-anim-sheet_32: -656820233
+      flag-anim-sheet_8: 1774307521
+      flag-anim-sheet_71: -1794312508
+      flag-anim-sheet_44: 979614143
+      flag-anim-sheet_17: -1362874676
+      flag-anim-sheet_37: 725595408
+      flag-anim-sheet_15: 1562434319
+      flag-anim-sheet_47: -612809770
+      flag-anim-sheet_9: -1733619924
+      flag-anim-sheet_61: -1048458973
+      flag-anim-sheet_94: 254567155
+      flag-anim-sheet_16: -1103257714
+      flag-anim-sheet_72: -1166681855
+      flag-anim-sheet_10: 1337490531
+      flag-anim-sheet_96: 878329625
+      flag-anim-sheet_24: -1778097637
+      flag-anim-sheet_87: 1308042634
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
