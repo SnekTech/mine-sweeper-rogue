@@ -7,7 +7,7 @@ namespace SnekTech.Core.Animation
     public class SnekAnimator : MonoBehaviour
     {
         public event Action OnClipComplete;
-        
+
         private SpriteRenderer _renderer;
         private int _frameIndex;
         private SnekAnimationClip _currentClip;
@@ -18,10 +18,10 @@ namespace SnekTech.Core.Animation
         public void Play(SnekAnimationClip clip)
         {
             if (clip == _currentClip) return;
-            
+
             _frameIndex = 0;
             _shouldLoop = false;
-            
+
             if (clip.IsLooping)
             {
                 BeginPlayLoop(clip).Forget();
@@ -34,13 +34,19 @@ namespace SnekTech.Core.Animation
 
         private void UpdateSprite(Sprite nextSprite)
         {
-            _renderer.sprite = nextSprite;
+            if (_renderer != null)
+            {
+                // SpriteRenderer maybe destroyed along with its containing GameObject before
+                // this animator component goes out of scope
+                // so we need to check null
+                _renderer.sprite = nextSprite;
+            }
         }
 
         private async UniTaskVoid BeginPlayLoop(SnekAnimationClip clip)
         {
             _shouldLoop = true;
-            
+
             while (_shouldLoop)
             {
                 UpdateSprite(clip.Sprites[_frameIndex]);
@@ -60,13 +66,12 @@ namespace SnekTech.Core.Animation
         {
             while (_frameIndex < clip.FrameCount)
             {
-                Debug.Log($"{_frameIndex}");
                 UpdateSprite(clip.Sprites[_frameIndex]);
                 await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex] / clip.SpeedFactor));
-                
+
                 _frameIndex++;
             }
-            
+
             OnClipComplete?.Invoke();
         }
     }
