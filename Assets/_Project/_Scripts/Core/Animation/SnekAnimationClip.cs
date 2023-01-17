@@ -12,10 +12,15 @@ namespace SnekTech.Core.Animation
         [SerializeField]
         private List<float> frameDurations;
 
+        [Range(0.1f, 5f)]
+        [SerializeField]
+        private float speedFactor = 1f;
+
         [SerializeField]
         private bool isLooping;
 
         public int FrameCount => sprites.Count;
+        public float SpeedFactor => speedFactor;
         public bool IsLooping => isLooping;
 
         public List<Sprite> Sprites

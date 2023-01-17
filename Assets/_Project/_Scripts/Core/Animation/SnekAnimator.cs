@@ -52,7 +52,7 @@ namespace SnekTech.Core.Animation
                     OnClipComplete?.Invoke();
                 }
 
-                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex]));
+                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex] / clip.SpeedFactor));
             }
         }
 
@@ -62,7 +62,7 @@ namespace SnekTech.Core.Animation
             {
                 Debug.Log($"{_frameIndex}");
                 UpdateSprite(clip.Sprites[_frameIndex]);
-                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex]));
+                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex] / clip.SpeedFactor));
                 
                 _frameIndex++;
             }
