@@ -1,36 +1,35 @@
-﻿using SnekTech.C;
+﻿using System.Collections.Generic;
+using SnekTech.C;
 using SnekTech.Core.Animation;
 using SnekTech.Core.CustomAttributes;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
 {
-    [ClipDataHolder]
+    [SnekClipHolder]
     [CreateAssetMenu(menuName = MenuName.ClipDataHolder + "/" + nameof(FlagAnimData), fileName = nameof(FlagAnimData))]
     public class FlagAnimData : ScriptableObject
     {
-        [ClipDataTargetField]
+        [SnekClipsField]
         [SerializeField]
-        private SnekAnimationClip floating;
+        private List<SnekAnimationClip> clips;
 
-        [ClipDataTargetField]
         [SerializeField]
-        private SnekAnimationClip hide;
-
-        [ClipDataTargetField]
+        private int floatClipIndex;
+        
         [SerializeField]
-        private SnekAnimationClip lift;
-
-        [ClipDataTargetField]
+        private int hideClipIndex;
+        
         [SerializeField]
-        private SnekAnimationClip putDown;
-
-        public SnekAnimationClip Float => floating;
-
-        public SnekAnimationClip Hide => hide;
-
-         public SnekAnimationClip Lift => lift;
-
-          public SnekAnimationClip PutDown => putDown;
+        private int liftClipIndex;
+        
+        [SerializeField]
+        private int putDownClipIndex;
+        
+        
+        public SnekAnimationClip Float => clips[floatClipIndex];
+        public SnekAnimationClip Hide => clips[hideClipIndex];
+         public SnekAnimationClip Lift => clips[liftClipIndex];
+          public SnekAnimationClip PutDown => clips[putDownClipIndex];
     }
 }

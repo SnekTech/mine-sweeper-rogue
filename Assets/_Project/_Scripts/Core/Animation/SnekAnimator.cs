@@ -43,7 +43,7 @@ namespace SnekTech.Core.Animation
             
             while (_shouldLoop)
             {
-                UpdateSprite(clip[_frameIndex]);
+                UpdateSprite(clip.Sprites[_frameIndex]);
                 _frameIndex++;
                 _frameIndex %= clip.FrameCount;
 
@@ -52,7 +52,7 @@ namespace SnekTech.Core.Animation
                     OnClipComplete?.Invoke();
                 }
 
-                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDuration));
+                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex]));
             }
         }
 
@@ -60,10 +60,10 @@ namespace SnekTech.Core.Animation
         {
             while (_frameIndex < clip.FrameCount)
             {
-                UpdateSprite(clip[_frameIndex]);
+                UpdateSprite(clip.Sprites[_frameIndex]);
                 _frameIndex++;
                 
-                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDuration));
+                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex]));
             }
             
             OnClipComplete?.Invoke();

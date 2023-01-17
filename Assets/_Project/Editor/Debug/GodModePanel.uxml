@@ -9,7 +9,7 @@
     <ui:Foldout text="Reset Game" view-data-key="reset-game">
         <SnekTech.Editor.Debug.ResetGamePanel />
     </ui:Foldout>
-    <ui:Foldout text="Clip Data Generator&#10;" view-data-key="generate-clipdata">
-        <SnekTech.Editor.Animation.ClipDataGenerator />
+    <ui:Foldout text="SnekClip Generator&#10;" view-data-key="generate-clipdata">
+        <SnekTech.Editor.Animation.SnekAnimationClipGenerator />
     </ui:Foldout>
 </ui:UXML>

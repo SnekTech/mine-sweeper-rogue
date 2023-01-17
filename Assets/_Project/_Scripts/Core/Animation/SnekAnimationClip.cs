@@ -9,18 +9,21 @@ namespace SnekTech.Core.Animation
         [SerializeField]
         private List<Sprite> sprites;
 
-        [Tooltip("Duration for each frame in milliseconds")]
-        [Min(0)]
+        [HideInInspector]
         [SerializeField]
-        private float frameDuration = 16;
+        private List<float> frameDurations;
 
         [SerializeField]
         private bool isLooping;
 
-        public int FrameCount => sprites.Count;
-        public float FrameDuration => frameDuration;
+        public int FrameCount => frameDurations.Count;
         public bool IsLooping => isLooping;
+        public List<Sprite> Sprites => sprites;
 
-        public Sprite this[int i] => sprites[i];
+        public List<float> FrameDurations
+        {
+            get => frameDurations;
+            set => frameDurations = value;
+        }
     }
 }

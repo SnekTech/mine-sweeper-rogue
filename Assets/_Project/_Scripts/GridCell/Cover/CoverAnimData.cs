@@ -1,36 +1,36 @@
-﻿using SnekTech.C;
+﻿using System.Collections.Generic;
+using SnekTech.C;
 using SnekTech.Core.Animation;
 using SnekTech.Core.CustomAttributes;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Cover
 {
-    [ClipDataHolder]
-    [CreateAssetMenu(menuName = MenuName.ClipDataHolder + "/" + nameof(CoverAnimData), fileName = nameof(CoverAnimData))]
+    [SnekClipHolder]
+    [CreateAssetMenu(menuName = MenuName.ClipDataHolder + "/" + nameof(CoverAnimData),
+        fileName = nameof(CoverAnimData))]
     public class CoverAnimData : ScriptableObject
     {
-        [ClipDataTargetField]
+        [SnekClipsField]
         [SerializeField]
-        private SnekAnimationClip coveredIdle;
+        private List<SnekAnimationClip> clips;
 
-        [ClipDataTargetField]
         [SerializeField]
-        private SnekAnimationClip putCover;
+        private int coveredIdleIndex;
 
-        [ClipDataTargetField]
         [SerializeField]
-        private SnekAnimationClip reveal;
+        private int revealIndex;
 
-        [ClipDataTargetField]
         [SerializeField]
-        private SnekAnimationClip revealedIdle;
+        private int revealedIdleIndex;
 
-        public SnekAnimationClip CoveredIdle => coveredIdle;
+        [SerializeField]
+        private int putCoverIndex;
 
-        public SnekAnimationClip PutCover => putCover;
 
-        public SnekAnimationClip Reveal => reveal;
-
-        public SnekAnimationClip RevealedIdle => revealedIdle;
+        public SnekAnimationClip CoveredIdle => clips[coveredIdleIndex];
+        public SnekAnimationClip Reveal => clips[revealIndex];
+        public SnekAnimationClip RevealedIdle => clips[revealedIdleIndex];
+        public SnekAnimationClip PutCover => clips[putCoverIndex];
     }
 }

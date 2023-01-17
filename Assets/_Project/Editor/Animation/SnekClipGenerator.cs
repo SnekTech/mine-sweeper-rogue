@@ -5,7 +5,6 @@ using System.Reflection;
 using SnekTech.Core.Animation;
 using SnekTech.Core.CustomAttributes;
 using UnityEditor;
-using UnityEditor.Animations;
 using UnityEditor.Callbacks;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -14,13 +13,13 @@ using Object = UnityEngine.Object;
 
 namespace SnekTech.Editor.Animation
 {
-    public class ClipDataGenerator : VisualElement
+    public class SnekClipGenerator : VisualElement
     {
         #region UI Builder boilerplate
 
-        private const string UxmlAssetPath = "Assets/_Project/Editor/Animation/ClipDataGenerator.uxml";
+        private const string UxmlAssetPath = "Assets/_Project/Editor/Animation/SnekAnimationClipGenerator.uxml";
 
-        public new class UxmlFactory : UxmlFactory<ClipDataGenerator>
+        public new class UxmlFactory : UxmlFactory<SnekClipGenerator>
         {
         }
 
@@ -29,9 +28,8 @@ namespace SnekTech.Editor.Animation
         #region visual elment fields
 
         private readonly VisualElement _root;
-        private ObjectField _acField;
+        private ObjectField _jsonAssetField;
         private TextField _clipDataFolderNameField;
-        private Toggle _shouldOverwriteToggle;
         private Button _generateButton;
 
         #endregion
@@ -46,13 +44,15 @@ namespace SnekTech.Editor.Animation
 
         #region getters
 
-        private AnimatorController CurrentAc => _acField.value as AnimatorController;
+        private TextAsset JsonAsset => _jsonAssetField.value as TextAsset;
+        private string JsonAssetParentFolder => _jsonAssetField.value == null
+            ? null
+            : FileUtils.GetAssetParentFolderPath(AssetDatabase.GetAssetPath(JsonAsset));
         private string ClipDataSaveFolderName => _clipDataFolderNameField.value;
-        private bool ShouldOverwrite => _shouldOverwriteToggle.value;
 
         #endregion
 
-        public ClipDataGenerator()
+        public SnekClipGenerator()
         {
             _root = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlAssetPath).Instantiate();
             hierarchy.Add(_root);
@@ -74,11 +74,10 @@ namespace SnekTech.Editor.Animation
 
         private void FindControls()
         {
-            _acField = _root.Q<ObjectField>("ac");
-            _acField.objectType = typeof(AnimatorController);
+            _jsonAssetField = _root.Q<ObjectField>("jsonAsset");
+            _jsonAssetField.objectType = typeof(TextAsset);
 
             _clipDataFolderNameField = _root.Q<TextField>();
-            _shouldOverwriteToggle = _root.Q<Toggle>();
             _generateButton = _root.Q<Button>();
         }
 
@@ -86,12 +85,12 @@ namespace SnekTech.Editor.Animation
         {
             _generateButton.clickable = new Clickable(GenerateAssets);
 
-            _acField.RegisterValueChangedCallback(HandleAcChange);
+            _jsonAssetField.RegisterValueChangedCallback(HandleJsonChange);
 
-            void HandleAcChange(ChangeEvent<Object> changeEvent)
+            void HandleJsonChange(ChangeEvent<Object> changeEvent)
             {
-                var newAc = (AnimatorController) changeEvent.newValue;
-                _clipDataFolderNameField.value = $"{newAc.name}-ClipData";
+                var newJsonAsset = (TextAsset) changeEvent.newValue;
+                _clipDataFolderNameField.value = $"{newJsonAsset.name}-ClipData";
             }
 
             void HandleHolderTypeDropdownChanged(ChangeEvent<string> evt)
@@ -117,14 +116,8 @@ namespace SnekTech.Editor.Animation
             AssetDatabase.SaveAssets();
         }
 
-        private string GetCurrentAcParentFolder()
+        private List<SnekAnimationClip> GenerateClipDataListAsset()
         {
-            return CurrentAc == null ? null : FileUtils.GetAssetParentFolder(AssetDatabase.GetAssetPath(CurrentAc));
-        }
-
-        private List<ClipData> GenerateClipDataListAsset()
-        {
-            if (CurrentAc == null) return null;
 
             string clipDataSaveFolderName = ClipDataSaveFolderName;
             if (clipDataSaveFolderName == null)
@@ -133,57 +126,54 @@ namespace SnekTech.Editor.Animation
             }
 
             // the main save folder
-            string acParentPath = GetCurrentAcParentFolder();
-
-            string clipDataSaveFolderPath = FileUtils.AssetPathCombine(acParentPath, clipDataSaveFolderName);
-            bool isTargetFolderExisting = AssetDatabase.GetSubFolders(acParentPath)
-                .Any(subFolderPath => subFolderPath == clipDataSaveFolderPath);
-
-            if (ShouldOverwrite && isTargetFolderExisting)
+            string parentFolderToSave = JsonAssetParentFolder;
+            if (parentFolderToSave == null)
             {
-                AssetDatabase.DeleteAsset(clipDataSaveFolderPath);
+                return null;
+            }
+
+            string clipSaveFolderPath = FileUtils.AssetPathCombine(parentFolderToSave, clipDataSaveFolderName);
+            bool isClipSaveFolderExisting = AssetDatabase.GetSubFolders(parentFolderToSave)
+                .Any(subFolderPath => subFolderPath == clipSaveFolderPath);
+
+            if (isClipSaveFolderExisting)
+            {
+                AssetDatabase.DeleteAsset(clipSaveFolderPath);
             }
 
             // reassign here in case a different folder is created, when we should not overwrite
-            string createdFolderGuid = AssetDatabase.CreateFolder(acParentPath, clipDataSaveFolderName);
-            clipDataSaveFolderPath = AssetDatabase.GUIDToAssetPath(createdFolderGuid);
+            string createdFolderGuid = AssetDatabase.CreateFolder(parentFolderToSave, clipDataSaveFolderName);
+            clipSaveFolderPath = AssetDatabase.GUIDToAssetPath(createdFolderGuid);
 
-            var clipNameToClip = new Dictionary<string, AnimationClip>();
-            foreach (var animationClip in CurrentAc.animationClips)
+
+            var clipMetaDataList = AsepriteJsonHandler.ExtractClipMetaData(JsonAsset.text);
+            var clipList = new List<SnekAnimationClip>();
+            foreach (var clipMetaData in clipMetaDataList)
             {
-                clipNameToClip[animationClip.name] = animationClip;
+                var newClip = ScriptableObject.CreateInstance<SnekAnimationClip>();
+                newClip.FrameDurations = newClip.FrameDurations;
+
+                clipList.Add(newClip);
+                AssetDatabase.CreateAsset(newClip, $"{clipSaveFolderPath}/{clipMetaData.Name}.asset");
             }
 
-            // to get the correct hash for a state in Animator Controller,
-            // we need to traverse the states in the Animator Controller StateMachine
-            var clipDataList = new List<ClipData>();
-            foreach (var childAnimatorState in CurrentAc.GetStates())
-            {
-                var state = childAnimatorState.state;
-                string clipName = state.motion.name;
-                var clip = clipNameToClip[clipName];
-
-                var newClipData = ScriptableObject.CreateInstance<ClipData>();
-                newClipData.ClipName = clipName;
-                newClipData.NameHash = state.nameHash;
-                newClipData.FrameCount = Mathf.CeilToInt(clip.frameRate * clip.length);
-
-                clipDataList.Add(newClipData);
-                AssetDatabase.CreateAsset(newClipData, $"{clipDataSaveFolderPath}/{newClipData.ClipName}.asset");
-            }
-
-            return clipDataList;
+            return clipList;
         }
 
-        private ScriptableObject GenerateClipDataHolderAsset(List<ClipData> clipDataList)
+        private ScriptableObject GenerateClipDataHolderAsset(List<SnekAnimationClip> clipDataList)
         {
-            string clipDataHolderSavePath = $"{GetCurrentAcParentFolder()}/{s_currentClipDataHolderType.Name}.asset";
-            if (ShouldOverwrite)
+            if (clipDataList == null)
+            {
+                return null;
+            }
+
+            string saveParentFolderPath = JsonAssetParentFolder;
+            string clipDataHolderSavePath = $"{saveParentFolderPath}/{s_currentClipDataHolderType.Name}.asset";
+            if (FileUtils.ContainsAssetAtPath<Object>(clipDataHolderSavePath))
             {
                 AssetDatabase.DeleteAsset(clipDataHolderSavePath);
             }
 
-            // var clipDataHolderAsset = Activator.CreateInstance(s_currentClipDataHolderType) as ScriptableObject;
             var clipDataHolderAsset = ScriptableObject.CreateInstance(s_currentClipDataHolderType);
 
             if (clipDataHolderAsset == null)
@@ -194,43 +184,33 @@ namespace SnekTech.Editor.Animation
 
             AssetDatabase.CreateAsset(clipDataHolderAsset, clipDataHolderSavePath);
 
-            SetFieldsInNameOrder(clipDataList, clipDataHolderAsset);
+            SetClipsField(clipDataList, clipDataHolderAsset);
 
             return clipDataHolderAsset;
         }
 
-        private static void SetFieldsInNameOrder<T1, T2>(List<T1> values, T2 target)
-            where T1 : Object
-            where T2 : Object
+        private static void SetClipsField(List<SnekAnimationClip> clips, ScriptableObject target)
         {
-            var targetFields =
-                target.GetType().GetInstanceFieldsWithAttributeOfType(typeof(ClipDataTargetFieldAttribute));
+            var attributedFields =
+                target.GetType().GetInstanceFieldsWithAttributeOfType(typeof(SnekClipsFieldAttribute));
 
-            if (values.Count != targetFields.Count)
+            if (attributedFields.Count != 1)
             {
-                UnityEngine.Debug.LogWarning("values count and target serialized field count not match, return");
-                return;
+                throw new Exception(
+                    $"target {target} should have exactly 1 clips field with attribute {nameof(SnekClipsFieldAttribute)}");
             }
 
-            targetFields.Sort((fieldA, fieldB) => string.CompareOrdinal(fieldA.Name.ToLower(), fieldB.Name.ToLower()));
-            values.Sort((a, b) => string.CompareOrdinal(a.name.ToLower(), b.name.ToLower()));
-
-            if (values.Select(o => o.name).ToList().HasDuplicates())
-            {
-                UnityEngine.Debug.LogWarning("there are duplicate names in values, unstable sorting");
-            }
+            var clipsField = attributedFields[0];
 
             using (var serializedObject = new SerializedObject(target))
             {
-                serializedObject.Update();
+                var clipsSerializedField = serializedObject.FindProperty(clipsField.Name);
+                clipsSerializedField.ClearArray();
 
-                for (int i = 0; i < values.Count; i++)
+                for (int i = 0; i < clips.Count; i++)
                 {
-                    var value = values[i];
-                    var targetField = targetFields[i];
-
-                    var propertyField = serializedObject.FindProperty(targetField.Name);
-                    propertyField.objectReferenceValue = value;
+                    clipsSerializedField.InsertArrayElementAtIndex(i);
+                    clipsSerializedField.GetArrayElementAtIndex(i).objectReferenceValue = clips[i];
                 }
 
                 serializedObject.ApplyModifiedProperties();
@@ -244,7 +224,7 @@ namespace SnekTech.Editor.Animation
             var holderTypes = assemblies
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type =>
-                    type.IsDefined(typeof(ClipDataHolderAttribute)) &&
+                    type.IsDefined(typeof(SnekClipHolderAttribute)) &&
                     type.IsSubclassOf(typeof(ScriptableObject)))
                 .ToList();
 

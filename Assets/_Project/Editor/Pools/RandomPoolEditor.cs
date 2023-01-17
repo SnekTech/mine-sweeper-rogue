@@ -38,7 +38,7 @@ namespace SnekTech.Editor.Pools
             return root;
         }
 
-        private SerializedProperty GetElementsProProperty()
+        private SerializedProperty GetElementsProperty()
         {
             var elementFields = typeof(RandomPool<TAsset>).GetInstanceFieldsWithAttributeOfType(typeof(PoolElementsFieldAttribute));
             if (elementFields.Count != 1)
@@ -60,7 +60,7 @@ namespace SnekTech.Editor.Pools
                 .Where(asset => asset != null)
                 .ToList();
 
-            var elementsProperty = GetElementsProProperty();
+            var elementsProperty = GetElementsProperty();
 
             for (int i = 0; i < assets.Count; i++)
             {
@@ -73,7 +73,7 @@ namespace SnekTech.Editor.Pools
 
         private void Clear()
         {
-            var property = GetElementsProProperty();
+            var property = GetElementsProperty();
             property.ClearArray();
 
             serializedObject.ApplyModifiedProperties();

@@ -3,7 +3,7 @@
 namespace SnekTech.Core.CustomAttributes
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class ClipDataHolderAttribute : Attribute
+    public class SnekClipHolderAttribute : Attribute
     {
     
     }
