@@ -6,12 +6,12 @@
         </ui:VisualElement>
         <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
             <ui:VisualElement name="controllerFields" style="flex-direction: column; flex-grow: 1;">
-                <ui:VisualElement name="clipHolderParent">
+                <SnekTech.Editor.Animation.ClipHolderTypeDropdown />
+                <ui:VisualElement name="clipHolderParent" style="display: none;">
                     <ui:DropdownField label="Clips Holder Type" index="0" name="holderTypePlaceHolder" view-data-key="holderTypeDropdown" choices="Type1, Type2" />
                 </ui:VisualElement>
                 <ui:TextField picking-mode="Ignore" label="Clips Folder Name" value="filler text" text="default" name="folderName" tooltip="A folder name under the anim controller parent folder" style="flex-grow: 0;" />
             </ui:VisualElement>
-            <ui:Button text="F5" display-tooltip-when-elided="true" name="refreshButton" tooltip="Refresh the types" />
             <ui:Button text="Generate" display-tooltip-when-elided="true" name="generateButton" style="font-size: 20px;" />
         </ui:VisualElement>
     </ui:VisualElement>
