@@ -1,14 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <ui:VisualElement name="root" style="justify-content: space-between; height: 74px; max-width: 400px;">
+    <ui:VisualElement name="root" style="justify-content: space-between; height: 88px; max-width: 400px;">
         <ui:VisualElement name="outputConfig" style="justify-content: space-around;">
             <uie:ObjectField label="Aseprite JSON" allow-scene-objects="false" type="UnityEngine.TextAsset, UnityEngine.CoreModule" name="jsonAsset" />
+            <uie:ObjectField label="Sprite Sheet" name="spriteSheet" type="UnityEngine.Texture2D, UnityEngine.CoreModule" />
         </ui:VisualElement>
         <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
             <ui:VisualElement name="controllerFields" style="flex-direction: column; flex-grow: 1;">
-                <ui:DropdownField label="Clips Holder Type" index="0" name="holderTypePlaceHolder" view-data-key="holderTypeDropdown" choices="Type1, Type2" />
+                <ui:VisualElement name="clipHolderParent">
+                    <ui:DropdownField label="Clips Holder Type" index="0" name="holderTypePlaceHolder" view-data-key="holderTypeDropdown" choices="Type1, Type2" />
+                </ui:VisualElement>
                 <ui:TextField picking-mode="Ignore" label="Clips Folder Name" value="filler text" text="default" name="folderName" tooltip="A folder name under the anim controller parent folder" style="flex-grow: 0;" />
             </ui:VisualElement>
-            <ui:Button text="Generate" display-tooltip-when-elided="true" style="font-size: 20px;" />
+            <ui:Button text="F5" display-tooltip-when-elided="true" name="refreshButton" tooltip="Refresh the types" />
+            <ui:Button text="Generate" display-tooltip-when-elided="true" name="generateButton" style="font-size: 20px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

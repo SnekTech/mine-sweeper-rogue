@@ -15,17 +15,21 @@ namespace SnekTech.GridCell.Cover
         [SerializeField]
         private List<SnekAnimationClip> clips;
 
+        [Min(0)]
         [SerializeField]
-        private int coveredIdleIndex;
+        private int coveredIdleIndex = 0;
 
+        [Min(0)]
         [SerializeField]
-        private int revealIndex;
+        private int revealIndex = 1;
 
+        [Min(0)]
         [SerializeField]
-        private int revealedIdleIndex;
+        private int revealedIdleIndex = 2;
 
+        [Min(0)]
         [SerializeField]
-        private int putCoverIndex;
+        private int putCoverIndex = 3;
 
 
         public SnekAnimationClip CoveredIdle => clips[coveredIdleIndex];

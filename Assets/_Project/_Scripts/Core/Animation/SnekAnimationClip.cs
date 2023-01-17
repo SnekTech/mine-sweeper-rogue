@@ -18,7 +18,12 @@ namespace SnekTech.Core.Animation
 
         public int FrameCount => frameDurations.Count;
         public bool IsLooping => isLooping;
-        public List<Sprite> Sprites => sprites;
+
+        public List<Sprite> Sprites
+        {
+            get => sprites;
+            set => sprites = value;
+        }
 
         public List<float> FrameDurations
         {

@@ -10,6 +10,6 @@
         <SnekTech.Editor.Debug.ResetGamePanel />
     </ui:Foldout>
     <ui:Foldout text="SnekClip Generator&#10;" view-data-key="generate-clipdata">
-        <SnekTech.Editor.Animation.SnekAnimationClipGenerator />
+        <SnekTech.Editor.Animation.SnekClipGenerator />
     </ui:Foldout>
 </ui:UXML>

@@ -5,7 +5,6 @@ using System.Reflection;
 using SnekTech.Core.Animation;
 using SnekTech.Core.CustomAttributes;
 using UnityEditor;
-using UnityEditor.Callbacks;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -17,7 +16,8 @@ namespace SnekTech.Editor.Animation
     {
         #region UI Builder boilerplate
 
-        private const string UxmlAssetPath = "Assets/_Project/Editor/Animation/SnekAnimationClipGenerator.uxml";
+        private const string UxmlAssetPath = "Assets/_Project/Editor/Animation/SnekClipGenerator.uxml";
+        private const string ClipsHolderTypeLabel = "Clips Holder Type";
 
         public new class UxmlFactory : UxmlFactory<SnekClipGenerator>
         {
@@ -29,25 +29,31 @@ namespace SnekTech.Editor.Animation
 
         private readonly VisualElement _root;
         private ObjectField _jsonAssetField;
+        private ObjectField _spriteSheetTextureField;
         private TextField _clipDataFolderNameField;
         private Button _generateButton;
+        private Button _refreshButton;
 
         #endregion
 
         #region static fields related to ClipData holder type
 
-        private static DropdownField s_holderTypeDropdownField;
+        private static VisualElement s_holderDropdownParent;
         private static Type s_currentClipDataHolderType;
         private static readonly Dictionary<string, Type> holderTypeNameToType = new Dictionary<string, Type>();
 
         #endregion
 
-        #region getters
+        #region getters for convience
 
         private TextAsset JsonAsset => _jsonAssetField.value as TextAsset;
         private string JsonAssetParentFolder => _jsonAssetField.value == null
             ? null
             : FileUtils.GetAssetParentFolderPath(AssetDatabase.GetAssetPath(JsonAsset));
+
+        private Texture2D SpriteSheetAsset => _spriteSheetTextureField.value as Texture2D;
+        private string SpriteSheetAssetPath => AssetDatabase.GetAssetPath(SpriteSheetAsset);
+        
         private string ClipDataSaveFolderName => _clipDataFolderNameField.value;
 
         #endregion
@@ -58,32 +64,50 @@ namespace SnekTech.Editor.Animation
             hierarchy.Add(_root);
 
             FindControls();
-            SetupHolderTypeDropdown();
             SetupEventHandlers();
         }
 
-        private void SetupHolderTypeDropdown()
+        private static void SetupHolderTypeDropdown()
         {
-            var dropdownParent = _root.Q("outputConfig");
-            var dropdownPlaceholder = _root.Q<DropdownField>("holderTypePlaceHolder");
-            s_holderTypeDropdownField.label = dropdownPlaceholder.label;
+            var kvPairs = holderTypeNameToType.ToList();
+            var holderTypeDropdownField = new DropdownField
+            {
+                choices = kvPairs.Select(kv => kv.Key).ToList(),
+            };
 
-            dropdownPlaceholder.style.display = DisplayStyle.None;
-            dropdownParent.Add(s_holderTypeDropdownField);
+            if (kvPairs.Count > 0)
+            {
+                var firstPair = kvPairs[0];
+                holderTypeDropdownField.value = firstPair.Key;
+                s_currentClipDataHolderType = firstPair.Value;
+            }
+            
+            s_holderDropdownParent.Clear();
+            s_holderDropdownParent.Add(holderTypeDropdownField);
+            holderTypeDropdownField.label = ClipsHolderTypeLabel;
+            holderTypeDropdownField.RegisterValueChangedCallback(HandleHolderTypeDropdownChanged);
         }
 
         private void FindControls()
         {
             _jsonAssetField = _root.Q<ObjectField>("jsonAsset");
             _jsonAssetField.objectType = typeof(TextAsset);
+            
+            s_holderDropdownParent = _root.Q("clipHolderParent");
+            
+            _spriteSheetTextureField = _root.Q<ObjectField>("spriteSheet");
+            _spriteSheetTextureField.objectType = typeof(Texture2D);
 
             _clipDataFolderNameField = _root.Q<TextField>();
-            _generateButton = _root.Q<Button>();
+            _generateButton = _root.Q<Button>("generateButton");
+            _refreshButton = _root.Q<Button>("refreshButton");
         }
 
         private void SetupEventHandlers()
         {
             _generateButton.clickable = new Clickable(GenerateAssets);
+
+            _refreshButton.clickable = new Clickable(UpdateClipDataHolderTypes);
 
             _jsonAssetField.RegisterValueChangedCallback(HandleJsonChange);
 
@@ -93,20 +117,18 @@ namespace SnekTech.Editor.Animation
                 _clipDataFolderNameField.value = $"{newJsonAsset.name}-ClipData";
             }
 
-            void HandleHolderTypeDropdownChanged(ChangeEvent<string> evt)
-            {
-                string typeName = evt.newValue;
-                var holderType = holderTypeNameToType[typeName];
-                s_currentClipDataHolderType = holderType;
-            }
+        }
 
-            s_holderTypeDropdownField.UnregisterValueChangedCallback(HandleHolderTypeDropdownChanged);
-            s_holderTypeDropdownField.RegisterValueChangedCallback(HandleHolderTypeDropdownChanged);
+        private static void HandleHolderTypeDropdownChanged(ChangeEvent<string> evt)
+        {
+            string typeName = evt.newValue;
+            var holderType = holderTypeNameToType[typeName];
+            s_currentClipDataHolderType = holderType;
         }
 
         private void GenerateAssets()
         {
-            var clipDataList = GenerateClipDataListAsset();
+            var clipDataList = GenerateClipAssets();
             var clipDataHolderAsset = GenerateClipDataHolderAsset(clipDataList);
             if (clipDataHolderAsset != null)
             {
@@ -116,7 +138,7 @@ namespace SnekTech.Editor.Animation
             AssetDatabase.SaveAssets();
         }
 
-        private List<SnekAnimationClip> GenerateClipDataListAsset()
+        private List<SnekAnimationClip> GenerateClipAssets()
         {
 
             string clipDataSaveFolderName = ClipDataSaveFolderName;
@@ -133,17 +155,14 @@ namespace SnekTech.Editor.Animation
             }
 
             string clipSaveFolderPath = FileUtils.AssetPathCombine(parentFolderToSave, clipDataSaveFolderName);
-            bool isClipSaveFolderExisting = AssetDatabase.GetSubFolders(parentFolderToSave)
-                .Any(subFolderPath => subFolderPath == clipSaveFolderPath);
+            bool isClipSaveFolderExisting = FileUtils.ContainsAssetAtPath<Object>(clipSaveFolderPath);
 
             if (isClipSaveFolderExisting)
             {
                 AssetDatabase.DeleteAsset(clipSaveFolderPath);
             }
 
-            // reassign here in case a different folder is created, when we should not overwrite
-            string createdFolderGuid = AssetDatabase.CreateFolder(parentFolderToSave, clipDataSaveFolderName);
-            clipSaveFolderPath = AssetDatabase.GUIDToAssetPath(createdFolderGuid);
+            AssetDatabase.CreateFolder(parentFolderToSave, clipDataSaveFolderName);
 
 
             var clipMetaDataList = AsepriteJsonHandler.ExtractClipMetaData(JsonAsset.text);
@@ -151,7 +170,8 @@ namespace SnekTech.Editor.Animation
             foreach (var clipMetaData in clipMetaDataList)
             {
                 var newClip = ScriptableObject.CreateInstance<SnekAnimationClip>();
-                newClip.FrameDurations = newClip.FrameDurations;
+                newClip.FrameDurations = clipMetaData.FrameDurations;
+                SetClipSprites(newClip, clipMetaData.StartIndex);
 
                 clipList.Add(newClip);
                 AssetDatabase.CreateAsset(newClip, $"{clipSaveFolderPath}/{clipMetaData.Name}.asset");
@@ -217,7 +237,12 @@ namespace SnekTech.Editor.Animation
             }
         }
 
-        [DidReloadScripts]
+        private void SetClipSprites(SnekAnimationClip clip, int startIndex)
+        {
+            var spriteExtractor = new SpriteExtractorFromSpriteSheet(SpriteSheetAssetPath);
+            clip.Sprites = spriteExtractor.GetSpritesWithInRange(startIndex, clip.FrameCount);
+        }
+
         private static void UpdateClipDataHolderTypes()
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -232,19 +257,8 @@ namespace SnekTech.Editor.Animation
             {
                 holderTypeNameToType[type.Name] = type;
             }
-
-            var kvPairs = holderTypeNameToType.ToList();
-            s_holderTypeDropdownField = new DropdownField
-            {
-                choices = kvPairs.Select(kv => kv.Key).ToList(),
-            };
-
-            if (kvPairs.Count > 0)
-            {
-                var firstPair = kvPairs[0];
-                s_holderTypeDropdownField.value = firstPair.Key;
-                s_currentClipDataHolderType = firstPair.Value;
-            }
+            
+            SetupHolderTypeDropdown();
         }
     }
 }

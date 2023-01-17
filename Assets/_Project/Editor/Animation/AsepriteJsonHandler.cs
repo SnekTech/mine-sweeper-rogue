@@ -19,9 +19,10 @@ namespace SnekTech.Editor.Animation
         public static List<AsepriteClipMetaData> ExtractClipMetaData(string jsonText)
         {
             var frameNameToFrameDurations = new Dictionary<string, List<float>>();
+            var frameNameToStartIndex = new Dictionary<string, int>();
             var asepriteJson = JObject.Parse(jsonText);
             
-            // extract layer metadata
+            // extract layer
             var meta = (JObject) asepriteJson[MetaField];
             var layers = meta![LayersField] as JArray;
             foreach (var layer in layers!)
@@ -30,7 +31,8 @@ namespace SnekTech.Editor.Animation
                 frameNameToFrameDurations[((string) layerObject[LayerNameField])!] = new List<float>();
             }
             
-            // extract frame metadata
+            // extract frame
+            int i = 0;
             var frames = (JArray) asepriteJson[FramesField]!;
             foreach (var frame in frames)
             {
@@ -42,13 +44,20 @@ namespace SnekTech.Editor.Animation
                 int frameNameEnd = fileName!.IndexOf(')');
                 string frameName = fileName.Substring(frameNameStart, frameNameEnd - frameNameStart);
                 frameNameToFrameDurations[frameName].Add(duration);
+
+                if (!frameNameToStartIndex.ContainsKey(frameName))
+                {
+                    frameNameToStartIndex[frameName] = i;
+                }
+
+                i++;
             }
 
             // create the clip metadata list and return
             var clipMetaDataList = new List<AsepriteClipMetaData>();
             foreach ((string frameName, var durations) in frameNameToFrameDurations)
             {
-                var clipMetaData = new AsepriteClipMetaData(frameName, durations);
+                var clipMetaData = new AsepriteClipMetaData(frameName, durations, frameNameToStartIndex[frameName]);
                 clipMetaDataList.Add(clipMetaData);
             }
 

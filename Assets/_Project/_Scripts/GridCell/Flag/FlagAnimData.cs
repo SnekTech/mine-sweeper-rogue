@@ -14,22 +14,26 @@ namespace SnekTech.GridCell.Flag
         [SerializeField]
         private List<SnekAnimationClip> clips;
 
+        [Min(0)]
         [SerializeField]
-        private int floatClipIndex;
-        
+        private int floatClipIndex = 0;
+
+        [Min(0)]
         [SerializeField]
-        private int hideClipIndex;
-        
+        private int hideClipIndex = 1;
+
+        [Min(0)]
         [SerializeField]
-        private int liftClipIndex;
-        
+        private int liftClipIndex = 2;
+
+        [Min(0)]
         [SerializeField]
-        private int putDownClipIndex;
-        
-        
+        private int putDownClipIndex = 3;
+
+
         public SnekAnimationClip Float => clips[floatClipIndex];
         public SnekAnimationClip Hide => clips[hideClipIndex];
-         public SnekAnimationClip Lift => clips[liftClipIndex];
-          public SnekAnimationClip PutDown => clips[putDownClipIndex];
+        public SnekAnimationClip Lift => clips[liftClipIndex];
+        public SnekAnimationClip PutDown => clips[putDownClipIndex];
     }
 }
