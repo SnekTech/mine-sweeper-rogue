@@ -1,5 +1,5 @@
 ﻿using SnekTech.C;
-using SnekTech.Core.Animation.CustomAnimator;
+using SnekTech.Core.Animation;
 using SnekTech.Core.CustomAttributes;
 using UnityEngine;
 

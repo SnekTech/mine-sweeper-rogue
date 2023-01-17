@@ -2,7 +2,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace SnekTech.Core.Animation.CustomAnimator
+namespace SnekTech.Core.Animation
 {
     public class SnekAnimator : MonoBehaviour
     {

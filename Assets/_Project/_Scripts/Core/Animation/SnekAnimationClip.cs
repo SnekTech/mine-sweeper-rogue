@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace SnekTech.Core.Animation.CustomAnimator
+namespace SnekTech.Core.Animation
 {
-    [CreateAssetMenu(menuName = C.MenuName.CustomAnimator + "/" + nameof(SnekAnimationClip))]
+    [CreateAssetMenu(menuName = C.MenuName.SnekAnimator + "/" + nameof(SnekAnimationClip))]
     public class SnekAnimationClip : ScriptableObject
     {
         [SerializeField]

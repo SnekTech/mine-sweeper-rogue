@@ -1,5 +1,5 @@
 ﻿using System;
-using SnekTech.Core.Animation.CustomAnimator;
+using SnekTech.Core.Animation;
 
 namespace SnekTech.GridCell.Cover.Animation
 {

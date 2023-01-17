@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using SnekTech.Core.Animation.CustomAnimator;
+using SnekTech.Core.Animation;
 using SnekTech.GridCell.Cover.Animation;
 using UnityEngine;
 

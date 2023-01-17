@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using SnekTech.Core.Animation.CustomAnimator;
+﻿using Cysharp.Threading.Tasks;
+using SnekTech.Core.Animation;
 using UnityEngine;
 
 namespace SnekTech

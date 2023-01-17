@@ -1,6 +1,4 @@
-﻿using SnekTech.Core.Animation.CustomAnimator;
-
-namespace SnekTech.Core.Animation
+﻿namespace SnekTech.Core.Animation
 {
     public abstract class SpriteAnimState : IAnimState
     {

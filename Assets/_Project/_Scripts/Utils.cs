@@ -74,7 +74,7 @@ namespace SnekTech
             public const string Grid = Root + "/" + nameof(Grid);
 
             public const string Animation = Root + "/" + nameof(Animation);
-            public const string CustomAnimator = Animation + "/" + nameof(CustomAnimator);
+            public const string SnekAnimator = Animation + "/" + nameof(SnekAnimator);
             public const string ClipDataHolder = Animation + "/" + nameof(ClipDataHolder);
         }
 
