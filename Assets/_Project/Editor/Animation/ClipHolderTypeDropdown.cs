@@ -62,6 +62,9 @@ namespace SnekTech.Editor.Animation
             {
                 var firstPair = kvPairs[0];
                 s_dropdownField.value = firstPair.Key;
+                OnTypeValueChange?.Invoke(firstPair.Value);
+                
+                s_dropdownField.SendEvent(new ChangeEvent<Type>());
             }
             
             s_dropdownField.RegisterValueChangedCallback(HandleHolderTypeDropdownChanged);

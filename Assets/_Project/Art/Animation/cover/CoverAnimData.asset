@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: CoverAnimData
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 11400000, guid: c44310dff78673040acb29d8362708e7, type: 2}
+  - {fileID: 11400000, guid: ada57af6eb74892428288d8692a08d99, type: 2}
   - {fileID: 11400000, guid: e7a4f7f7436b2b04baa8a8efdeccecc7, type: 2}
-  - {fileID: 11400000, guid: 39d75888f6e1ddd49ab7458aeb76c415, type: 2}
   - {fileID: 11400000, guid: ecb4ca8d657272d459846eef84d9f265, type: 2}
   coveredIdleIndex: 0
   revealIndex: 1

@@ -12,47 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbffe24636cc4188a70779472adfc754, type: 3}
   m_Name: put-down
   m_EditorClassIdentifier: 
+  animName: put-down
   sprites:
-  - {fileID: 1026390171, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 1584951251, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 1028813428, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 1779203408, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -1778097637, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 1400305273, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 341960123, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -1841463342, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 1221909463, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -1763136207, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 1133794051, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -1292473673, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -656820233, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -117253471, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -879297820, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -639143788, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -830535816, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 725595408, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: 642998192, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  - {fileID: -1651402777, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
-  frameDurations:
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  - 100
-  speedFactor: 5
+  - {fileID: 1825086779, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -641081369, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1364505232, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1340741441, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 2012665186, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1558699239, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1018461201, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1657935642, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1528842765, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -100646935, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1577952651, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 799571711, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1798185065, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1862769913, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1716497211, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1170944823, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1996898824, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: 1934156099, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1516237138, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  - {fileID: -1449249034, guid: cbc6eef74eb17634cbd5f2f302724ba0, type: 3}
+  frameDurations: 1000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000
+  speedFactor: 1
   isLooping: 0

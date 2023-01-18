@@ -1,67 +1,43 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using SnekTech.Core.Animation;
+using UnityEngine;
 
 namespace SnekTech.Editor.Animation
 {
     public static class AsepriteJsonHandler
     {
-        #region Aseprite JSON field name constants
 
-        private const string MetaField = "meta";
-        private const string LayersField = "layers";
-        private const string LayerNameField = "name";
-        private const string FramesField = "frames";
-        private const string FileNameField = "filename";
-        private const string FrameDurationField = "duration";
-
-        #endregion
-
-        public static List<AsepriteClipMetaData> ExtractClipMetaData(string jsonText)
+        public static AsepriteJsonData ExtractClipMetaData(string jsonText)
         {
-            var frameNameToFrameDurations = new Dictionary<string, List<float>>();
-            var frameNameToStartIndex = new Dictionary<string, int>();
-            var asepriteJson = JObject.Parse(jsonText);
-            
-            // extract layer
-            var meta = (JObject) asepriteJson[MetaField];
-            var layers = meta![LayersField] as JArray;
-            foreach (var layer in layers!)
-            {
-                var layerObject = (JObject) layer;
-                frameNameToFrameDurations[((string) layerObject[LayerNameField])!] = new List<float>();
-            }
-            
-            // extract frame
-            int i = 0;
-            var frames = (JArray) asepriteJson[FramesField]!;
-            foreach (var frame in frames)
-            {
-                var frameObject = (JObject) frame;
-                float duration = (float)frameObject[FrameDurationField];
-                string fileName = (string) frameObject[FileNameField];
+            return JsonConvert.DeserializeObject<AsepriteJsonData>(jsonText);
+        }
 
-                int frameNameStart = fileName!.IndexOf('(') + 1;
-                int frameNameEnd = fileName!.IndexOf(')');
-                string frameName = fileName.Substring(frameNameStart, frameNameEnd - frameNameStart);
-                frameNameToFrameDurations[frameName].Add(duration);
+        public static List<SnekAnimationClip> GetSnekClipsFromAsepriteJson(AsepriteJsonData asepriteJsonData, string spriteSheetPath)
+        {
+            var clipAssets = new List<SnekAnimationClip>();
+            var frames = asepriteJsonData.Frames;
 
-                if (!frameNameToStartIndex.ContainsKey(frameName))
+            foreach (var tag in asepriteJsonData.Meta.Tags)
+            {
+                var clipAsset = ScriptableObject.CreateInstance<SnekAnimationClip>();
+
+                var frameDurations = new List<int>();
+                for (int i = tag.FromIndex; i <= tag.ToIndex; i++)
                 {
-                    frameNameToStartIndex[frameName] = i;
+                    frameDurations.Add(frames[i].Duration);
                 }
 
-                i++;
+                clipAsset.AnimName = tag.Name;
+                clipAsset.Sprites = SpriteExtractorFromSpriteSheet.GetSpritesFromSpriteSheet(spriteSheetPath)
+                    .GetRange(tag.FromIndex, tag.Length);
+                clipAsset.FrameDurations = frameDurations;
+                clipAsset.IsLooping = tag.Name.ToLower().Contains("loop");
+                
+                clipAssets.Add(clipAsset);
             }
 
-            // create the clip metadata list and return
-            var clipMetaDataList = new List<AsepriteClipMetaData>();
-            foreach ((string frameName, var durations) in frameNameToFrameDurations)
-            {
-                var clipMetaData = new AsepriteClipMetaData(frameName, durations, frameNameToStartIndex[frameName]);
-                clipMetaDataList.Add(clipMetaData);
-            }
-
-            return clipMetaDataList;
+            return clipAssets;
         }
     }
 }

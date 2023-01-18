@@ -49,16 +49,18 @@ namespace SnekTech.Core.Animation
 
             while (_shouldLoop)
             {
-                UpdateSprite(clip.Sprites[_frameIndex]);
-                _frameIndex++;
-                _frameIndex %= clip.FrameCount;
-
                 if (_frameIndex == 0)
                 {
                     OnClipComplete?.Invoke();
                 }
-
-                await UniTask.Delay(TimeSpan.FromMilliseconds(clip.FrameDurations[_frameIndex] / clip.SpeedFactor));
+                
+                UpdateSprite(clip.Sprites[_frameIndex]);
+                float frameDelay = clip.FrameDurations[_frameIndex] / clip.SpeedFactor;
+                
+                await UniTask.Delay(TimeSpan.FromMilliseconds(frameDelay));
+                
+                _frameIndex++;
+                _frameIndex %= clip.FrameCount;
             }
         }
 

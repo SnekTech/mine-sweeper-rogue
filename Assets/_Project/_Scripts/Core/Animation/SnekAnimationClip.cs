@@ -7,10 +7,13 @@ namespace SnekTech.Core.Animation
     public class SnekAnimationClip : ScriptableObject
     {
         [SerializeField]
+        private string animName;
+        
+        [SerializeField]
         private List<Sprite> sprites;
 
         [SerializeField]
-        private List<float> frameDurations;
+        private List<int> frameDurations;
 
         [Range(0.1f, 5f)]
         [SerializeField]
@@ -19,9 +22,19 @@ namespace SnekTech.Core.Animation
         [SerializeField]
         private bool isLooping;
 
+        public string AnimName
+        {
+            get => animName;
+            set => animName = value;
+        }
         public int FrameCount => sprites.Count;
         public float SpeedFactor => speedFactor;
-        public bool IsLooping => isLooping;
+
+        public bool IsLooping
+        {
+            get => isLooping;
+            set => isLooping = value;
+        }
 
         public List<Sprite> Sprites
         {
@@ -29,7 +42,7 @@ namespace SnekTech.Core.Animation
             set => sprites = value;
         }
 
-        public List<float> FrameDurations
+        public List<int> FrameDurations
         {
             get => frameDurations;
             set => frameDurations = value;

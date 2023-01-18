@@ -12,7 +12,7 @@ namespace SnekTech.Grid
         public event Action<IGrid, ILogicCell> OnBombReveal;
         public event Action<IGrid, ILogicCell> OnCellReveal;
         public event Action<IGrid, ILogicCell> OnCellFlagOperateComplete;
-        public event Action<IGrid> OnGridClear; // bug: sometimes can't win a level
+        public event Action<IGrid> OnGridClear;
         public event Action<ILogicCell> OnCellRecursiveRevealComplete;
 
         public void InvokeOnGridInitComplete(IGrid grid) => OnGridInitComplete?.Invoke(grid);

@@ -1,8 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <ui:VisualElement name="root" style="justify-content: space-between; height: 88px; max-width: 400px;">
         <ui:VisualElement name="outputConfig" style="justify-content: space-around;">
-            <uie:ObjectField label="Aseprite JSON" allow-scene-objects="false" type="UnityEngine.TextAsset, UnityEngine.CoreModule" name="jsonAsset" />
             <uie:ObjectField label="Sprite Sheet" name="spriteSheet" type="UnityEngine.Texture2D, UnityEngine.CoreModule" />
+            <uie:ObjectField label="Aseprite JSON" allow-scene-objects="false" type="UnityEngine.TextAsset, UnityEngine.CoreModule" name="jsonAsset" />
         </ui:VisualElement>
         <ui:VisualElement style="flex-direction: row; justify-content: space-between;">
             <ui:VisualElement name="controllerFields" style="flex-direction: column; flex-grow: 1;">

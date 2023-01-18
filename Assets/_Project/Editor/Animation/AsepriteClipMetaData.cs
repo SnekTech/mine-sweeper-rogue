@@ -1,19 +1,52 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
+using Newtonsoft.Json;
 
 namespace SnekTech.Editor.Animation
 {
-    public class AsepriteClipMetaData
+    public class AsepriteJsonData
     {
-        public readonly string Name;
-        public readonly List<float> FrameDurations;
-        public readonly int StartIndex;
+        [JsonProperty("frames")]
+        public List<FrameData> Frames { get; set; }
 
-        public AsepriteClipMetaData(string name, List<float> frameDurations, int startIndex)
-        {
-            Name = name;
-            FrameDurations = frameDurations;
-            StartIndex = startIndex;
-        }
+        [JsonProperty("meta")]
+        public Meta Meta { get; set; }
+    }
+
+    public class FrameData
+    {
+        [JsonProperty("filename")]
+        public string Filename { get; set; }
+        
+        [JsonProperty("duration")]
+        public int Duration { get; set; }
+    }
+
+    public class Meta
+    {
+        [JsonProperty("app")]
+        public string App { get; set; }
+
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
+        [JsonProperty("frameTags")]
+        public List<FrameTag> Tags { get; set; }
+    }
+
+    public class FrameTag
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("from")]
+        public int FromIndex { get; set; }
+
+        [JsonProperty("to")]
+        public int ToIndex { get; set; }
+
+        [JsonProperty("direction")]
+        public string Direction { get; set; }
+
+        public int Length => ToIndex - FromIndex + 1;
     }
 }

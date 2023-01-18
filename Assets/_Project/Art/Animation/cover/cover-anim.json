@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "cover-anim (covered-idle) 0.aseprite",
+    "filename": "#covered-idle-loop 0",
     "frame": { "x": 0, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -9,7 +9,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 1.aseprite",
+    "filename": "#covered-idle-loop 1",
     "frame": { "x": 16, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -18,7 +18,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 2.aseprite",
+    "filename": "#covered-idle-loop 2",
     "frame": { "x": 32, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -27,7 +27,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 3.aseprite",
+    "filename": "#covered-idle-loop 3",
     "frame": { "x": 48, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -36,7 +36,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 4.aseprite",
+    "filename": "#covered-idle-loop 4",
     "frame": { "x": 64, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -45,7 +45,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 5.aseprite",
+    "filename": "#covered-idle-loop 5",
     "frame": { "x": 80, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -54,7 +54,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 6.aseprite",
+    "filename": "#covered-idle-loop 6",
     "frame": { "x": 96, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -63,7 +63,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 7.aseprite",
+    "filename": "#covered-idle-loop 7",
     "frame": { "x": 112, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -72,7 +72,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 8.aseprite",
+    "filename": "#covered-idle-loop 8",
     "frame": { "x": 128, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -81,7 +81,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 9.aseprite",
+    "filename": "#covered-idle-loop 9",
     "frame": { "x": 144, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -90,7 +90,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 10.aseprite",
+    "filename": "#covered-idle-loop 10",
     "frame": { "x": 160, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -99,7 +99,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 11.aseprite",
+    "filename": "#covered-idle-loop 11",
     "frame": { "x": 176, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -108,7 +108,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 12.aseprite",
+    "filename": "#covered-idle-loop 12",
     "frame": { "x": 192, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -117,7 +117,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 13.aseprite",
+    "filename": "#covered-idle-loop 13",
     "frame": { "x": 208, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -126,7 +126,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 14.aseprite",
+    "filename": "#covered-idle-loop 14",
     "frame": { "x": 224, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -135,7 +135,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 15.aseprite",
+    "filename": "#covered-idle-loop 15",
     "frame": { "x": 240, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -144,7 +144,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 16.aseprite",
+    "filename": "#covered-idle-loop 16",
     "frame": { "x": 256, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -153,7 +153,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 17.aseprite",
+    "filename": "#covered-idle-loop 17",
     "frame": { "x": 272, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -162,7 +162,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 18.aseprite",
+    "filename": "#covered-idle-loop 18",
     "frame": { "x": 288, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -171,7 +171,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 19.aseprite",
+    "filename": "#covered-idle-loop 19",
     "frame": { "x": 304, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -180,7 +180,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 20.aseprite",
+    "filename": "#covered-idle-loop 20",
     "frame": { "x": 320, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -189,7 +189,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 21.aseprite",
+    "filename": "#covered-idle-loop 21",
     "frame": { "x": 336, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -198,7 +198,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 22.aseprite",
+    "filename": "#covered-idle-loop 22",
     "frame": { "x": 352, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -207,7 +207,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 23.aseprite",
+    "filename": "#covered-idle-loop 23",
     "frame": { "x": 368, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -216,7 +216,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 24.aseprite",
+    "filename": "#covered-idle-loop 24",
     "frame": { "x": 384, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -225,7 +225,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 25.aseprite",
+    "filename": "#covered-idle-loop 25",
     "frame": { "x": 400, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -234,7 +234,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 26.aseprite",
+    "filename": "#covered-idle-loop 26",
     "frame": { "x": 416, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -243,7 +243,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 27.aseprite",
+    "filename": "#covered-idle-loop 27",
     "frame": { "x": 432, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -252,7 +252,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 28.aseprite",
+    "filename": "#covered-idle-loop 28",
     "frame": { "x": 448, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -261,7 +261,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 29.aseprite",
+    "filename": "#covered-idle-loop 29",
     "frame": { "x": 464, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -270,7 +270,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 30.aseprite",
+    "filename": "#covered-idle-loop 30",
     "frame": { "x": 480, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -279,7 +279,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 31.aseprite",
+    "filename": "#covered-idle-loop 31",
     "frame": { "x": 496, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -288,7 +288,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 32.aseprite",
+    "filename": "#covered-idle-loop 32",
     "frame": { "x": 512, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -297,7 +297,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 33.aseprite",
+    "filename": "#covered-idle-loop 33",
     "frame": { "x": 528, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -306,7 +306,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 34.aseprite",
+    "filename": "#covered-idle-loop 34",
     "frame": { "x": 544, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -315,7 +315,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 35.aseprite",
+    "filename": "#covered-idle-loop 35",
     "frame": { "x": 560, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -324,7 +324,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 36.aseprite",
+    "filename": "#covered-idle-loop 36",
     "frame": { "x": 576, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -333,7 +333,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 37.aseprite",
+    "filename": "#covered-idle-loop 37",
     "frame": { "x": 592, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -342,7 +342,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 38.aseprite",
+    "filename": "#covered-idle-loop 38",
     "frame": { "x": 608, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -351,7 +351,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 39.aseprite",
+    "filename": "#covered-idle-loop 39",
     "frame": { "x": 624, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -360,7 +360,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 40.aseprite",
+    "filename": "#covered-idle-loop 40",
     "frame": { "x": 640, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -369,7 +369,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 41.aseprite",
+    "filename": "#covered-idle-loop 41",
     "frame": { "x": 656, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -378,7 +378,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 42.aseprite",
+    "filename": "#covered-idle-loop 42",
     "frame": { "x": 672, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -387,7 +387,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 43.aseprite",
+    "filename": "#covered-idle-loop 43",
     "frame": { "x": 688, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -396,7 +396,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 44.aseprite",
+    "filename": "#covered-idle-loop 44",
     "frame": { "x": 704, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -405,7 +405,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 45.aseprite",
+    "filename": "#covered-idle-loop 45",
     "frame": { "x": 720, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -414,7 +414,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 46.aseprite",
+    "filename": "#covered-idle-loop 46",
     "frame": { "x": 736, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -423,7 +423,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 47.aseprite",
+    "filename": "#covered-idle-loop 47",
     "frame": { "x": 752, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -432,7 +432,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 48.aseprite",
+    "filename": "#covered-idle-loop 48",
     "frame": { "x": 768, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -441,7 +441,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 49.aseprite",
+    "filename": "#covered-idle-loop 49",
     "frame": { "x": 784, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -450,7 +450,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 50.aseprite",
+    "filename": "#covered-idle-loop 50",
     "frame": { "x": 800, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -459,7 +459,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 51.aseprite",
+    "filename": "#covered-idle-loop 51",
     "frame": { "x": 816, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -468,7 +468,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 52.aseprite",
+    "filename": "#covered-idle-loop 52",
     "frame": { "x": 832, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -477,7 +477,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 53.aseprite",
+    "filename": "#covered-idle-loop 53",
     "frame": { "x": 848, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -486,7 +486,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 54.aseprite",
+    "filename": "#covered-idle-loop 54",
     "frame": { "x": 864, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -495,7 +495,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 55.aseprite",
+    "filename": "#covered-idle-loop 55",
     "frame": { "x": 880, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -504,7 +504,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 56.aseprite",
+    "filename": "#covered-idle-loop 56",
     "frame": { "x": 896, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -513,7 +513,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 57.aseprite",
+    "filename": "#covered-idle-loop 57",
     "frame": { "x": 912, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -522,7 +522,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 58.aseprite",
+    "filename": "#covered-idle-loop 58",
     "frame": { "x": 928, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -531,7 +531,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (covered-idle) 59.aseprite",
+    "filename": "#covered-idle-loop 59",
     "frame": { "x": 944, "y": 0, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -540,7 +540,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 0.aseprite",
+    "filename": "#reveal 0",
     "frame": { "x": 0, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -549,7 +549,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 1.aseprite",
+    "filename": "#reveal 1",
     "frame": { "x": 16, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -558,7 +558,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 2.aseprite",
+    "filename": "#reveal 2",
     "frame": { "x": 32, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -567,7 +567,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 3.aseprite",
+    "filename": "#reveal 3",
     "frame": { "x": 48, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -576,7 +576,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 4.aseprite",
+    "filename": "#reveal 4",
     "frame": { "x": 64, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -585,7 +585,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 5.aseprite",
+    "filename": "#reveal 5",
     "frame": { "x": 80, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -594,7 +594,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 6.aseprite",
+    "filename": "#reveal 6",
     "frame": { "x": 96, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -603,7 +603,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 7.aseprite",
+    "filename": "#reveal 7",
     "frame": { "x": 112, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -612,7 +612,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 8.aseprite",
+    "filename": "#reveal 8",
     "frame": { "x": 128, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -621,7 +621,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 9.aseprite",
+    "filename": "#reveal 9",
     "frame": { "x": 144, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -630,7 +630,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 10.aseprite",
+    "filename": "#reveal 10",
     "frame": { "x": 160, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -639,7 +639,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 11.aseprite",
+    "filename": "#reveal 11",
     "frame": { "x": 176, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -648,7 +648,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 12.aseprite",
+    "filename": "#reveal 12",
     "frame": { "x": 192, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -657,7 +657,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 13.aseprite",
+    "filename": "#reveal 13",
     "frame": { "x": 208, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -666,7 +666,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 14.aseprite",
+    "filename": "#reveal 14",
     "frame": { "x": 224, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -675,7 +675,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 15.aseprite",
+    "filename": "#reveal 15",
     "frame": { "x": 240, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -684,7 +684,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 16.aseprite",
+    "filename": "#reveal 16",
     "frame": { "x": 256, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -693,7 +693,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 17.aseprite",
+    "filename": "#reveal 17",
     "frame": { "x": 272, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -702,7 +702,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 18.aseprite",
+    "filename": "#reveal 18",
     "frame": { "x": 288, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -711,7 +711,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 19.aseprite",
+    "filename": "#reveal 19",
     "frame": { "x": 304, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -720,7 +720,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 20.aseprite",
+    "filename": "#reveal 20",
     "frame": { "x": 320, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -729,7 +729,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 21.aseprite",
+    "filename": "#reveal 21",
     "frame": { "x": 336, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -738,7 +738,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 22.aseprite",
+    "filename": "#reveal 22",
     "frame": { "x": 352, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -747,7 +747,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 23.aseprite",
+    "filename": "#reveal 23",
     "frame": { "x": 368, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -756,7 +756,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 24.aseprite",
+    "filename": "#reveal 24",
     "frame": { "x": 384, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -765,7 +765,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 25.aseprite",
+    "filename": "#reveal 25",
     "frame": { "x": 400, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -774,7 +774,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 26.aseprite",
+    "filename": "#reveal 26",
     "frame": { "x": 416, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -783,7 +783,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 27.aseprite",
+    "filename": "#reveal 27",
     "frame": { "x": 432, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -792,7 +792,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 28.aseprite",
+    "filename": "#reveal 28",
     "frame": { "x": 448, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -801,7 +801,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 29.aseprite",
+    "filename": "#reveal 29",
     "frame": { "x": 464, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -810,7 +810,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 30.aseprite",
+    "filename": "#reveal 30",
     "frame": { "x": 480, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -819,7 +819,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 31.aseprite",
+    "filename": "#reveal 31",
     "frame": { "x": 496, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -828,7 +828,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 32.aseprite",
+    "filename": "#reveal 32",
     "frame": { "x": 512, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -837,7 +837,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 33.aseprite",
+    "filename": "#reveal 33",
     "frame": { "x": 528, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -846,7 +846,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 34.aseprite",
+    "filename": "#reveal 34",
     "frame": { "x": 544, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -855,7 +855,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 35.aseprite",
+    "filename": "#reveal 35",
     "frame": { "x": 560, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -864,7 +864,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (reveal) 36.aseprite",
+    "filename": "#reveal 36",
     "frame": { "x": 576, "y": 16, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -873,7 +873,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 12.aseprite",
+    "filename": "#put-cover 0",
     "frame": { "x": 0, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -882,7 +882,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 13.aseprite",
+    "filename": "#put-cover 1",
     "frame": { "x": 16, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -891,7 +891,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 14.aseprite",
+    "filename": "#put-cover 2",
     "frame": { "x": 32, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -900,7 +900,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 15.aseprite",
+    "filename": "#put-cover 3",
     "frame": { "x": 48, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -909,7 +909,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 16.aseprite",
+    "filename": "#put-cover 4",
     "frame": { "x": 64, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -918,7 +918,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 17.aseprite",
+    "filename": "#put-cover 5",
     "frame": { "x": 80, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -927,7 +927,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 18.aseprite",
+    "filename": "#put-cover 6",
     "frame": { "x": 96, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -936,7 +936,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 19.aseprite",
+    "filename": "#put-cover 7",
     "frame": { "x": 112, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -945,7 +945,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 20.aseprite",
+    "filename": "#put-cover 8",
     "frame": { "x": 128, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -954,7 +954,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 21.aseprite",
+    "filename": "#put-cover 9",
     "frame": { "x": 144, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -963,7 +963,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 22.aseprite",
+    "filename": "#put-cover 10",
     "frame": { "x": 160, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -972,7 +972,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 23.aseprite",
+    "filename": "#put-cover 11",
     "frame": { "x": 176, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -981,7 +981,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 24.aseprite",
+    "filename": "#put-cover 12",
     "frame": { "x": 192, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -990,7 +990,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 25.aseprite",
+    "filename": "#put-cover 13",
     "frame": { "x": 208, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -999,7 +999,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 26.aseprite",
+    "filename": "#put-cover 14",
     "frame": { "x": 224, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1008,7 +1008,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 27.aseprite",
+    "filename": "#put-cover 15",
     "frame": { "x": 240, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1017,7 +1017,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 28.aseprite",
+    "filename": "#put-cover 16",
     "frame": { "x": 256, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1026,7 +1026,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 29.aseprite",
+    "filename": "#put-cover 17",
     "frame": { "x": 272, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1035,7 +1035,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 30.aseprite",
+    "filename": "#put-cover 18",
     "frame": { "x": 288, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1044,7 +1044,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 31.aseprite",
+    "filename": "#put-cover 19",
     "frame": { "x": 304, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1053,7 +1053,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 32.aseprite",
+    "filename": "#put-cover 20",
     "frame": { "x": 320, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1062,7 +1062,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 33.aseprite",
+    "filename": "#put-cover 21",
     "frame": { "x": 336, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1071,7 +1071,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 34.aseprite",
+    "filename": "#put-cover 22",
     "frame": { "x": 352, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1080,7 +1080,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 35.aseprite",
+    "filename": "#put-cover 23",
     "frame": { "x": 368, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1089,7 +1089,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 36.aseprite",
+    "filename": "#put-cover 24",
     "frame": { "x": 384, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1098,7 +1098,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 37.aseprite",
+    "filename": "#put-cover 25",
     "frame": { "x": 400, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1107,7 +1107,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 38.aseprite",
+    "filename": "#put-cover 26",
     "frame": { "x": 416, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1116,7 +1116,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 39.aseprite",
+    "filename": "#put-cover 27",
     "frame": { "x": 432, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1125,7 +1125,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 40.aseprite",
+    "filename": "#put-cover 28",
     "frame": { "x": 448, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1134,7 +1134,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 41.aseprite",
+    "filename": "#put-cover 29",
     "frame": { "x": 464, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1143,7 +1143,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 42.aseprite",
+    "filename": "#put-cover 30",
     "frame": { "x": 480, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1152,7 +1152,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 43.aseprite",
+    "filename": "#put-cover 31",
     "frame": { "x": 496, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1161,7 +1161,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 44.aseprite",
+    "filename": "#put-cover 32",
     "frame": { "x": 512, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1170,7 +1170,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 45.aseprite",
+    "filename": "#put-cover 33",
     "frame": { "x": 528, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1179,7 +1179,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 46.aseprite",
+    "filename": "#put-cover 34",
     "frame": { "x": 544, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1188,7 +1188,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 47.aseprite",
+    "filename": "#put-cover 35",
     "frame": { "x": 560, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1197,7 +1197,7 @@
     "duration": 16
    },
    {
-    "filename": "cover-anim (put-cover) 48.aseprite",
+    "filename": "#put-cover 36",
     "frame": { "x": 576, "y": 32, "w": 16, "h": 16 },
     "rotated": false,
     "trimmed": false,
@@ -1209,13 +1209,14 @@
  "meta": {
   "app": "https://www.aseprite.org/",
   "version": "1.2.40-x64",
+  "image": "cover-anim-sheet.png",
   "format": "RGBA8888",
   "size": { "w": 960, "h": 48 },
   "scale": "1",
-  "layers": [
-   { "name": "covered-idle", "opacity": 255, "blendMode": "normal" },
-   { "name": "reveal", "opacity": 255, "blendMode": "normal" },
-   { "name": "put-cover", "opacity": 255, "blendMode": "normal" }
+  "frameTags": [
+   { "name": "covered-idle-loop", "from": 0, "to": 59, "direction": "forward" },
+   { "name": "reveal", "from": 60, "to": 96, "direction": "forward" },
+   { "name": "put-cover", "from": 97, "to": 133, "direction": "forward" }
   ]
  }
 }

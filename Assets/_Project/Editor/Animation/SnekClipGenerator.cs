@@ -126,25 +126,27 @@ namespace SnekTech.Editor.Animation
             AssetDatabase.CreateFolder(parentFolderToSave, clipDataSaveFolderName);
 
 
-            var clipMetaDataList = AsepriteJsonHandler.ExtractClipMetaData(JsonAsset.text);
-            var clipList = new List<SnekAnimationClip>();
-            foreach (var clipMetaData in clipMetaDataList)
+            var asepriteJsonData = AsepriteJsonHandler.ExtractClipMetaData(JsonAsset.text);
+            var clipAssets = AsepriteJsonHandler.GetSnekClipsFromAsepriteJson(asepriteJsonData, SpriteSheetAssetPath);
+          
+            foreach (var clipAsset in clipAssets)
             {
-                var newClip = ScriptableObject.CreateInstance<SnekAnimationClip>();
-                newClip.FrameDurations = clipMetaData.FrameDurations;
-                SetClipSprites(newClip, clipMetaData.StartIndex, newClip.FrameDurations.Count);
-
-                clipList.Add(newClip);
-                AssetDatabase.CreateAsset(newClip, $"{clipSaveFolderPath}/{clipMetaData.Name}.asset");
+                AssetDatabase.CreateAsset(clipAsset, $"{clipSaveFolderPath}/{clipAsset.AnimName}.asset");
             }
 
-            return clipList;
+            return clipAssets;
         }
 
         private ScriptableObject GenerateClipDataHolderAsset(List<SnekAnimationClip> clipDataList)
         {
             if (clipDataList == null)
             {
+                return null;
+            }
+
+            if (_currentHolderType == null)
+            {
+                UnityEngine.Debug.LogWarning("holderType need to refresh, select another value in dropdown and select back");
                 return null;
             }
 
@@ -196,12 +198,6 @@ namespace SnekTech.Editor.Animation
 
                 serializedObject.ApplyModifiedProperties();
             }
-        }
-
-        private void SetClipSprites(SnekAnimationClip clip, int startIndex, int length)
-        {
-            var spriteExtractor = new SpriteExtractorFromSpriteSheet(SpriteSheetAssetPath);
-            clip.Sprites = spriteExtractor.GetSpritesWithInRange(startIndex, length);
         }
     }
 }
