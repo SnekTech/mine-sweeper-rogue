@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FlagAnimData
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 11400000, guid: 65cbc871f907b5045ab35668996c7277, type: 2}
   - {fileID: 11400000, guid: 1814f71c73e41f54881e4af3acfc651f, type: 2}
+  - {fileID: 11400000, guid: 39d75888f6e1ddd49ab7458aeb76c415, type: 2}
+  - {fileID: 11400000, guid: 65cbc871f907b5045ab35668996c7277, type: 2}
   - {fileID: 11400000, guid: ccc56291be59715408d788c473e99c5a, type: 2}
   floatClipIndex: 0
   hideClipIndex: 1
