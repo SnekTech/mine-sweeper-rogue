@@ -193,6 +193,69 @@ classDiagram
 ```
 
 ```mermaid
+%%{init: {'theme':'dark'}}%%
+classDiagram
+    class Inventory {
+        Item[] items
+    }
+    
+    class ItemData {
+        Sprite icon
+    }
+    
+    class Item {
+        ItemData data
+        Effect effect
+        OnAdd() void
+        OnRemove() void
+    }
+    ItemData ..* Item
+    class IEffect {
+        <<interface>>
+        trigger()
+    }
+    IEffect ..* Item
+    
+    Item ..* Inventory
+    Inventory ..* IPlayer
+    
+    class IPlayer {
+        <<interface>>
+        PlayerData baseData
+        Inventory inventory
+        IWeapon weapon
+        PlayerAbilityHolder abilityHolder
+    }
+    
+    class Life {
+        int health
+        int armour
+    }
+    Life ..* PlayerData
+    
+    class PlayerAbilityHolder {
+        IMoveAbility[] moveAbilities
+        IClickAbility[] clickAbilities
+    }
+    PlayerAbilityHolder ..* IPlayer
+    
+    class PlayerData {
+        Life life
+        IDataAdder[] _adders
+        PlayerData GetComputed()
+    }
+    class IDataAdder {
+        void Add(playerData)
+    }
+    IDataAdder ..* PlayerData
+    PlayerData ..* IPlayer
+    
+    class IGrid {
+        
+    }
+```
+
+```mermaid
 %%{init: {'theme':'neutral'}}%%
 flowchart
     s(开始)
@@ -202,4 +265,24 @@ flowchart
     step2 --> step3["读取clip的名称和总长度（帧数）并生成ClipData数据对象"]
     step3 --> step4[在动画目标GameObject上使用ClipData对象]
     step4 --> e
+```
+
+保存载入系统流程图
+
+```mermaid
+%%{init: {'theme':'dark'}}%%
+flowchart
+    start(Start) --> menu(load main menu)
+    menu --> s1{user choose continue ?}
+    s1 -->|No| s2[new game]
+    s2 --> s4[creat a new save file]
+    s4 --> s5[save the new file onto disk]
+    s5 --> s3
+    s1 -->|Yes| s3[load the save file from disk]
+    
+    subgraph load Game
+        s3 --> s6[populate all IPersistentDataHolder instances with the save data]
+        s6 --> s7[leave the main menu scene to the game scene]
+        s7 --> s8(end)
+    end
 ```
