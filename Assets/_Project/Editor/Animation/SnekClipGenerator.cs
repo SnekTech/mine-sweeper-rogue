@@ -33,8 +33,6 @@ namespace SnekTech.Editor.Animation
 
         #endregion
 
-        private Type _currentHolderType;
-
         #region getters for convience
 
         private TextAsset JsonAsset => _jsonAssetField.value as TextAsset;
@@ -81,10 +79,6 @@ namespace SnekTech.Editor.Animation
                 var newJsonAsset = (TextAsset) changeEvent.newValue;
                 _clipDataFolderNameField.value = $"{newJsonAsset.name}-ClipData";
             }
-
-            void HandleHolderTypeChange(Type type) => _currentHolderType = type;
-            ClipHolderTypeDropdown.OnTypeValueChange -= HandleHolderTypeChange;
-            ClipHolderTypeDropdown.OnTypeValueChange += HandleHolderTypeChange;
         }
 
         private void GenerateAssets()
@@ -144,20 +138,22 @@ namespace SnekTech.Editor.Animation
                 return null;
             }
 
-            if (_currentHolderType == null)
+            var currentHolderType = ClipHolderTypeDropdown.CurrentType;
+
+            if (currentHolderType == null)
             {
                 UnityEngine.Debug.LogWarning("holderType need to refresh, select another value in dropdown and select back");
                 return null;
             }
 
             string saveParentFolderPath = JsonAssetParentFolder;
-            string clipDataHolderSavePath = $"{saveParentFolderPath}/{_currentHolderType.Name}.asset";
+            string clipDataHolderSavePath = $"{saveParentFolderPath}/{currentHolderType.Name}.asset";
             if (FileUtils.ContainsAssetAtPath<Object>(clipDataHolderSavePath))
             {
                 AssetDatabase.DeleteAsset(clipDataHolderSavePath);
             }
 
-            var clipDataHolderAsset = ScriptableObject.CreateInstance(_currentHolderType);
+            var clipDataHolderAsset = ScriptableObject.CreateInstance(currentHolderType);
 
             if (clipDataHolderAsset == null)
             {

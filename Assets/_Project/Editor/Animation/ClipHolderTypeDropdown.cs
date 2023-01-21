@@ -11,12 +11,11 @@ namespace SnekTech.Editor.Animation
 {
     public class ClipHolderTypeDropdown : VisualElement
     {
-        public static event Action<Type> OnTypeValueChange;
-        
         private const string ClipsHolderTypeLabel = "Clips Holder Type";
 
         private static DropdownField s_dropdownField;
-        private static readonly Dictionary<string, Type> holderTypeNameToType = new Dictionary<string, Type>();
+        private static readonly Dictionary<string, Type> holderTypeByTypeName = new Dictionary<string, Type>();
+        public static Type CurrentType => holderTypeByTypeName[s_dropdownField.value];
         
         public new class UxmlFactory : UxmlFactory<ClipHolderTypeDropdown>
         {
@@ -48,7 +47,7 @@ namespace SnekTech.Editor.Animation
 
             foreach (var type in holderTypes)
             {
-                holderTypeNameToType[type.Name] = type;
+                holderTypeByTypeName[type.Name] = type;
             }
             
             SetupHolderTypeDropdown();
@@ -56,26 +55,16 @@ namespace SnekTech.Editor.Animation
 
         private static void SetupHolderTypeDropdown()
         {
-            var kvPairs = holderTypeNameToType.ToList();
-            s_dropdownField.choices = holderTypeNameToType.Keys.ToList();
+            var kvPairs = holderTypeByTypeName.ToList();
+            s_dropdownField.choices = holderTypeByTypeName.Keys.ToList();
 
             if (kvPairs.Count > 0)
             {
                 var firstPair = kvPairs[0];
                 s_dropdownField.value = firstPair.Key;
-                OnTypeValueChange?.Invoke(firstPair.Value);
                 
                 s_dropdownField.SendEvent(new ChangeEvent<Type>());
             }
-            
-            s_dropdownField.RegisterValueChangedCallback(HandleHolderTypeDropdownChanged);
-        }
-
-        private static void HandleHolderTypeDropdownChanged(ChangeEvent<string> evt)
-        {
-            string typeName = evt.newValue;
-            var holderType = holderTypeNameToType[typeName];
-            OnTypeValueChange?.Invoke(holderType);
         }
     }
 }

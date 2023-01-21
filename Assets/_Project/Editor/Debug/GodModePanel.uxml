@@ -3,12 +3,6 @@
     <ui:Foldout name="sceneSwitchFoldout" text="Scenes" view-data-key="scenes-foldout">
         <SnekTech.Editor.Debug.Scenes.SceneChangePanel />
     </ui:Foldout>
-    <ui:Foldout text="Triggers" view-data-key="triggers-foldout">
-        <SnekTech.Editor.Debug.Triggers.TriggersPanel />
-    </ui:Foldout>
-    <ui:Foldout text="Reset Game" view-data-key="reset-game">
-        <SnekTech.Editor.Debug.ResetGamePanel />
-    </ui:Foldout>
     <ui:Foldout text="SnekClip Generator&#10;" view-data-key="generate-clipdata">
         <SnekTech.Editor.Animation.SnekClipGenerator />
     </ui:Foldout>
