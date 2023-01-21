@@ -1,5 +1,6 @@
 ﻿using System;
-using SnekTech.Player;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.UI;
 using UnityEngine;
 
@@ -20,11 +21,11 @@ namespace SnekTech.Core.GameEvent
         public Sprite Icon => icon;
         public string Description => description;
 
-        public void Trigger(PlayerState playerState)
+        public void Trigger(Player player)
         {
-            OnTrigger(playerState);
+            OnTrigger(player);
         }
 
-        protected abstract void OnTrigger(PlayerState playerState);
+        protected abstract void OnTrigger(Player player);
     }
 }

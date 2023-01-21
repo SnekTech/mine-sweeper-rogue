@@ -189,7 +189,7 @@ MonoBehaviour:
   inputEventManager: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
-  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
   uiStateManager: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
   mainCamera: {fileID: 1997230523}
 --- !u!4 &58783577
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 425891080}
   - component: {fileID: 425891079}
   m_Layer: 5
-  m_Name: Effects Panel
+  m_Name: Abilities Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1333,8 +1333,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 441122160}
   armourLabel: {fileID: 247280843}
-  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
-  effectsPanel: {fileID: 425891079}
+  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
+  playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
+  abilitiesPanel: {fileID: 425891079}
 --- !u!114 &655018824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,7 +1547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6b6f95e44e5a842840411ab1a3eaa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 11400000, guid: 438726502eade1e478b2880dd7bfe1b4, type: 2}
+  playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
   itemSlotPrefab: {fileID: 2854459150749684233, guid: 464898b72e3910a459ef47784b34a65f, type: 3}
   gridParentTransform: {fileID: 994109683}
 --- !u!114 &871134009
@@ -2223,7 +2224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
-  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
+  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
   dataPersistenceManager: {fileID: 11400000, guid: 2dc096a99b8076e4b8663f6d96b75a40, type: 2}
   currentRecordHolder: {fileID: 11400000, guid: 24a333e8b5cd0f34cb7dcaf4c8562edd, type: 2}
   grid: {fileID: 58783576}

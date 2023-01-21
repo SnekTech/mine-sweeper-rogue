@@ -1,4 +1,4 @@
-using SnekTech.InventorySystem;
+using SnekTech.GamePlay.InventorySystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

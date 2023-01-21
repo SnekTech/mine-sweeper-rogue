@@ -4,8 +4,8 @@ using Cysharp.Threading.Tasks;
 using SnekTech.Core.GameModeSystem;
 using SnekTech.Core.History;
 using SnekTech.DataPersistence;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Grid;
-using SnekTech.Player;
 using SnekTech.SceneManagement;
 using SnekTech.UI.Modal;
 using UnityEngine;
@@ -19,10 +19,16 @@ namespace SnekTech.Core
         [Header("DI")]
         [SerializeField]
         private GridEventManager gridEventManager;
+        
         [SerializeField]
         private MySceneManager mySceneManager;
+        
         [SerializeField]
-        private PlayerState playerState;
+        private PlayerEventChannel playerEventChannel;
+
+        [SerializeField]
+        private PlayerHolder playerHolder;
+        
         [SerializeField]
         private DataPersistenceManager dataPersistenceManager;
         [SerializeField]
@@ -65,7 +71,7 @@ namespace SnekTech.Core
 
         private void Awake()
         {
-            var classicMode = new ClassicMode(gridEventManager, classicModeInfo, playerState);
+            var classicMode = new ClassicMode(gridEventManager, classicModeInfo, playerEventChannel);
             var countDownMode = new WithCountDown(countDownModeInfo, classicMode, WithCountDown.DefaultDuration, countDownText);
             
             // todo: maybe use reflection to to these?
@@ -135,7 +141,7 @@ namespace SnekTech.Core
             await UniTask.WhenAll(_afterLevelCompletedTasks.Select(task => task.FinishAsync()));
             
             CurrentLevelIndex++;
-            playerState.ClearAllEffects();
+            playerHolder.Player.ClearAllAbilities();
             dataPersistenceManager.SaveGame();
             
             

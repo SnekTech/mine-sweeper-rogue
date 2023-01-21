@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using SnekTech.Core;
-using SnekTech.InventorySystem;
+using SnekTech.GamePlay.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.UI.Modal

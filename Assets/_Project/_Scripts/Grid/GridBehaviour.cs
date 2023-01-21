@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.GridCell;
-using SnekTech.Player;
 using SnekTech.Roguelike;
 using SnekTech.UI;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace SnekTech.Grid
         private GridEventManager gridEventManager;
 
         [SerializeField]
-        private PlayerState playerState;
+        private PlayerHolder playerHolder;
 
         [SerializeField]
         private UIStateManager uiStateManager;
@@ -42,6 +43,7 @@ namespace SnekTech.Grid
 
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
         private Sprite BombSprite => cellSprites.bombSprite;
+        private Player Player => playerHolder.Player;
 
         public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
@@ -116,9 +118,9 @@ namespace SnekTech.Grid
                 return;
             }
             
-            playerState.TriggerAllClickEffects();
+            Player.UseClickAbilities();
 
-            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, playerState.SweepScope);
+            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, Player.SweepScope);
             var revealCellTasks = Enumerable
                 .Select(affectedCells, affectedCell => RevealCellAsync(CellIndexDict[affectedCell])).ToList();
 
@@ -323,7 +325,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, playerState.SweepScope);
+            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, Player.SweepScope);
             foreach (var cell in affectedCells)
             {
                 cell.SetHighlight(true);

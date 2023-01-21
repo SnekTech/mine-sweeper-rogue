@@ -1,5 +1,6 @@
 ﻿using SnekTech.Editor.Debug.Triggers;
-using SnekTech.Player;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.UI;
 using UnityEditor;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace SnekTech.Editor.Debug
         private VisualTreeAsset panelUxml;
 
         [SerializeField]
-        private PlayerState playerState;
+        private PlayerHolder playerHolder;
 
         [SerializeField]
         private TriggersPanelData triggersPanelData;
@@ -32,7 +33,7 @@ namespace SnekTech.Editor.Debug
         {
             panelUxml.CloneTree(rootVisualElement);
 
-            triggersPanelData.Init(playerState);
+            triggersPanelData.Init(playerHolder.Player);
             var triggersPanel = rootVisualElement.Q<TriggersPanel>();
             triggersPanel.Init(triggersPanelData);
 

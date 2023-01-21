@@ -1,4 +1,4 @@
-using SnekTech.InventorySystem;
+using SnekTech.GamePlay.InventorySystem;
 using SnekTech.UI.Tooltip;
 using TMPro;
 using UnityEngine;
@@ -22,11 +22,11 @@ namespace SnekTech.UI
             _tooltipTrigger = GetComponent<TooltipTrigger>();
         }
 
-        public void SetContent(InventoryItem item)
+        public void SetContent(InventoryItem inventoryItem)
         {
-            ItemData itemData = item.ItemData;
+            ItemData itemData = inventoryItem.ItemData;
             
-            stackSize.text = item.StackSize.ToString();
+            stackSize.text = inventoryItem.StackSize.ToString();
             icon.sprite = itemData.Icon;
             
             SetTooltipContent(itemData.Label, itemData.Description);

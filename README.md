@@ -221,7 +221,7 @@ classDiagram
     
     class IPlayer {
         <<interface>>
-        PlayerData baseData
+        PlayerStats baseStats
         Inventory inventory
         IWeapon weapon
         PlayerAbilityHolder abilityHolder
@@ -231,28 +231,58 @@ classDiagram
         int health
         int armour
     }
-    Life ..* PlayerData
+    Life ..* PlayerStats
     
     class PlayerAbilityHolder {
-        IMoveAbility[] moveAbilities
-        IClickAbility[] clickAbilities
+        IAbility[] moveAbilities
+        IAbility[] clickAbilities
     }
     PlayerAbilityHolder ..* IPlayer
     
-    class PlayerData {
+    class PlayerStats {
         Life life
-        IDataAdder[] _adders
-        PlayerData GetComputed()
+        IDataAccumulator[] _accumulators
+        PlayerStats GetComputed()
     }
-    class IDataAdder {
-        void Add(playerData)
+    class IDataAccumulator {
+        void Accumulate(playerData)
     }
-    IDataAdder ..* PlayerData
-    PlayerData ..* IPlayer
+    IDataAccumulator ..* PlayerStats
+    PlayerStats ..* IPlayer
     
     class IGrid {
         
     }
+```
+
+### Inventory System
+
+```mermaid
+%%{init: {'theme':'dark'}}%%
+classDiagram
+    class Inventory {
+        Item[] items
+    }
+    
+    class ItemDataSO {
+        Sprite icon
+    }
+    
+    class Item {
+        ItemDataSO data
+        IItemComponent[] components
+        OnAdd() void
+        OnRemove() void
+    }
+    class IItemComponent {
+        <<interface>>
+        OnAdd() void
+        OnRemove() void
+    }
+    
+    Item ..* Inventory
+    ItemDataSO ..* Item
+    IItemComponent ..* Item
 ```
 
 ```mermaid

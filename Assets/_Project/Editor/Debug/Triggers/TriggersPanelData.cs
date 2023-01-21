@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SnekTech.Player;
 using SnekTech.C;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.Editor.Debug.Triggers
@@ -45,16 +46,16 @@ namespace SnekTech.Editor.Debug.Triggers
 
         public Dictionary<string, Action<int>> fieldActionDict;
 
-        public void Init(PlayerState playerState)
+        public void Init(Player player)
         {
             fieldActionDict = new Dictionary<string, Action<int>>
             {
-                {nameof(damage), playerState.TakeDamage},
-                {nameof(addHealth), playerState.AddHealth},
-                {nameof(addArmour), playerState.AddArmour},
-                {nameof(damageOnArmour), playerState.TakeDamageOnArmour},
-                {nameof(damageOnHealth), playerState.TakeDamageOnHealth},
-                {nameof(addMaxHealth), playerState.AdjustMaxHealth},
+                {nameof(damage), player.TakeDamage},
+                {nameof(addHealth), player.AddHealth},
+                {nameof(addArmour), player.AddArmour},
+                {nameof(damageOnArmour), player.TakeDamageOnArmour},
+                {nameof(damageOnHealth), player.TakeDamageOnHealth},
+                {nameof(addMaxHealth), player.AddMaxHealth},
             };
         }
     }

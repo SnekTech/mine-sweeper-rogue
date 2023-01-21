@@ -1,5 +1,6 @@
 ﻿using System;
-using SnekTech.Player;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 
 namespace SnekTech.Core.GameModeSystem
 {
@@ -8,15 +9,15 @@ namespace SnekTech.Core.GameModeSystem
         public event Action<bool> OnLevelComplete;
 
         private readonly GameModeInfo _gameModeInfo;
-        private readonly PlayerState _playerState;
+        private readonly PlayerEventChannel _playerEventChannel;
 
         public GameModeInfo Info => _gameModeInfo;
-        public PlayerState PlayerState => _playerState;
+        public PlayerEventChannel PlayerEventChannel => _playerEventChannel;
 
-        protected GameMode(GameModeInfo gameModeInfo, PlayerState playerState)
+        protected GameMode(GameModeInfo gameModeInfo, PlayerEventChannel playerEventChannel)
         {
             _gameModeInfo = gameModeInfo;
-            _playerState = playerState;
+            _playerEventChannel = playerEventChannel;
         }
 
         public void Start()

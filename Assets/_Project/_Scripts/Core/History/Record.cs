@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SnekTech.Core.GameEvent;
-using SnekTech.InventorySystem;
+using SnekTech.GamePlay.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.Core.History

@@ -1,5 +1,6 @@
-﻿using SnekTech.Grid;
-using SnekTech.Player;
+﻿using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
+using SnekTech.Grid;
 
 namespace SnekTech.Core.GameModeSystem
 {
@@ -7,8 +8,8 @@ namespace SnekTech.Core.GameModeSystem
     {
         private readonly GridEventManager _gridEventManager;
 
-        public ClassicMode(GridEventManager gridEventManager, GameModeInfo gameModeInfo, PlayerState playerState)
-            : base(gameModeInfo, playerState)
+        public ClassicMode(GridEventManager gridEventManager, GameModeInfo gameModeInfo, PlayerEventChannel playerEventChannel)
+            : base(gameModeInfo, playerEventChannel)
         {
             _gridEventManager = gridEventManager;
         }
@@ -21,7 +22,7 @@ namespace SnekTech.Core.GameModeSystem
         protected override void OnStart()
         {
             _gridEventManager.OnGridClear += HandleOnGridClear;
-            PlayerState.HealthRanOut += OnPlayerHealthRanOut;
+            PlayerEventChannel.HealthRanOut += OnPlayerHealthRanOut;
         }
 
         private void OnPlayerHealthRanOut()
@@ -32,7 +33,7 @@ namespace SnekTech.Core.GameModeSystem
         protected override void OnStop()
         {
             _gridEventManager.OnGridClear -= HandleOnGridClear;
-            PlayerState.HealthRanOut -= OnPlayerHealthRanOut;
+            PlayerEventChannel.HealthRanOut -= OnPlayerHealthRanOut;
         }
     }
 }

@@ -44,6 +44,7 @@ namespace SnekTech.Editor.Animation
                     type.IsDefined(typeof(SnekClipHolderAttribute)) &&
                     type.IsSubclassOf(typeof(ScriptableObject)))
                 .ToList();
+            // todo: create an SO to store the type
 
             foreach (var type in holderTypes)
             {

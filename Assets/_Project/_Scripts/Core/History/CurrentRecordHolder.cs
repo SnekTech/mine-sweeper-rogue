@@ -1,7 +1,8 @@
 ﻿using System;
 using SnekTech.Core.GameEvent;
 using SnekTech.DataPersistence;
-using SnekTech.Player;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Roguelike;
 using UnityEngine;
 
@@ -18,17 +19,17 @@ namespace SnekTech.Core.History
         
         #region Record Saving Dependencies
 
-        private PlayerState _playerState;
-        private CurrentEventsHolder currentEventsHolder;
+        private Player _player;
+        private CurrentEventsHolder _currentEventsHolder;
         private GameHistory _history;
         private readonly IRandomGenerator _randomGenerator = RandomGenerator.Instance;
 
         #endregion
 
-        public void Init(PlayerState playerState, CurrentEventsHolder currentEventsHolder, GameHistory history)
+        public void Init(Player player, CurrentEventsHolder currentEventsHolder, GameHistory history)
         {
-            _playerState = playerState;
-            this.currentEventsHolder = currentEventsHolder;
+            _player = player;
+            _currentEventsHolder = currentEventsHolder;
             _history = history;
         }
 
@@ -37,8 +38,8 @@ namespace SnekTech.Core.History
             var newRecord = new Record
             {
                 CreatedAt = DateTime.UtcNow.Ticks,
-                Items = _playerState.Inventory.Items,
-                CellEvents = currentEventsHolder.CellEvents,
+                Items = _player.Inventory.Items,
+                CellEvents = _currentEventsHolder.CellEvents,
                 HasFailed = hasFailed,
                 Seed = _randomGenerator.Seed,
             };

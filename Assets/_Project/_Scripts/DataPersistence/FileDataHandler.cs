@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace SnekTech.DataPersistence
@@ -26,7 +27,7 @@ namespace SnekTech.DataPersistence
             {
                 try
                 {
-                    string dataToLoad = "";
+                    string dataToLoad;
                     using (var stream = new FileStream(FullPath, FileMode.Open))
                     {
                         using (var reader = new StreamReader(stream))
@@ -35,7 +36,7 @@ namespace SnekTech.DataPersistence
                         }
                     }
 
-                    loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+                    loadedData = JsonConvert.DeserializeObject<GameData>(dataToLoad);
                 }
                 catch (Exception e)
                 {
@@ -51,7 +52,7 @@ namespace SnekTech.DataPersistence
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(FullPath)!);
-                string dataToStore = JsonUtility.ToJson(data, true);
+                string dataToStore = JsonConvert.SerializeObject(data, Formatting.Indented);
 
                 using (var stream = new FileStream(FullPath, FileMode.Create))
                 {

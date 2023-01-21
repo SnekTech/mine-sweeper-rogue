@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using SnekTech.Core.GameEvent;
+using SnekTech.GamePlay.InventorySystem;
 using SnekTech.Grid;
-using SnekTech.InventorySystem;
 using UnityEditor.Animations;
 
 namespace SnekTech.Editor

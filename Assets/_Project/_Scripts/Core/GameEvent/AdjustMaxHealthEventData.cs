@@ -1,6 +1,7 @@
 ﻿using SnekTech.C;
-using SnekTech.Player;
-using SnekTech.Player.OneTimeEffect;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.OneTimeEffect;
+using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
@@ -15,10 +16,10 @@ namespace SnekTech.Core.GameEvent
 
         private IOneTimeEffect _adjustMaxHealthEffect;
 
-        protected override void OnTrigger(PlayerState playerState)
+        protected override void OnTrigger(Player player)
         {
             _adjustMaxHealthEffect = new AdjustMaxHealthEffect(amount);
-            _adjustMaxHealthEffect.Take(playerState);
+            _adjustMaxHealthEffect.Take(player);
         }
     }
 }

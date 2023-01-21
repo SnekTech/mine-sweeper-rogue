@@ -738,6 +738,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1214801354}
     m_Modifications:
+    - target: {fileID: 2048121283351070288, guid: 3677107efcdfc664ab744f23447f0e30, type: 3}
+      propertyPath: playerHolder
+      value: 
+      objectReference: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
     - target: {fileID: 2048121283351070300, guid: 3677107efcdfc664ab744f23447f0e30, type: 3}
       propertyPath: m_ChildControlWidth
       value: 1

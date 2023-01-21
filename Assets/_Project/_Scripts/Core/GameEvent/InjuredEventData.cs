@@ -1,6 +1,7 @@
 ﻿using SnekTech.C;
-using SnekTech.Player;
-using SnekTech.Player.ClickEffect;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.ClickEffect;
+using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
@@ -15,20 +16,20 @@ namespace SnekTech.Core.GameEvent
         [SerializeField]
         private int singleDamage;
 
-        protected override void OnTrigger(PlayerState playerState)
+        protected override void OnTrigger(Player player)
         {
-            LacerationEffect lacerationEffect = playerState.LacerationEffect;
-            if (!lacerationEffect.IsActive)
-            {
-                lacerationEffect.IconHolder = this;
-                lacerationEffect.RepeatTime = repeatTimes;
-                lacerationEffect.DamagePerClick = singleDamage;
-                lacerationEffect.IsActive = true;
-            }
-            else
-            {
-                lacerationEffect.RepeatTime += repeatTimes;
-            }
+            // LacerationEffect lacerationEffect = player.LacerationEffect;
+            // if (!lacerationEffect.IsActive)
+            // {
+            //     lacerationEffect.IconHolder = this;
+            //     lacerationEffect.RepeatTime = repeatTimes;
+            //     lacerationEffect.DamagePerClick = singleDamage;
+            //     lacerationEffect.IsActive = true;
+            // }
+            // else
+            // {
+            //     lacerationEffect.RepeatTime += repeatTimes;
+            // }
         }
     }
 }

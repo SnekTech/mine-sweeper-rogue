@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SnekTech.InventorySystem;
+using SnekTech.GamePlay.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.UI.History

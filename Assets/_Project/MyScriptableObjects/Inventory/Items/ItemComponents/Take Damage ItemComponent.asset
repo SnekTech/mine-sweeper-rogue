@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a60b3e277e499eb0b7f1b2ef372698, type: 3}
+  m_Name: Take Damage ItemComponent
+  m_EditorClassIdentifier: 
+  playerEffects:
+  - rid: 3440249221779030016
+  - rid: 3440249221779030017
+  references:
+    version: 2
+    RefIds:
+    - rid: 3440249221779030016
+      type: {class: DamageEffect, ns: SnekTech.GamePlay.EffectSystem, asm: Game}
+      data:
+        amount: 3
+    - rid: 3440249221779030017
+      type: {class: CompositePlayerEffect, ns: SnekTech.GamePlay.EffectSystem, asm: Game}
+      data:
+        playerEffects: []

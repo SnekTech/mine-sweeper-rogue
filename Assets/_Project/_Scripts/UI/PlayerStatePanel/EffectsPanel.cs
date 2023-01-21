@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SnekTech.Player.ClickEffect;
+using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.UI.Tooltip;
 using UnityEngine;
 
@@ -13,14 +13,14 @@ namespace SnekTech.UI.PlayerStatePanel
         [SerializeField]
         private Transform gridParentTransform;
         
-        public void UpdateClickEffects(List<IClickEffect> clickEffects)
+        public void UpdateClickEffects(List<IPlayerAbility> abilities)
         {
             gridParentTransform.DestroyAllChildren();
-            foreach (IClickEffect effect in clickEffects)
+            foreach (var ability in abilities)
             {
-                HoverIconSlot slot = Instantiate(slotPrefab, gridParentTransform);
-                var tooltipContent = new TooltipContent(effect.IconHolder.Label, effect.Description);
-                slot.SetContent(effect.IconHolder, tooltipContent);
+                var slot = Instantiate(slotPrefab, gridParentTransform);
+                var tooltipContent = new TooltipContent(ability.Label, ability.Description);
+                slot.SetContent(ability, tooltipContent);
             }
         }
     }

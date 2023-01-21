@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
-using SnekTech.InventorySystem;
-using SnekTech.Player;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.InventorySystem;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Roguelike;
 
 namespace SnekTech.DataPersistence
@@ -13,10 +14,9 @@ namespace SnekTech.DataPersistence
     {
         public SeedData seedData;
         public int currentLevelIndex;
+
+        public Player player;
         
-        public PlayerData playerData;
-        public HealthArmour healthArmour;
-        public List<InventoryItem> items;
         public List<CellEvent> cellEvents;
 
         public HistoryData historyData;
@@ -25,10 +25,9 @@ namespace SnekTech.DataPersistence
         {
             seedData = new SeedData();
             currentLevelIndex = 0;
+
+            player = new Player();
             
-            playerData = new PlayerData();
-            healthArmour = HealthArmour.Default;
-            items = new List<InventoryItem>();
             cellEvents = new List<CellEvent>();
             
             historyData = new HistoryData();

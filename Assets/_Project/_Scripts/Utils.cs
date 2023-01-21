@@ -63,6 +63,7 @@ namespace SnekTech
             
             public const string InventorySystem = Root + "/" + nameof(InventorySystem);
             public const string Items = InventorySystem + "/" + nameof(Items);
+            public const string ItemComponents = Items + "/" + nameof(ItemComponents);
 
             public const string GameModeSystem = Root + "/" + nameof(GameModeSystem);
             
@@ -76,6 +77,10 @@ namespace SnekTech
             public const string Animation = Root + "/" + nameof(Animation);
             public const string SnekAnimator = Animation + "/" + nameof(SnekAnimator);
             public const string ClipDataHolder = Animation + "/" + nameof(ClipDataHolder);
+
+            public const string Player = Root + "/" + nameof(Player);
+            
+            public const string Abilities = Root + "/" + nameof(Abilities);
         }
 
         public static class GameConstants

@@ -1,6 +1,6 @@
-using System;
 using System.Collections.Generic;
-using SnekTech.InventorySystem;
+using SnekTech.GamePlay.InventorySystem;
+using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.UI
@@ -8,27 +8,22 @@ namespace SnekTech.UI
     public class ItemListPanel : MonoBehaviour
     {
         [SerializeField]
-        private Inventory inventory;
-
+        private PlayerEventChannel playerEventChannel;
+        
         [SerializeField]
         private ItemSlot itemSlotPrefab;
 
         [SerializeField]
         private RectTransform gridParentTransform;
 
-        private void Awake()
-        {
-            RefreshPanel(inventory.Items);
-        }
-
         private void OnEnable()
         {
-            inventory.ItemsChanged += HandleInventoryItemsChanged;
+            playerEventChannel.InventoryItemChanged += HandleInventoryItemsChanged;
         }
 
         private void OnDisable()
         {
-            inventory.ItemsChanged -= HandleInventoryItemsChanged;
+            playerEventChannel.InventoryItemChanged -= HandleInventoryItemsChanged;
         }
 
         private void DestroyAllItemSlots()
@@ -40,9 +35,9 @@ namespace SnekTech.UI
         {
             DestroyAllItemSlots();
             
-            foreach (InventoryItem item in items)
+            foreach (var item in items)
             {
-                ItemSlot itemSlot = Instantiate(itemSlotPrefab, gridParentTransform);
+                var itemSlot = Instantiate(itemSlotPrefab, gridParentTransform);
                 itemSlot.SetContent(item);
             }
         }

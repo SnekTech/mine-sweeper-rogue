@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: a
   description: item a
-  icon: {fileID: -511194033, guid: de4862888eb0b964daeea72e8348af73, type: 3}
+  icon: {fileID: 192732397, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
+  affectPlayerComponents:
+  - {fileID: 11400000, guid: 9a4015984ea8ecc4295f3b1434fef144, type: 2}

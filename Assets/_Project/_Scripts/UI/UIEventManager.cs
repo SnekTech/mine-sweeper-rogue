@@ -1,7 +1,7 @@
 ﻿using System;
 using SnekTech.C;
+using SnekTech.GamePlay.InventorySystem;
 using SnekTech.Grid;
-using SnekTech.InventorySystem;
 using UnityEngine;
 
 namespace SnekTech.UI

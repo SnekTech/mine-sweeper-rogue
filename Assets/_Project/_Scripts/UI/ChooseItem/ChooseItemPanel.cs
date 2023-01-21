@@ -1,5 +1,5 @@
-﻿using SnekTech.InventorySystem;
-using SnekTech.Player;
+﻿using SnekTech.GamePlay.InventorySystem;
+using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.UI.ChooseItem
@@ -8,9 +8,9 @@ namespace SnekTech.UI.ChooseItem
     {
         [SerializeField]
         private UIEventManager uiEventManager;
-        
+
         [SerializeField]
-        private PlayerState playerState;
+        private PlayerHolder playerHolder;
         
         [SerializeField]
         private ItemPool itemPool;
@@ -18,6 +18,7 @@ namespace SnekTech.UI.ChooseItem
         [SerializeField]
         private ItemButton itemButtonPrefab;
 
+        private Player Player => playerHolder.Player;
 
         private void OnEnable()
         {
@@ -31,13 +32,13 @@ namespace SnekTech.UI.ChooseItem
 
         private void HandleOnChooseItem(ItemData item)
         {
-            playerState.Inventory.AddItem(item);
+            Player.Inventory.AddItem(item);
         }
 
         public void GenerateItemButtons()
         {
             transform.DestroyAllChildren();
-            for (int i = 0; i < playerState.ItemChoiceCount; i++)
+            for (int i = 0; i < Player.ItemChoiceCount; i++)
             {
                 var button = Instantiate(itemButtonPrefab, transform);
                 button.SetItem(itemPool.GetRandom());

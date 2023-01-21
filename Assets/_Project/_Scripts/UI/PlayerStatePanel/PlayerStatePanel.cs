@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SnekTech.Core;
-using SnekTech.Player;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.AbilitySystem;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.UI.Effect;
 using UnityEngine;
 
@@ -17,10 +20,13 @@ namespace SnekTech.UI.PlayerStatePanel
         private LabelController armourLabel;
 
         [SerializeField]
-        private PlayerState playerState;
+        private PlayerHolder playerHolder;
 
         [SerializeField]
-        private EffectsPanel effectsPanel;
+        private PlayerEventChannel playerEventChannel;
+
+        [SerializeField]
+        private EffectsPanel abilitiesPanel;
 
         private EffectEmitter _effectEmitter;
         private RectTransform _healthRectTransform;
@@ -30,9 +36,11 @@ namespace SnekTech.UI.PlayerStatePanel
         private readonly Color _healthColor = PalettePico8.Green;
         private readonly Color _armourColor = PalettePico8.Blue;
 
+        private Player Player => playerHolder.Player;
+
         private void Awake()
         {
-            playerState.AddHealthArmourDisplay(this);
+            Player.AddHealthArmourDisplay(this);
             
             _effectEmitter = GetComponent<EffectEmitter>();
             _healthRectTransform = healthBar.transform as RectTransform;
@@ -41,23 +49,23 @@ namespace SnekTech.UI.PlayerStatePanel
 
         private void OnEnable()
         {
-            playerState.ClickEffectsChanged += OnClickEffectsChanged;
+            playerEventChannel.AbilitiesChanged += OnClickEffectsChanged;
         }
 
         private void OnDisable()
         {
-            playerState.ClickEffectsChanged -= OnClickEffectsChanged;
+            playerEventChannel.AbilitiesChanged -= OnClickEffectsChanged;
         }
 
-        private void OnClickEffectsChanged()
+        private void OnClickEffectsChanged(List<IPlayerAbility> abilities)
         {
-            effectsPanel.UpdateClickEffects(playerState.ActiveClickEffects);
+            abilitiesPanel.UpdateClickEffects(abilities);
         }
 
-        public void UpdateContent()
+        public void UpdateContent(int health, int maxHealth, int armour)
         {
-            healthBar.Init(0, playerState.MaxHealth, playerState.Health);
-            armourLabel.SetText(playerState.Armour);
+            healthBar.Init(0, maxHealth, health);
+            armourLabel.SetText(armour);
         }
 
         public UniTask PerformHealthDamageAsync(int damage)

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
-using SnekTech.Player;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Roguelike;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ namespace SnekTech.DataPersistence
 
         [Header("Persistent Data Holders")]
         [SerializeField]
-        private PlayerState playerState;
+        private PlayerHolder playerHolder;
         
         [SerializeField]
         private GameHistory gameHistory;
@@ -35,7 +35,7 @@ namespace SnekTech.DataPersistence
         private List<IPersistentDataHolder> PersistentDataHolders => new List<IPersistentDataHolder>
         {
             // todo: separate save&load of player state & history
-            playerState,
+            playerHolder,
             gameHistory,
             currentEventsHolder,
             RandomGenerator.Instance,
@@ -45,7 +45,7 @@ namespace SnekTech.DataPersistence
         private void OnEnable()
         {
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-            currentRecordHolder.Init(playerState, currentEventsHolder, gameHistory);
+            currentRecordHolder.Init(playerHolder.Player, currentEventsHolder, gameHistory);
             
             LoadGame();
         }

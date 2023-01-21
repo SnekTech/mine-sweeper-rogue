@@ -2,9 +2,10 @@
 using Cysharp.Threading.Tasks;
 using SnekTech.Core.History;
 using SnekTech.DataPersistence;
+using SnekTech.GamePlay;
+using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Grid;
 using SnekTech.GridCell;
-using SnekTech.Player;
 using SnekTech.Roguelike;
 using SnekTech.UI.Modal;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace SnekTech.Core.GameEvent
     public class CurrentEventsHolder : ScriptableObject, IPersistentDataHolder
     {
         [SerializeField]
-        private PlayerState playerState;
+        private Player player;
 
         [SerializeField]
         private CellEventPool cellEventPool;
@@ -83,7 +84,7 @@ namespace SnekTech.Core.GameEvent
 
         private void AddCellEvent(CellEvent cellEvent)
         {
-            cellEvent.CellEventData.Trigger(playerState);
+            cellEvent.CellEventData.Trigger(player);
             _cellEvents.Add(cellEvent);
         }
     }

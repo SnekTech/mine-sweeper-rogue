@@ -18,7 +18,7 @@ namespace SnekTech.Core.GameModeSystem
         private readonly ICountDownDisplay _display;
 
         public WithCountDown(GameModeInfo gameModeInfo, GameMode decoratedMode, float durationSeconds,
-            ICountDownDisplay countDownDisplay = null) : base(gameModeInfo, decoratedMode.PlayerState)
+            ICountDownDisplay countDownDisplay = null) : base(gameModeInfo, decoratedMode.PlayerEventChannel)
         {
             _decoratedMode = decoratedMode;
             _durationSeconds = durationSeconds;
