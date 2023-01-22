@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/_Project/_Scripts/Editor/Styles/FiniteEffectDrawer.uss?fileID=7433441132597879392&amp;guid=feb05e817c2411a48b6b81fcf0ffe86c&amp;type=3#FiniteEffectDrawer" />
+    <ui:GroupBox>
+        <ui:Label text="Finite Effect" display-tooltip-when-elided="true" />
+        <uie:PropertyField binding-path="repeatTimes" />
+        <ui:VisualElement name="decorated-parent">
+            <uie:PropertyField binding-path="decoratedEffect" />
+        </ui:VisualElement>
+        <ui:VisualElement name="add-effect-button-group" class="add-effect-button-group" />
+    </ui:GroupBox>
+</ui:UXML>

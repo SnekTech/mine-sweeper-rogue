@@ -1,0 +1,4 @@
+.add-effect-button-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+}

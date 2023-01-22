@@ -40,7 +40,7 @@ namespace SnekTech.Editor.Pools
 
         private SerializedProperty GetElementsProperty()
         {
-            var elementFields = typeof(RandomPool<TAsset>).GetInstanceFieldsWithAttributeOfType(typeof(PoolElementsFieldAttribute));
+            var elementFields = typeof(RandomPool<TAsset>).GetInstanceFieldsWithAttributeOfType<PoolElementsFieldAttribute>();
             if (elementFields.Count != 1)
             {
                 UnityEngine.Debug.LogWarning($"Invalid elements field count : {elementFields.Count}, should be only 1");

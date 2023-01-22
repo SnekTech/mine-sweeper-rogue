@@ -25,7 +25,7 @@ namespace SnekTech.Editor.Debug.Triggers
 
         private void GenerateTriggers()
         {
-            foreach (var field in typeof(TriggersPanelData).GetInstanceFieldsWithAttributeOfType(typeof(TriggerFieldAttribute)))
+            foreach (var field in typeof(TriggersPanelData).GetInstanceFieldsWithAttributeOfType<TriggerFieldAttribute>())
             {
                 var trigger = new TriggerWithAmount();
                 _fieldNameToTrigger[field.Name] = trigger;

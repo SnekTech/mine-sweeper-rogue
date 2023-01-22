@@ -20,13 +20,13 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         private readonly PlayerStats _stats;
 
-        private readonly PlayerAbilityHolder playerAbilityHolder;
+        private readonly PlayerAbilityHolder _playerAbilityHolder;
 
         public Player()
         {
             _inventory = new Inventory(this);
             _stats = new PlayerStats();
-            playerAbilityHolder = new PlayerAbilityHolder(this);
+            _playerAbilityHolder = new PlayerAbilityHolder(this);
         }
         
         
@@ -47,7 +47,7 @@ namespace SnekTech.GamePlay.PlayerSystem
             
             _gridEventChannel.OnBombReveal += HandleOnBombReveal;
             _stats.Life.HealthRanOut += HandleHealthRanOut;
-            playerAbilityHolder.Changed += HandlePlayerAbilitiesChanged;
+            _playerAbilityHolder.Changed += HandlePlayerAbilitiesChanged;
             _inventory.ItemsChanged += HandleItemsChanged;
         }
 
@@ -55,7 +55,7 @@ namespace SnekTech.GamePlay.PlayerSystem
         {
             _gridEventChannel.OnBombReveal -= HandleOnBombReveal;
             _stats.Life.HealthRanOut -= HandleHealthRanOut;
-            playerAbilityHolder.Changed -= HandlePlayerAbilitiesChanged;
+            _playerAbilityHolder.Changed -= HandlePlayerAbilitiesChanged;
         }
 
         private void HandlePlayerAbilitiesChanged(List<IPlayerAbility> abilities) =>
@@ -93,15 +93,29 @@ namespace SnekTech.GamePlay.PlayerSystem
         {
             _stats.Life.AddDisplay(display);
         }
+        
+        #region delegate ability methods
+
+        public void AddClickAbility(IPlayerAbility playerAbility)
+        {
+            _playerAbilityHolder.AddClickAbility(playerAbility);
+        }
+
+        public void RemoveClickAbility(IPlayerAbility playerAbility)
+        {
+            _playerAbilityHolder.RemoveClickAbility(playerAbility);
+        }
 
         public void UseClickAbilities()
         {
-            playerAbilityHolder.UseClickAbilities();
+            _playerAbilityHolder.UseClickAbilities();
         }
 
         public void ClearAllAbilities()
         {
-            playerAbilityHolder.ClearAll();
+            _playerAbilityHolder.ClearAll();
         }
+        
+        #endregion
     }
 }

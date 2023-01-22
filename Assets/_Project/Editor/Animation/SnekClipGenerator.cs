@@ -171,7 +171,7 @@ namespace SnekTech.Editor.Animation
         private static void SetClipsField(List<SnekAnimationClip> clips, ScriptableObject target)
         {
             var attributedFields =
-                target.GetType().GetInstanceFieldsWithAttributeOfType(typeof(SnekClipsFieldAttribute));
+                target.GetType().GetInstanceFieldsWithAttributeOfType<SnekClipsFieldAttribute>();
 
             if (attributedFields.Count != 1)
             {

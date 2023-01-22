@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/_Project/_Scripts/Editor/Styles/EffectDrawer.uss?fileID=7433441132597879392&amp;guid=bf6e924be7febd444aead7546851c6df&amp;type=3#EffectDrawer" />
+    <ui:VisualElement name="root" class="container">
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="Label" />
+    </ui:VisualElement>
+</ui:UXML>

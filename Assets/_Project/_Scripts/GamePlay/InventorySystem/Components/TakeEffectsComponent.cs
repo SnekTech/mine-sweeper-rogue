@@ -30,11 +30,5 @@ namespace SnekTech.GamePlay.InventorySystem.Components
         {
             playerEffects.Add(new DamageEffect());
         }
-
-        [ContextMenu(nameof(AddCompositeEffect))]
-        public void AddCompositeEffect()
-        {
-            playerEffects.Add(new CompositePlayerEffect());
-        }
     }
 }

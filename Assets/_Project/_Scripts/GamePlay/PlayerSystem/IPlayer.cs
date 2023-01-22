@@ -1,4 +1,6 @@
-﻿namespace SnekTech.GamePlay.PlayerSystem
+﻿using SnekTech.GamePlay.AbilitySystem;
+
+namespace SnekTech.GamePlay.PlayerSystem
 {
     public interface IPlayer
     {
@@ -15,6 +17,8 @@
 
         #region ability
 
+        void AddClickAbility(IPlayerAbility playerAbility);
+        void RemoveClickAbility(IPlayerAbility playerAbility);
         void UseClickAbilities();
         void ClearAllAbilities();
 

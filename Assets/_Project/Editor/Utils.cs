@@ -1,29 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using SnekTech.Core.GameEvent;
 using SnekTech.GamePlay.InventorySystem;
 using SnekTech.Grid;
-using UnityEditor.Animations;
 
 namespace SnekTech.Editor
 {
-    public static class Utils
-    {
-        public static List<FieldInfo> GetInstanceFieldsWithAttributeOfType(this Type type, Type attributeType)
-        {
-            return type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)
-                .Where(field => field.IsDefined(attributeType))
-                .ToList();
-        }
-
-        public static IEnumerable<ChildAnimatorState> GetStates(this AnimatorController ac, int layerIndex = 0)
-        {
-            return ac.layers[layerIndex].stateMachine.states;
-        }
-    }
-
     namespace C
     {
         // relative to "Assets" directory

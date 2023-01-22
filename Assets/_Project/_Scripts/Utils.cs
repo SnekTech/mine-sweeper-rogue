@@ -81,6 +81,7 @@ namespace SnekTech
             public const string Player = Root + "/" + nameof(Player);
             
             public const string Abilities = Root + "/" + nameof(Abilities);
+            public const string Effects = Root + "/" + nameof(Effects);
         }
 
         public static class GameConstants

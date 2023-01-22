@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24b88eb503994b809607007d5ab7ed29, type: 3}
-  m_Name: New Heal Ability
+  m_Script: {fileID: 11500000, guid: fcc793c08007473a9cd89f5d4ddb94a2, type: 3}
+  m_Name: New Finite Player Effect
   m_EditorClassIdentifier: 
-  icon: {fileID: 302115076, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
-  label: heal
-  description: add player health
-  healEffect:
-    amount: 5
+  repeatTimes: 0
