@@ -8,8 +8,8 @@ namespace SnekTech.GamePlay.EffectSystem
     {
 
         [SerializeReference]
-        private IPlayerEffect decoratedEffect;
+        private PlayerEffect decoratedEffect;
 
-        protected override IEffect<IPlayer> DecoratedEffect => decoratedEffect;
+        protected override Effect<IPlayer> DecoratedEffect => decoratedEffect;
     }
 }

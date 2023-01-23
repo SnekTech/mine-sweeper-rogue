@@ -14,7 +14,7 @@ namespace SnekTech.Core.FiniteStateMachine
 
         public void ChangeState(T newState)
         {
-            Debug.Log($"{typeof(T).Name} {Current.GetType().Name} ---> {newState.GetType().Name}");
+            // Debug.Log($"{typeof(T).Name} {Current.GetType().Name} ---> {newState.GetType().Name}");
             if (newState == Current) return;
             Current.Exit();
             Current = newState;

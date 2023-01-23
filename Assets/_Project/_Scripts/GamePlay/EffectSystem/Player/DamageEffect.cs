@@ -5,16 +5,15 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.EffectSystem
 {
-    [EffectObject]
-    [Serializable]
-    public class DamageEffect : IPlayerEffect
+    [CreateAssetMenu(menuName = C.MenuName.Effects + "/" + nameof(DamageEffect))]
+    public class DamageEffect : PlayerEffect
     {
         [EffectField]
         [Min(0)]
         [SerializeField]
         private int amount = 3;
         
-        public void Take(IPlayer player)
+        public override void Take(IPlayer player)
         {
             player.TakeDamage(amount);
         }

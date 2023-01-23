@@ -23,7 +23,7 @@ namespace SnekTech.GamePlay.InventorySystem
 
         public void OnAdd(IPlayer player)
         {
-            foreach (var component in _itemData.AffectPlayerComponents)
+            foreach (var component in _itemData.Components)
             {
                 component.OnAdd(player);
             }
@@ -31,7 +31,7 @@ namespace SnekTech.GamePlay.InventorySystem
 
         public void OnRemove(IPlayer player)
         {
-            foreach (var component in _itemData.AffectPlayerComponents)
+            foreach (var component in _itemData.Components)
             {
                 component.OnRemove(player);
             }

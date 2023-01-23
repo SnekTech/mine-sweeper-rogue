@@ -2,7 +2,7 @@
 
 namespace SnekTech.GamePlay.EffectSystem
 {
-    public abstract class FiniteEffect<T> : ScriptableObject, IEffect<T>
+    public abstract class FiniteEffect<T> : Effect<T>
     {
         [Min(0)]
         [SerializeField]
@@ -16,9 +16,9 @@ namespace SnekTech.GamePlay.EffectSystem
 
         public bool IsActive => repeatTimes > 0;
         
-        protected abstract IEffect<T> DecoratedEffect { get; }
+        protected abstract Effect<T> DecoratedEffect { get; }
 
-        public void Take(T target)
+        public override void Take(T target)
         {
             if (repeatTimes <= 0) return;
             

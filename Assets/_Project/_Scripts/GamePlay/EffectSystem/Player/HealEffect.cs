@@ -1,20 +1,19 @@
-﻿using System;
-using SnekTech.C;
+﻿using SnekTech.C;
 using SnekTech.Editor.CustomAttributes;
 using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.EffectSystem
 {
-    [Serializable]
-    public class HealEffect : IPlayerEffect
+    [CreateAssetMenu(menuName = MenuName.Effects + "/" + nameof(HealEffect))]
+    public class HealEffect : PlayerEffect
     {
         [EffectField]
         [Min(0)]
         [SerializeField]
         private int amount;
         
-        public void Take(IPlayer player)
+        public override void Take(IPlayer player)
         {
             player.AddHealth(amount);
         }

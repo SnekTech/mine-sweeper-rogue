@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SnekTech.Editor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,6 +13,15 @@ namespace SnekTech.GamePlay.EffectSystem.Editor
         private VisualTreeAsset uxml;
         
         protected abstract List<Type> DecoratedEffectTypeCandidates { get; }
+
+        private ScriptableObject _finiteEffectAsset;
+
+        private string DecoratedEffectSaveFolder => _finiteEffectAsset.GetParentFolder();
+
+        private void OnEnable()
+        {
+            _finiteEffectAsset = serializedObject.targetObject as ScriptableObject;
+        }
 
         public override VisualElement CreateInspectorGUI()
         {
@@ -38,8 +48,13 @@ namespace SnekTech.GamePlay.EffectSystem.Editor
         private void SetDecoratedEffect(Type decoratedEffectType, VisualElement decoratedFieldParent)
         {
             serializedObject.Update();
+            
             var decoratedEffectProperty = serializedObject.FindProperty("decoratedEffect");
-            decoratedEffectProperty.managedReferenceValue = Activator.CreateInstance(decoratedEffectType);
+            
+            string assetPath = $"{DecoratedEffectSaveFolder}/{decoratedEffectType.Name}.asset";
+            var decoratedEffectAsset = AssetFileUtils.CreateAndSaveAsset(decoratedEffectType, assetPath, true);
+            
+            decoratedEffectProperty.objectReferenceValue = decoratedEffectAsset;
 
             decoratedFieldParent.Clear();
             var newDecoratedField = new PropertyField(decoratedEffectProperty);

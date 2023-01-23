@@ -18,13 +18,13 @@ namespace SnekTech.GamePlay.InventorySystem
         private Sprite icon;
 
         [SerializeReference]
-        private List<AffectPlayerComponent> affectPlayerComponents;
+        private List<ItemComponent> components;
 
 
         public string Label => label;
         public string Description => description;
         public Sprite Icon => icon;
-        public List<AffectPlayerComponent> AffectPlayerComponents => affectPlayerComponents;
+        public List<ItemComponent> Components => components;
 
         public int CompareTo(ItemData other)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.InventorySystem.Components
 {
-    public abstract class AffectPlayerComponent : ScriptableObject
+    public abstract class ItemComponent : ScriptableObject
     {
         public abstract void OnAdd(IPlayer player);
         public abstract void OnRemove(IPlayer player);

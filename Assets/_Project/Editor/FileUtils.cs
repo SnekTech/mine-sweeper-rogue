@@ -51,12 +51,6 @@ namespace SnekTech.Editor
             return paths;
         }
 
-        public static string GetAssetParentFolderPath(string assetPath)
-        {
-            int lastSlashIndex = assetPath.LastIndexOf("/", StringComparison.Ordinal);
-            // exclude the last '/' character
-            return assetPath[..lastSlashIndex];
-        }
 
         public static string AssetPathCombine(string parent, string folderName) => parent + "/" + folderName;
 

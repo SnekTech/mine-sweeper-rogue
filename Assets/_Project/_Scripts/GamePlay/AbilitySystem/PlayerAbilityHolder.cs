@@ -35,9 +35,19 @@ namespace SnekTech.GamePlay.AbilitySystem
             {
                 clickAbility.Use(_player);
             }
+
+            ClearInactiveAbilities();
         }
 
-        public void UseMoveClickAbilities()
+        private void ClearInactiveAbilities()
+        {
+            if (_clickAbilities.Count == 0) return;
+            
+            _clickAbilities.RemoveAll(ability => !ability.IsActive);
+            Changed?.Invoke(AllAbilities);
+        }
+
+        public void UseMoveAbilities()
         {
             foreach (var moveAbility in _moveAbilities)
             {

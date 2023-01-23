@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.InventorySystem.Components
 {
-    [CreateAssetMenu(menuName = C.MenuName.Abilities + "/" + nameof(AddClickAbilityComponent))]
-    public class AddClickAbilityComponent : AffectPlayerComponent
+    [CreateAssetMenu(menuName = C.MenuName.ItemComponents + "/" + nameof(AddClickAbilityComponent))]
+    public class AddClickAbilityComponent : ItemComponent
     {
         [SerializeReference]
         private PlayerAbility playerAbility;

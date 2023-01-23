@@ -3,8 +3,7 @@ using SnekTech.UI;
 
 namespace SnekTech.GamePlay.AbilitySystem
 {
-    public interface IPlayerAbility : IHoverableIconHolder
+    public interface IPlayerAbility : IAbility<IPlayer>
     {
-        void Use(IPlayer player);
     }
 }

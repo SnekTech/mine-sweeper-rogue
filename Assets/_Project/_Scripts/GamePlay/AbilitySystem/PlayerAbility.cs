@@ -1,5 +1,4 @@
 ﻿using SnekTech.GamePlay.PlayerSystem;
-using SnekTech.UI;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.AbilitySystem
@@ -19,7 +18,8 @@ namespace SnekTech.GamePlay.AbilitySystem
         public string Label => label;
         public string Description => description;
         
-        public abstract void Use(IPlayer player);
+        public abstract bool IsActive { get; }
         
+        public abstract void Use(IPlayer player);
     }
 }

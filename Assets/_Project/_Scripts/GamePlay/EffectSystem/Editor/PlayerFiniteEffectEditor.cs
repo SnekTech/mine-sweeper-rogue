@@ -18,7 +18,7 @@ namespace SnekTech.GamePlay.EffectSystem.Editor
         public static void UpdateEffectTypes()
         {
             EffectTypes.Clear();
-            EffectTypes.AddRange(ReflectionUtils.GetImplementorsOfInterface<IPlayerEffect>()
+            EffectTypes.AddRange(ReflectionUtils.GetAllSubClassesOf<PlayerEffect>()
                 .Where(type => type != typeof(PlayerFiniteEffect)));
         }
     }

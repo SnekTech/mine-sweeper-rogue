@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.EffectSystem
 {
-    public interface IPlayerEffect : IEffect<IPlayer>
+    public abstract class PlayerEffect : Effect<IPlayer>
     {
     }
 }

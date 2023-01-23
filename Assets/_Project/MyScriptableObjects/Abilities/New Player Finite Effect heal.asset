@@ -10,15 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcc793c08007473a9cd89f5d4ddb94a2, type: 3}
-  m_Name: New Finite Player Effect
+  m_Name: New Player Finite Effect heal
   m_EditorClassIdentifier: 
-  repeatTimes: 2
-  decoratedEffect:
-    rid: 3440249248752336942
-  references:
-    version: 2
-    RefIds:
-    - rid: 3440249248752336942
-      type: {class: DamageEffect, ns: SnekTech.GamePlay.EffectSystem, asm: Game}
-      data:
-        amount: 3
+  repeatTimes: 0
+  decoratedEffect: {fileID: 11400000, guid: 8a54ceb5a38af204c8c37aa48166fd7c, type: 2}

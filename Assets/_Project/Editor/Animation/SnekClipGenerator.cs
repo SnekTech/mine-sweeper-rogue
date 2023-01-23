@@ -38,7 +38,7 @@ namespace SnekTech.Editor.Animation
         private TextAsset JsonAsset => _jsonAssetField.value as TextAsset;
         private string JsonAssetParentFolder => _jsonAssetField.value == null
             ? null
-            : FileUtils.GetAssetParentFolderPath(AssetDatabase.GetAssetPath(JsonAsset));
+            : JsonAsset.GetParentFolder();
 
         private Texture2D SpriteSheetAsset => _spriteSheetTextureField.value as Texture2D;
         private string SpriteSheetAssetPath => AssetDatabase.GetAssetPath(SpriteSheetAsset);
