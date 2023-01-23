@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using SnekTech.Core;
 using SnekTech.GamePlay;
@@ -57,7 +56,7 @@ namespace SnekTech.UI.PlayerStatePanel
             playerEventChannel.AbilitiesChanged -= OnClickEffectsChanged;
         }
 
-        private void OnClickEffectsChanged(List<IPlayerAbility> abilities)
+        private void OnClickEffectsChanged(List<PlayerAbility> abilities)
         {
             abilitiesPanel.UpdateClickEffects(abilities);
         }

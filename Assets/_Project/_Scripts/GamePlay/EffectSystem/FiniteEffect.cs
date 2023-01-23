@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace SnekTech.GamePlay.EffectSystem
 {
@@ -8,23 +9,24 @@ namespace SnekTech.GamePlay.EffectSystem
         [SerializeField]
         private int repeatTimes;
 
-        public int RepeatTimes
-        {
-            get => repeatTimes;
-            set => repeatTimes = value;
-        }
+        public int RepeatTimesRuntime { get; set; }
 
-        public bool IsActive => repeatTimes > 0;
+        public bool IsActive => RepeatTimesRuntime > 0;
         
         protected abstract Effect<T> DecoratedEffect { get; }
 
+        public void Init()
+        {
+            RepeatTimesRuntime = repeatTimes;
+        }
+
         public override void Take(T target)
         {
-            if (repeatTimes <= 0) return;
+            if (RepeatTimesRuntime <= 0) return;
             
             DecoratedEffect.Take(target);
 
-            repeatTimes--;
+            RepeatTimesRuntime--;
         }
     }
 }

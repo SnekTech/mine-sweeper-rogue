@@ -13,7 +13,7 @@ namespace SnekTech.UI.PlayerStatePanel
         [SerializeField]
         private Transform gridParentTransform;
         
-        public void UpdateClickEffects(List<IPlayerAbility> abilities)
+        public void UpdateClickEffects(List<PlayerAbility> abilities)
         {
             gridParentTransform.DestroyAllChildren();
             foreach (var ability in abilities)

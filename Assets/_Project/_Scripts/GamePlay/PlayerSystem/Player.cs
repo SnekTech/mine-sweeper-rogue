@@ -58,7 +58,7 @@ namespace SnekTech.GamePlay.PlayerSystem
             _playerAbilityHolder.Changed -= HandlePlayerAbilitiesChanged;
         }
 
-        private void HandlePlayerAbilitiesChanged(List<IPlayerAbility> abilities) =>
+        private void HandlePlayerAbilitiesChanged(List<PlayerAbility> abilities) =>
             _playerEventChannel.InvokeAbilitiesChanged(abilities);
 
         private void HandleItemsChanged(List<InventoryItem> items) =>
@@ -96,12 +96,12 @@ namespace SnekTech.GamePlay.PlayerSystem
         
         #region delegate ability methods
 
-        public void AddClickAbility(IPlayerAbility playerAbility)
+        public void AddClickAbility(PlayerAbility playerAbility)
         {
             _playerAbilityHolder.AddClickAbility(playerAbility);
         }
 
-        public void RemoveClickAbility(IPlayerAbility playerAbility)
+        public void RemoveClickAbility(PlayerAbility playerAbility)
         {
             _playerAbilityHolder.RemoveClickAbility(playerAbility);
         }

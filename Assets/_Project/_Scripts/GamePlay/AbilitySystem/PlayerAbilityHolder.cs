@@ -6,7 +6,7 @@ namespace SnekTech.GamePlay.AbilitySystem
 {
     public class PlayerAbilityHolder
     {
-        public event Action<List<IPlayerAbility>> Changed;
+        public event Action<List<PlayerAbility>> Changed;
 
         public PlayerAbilityHolder(IPlayer player)
         {
@@ -15,14 +15,14 @@ namespace SnekTech.GamePlay.AbilitySystem
 
         private readonly IPlayer _player;
 
-        private readonly List<IPlayerAbility> _clickAbilities = new List<IPlayerAbility>();
-        private readonly List<IPlayerAbility> _moveAbilities = new List<IPlayerAbility>();
+        private readonly List<PlayerAbility> _clickAbilities = new List<PlayerAbility>();
+        private readonly List<PlayerAbility> _moveAbilities = new List<PlayerAbility>();
 
-        private List<IPlayerAbility> AllAbilities
+        private List<PlayerAbility> AllAbilities
         {
             get
             {
-                var list = new List<IPlayerAbility>();
+                var list = new List<PlayerAbility>();
                 list.AddRange(_clickAbilities);
                 list.AddRange(_moveAbilities);
                 return list;
@@ -55,25 +55,25 @@ namespace SnekTech.GamePlay.AbilitySystem
             }
         }
 
-        public void AddClickAbility(IPlayerAbility playerAbility)
+        public void AddClickAbility(PlayerAbility playerAbility)
         {
             _clickAbilities.Add(playerAbility);
             Changed?.Invoke(AllAbilities);
         }
 
-        public void RemoveClickAbility(IPlayerAbility playerAbility)
+        public void RemoveClickAbility(PlayerAbility playerAbility)
         {
             _clickAbilities.Remove(playerAbility);
             Changed?.Invoke(AllAbilities);
         }
 
-        public void AddMoveAbility(IPlayerAbility playerAbility)
+        public void AddMoveAbility(PlayerAbility playerAbility)
         {
             _moveAbilities.Add(playerAbility);
             Changed?.Invoke(AllAbilities);
         }
 
-        public void RemoveMoveAbility(IPlayerAbility playerAbility)
+        public void RemoveMoveAbility(PlayerAbility playerAbility)
         {
             _moveAbilities.Remove(playerAbility);
             Changed?.Invoke(AllAbilities);

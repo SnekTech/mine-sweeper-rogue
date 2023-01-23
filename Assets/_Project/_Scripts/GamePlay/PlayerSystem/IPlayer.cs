@@ -17,8 +17,8 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         #region ability
 
-        void AddClickAbility(IPlayerAbility playerAbility);
-        void RemoveClickAbility(IPlayerAbility playerAbility);
+        void AddClickAbility(PlayerAbility playerAbility);
+        void RemoveClickAbility(PlayerAbility playerAbility);
         void UseClickAbilities();
         void ClearAllAbilities();
 

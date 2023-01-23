@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc793c08007473a9cd89f5d4ddb94a2, type: 3}
   m_Name: New Player Finite Effect heal
   m_EditorClassIdentifier: 
-  repeatTimes: 0
+  repeatTimes: 3
   decoratedEffect: {fileID: 11400000, guid: 8a54ceb5a38af204c8c37aa48166fd7c, type: 2}

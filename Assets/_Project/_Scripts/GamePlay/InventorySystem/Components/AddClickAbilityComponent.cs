@@ -12,6 +12,7 @@ namespace SnekTech.GamePlay.InventorySystem.Components
         
         public override void OnAdd(IPlayer player)
         {
+            playerAbility.Init();
             player.AddClickAbility(playerAbility);
         }
 

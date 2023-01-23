@@ -9,6 +9,7 @@ namespace SnekTech.GamePlay.AbilitySystem
     public interface IAbility<in T> : IHoverableIconHolder
     {
         bool IsActive { get; }
+        void Init();
         void Use(T target);
     }
 }

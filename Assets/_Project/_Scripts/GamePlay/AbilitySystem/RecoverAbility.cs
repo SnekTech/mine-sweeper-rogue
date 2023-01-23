@@ -12,6 +12,11 @@ namespace SnekTech.GamePlay.AbilitySystem
 
         public override bool IsActive => finiteHealEffect.IsActive;
 
+        public override void Init()
+        {
+            finiteHealEffect.Init();
+        }
+
         public override void Use(IPlayer player)
         {
             finiteHealEffect.Take(player);
