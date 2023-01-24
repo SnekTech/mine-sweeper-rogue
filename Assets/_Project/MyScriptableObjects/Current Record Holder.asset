@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4173650f77d464a82b4362dae8518ce, type: 3}
   m_Name: Current Record Holder
   m_EditorClassIdentifier: 
+  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
+  currentEventsHolder: {fileID: 11400000, guid: 1134cd3e8ca62d14d8c328c5bf15fea4, type: 2}
+  history: {fileID: 11400000, guid: 1988aa3733c5e6b488cb106ea92d1690, type: 2}

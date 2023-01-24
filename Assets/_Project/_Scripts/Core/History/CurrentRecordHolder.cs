@@ -19,32 +19,28 @@ namespace SnekTech.Core.History
         
         #region Record Saving Dependencies
 
-        private Player _player;
-        private CurrentEventsHolder _currentEventsHolder;
-        private GameHistory _history;
+        [SerializeField]
+        private PlayerHolder playerHolder;
+        [SerializeField]
+        private CurrentEventsHolder currentEventsHolder;
+        [SerializeField]
+        private GameHistory history;
         private readonly IRandomGenerator _randomGenerator = RandomGenerator.Instance;
 
         #endregion
-
-        public void Init(Player player, CurrentEventsHolder currentEventsHolder, GameHistory history)
-        {
-            _player = player;
-            _currentEventsHolder = currentEventsHolder;
-            _history = history;
-        }
 
         public void StoreCurrentRecord(bool hasFailed)
         {
             var newRecord = new Record
             {
                 CreatedAt = DateTime.UtcNow.Ticks,
-                Items = _player.Inventory.Items,
-                CellEvents = _currentEventsHolder.CellEvents,
+                Items = playerHolder.Player.Inventory.Items,
+                CellEvents = currentEventsHolder.CellEvents,
                 HasFailed = hasFailed,
                 Seed = _randomGenerator.Seed,
             };
             
-            _history.AddRecord(newRecord);
+            history.AddRecord(newRecord);
         }
 
         public void LoadData(GameData gameData)

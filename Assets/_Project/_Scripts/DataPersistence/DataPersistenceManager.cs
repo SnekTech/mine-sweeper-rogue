@@ -45,9 +45,6 @@ namespace SnekTech.DataPersistence
         private void OnEnable()
         {
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-            currentRecordHolder.Init(playerHolder.Player, currentEventsHolder, gameHistory);
-            
-            LoadGame();
         }
 
         public void NewGame()
