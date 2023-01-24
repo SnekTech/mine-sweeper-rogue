@@ -19,7 +19,7 @@ namespace SnekTech.UI.PlayerStatePanel
         private LabelController armourLabel;
 
         [SerializeField]
-        private PlayerHolder playerHolder;
+        private Player player;
 
         [SerializeField]
         private PlayerEventChannel playerEventChannel;
@@ -35,11 +35,9 @@ namespace SnekTech.UI.PlayerStatePanel
         private readonly Color _healthColor = PalettePico8.Green;
         private readonly Color _armourColor = PalettePico8.Blue;
 
-        private Player Player => playerHolder.Player;
-
         private void Awake()
         {
-            Player.AddHealthArmourDisplay(this);
+            player.AddHealthArmourDisplay(this);
             
             _effectEmitter = GetComponent<EffectEmitter>();
             _healthRectTransform = healthBar.transform as RectTransform;

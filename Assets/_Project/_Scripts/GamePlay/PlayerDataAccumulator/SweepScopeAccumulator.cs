@@ -2,19 +2,19 @@
 
 namespace SnekTech.GamePlay.PlayerDataAccumulator
 {
-    public class SweepScopeAccumulator : PlayerDataAccumulator
+    public class SweepScopeAccumulator : PlayerStatsDataAccumulator
     {
         private int _changeAmount;
 
-        public SweepScopeAccumulator(int changeAmount, PlayerDataAccumulator decoratedAccumulator = null)
+        public SweepScopeAccumulator(int changeAmount, PlayerStatsDataAccumulator decoratedAccumulator = null)
             : base(decoratedAccumulator)
         {
             _changeAmount = changeAmount;
         }
 
-        protected override void DoAccumulate(PlayerStats playerStats)
+        protected override void DoAccumulate(PlayerStatsData playerStatsData)
         {
-            playerStats.sweepScope += _changeAmount;
+            playerStatsData.sweepScope += _changeAmount;
         }
     }
 }

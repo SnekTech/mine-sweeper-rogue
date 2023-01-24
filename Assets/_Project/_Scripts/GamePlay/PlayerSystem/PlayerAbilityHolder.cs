@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using SnekTech.GamePlay.PlayerSystem;
+using SnekTech.GamePlay.AbilitySystem;
+using UnityEngine;
 
-namespace SnekTech.GamePlay.AbilitySystem
+namespace SnekTech.GamePlay.PlayerSystem
 {
-    public class PlayerAbilityHolder
+    [CreateAssetMenu(menuName = C.MenuName.Player + "/" + nameof(PlayerAbilityHolder))]
+    public class PlayerAbilityHolder : ScriptableObject
     {
         public event Action<List<PlayerAbility>> Changed;
 
-        public PlayerAbilityHolder(IPlayer player)
-        {
-            _player = player;
-        }
-
-        private readonly IPlayer _player;
+        [SerializeField]
+        private Player player;
 
         private readonly List<PlayerAbility> _clickAbilities = new List<PlayerAbility>();
         private readonly List<PlayerAbility> _moveAbilities = new List<PlayerAbility>();
@@ -33,7 +31,7 @@ namespace SnekTech.GamePlay.AbilitySystem
         {
             foreach (var clickAbility in _clickAbilities)
             {
-                clickAbility.Use(_player);
+                clickAbility.Use(player);
             }
 
             ClearInactiveAbilities();
@@ -51,7 +49,7 @@ namespace SnekTech.GamePlay.AbilitySystem
         {
             foreach (var moveAbility in _moveAbilities)
             {
-                moveAbility.Use(_player);
+                moveAbility.Use(player);
             }
         }
 

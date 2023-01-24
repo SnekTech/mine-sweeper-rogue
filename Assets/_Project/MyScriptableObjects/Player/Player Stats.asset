@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dcd7a9b36322449c94784a2028cf1f3f, type: 3}
-  m_Name: BasicInputManager
+  m_Script: {fileID: 11500000, guid: b4f3eb00aa98437388aa4e0b6c3c3140, type: 3}
+  m_Name: Player Stats
   m_EditorClassIdentifier: 
-  mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
+  damagePerBomb: 0
+  sweepScope: 0
+  itemChoiceCount: 0

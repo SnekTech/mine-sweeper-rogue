@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using SnekTech.GamePlay.PlayerSystem;
+using UnityEngine;
 
 namespace SnekTech.GamePlay.InventorySystem
 {
-    public class Inventory
+    [CreateAssetMenu(menuName = C.MenuName.InventorySystem + "/" + nameof(Inventory))]
+    public class Inventory : ScriptableObject, IPlayerDataHolder
     {
         public event Action<List<InventoryItem>> ItemsChanged;
-
-        public Inventory(IPlayer player)
-        {
-            _player = player;
-        }
         
-        private IPlayer _player;
-        private readonly SortedDictionary<ItemData, InventoryItem> _itemDict = new SortedDictionary<ItemData, InventoryItem>();
+        [SerializeField]
+        private Player player;
+        
+        private SortedDictionary<ItemData, InventoryItem> _itemDict = new SortedDictionary<ItemData, InventoryItem>();
 
         public List<InventoryItem> Items => _itemDict.Values.ToList();
         
@@ -32,7 +31,7 @@ namespace SnekTech.GamePlay.InventorySystem
                 _itemDict.Add(itemData, newItem);
             }
             
-            _itemDict[itemData].OnAdd(_player);
+            _itemDict[itemData].OnAdd(player);
             ItemsChanged?.Invoke(Items);
         }
 
@@ -50,8 +49,19 @@ namespace SnekTech.GamePlay.InventorySystem
                 _itemDict.Remove(itemData);
             }
 
-            item.OnRemove(_player);
+            item.OnRemove(player);
             ItemsChanged?.Invoke(Items);
+        }
+
+        public void LoadData(PlayerData playerData)
+        {
+            var inventoryData = playerData.inventoryData;
+            _itemDict = inventoryData.itemDict;
+        }
+
+        public void SaveData(PlayerData playerData)
+        {
+            playerData.inventoryData.itemDict = _itemDict;
         }
     }
 }

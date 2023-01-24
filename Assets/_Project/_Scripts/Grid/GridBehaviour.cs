@@ -28,7 +28,7 @@ namespace SnekTech.Grid
         private GridEventManager gridEventManager;
 
         [SerializeField]
-        private PlayerHolder playerHolder;
+        private Player player;
 
         [SerializeField]
         private UIStateManager uiStateManager;
@@ -43,7 +43,6 @@ namespace SnekTech.Grid
 
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
         private Sprite BombSprite => cellSprites.bombSprite;
-        private Player Player => playerHolder.Player;
 
         public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
@@ -118,9 +117,9 @@ namespace SnekTech.Grid
                 return;
             }
             
-            Player.UseClickAbilities();
+            player.UseClickAbilities();
 
-            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, Player.SweepScope);
+            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, player.SweepScope);
             var revealCellTasks = Enumerable
                 .Select(affectedCells, affectedCell => RevealCellAsync(CellIndexDict[affectedCell])).ToList();
 
@@ -325,7 +324,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, Player.SweepScope);
+            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cellHovering, player.SweepScope);
             foreach (var cell in affectedCells)
             {
                 cell.SetHighlight(true);

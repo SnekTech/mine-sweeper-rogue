@@ -20,7 +20,7 @@ namespace SnekTech.Core.History
         #region Record Saving Dependencies
 
         [SerializeField]
-        private PlayerHolder playerHolder;
+        private Player player;
         [SerializeField]
         private CurrentEventsHolder currentEventsHolder;
         [SerializeField]
@@ -34,7 +34,7 @@ namespace SnekTech.Core.History
             var newRecord = new Record
             {
                 CreatedAt = DateTime.UtcNow.Ticks,
-                Items = playerHolder.Player.Inventory.Items,
+                Items = player.Inventory.Items,
                 CellEvents = currentEventsHolder.CellEvents,
                 HasFailed = hasFailed,
                 Seed = _randomGenerator.Seed,

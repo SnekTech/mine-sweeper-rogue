@@ -1,29 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
 using SnekTech.C;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
-    [Serializable]
     public class Life
     {
         public event Action ArmourRanOut;
         public event Action HealthRanOut;
 
-        [SerializeField]
-        private int health;
-
-        [SerializeField]
-        private int maxHealth;
-
-        [SerializeField]
-        private int armour;
-
-        public int Health => health;
-        public int MaxHealth => maxHealth;
-        public int Armour => armour;
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int Armour { get; set; }
         public static Life Default => new Life(GameConstants.InitialHealth,GameConstants.InitialArmour);
 
         private List<IHealthArmourDisplay> _displays = new List<IHealthArmourDisplay>();
@@ -34,9 +25,9 @@ namespace SnekTech.GamePlay.PlayerSystem
             {
                 throw new ArgumentException($"maxHealth[{maxHealth}] < health[{health}], invalid");
             }
-            this.health = health;
-            this.maxHealth = maxHealth;
-            this.armour = armour;
+            Health = health;
+            MaxHealth = maxHealth;
+            Armour = armour;
         }
 
         public Life(int health, int armour): this(health, health, armour)
@@ -50,16 +41,16 @@ namespace SnekTech.GamePlay.PlayerSystem
                 throw new ArgumentException();
             }
             
-            health = newHealth;
-            maxHealth = newMaxHealth;
-            armour = newArmour;
+            Health = newHealth;
+            MaxHealth = newMaxHealth;
+            Armour = newArmour;
             
             _displays.Clear();
         }
 
         public void ResetWith(Life other)
         {
-            ResetWith(other.health, other.MaxHealth, other.Armour);
+            ResetWith(other.Health, other.MaxHealth, other.Armour);
         }
 
         /// <summary>
@@ -73,8 +64,8 @@ namespace SnekTech.GamePlay.PlayerSystem
                 // prevent from unnecessary multiple async operation
                 return;
             }
-            bool isArmourRanOut = damage >= armour;
-            armour = Mathf.Max(0, Armour - damage);
+            bool isArmourRanOut = damage >= Armour;
+            Armour = Mathf.Max(0, Armour - damage);
             await PerformAllArmourDamageAsync(damage);
             UpdateAllDisplays();
             if (isArmourRanOut)
@@ -95,7 +86,7 @@ namespace SnekTech.GamePlay.PlayerSystem
                 return;
             }
             bool isHealthRanOut = damage >= Health;
-            health = Mathf.Max(0, health - damage);
+            Health = Mathf.Max(0, Health - damage);
             await PerformAllHealthDamageAsync(damage);
             UpdateAllDisplays();
             if (isHealthRanOut)
@@ -110,7 +101,7 @@ namespace SnekTech.GamePlay.PlayerSystem
         /// <param name="damage"></param>
         public async UniTask TakeDamage(int damage)
         {
-            if (health <= 0)
+            if (Health <= 0)
             {
                 // to damage a dead object is pointless
                 return;
@@ -147,17 +138,17 @@ namespace SnekTech.GamePlay.PlayerSystem
 
             if (amount > 0)
             {
-                maxHealth += amount;
+                MaxHealth += amount;
                 AddHealth(amount).Forget();
             }
             else
             {
                 // bug: unintended behavior when adjust negative max-health
-                int newMaxHealth = Mathf.Max(0, maxHealth + amount);
-                int newHealth = Mathf.Min(health, newMaxHealth);
-                int damageOnHealth = health - newHealth;
-                maxHealth = newMaxHealth;
-                health = newHealth;
+                int newMaxHealth = Mathf.Max(0, MaxHealth + amount);
+                int newHealth = Mathf.Min(Health, newMaxHealth);
+                int damageOnHealth = Health - newHealth;
+                MaxHealth = newMaxHealth;
+                Health = newHealth;
                 TakeDamageOnHealth(damageOnHealth).Forget();
             }
         }
@@ -174,7 +165,7 @@ namespace SnekTech.GamePlay.PlayerSystem
             }
             
             int newHealth = Mathf.Min(Health + increment, MaxHealth);
-            health = newHealth;
+            Health = newHealth;
             await PerformAllAddHealthAsync(increment);
             UpdateAllDisplays();
         }
@@ -189,7 +180,7 @@ namespace SnekTech.GamePlay.PlayerSystem
             {
                 return;
             }
-            armour += increment;
+            Armour += increment;
             await PerformAllAddArmourAsync(increment);
             UpdateAllDisplays();
         }

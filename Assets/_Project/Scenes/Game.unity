@@ -189,7 +189,7 @@ MonoBehaviour:
   inputEventManager: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
   uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
-  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
+  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   uiStateManager: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
   mainCamera: {fileID: 1997230523}
 --- !u!4 &58783577
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 441122160}
   armourLabel: {fileID: 247280843}
-  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
+  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
   abilitiesPanel: {fileID: 425891079}
 --- !u!114 &655018824
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
   playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
-  playerHolder: {fileID: 11400000, guid: f67df63aa52d30e478b53f9bf1e1fd3e, type: 2}
+  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   dataPersistenceManager: {fileID: 11400000, guid: 2dc096a99b8076e4b8663f6d96b75a40, type: 2}
   currentRecordHolder: {fileID: 11400000, guid: 24a333e8b5cd0f34cb7dcaf4c8562edd, type: 2}
   grid: {fileID: 58783576}

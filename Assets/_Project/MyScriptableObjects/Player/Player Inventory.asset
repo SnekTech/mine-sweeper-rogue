@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78830a0efe742859dd6dd7b61ae5f49, type: 3}
-  m_Name: Player Holder
+  m_Script: {fileID: 11500000, guid: 488b3dea597d4294907d8ce4850428e3, type: 3}
+  m_Name: Player Inventory
   m_EditorClassIdentifier: 
-  playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
-  gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}

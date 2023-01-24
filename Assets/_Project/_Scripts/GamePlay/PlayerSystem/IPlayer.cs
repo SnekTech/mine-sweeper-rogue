@@ -1,4 +1,5 @@
 ﻿using SnekTech.GamePlay.AbilitySystem;
+using SnekTech.GamePlay.InventorySystem;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
@@ -23,5 +24,7 @@ namespace SnekTech.GamePlay.PlayerSystem
         void ClearAllAbilities();
 
         #endregion
+        
+        Inventory Inventory { get; }
     }
 }

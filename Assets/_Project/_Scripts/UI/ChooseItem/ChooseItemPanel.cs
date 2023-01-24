@@ -10,15 +10,13 @@ namespace SnekTech.UI.ChooseItem
         private UIEventManager uiEventManager;
 
         [SerializeField]
-        private PlayerHolder playerHolder;
+        private Player player;
         
         [SerializeField]
         private ItemPool itemPool;
         
         [SerializeField]
         private ItemButton itemButtonPrefab;
-
-        private Player Player => playerHolder.Player;
 
         private void OnEnable()
         {
@@ -32,13 +30,13 @@ namespace SnekTech.UI.ChooseItem
 
         private void HandleOnChooseItem(ItemData item)
         {
-            Player.Inventory.AddItem(item);
+            player.Inventory.AddItem(item);
         }
 
         public void GenerateItemButtons()
         {
             transform.DestroyAllChildren();
-            for (int i = 0; i < Player.ItemChoiceCount; i++)
+            for (int i = 0; i < player.ItemChoiceCount; i++)
             {
                 var button = Instantiate(itemButtonPrefab, transform);
                 button.SetItem(itemPool.GetRandom());

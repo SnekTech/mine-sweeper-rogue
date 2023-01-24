@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 170788f21fa84459952365f0bff0a2f7, type: 3}
+  m_Name: Player One
+  m_EditorClassIdentifier: 
+  playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
+  gridEventChannel: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  inventory: {fileID: 11400000, guid: dc8f914bdbe5b45408bf634eceffa71e, type: 2}
+  abilityHolder: {fileID: 11400000, guid: a069ab956393e3f40878976a72b8b019, type: 2}
+  stats: {fileID: 11400000, guid: ff227436e395af24ea9387d3f76d6531, type: 2}

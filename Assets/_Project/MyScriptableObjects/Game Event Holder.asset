@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a236407a41473c9fba9bf929c08ab7, type: 3}
   m_Name: Game Event Holder
   m_EditorClassIdentifier: 
-  playerState: {fileID: 11400000, guid: 2ec3a6bf50974d84bacd938fa494a991, type: 2}
+  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   cellEventPool: {fileID: 11400000, guid: 478e2bc02094a384e85e7b8e7e45f7b1, type: 2}
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
   gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}

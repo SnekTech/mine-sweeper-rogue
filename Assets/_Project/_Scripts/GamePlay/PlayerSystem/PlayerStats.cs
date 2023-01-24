@@ -6,38 +6,26 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
-    [Serializable]
-    public class PlayerStats
+    [CreateAssetMenu(menuName = C.MenuName.Player + "/" + nameof(PlayerStats))]
+    public class PlayerStats : ScriptableObject, IPlayerDataHolder
     {
         public Life Life { get; private set; } = Life.Default;
         
-        public int damagePerBomb;// todo: this should belong to the grid, as ability or effect target
+        public int damagePerBomb; // todo: this should belong to the grid, as ability or effect target
         public int sweepScope; // todo: add weapon system and put this in it
         
         public int itemChoiceCount;
-        public float eventChanceFactor = 1f;
 
-        private readonly List<IPlayerDataAccumulator> _playerDataAccumulators = new List<IPlayerDataAccumulator>();
+        private PlayerStatsData baseData;
 
-        public PlayerStats Calculated => CalculatePlayerData();
+        private readonly List<IPlayerStatsDataAccumulator> _playerDataAccumulators = new List<IPlayerStatsDataAccumulator>();
 
-        public PlayerStats()
+        public PlayerStatsData Calculated => CalculatePlayerStats();
+
+
+        private PlayerStatsData CalculatePlayerStats()
         {
-            damagePerBomb = GameConstants.DamagePerBomb;
-            sweepScope = GameConstants.SweepScopeMin;
-            itemChoiceCount = GameConstants.InitialItemChoiceCount;
-        }
-
-        public PlayerStats(PlayerStats other)
-        {
-            damagePerBomb = other.damagePerBomb;
-            sweepScope = other.sweepScope;
-            itemChoiceCount = other.itemChoiceCount;
-        }
-
-        private PlayerStats CalculatePlayerData()
-        {
-            var statsCopy = new PlayerStats(this);
+            var statsCopy = new PlayerStatsData(baseData);
             foreach (var accumulator in _playerDataAccumulators)
             {
                 accumulator.Accumulate(statsCopy);
@@ -48,17 +36,27 @@ namespace SnekTech.GamePlay.PlayerSystem
             return statsCopy;
         }
 
-        public void AddDataAccumulator(IPlayerDataAccumulator accumulator)
+        public void AddDataAccumulator(IPlayerStatsDataAccumulator accumulator)
         {
             _playerDataAccumulators.Add(accumulator);
-            CalculatePlayerData();
+            CalculatePlayerStats();
         }
 
-        public void RemoveDataAccumulator(IPlayerDataAccumulator accumulator)
+        public void RemoveDataAccumulator(IPlayerStatsDataAccumulator accumulator)
         {
             _playerDataAccumulators.Remove(accumulator);
-            CalculatePlayerData();
+            CalculatePlayerStats();
         }
 
+        public void LoadData(PlayerData playerData)
+        {
+            var statsData = playerData.playerStatsData;
+            baseData = statsData;
+        }
+
+        public void SaveData(PlayerData playerData)
+        {
+            playerData.playerStatsData = baseData;
+        }
     }
 }

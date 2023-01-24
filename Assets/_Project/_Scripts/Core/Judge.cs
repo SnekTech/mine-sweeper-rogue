@@ -27,7 +27,7 @@ namespace SnekTech.Core
         private PlayerEventChannel playerEventChannel;
 
         [SerializeField]
-        private PlayerHolder playerHolder;
+        private Player player;
         
         [SerializeField]
         private DataPersistenceManager dataPersistenceManager;
@@ -141,7 +141,7 @@ namespace SnekTech.Core
             await UniTask.WhenAll(_afterLevelCompletedTasks.Select(task => task.FinishAsync()));
             
             CurrentLevelIndex++;
-            playerHolder.Player.ClearAllAbilities();
+            player.ClearAllAbilities();
             dataPersistenceManager.SaveGame();
             
             

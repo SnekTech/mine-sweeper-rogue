@@ -1,70 +1,76 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SnekTech.DataPersistence;
 using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.GamePlay.InventorySystem;
 using SnekTech.Grid;
 using SnekTech.GridCell;
+using UnityEngine;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
-    public class Player : IPlayer
+    [CreateAssetMenu(menuName = C.MenuName.Player + "/" + nameof(Player))]
+    public class Player : ScriptableObject, IPlayer, IPersistentDataHolder
     {
         #region Event channels
 
-        private PlayerEventChannel _playerEventChannel;
-        private GridEventManager _gridEventChannel;
+        [SerializeField]
+        private PlayerEventChannel playerEventChannel;
+        [SerializeField]
+        private GridEventManager gridEventChannel;
 
         #endregion
 
-        private readonly Inventory _inventory;
+        [SerializeField]
+        private Inventory inventory;
 
-        private readonly PlayerStats _stats;
+        [SerializeField]
+        private PlayerAbilityHolder abilityHolder;
 
-        private readonly PlayerAbilityHolder _playerAbilityHolder;
+        [SerializeField]
+        private PlayerStats stats;
 
-        public Player()
-        {
-            _inventory = new Inventory(this);
-            _stats = new PlayerStats();
-            _playerAbilityHolder = new PlayerAbilityHolder(this);
-        }
-        
-        
+        private readonly List<IPlayerDataHolder> dataHolders = new List<IPlayerDataHolder>();
+
         #region Getters
 
-        public Inventory Inventory => _inventory;
-        public int SweepScope => _stats.Calculated.sweepScope;
-        public int DamagePerBomb => _stats.Calculated.damagePerBomb;
-        public int ItemChoiceCount => _stats.Calculated.itemChoiceCount;
+        public Inventory Inventory => inventory;
+        public int SweepScope => stats.Calculated.sweepScope;
+        public int DamagePerBomb => stats.Calculated.damagePerBomb;
+        public int ItemChoiceCount => stats.Calculated.itemChoiceCount;
         
         #endregion
 
         // load game entry point
-        public void OnEnable(PlayerEventChannel playerEventChannel, GridEventManager gridEventManager)
+        public void OnEnable()
         {
-            _playerEventChannel = playerEventChannel;
-            _gridEventChannel = gridEventManager;
+            gridEventChannel.OnBombReveal += HandleOnBombReveal;
             
-            _gridEventChannel.OnBombReveal += HandleOnBombReveal;
-            _stats.Life.HealthRanOut += HandleHealthRanOut;
-            _playerAbilityHolder.Changed += HandlePlayerAbilitiesChanged;
-            _inventory.ItemsChanged += HandleItemsChanged;
+            stats.Life.HealthRanOut += HandleHealthRanOut;
+            abilityHolder.Changed += HandleAbilitiesChanged;
+            inventory.ItemsChanged += HandleItemsChanged;
+            
+            dataHolders.Clear();
+            dataHolders.Add(inventory);
+            dataHolders.Add(stats);
         }
 
         public void OnDisable()
         {
-            _gridEventChannel.OnBombReveal -= HandleOnBombReveal;
-            _stats.Life.HealthRanOut -= HandleHealthRanOut;
-            _playerAbilityHolder.Changed -= HandlePlayerAbilitiesChanged;
+            gridEventChannel.OnBombReveal -= HandleOnBombReveal;
+            
+            stats.Life.HealthRanOut -= HandleHealthRanOut;
+            abilityHolder.Changed -= HandleAbilitiesChanged;
+            inventory.ItemsChanged -= HandleItemsChanged;
         }
 
-        private void HandlePlayerAbilitiesChanged(List<PlayerAbility> abilities) =>
-            _playerEventChannel.InvokeAbilitiesChanged(abilities);
+        private void HandleAbilitiesChanged(List<PlayerAbility> abilities) =>
+            playerEventChannel.InvokeAbilitiesChanged(abilities);
 
         private void HandleItemsChanged(List<InventoryItem> items) =>
-            _playerEventChannel.InvokeInventoryItemChanged(items);
+            playerEventChannel.InvokeInventoryItemChanged(items);
 
-        private void HandleHealthRanOut() => _playerEventChannel.InvokeHealthRanOut();
+        private void HandleHealthRanOut() => playerEventChannel.InvokeHealthRanOut();
         
         private void HandleOnBombReveal(IGrid grid, ILogicCell cell)
         {
@@ -73,17 +79,17 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         #region delegate life effects
         
-        public void TakeDamage(int damage) => _stats.Life.TakeDamage(damage).Forget();
+        public void TakeDamage(int damage) => stats.Life.TakeDamage(damage).Forget();
 
-        public void TakeDamageOnHealth(int damage) => _stats.Life.TakeDamageOnHealth(damage).Forget();
+        public void TakeDamageOnHealth(int damage) => stats.Life.TakeDamageOnHealth(damage).Forget();
 
-        public void TakeDamageOnArmour(int damage) => _stats.Life.TakeDamageOnArmour(damage).Forget();
+        public void TakeDamageOnArmour(int damage) => stats.Life.TakeDamageOnArmour(damage).Forget();
 
-        public void AddHealth(int healthIncrement) => _stats.Life.AddHealth(healthIncrement).Forget();
+        public void AddHealth(int healthIncrement) => stats.Life.AddHealth(healthIncrement).Forget();
 
-        public void AddArmour(int armourIncrement) => _stats.Life.AddArmour(armourIncrement).Forget();
+        public void AddArmour(int armourIncrement) => stats.Life.AddArmour(armourIncrement).Forget();
 
-        public void AddMaxHealth(int amount) => _stats.Life.AdjustMaxHealth(amount);
+        public void AddMaxHealth(int amount) => stats.Life.AdjustMaxHealth(amount);
 
         #endregion
 
@@ -91,31 +97,47 @@ namespace SnekTech.GamePlay.PlayerSystem
         // todo: change to event driven & async
         public void AddHealthArmourDisplay(IHealthArmourDisplay display)
         {
-            _stats.Life.AddDisplay(display);
+            stats.Life.AddDisplay(display);
         }
         
         #region delegate ability methods
 
         public void AddClickAbility(PlayerAbility playerAbility)
         {
-            _playerAbilityHolder.AddClickAbility(playerAbility);
+            abilityHolder.AddClickAbility(playerAbility);
         }
 
         public void RemoveClickAbility(PlayerAbility playerAbility)
         {
-            _playerAbilityHolder.RemoveClickAbility(playerAbility);
+            abilityHolder.RemoveClickAbility(playerAbility);
         }
 
         public void UseClickAbilities()
         {
-            _playerAbilityHolder.UseClickAbilities();
+            abilityHolder.UseClickAbilities();
         }
 
         public void ClearAllAbilities()
         {
-            _playerAbilityHolder.ClearAll();
+            abilityHolder.ClearAll();
         }
         
         #endregion
+
+        public void LoadData(GameData gameData)
+        {
+            foreach (var dataHolder in dataHolders)
+            {
+                dataHolder.LoadData(gameData.playerData);
+            }
+        }
+
+        public void SaveData(GameData gameData)
+        {
+            foreach (var dataHolder in dataHolders)
+            {
+                dataHolder.SaveData(gameData.playerData);
+            }
+        }
     }
 }

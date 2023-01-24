@@ -9,13 +9,12 @@ using SnekTech.Roguelike;
 
 namespace SnekTech.DataPersistence
 {
-    [Serializable]
     public class GameData
     {
         public SeedData seedData;
         public int currentLevelIndex;
 
-        public Player player;
+        public PlayerData playerData;
         
         public List<CellEvent> cellEvents;
 
@@ -26,7 +25,7 @@ namespace SnekTech.DataPersistence
             seedData = new SeedData();
             currentLevelIndex = 0;
 
-            player = new Player();
+            playerData = new PlayerData();
             
             cellEvents = new List<CellEvent>();
             

@@ -152,6 +152,31 @@ stateDiagram-v2
     }
 ```
 
+战斗系统状态图
+
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+stateDiagram-v2
+    state BattleSystem {
+        s1: load level
+        s2: wait for player action
+        s3: process player action
+        s4: win
+        s5: lose
+        
+        [*] --> s1 : load game scene the first time
+        s1 --> s2 : load level finished
+        s2 --> s3 : player made an action
+        s3 --> s2 : process complete, but no win or lose condition be met
+        s3 --> s1 : met the win condition of the current level, but has levels remaining
+        s3 --> s4 : met the win condition, and no remaining levels
+        s3 --> s5 : met the lose condition
+        s4 --> [*] : win scene loaded
+        s5 --> [*] : lose scene loaded
+        
+    }
+```
+
 ## 类图
 
 ```mermaid

@@ -16,7 +16,7 @@ namespace SnekTech.DataPersistence
 
         [Header("Persistent Data Holders")]
         [SerializeField]
-        private PlayerHolder playerHolder;
+        private Player player;
         
         [SerializeField]
         private GameHistory gameHistory;
@@ -35,7 +35,7 @@ namespace SnekTech.DataPersistence
         private List<IPersistentDataHolder> PersistentDataHolders => new List<IPersistentDataHolder>
         {
             // todo: separate save&load of player state & history
-            playerHolder,
+            player,
             gameHistory,
             currentEventsHolder,
             RandomGenerator.Instance,
