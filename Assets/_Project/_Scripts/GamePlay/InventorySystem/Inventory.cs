@@ -14,7 +14,7 @@ namespace SnekTech.GamePlay.InventorySystem
         [SerializeField]
         private Player player;
         
-        private SortedDictionary<ItemData, InventoryItem> _itemDict = new SortedDictionary<ItemData, InventoryItem>();
+        private readonly SortedDictionary<ItemData, InventoryItem> _itemDict = new SortedDictionary<ItemData, InventoryItem>();
 
         public List<InventoryItem> Items => _itemDict.Values.ToList();
         
@@ -61,6 +61,7 @@ namespace SnekTech.GamePlay.InventorySystem
             {
                 _itemDict[inventoryItem.ItemData] = inventoryItem;
             }
+            ItemsChanged?.Invoke(Items);
         }
 
         public void SaveData(PlayerData playerData)

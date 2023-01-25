@@ -9,6 +9,9 @@ namespace SnekTech.UI
     {
         [SerializeField]
         private PlayerEventChannel playerEventChannel;
+
+        [SerializeField]
+        private Inventory playerInventory;
         
         [SerializeField]
         private ItemSlot itemSlotPrefab;
@@ -18,6 +21,7 @@ namespace SnekTech.UI
 
         private void OnEnable()
         {
+            RefreshPanel(playerInventory.Items);
             playerEventChannel.InventoryItemChanged += HandleInventoryItemsChanged;
         }
 
