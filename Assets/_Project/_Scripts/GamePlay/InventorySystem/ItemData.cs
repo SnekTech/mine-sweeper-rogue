@@ -32,5 +32,10 @@ namespace SnekTech.GamePlay.InventorySystem
             if (ReferenceEquals(null, other)) return 1;
             return string.Compare(label, other.label, StringComparison.Ordinal);
         }
+
+        private void OnEnable()
+        {
+            ItemDataAssetRepo.Instance.Set(name, this);
+        }
     }
 }

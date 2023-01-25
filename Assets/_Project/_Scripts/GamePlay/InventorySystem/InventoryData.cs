@@ -4,6 +4,6 @@ namespace SnekTech.GamePlay.InventorySystem
 {
     public class InventoryData
     {
-        public SortedDictionary<ItemData, InventoryItem> itemDict = new SortedDictionary<ItemData, InventoryItem>();
+        public List<InventoryItem> Items { get; set; } = new List<InventoryItem>();
     }
 }

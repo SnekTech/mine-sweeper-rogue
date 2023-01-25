@@ -55,13 +55,17 @@ namespace SnekTech.GamePlay.InventorySystem
 
         public void LoadData(PlayerData playerData)
         {
-            var inventoryData = playerData.inventoryData;
-            _itemDict = inventoryData.itemDict;
+            var savedItems = playerData.inventoryData.Items;
+            _itemDict.Clear();
+            foreach (var inventoryItem in savedItems)
+            {
+                _itemDict[inventoryItem.ItemData] = inventoryItem;
+            }
         }
 
         public void SaveData(PlayerData playerData)
         {
-            playerData.inventoryData.itemDict = _itemDict;
+            playerData.inventoryData.Items = Items;
         }
     }
 }
