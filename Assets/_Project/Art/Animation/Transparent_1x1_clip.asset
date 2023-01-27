@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbffe24636cc4188a70779472adfc754, type: 3}
   m_Name: Transparent_1x1_clip
   m_EditorClassIdentifier: 
+  animName: 
   sprites:
   - {fileID: 21300000, guid: 3883740ce234e4b4c8b4e61ab2481ad5, type: 3}
-  frameDurations:
-  - 16
-  isLooping: 1
+  frameDurations: 10000000
+  speedFactor: 1
+  clipPlayer: {fileID: 11400000, guid: dc7ffb40a18ddf54ab9670aac045f73c, type: 2}

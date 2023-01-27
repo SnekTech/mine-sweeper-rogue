@@ -9,7 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818cd5d3c5c24e318e95d9e3d62400d7, type: 3}
-  m_Name: Player Ability Holder
+  m_Script: {fileID: 11500000, guid: c14fbc7f458d4f3897d0ee76dfa5ac73, type: 3}
+  m_Name: Loop Clip Player
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}

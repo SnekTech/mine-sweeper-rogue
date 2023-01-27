@@ -32,7 +32,6 @@ namespace SnekTech.Editor.Animation
                 clipAsset.Sprites = SpriteExtractorFromSpriteSheet.GetSpritesFromSpriteSheet(spriteSheetPath)
                     .GetRange(tag.FromIndex, tag.Length);
                 clipAsset.FrameDurations = frameDurations;
-                clipAsset.IsLooping = tag.Name.ToLower().Contains("loop");
                 
                 clipAssets.Add(clipAsset);
             }

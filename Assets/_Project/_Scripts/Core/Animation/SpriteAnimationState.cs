@@ -5,8 +5,6 @@
         protected readonly SnekAnimator animator;
         private readonly SnekAnimationClip clip;
 
-        public bool IsTransitional => !clip.IsLooping;
-        
         protected SpriteAnimState(ICanAnimateSnek animContext, SnekAnimationClip clip)
         {
             animator = animContext.SnekAnimator;
@@ -16,7 +14,7 @@
 
         public virtual void Enter()
         {
-            animator.Play(clip);
+            animator.Play(clip).Forget();
         }
 
         public virtual void Exit()

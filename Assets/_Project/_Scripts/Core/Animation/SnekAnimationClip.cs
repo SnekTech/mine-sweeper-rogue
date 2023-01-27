@@ -19,8 +19,8 @@ namespace SnekTech.Core.Animation
         [SerializeField]
         private float speedFactor = 1f;
 
-        [SerializeField]
-        private bool isLooping;
+        [SerializeReference]
+        private ClipPlayer clipPlayer;
 
         public string AnimName
         {
@@ -29,12 +29,6 @@ namespace SnekTech.Core.Animation
         }
         public int FrameCount => sprites.Count;
         public float SpeedFactor => speedFactor;
-
-        public bool IsLooping
-        {
-            get => isLooping;
-            set => isLooping = value;
-        }
 
         public List<Sprite> Sprites
         {
@@ -47,5 +41,7 @@ namespace SnekTech.Core.Animation
             get => frameDurations;
             set => frameDurations = value;
         }
+
+        public ClipPlayer ClipPlayer => clipPlayer;
     }
 }
