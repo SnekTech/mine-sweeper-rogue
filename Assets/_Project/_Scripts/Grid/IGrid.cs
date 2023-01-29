@@ -9,6 +9,7 @@ namespace SnekTech.Grid
         List<ICell> Cells { get; }
         ICell GetCellAt(GridIndex gridIndex);
         GridData GridData { get; }
+        GridEventChannel EventChannel { get; }
         
         int CellCount { get; }
         int BombCount { get; }

@@ -43,6 +43,7 @@ namespace SnekTech.Grid
         public List<ICell> Cells { get; } = new List<ICell>();
 
         public GridData GridData { get; private set; }
+        public GridEventChannel EventChannel => gridEventChannel;
 
         private GridSize GridSize => GridData.GridSize;
         public int CellCount => GridSize.rowCount * GridSize.columnCount;
@@ -151,12 +152,7 @@ namespace SnekTech.Grid
                 return;
             }
 
-            bool isClickSuccessful = await cell.SwitchFlag();
-
-            if (isClickSuccessful)
-            {
-                gridEventChannel.InvokeOnCellFlagOperated(this);
-            }
+            await player.Weapon.Secondary(cell);
         }
 
         public async UniTask RevealCellAsync(GridIndex cellGridIndex)
@@ -274,7 +270,7 @@ namespace SnekTech.Grid
                     var cellIndex = new GridIndex(i, j);
                     cell.GridIndex = cellIndex;
                     cell.SetPosition(cellIndex);
-                    cell.Grid = this;
+                    cell.ParentGrid = this;
 
                     bool hasBomb = bombGenerator.NextBool(newGridData.BombPercent);
                     if (hasBomb)

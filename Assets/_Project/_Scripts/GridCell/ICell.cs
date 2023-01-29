@@ -12,7 +12,7 @@ namespace SnekTech.GridCell
     public interface ILogicCell
     {
         GridIndex GridIndex { get; set; }
-        IGrid Grid { get; set; }
+        IGrid ParentGrid { get; set; }
         ILogicFlag Flag { get; }
         ILogicCover Cover { get; }
 

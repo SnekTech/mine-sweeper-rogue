@@ -9,7 +9,7 @@ namespace SnekTech.GamePlay.WeaponSystem.Components
     {
         public override UniTask Use(ICell cell)
         {
-            var grid = cell.Grid;
+            var grid = cell.ParentGrid;
             return grid.RevealCellAsync(cell.GridIndex);
         }
     }

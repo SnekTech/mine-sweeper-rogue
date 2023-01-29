@@ -9,7 +9,7 @@ namespace Tests.EditMode.Builder
     public class FakeCell : ILogicCell
     {
         public GridIndex GridIndex { get; set; } = GridIndex.Zero;
-        public IGrid Grid { get; set; }
+        public IGrid ParentGrid { get; set; }
         public ILogicFlag Flag { get; } = new FakeFlag();
         public ILogicCover Cover { get; } = new FakeCover();
 

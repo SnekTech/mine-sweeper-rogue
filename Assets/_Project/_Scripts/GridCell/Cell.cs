@@ -26,7 +26,7 @@ namespace SnekTech.GridCell
 
         public GridIndex GridIndex { get; set; }
 
-        public IGrid Grid { get; set; }
+        public IGrid ParentGrid { get; set; }
 
 
         private void Awake()
@@ -40,7 +40,15 @@ namespace SnekTech.GridCell
 
         public UniTask<bool> Reveal() => _fsm.Current.OnReveal();
 
-        public UniTask<bool> SwitchFlag() => _fsm.Current.OnSwitchFlag();
+        public async UniTask<bool> SwitchFlag()
+        {
+            bool isSwitchSuccessful = await _fsm.Current.OnSwitchFlag();
+            if (isSwitchSuccessful)
+            {
+                ParentGrid.EventChannel.InvokeOnCellFlagOperated(ParentGrid);
+            }
+            return isSwitchSuccessful;
+        }
 
         public void SetContent(Sprite sprite)
         {
