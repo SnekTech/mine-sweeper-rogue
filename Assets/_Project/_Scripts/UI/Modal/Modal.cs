@@ -8,7 +8,7 @@ namespace SnekTech.UI.Modal
     public class Modal : MonoBehaviour
     {
         [SerializeField]
-        private UIEventManager uiEventManager;
+        private UIEventChannel uiEventChannel;
         
         [SerializeField]
         private TMP_Text header;
@@ -44,7 +44,7 @@ namespace SnekTech.UI.Modal
 
         private void OnOkButtonClick()
         {
-            uiEventManager.InvokeOnModalOk();
+            uiEventChannel.InvokeOnModalOk();
         }
 
         public void ChangeToChooseItemPanel()

@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df32cbed0ea4fbc4da575fad080a58e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
+  uiEventChannel: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
 --- !u!1 &6552655241350413023
 GameObject:
   m_ObjectHideFlags: 0

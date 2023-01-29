@@ -6,8 +6,8 @@ using UnityEngine;
 
 namespace SnekTech.UI
 {
-    [CreateAssetMenu(fileName = nameof(UIEventManager), menuName = MenuName.EventManagers + "/" + nameof(UIEventManager))]
-    public class UIEventManager : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(UIEventChannel), menuName = MenuName.EventChannels + "/" + nameof(UIEventChannel))]
+    public class UIEventChannel : ScriptableObject
     {
         public event Action<GridData> ResetButtonClicked;
         public event Action<ItemData> OnChooseItem;

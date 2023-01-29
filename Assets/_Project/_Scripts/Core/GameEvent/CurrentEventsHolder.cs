@@ -25,7 +25,7 @@ namespace SnekTech.Core.GameEvent
         private ModalManager modalManager;
 
         [SerializeField]
-        private GridEventManager gridEventManager;
+        private GridEventChannel gridEventChannel;
 
         [SerializeField]
         private CurrentRecordHolder currentRecordHolder;
@@ -44,12 +44,12 @@ namespace SnekTech.Core.GameEvent
 
         private void OnEnable()
         {
-            gridEventManager.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
+            gridEventChannel.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
         }
 
         private void OnDisable()
         {
-            gridEventManager.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
+            gridEventChannel.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
         }
 
         #endregion

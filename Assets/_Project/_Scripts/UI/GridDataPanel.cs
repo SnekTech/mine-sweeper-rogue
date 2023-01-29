@@ -8,7 +8,7 @@ namespace SnekTech.UI
     public class GridDataPanel : MonoBehaviour
     {
         [SerializeField]
-        private GridEventManager gridEventManager;
+        private GridEventChannel gridEventChannel;
 
         [SerializeField]
         private LabelController remainingCoverCountLabel;
@@ -18,16 +18,16 @@ namespace SnekTech.UI
 
         private void OnEnable()
         {
-            gridEventManager.OnGridInitComplete += HandleOnGridInitComplete;
-            gridEventManager.OnCellReveal += HandleOnCellReveal;
-            gridEventManager.OnCellFlagOperateComplete += HandleOnCellFlagOperateComplete;
+            gridEventChannel.OnGridInitComplete += HandleOnGridInitComplete;
+            gridEventChannel.OnCellReveal += HandleOnCellReveal;
+            gridEventChannel.OnCellFlagOperateComplete += HandleOnCellFlagOperateComplete;
         }
 
         private void OnDisable()
         {
-            gridEventManager.OnGridInitComplete -= HandleOnGridInitComplete;
-            gridEventManager.OnCellReveal -= HandleOnCellReveal;
-            gridEventManager.OnCellFlagOperateComplete -= HandleOnCellFlagOperateComplete;
+            gridEventChannel.OnGridInitComplete -= HandleOnGridInitComplete;
+            gridEventChannel.OnCellReveal -= HandleOnCellReveal;
+            gridEventChannel.OnCellFlagOperateComplete -= HandleOnCellFlagOperateComplete;
         }
 
         private void HandleOnGridInitComplete(IGrid grid) => UpdateGridData(grid);

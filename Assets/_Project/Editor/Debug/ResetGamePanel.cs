@@ -44,7 +44,7 @@ namespace SnekTech.Editor.Debug
             }
         }
 
-        public void Init(UIEventManager uiEventManager)
+        public void Init(UIEventChannel uiEventChannel)
         {
             if (!EditorApplication.isPlaying)
             {
@@ -53,7 +53,7 @@ namespace SnekTech.Editor.Debug
             
             foreach (var (gridData, button) in _gridDataToButton)
             {
-                button.clickable = new Clickable(() => uiEventManager.InvokeResetButtonClicked(gridData));
+                button.clickable = new Clickable(() => uiEventChannel.InvokeResetButtonClicked(gridData));
             }
         }
     }

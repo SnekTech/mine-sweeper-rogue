@@ -59,7 +59,7 @@ namespace SnekTech
 
             public const string Managers = Root + "/" + nameof(Managers);
             public const string UIManagers = Managers + "/" + nameof(UIManagers);
-            public const string EventManagers = Managers + "/" + nameof(EventManagers);
+            public const string EventChannels = Managers + "/" + nameof(EventChannels);
             
             public const string InventorySystem = Root + "/" + nameof(InventorySystem);
             public const string Items = InventorySystem + "/" + nameof(Items);

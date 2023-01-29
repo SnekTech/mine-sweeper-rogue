@@ -8,7 +8,7 @@ namespace SnekTech.UI.ChooseItem
     public class ItemButton : MonoBehaviour
     {
         [SerializeField]
-        private UIEventManager uiEventManager;
+        private UIEventChannel uiEventChannel;
         
         private ItemData _itemData;
         private TMP_Text _text;
@@ -46,7 +46,7 @@ namespace SnekTech.UI.ChooseItem
 
         private void HandleItemButtonClicked()
         {
-            uiEventManager.InvokeOnChooseItem(_itemData);
+            uiEventChannel.InvokeOnChooseItem(_itemData);
         }
     }
 }

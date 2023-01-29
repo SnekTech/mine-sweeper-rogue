@@ -17,7 +17,7 @@ namespace SnekTech
         }
         
         [SerializeField]
-        private InputEventManager inputEventManager;
+        private InputEventChannel inputEventChannel;
 
         private PlayerInput _playerInput;
         private InputAction _primaryAction;
@@ -59,27 +59,27 @@ namespace SnekTech
 
         private void OnPrimaryPerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokePrimaryPerformed(MousePosition);
+            inputEventChannel.InvokePrimaryPerformed(MousePosition);
         }
 
         private void OnDoublePrimaryPerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokeDoublePrimaryPerformed(MousePosition);
+            inputEventChannel.InvokeDoublePrimaryPerformed(MousePosition);
         }
 
         private void OnSecondaryPerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokeSecondaryPerformed(MousePosition);
+            inputEventChannel.InvokeSecondaryPerformed(MousePosition);
         }
 
         private void OnMovePerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokeMovePerformed(MousePosition);
+            inputEventChannel.InvokeMovePerformed(MousePosition);
         }
 
         private void OnPausePerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokePausePerformed();
+            inputEventChannel.InvokePausePerformed();
         }
     }
 }

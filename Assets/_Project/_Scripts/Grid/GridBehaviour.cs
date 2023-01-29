@@ -20,10 +20,10 @@ namespace SnekTech.Grid
         private CellSprites cellSprites;
 
         [SerializeField]
-        private InputEventManager inputEventManager;
+        private InputEventChannel inputEventChannel;
 
         [SerializeField]
-        private GridEventManager gridEventManager;
+        private GridEventChannel gridEventChannel;
 
         [SerializeField]
         private Player player;
@@ -67,18 +67,18 @@ namespace SnekTech.Grid
 
         private void OnEnable()
         {
-            inputEventManager.PrimaryPerformed += HandlePrimary;
-            inputEventManager.DoublePrimaryPerformed += HandleDoublePrimary;
-            inputEventManager.SecondaryPerformed += HandleSecondary;
-            inputEventManager.MovePerformed += OnMove;
+            inputEventChannel.PrimaryPerformed += HandlePrimary;
+            inputEventChannel.DoublePrimaryPerformed += HandleDoublePrimary;
+            inputEventChannel.SecondaryPerformed += HandleSecondary;
+            inputEventChannel.MovePerformed += OnMove;
         }
 
         private void OnDisable()
         {
-            inputEventManager.PrimaryPerformed -= HandlePrimary;
-            inputEventManager.DoublePrimaryPerformed -= HandleDoublePrimary;
-            inputEventManager.SecondaryPerformed -= HandleSecondary;
-            inputEventManager.MovePerformed -= OnMove;
+            inputEventChannel.PrimaryPerformed -= HandlePrimary;
+            inputEventChannel.DoublePrimaryPerformed -= HandleDoublePrimary;
+            inputEventChannel.SecondaryPerformed -= HandleSecondary;
+            inputEventChannel.MovePerformed -= OnMove;
         }
         
         #endregion
@@ -162,7 +162,7 @@ namespace SnekTech.Grid
 
             if (isClickSuccessful)
             {
-                gridEventManager.InvokeOnCellFlagOperated(this, cell);
+                gridEventChannel.InvokeOnCellFlagOperated(this, cell);
             }
         }
         
@@ -188,11 +188,11 @@ namespace SnekTech.Grid
                 return;
             }
 
-            gridEventManager.InvokeOnCellReveal(this, cell);
+            gridEventChannel.InvokeOnCellReveal(this, cell);
 
             if (cell.HasBomb)
             {
-                gridEventManager.InvokeOnBombReveal(this, cell);
+                gridEventChannel.InvokeOnBombReveal(this, cell);
                 return;
             }
 
@@ -231,7 +231,7 @@ namespace SnekTech.Grid
 
         private void HandleRecursiveRevealCellComplete(ILogicCell originalCell)
         {
-            gridEventManager.InvokeOnRecursiveRevealComplete(originalCell);
+            gridEventChannel.InvokeOnRecursiveRevealComplete(originalCell);
             CheckIfAllCleared();
         }
 
@@ -239,7 +239,7 @@ namespace SnekTech.Grid
         {
             if (IsAllCleared)
             {
-                gridEventManager.InvokeOnGridCleared(this);
+                gridEventChannel.InvokeOnGridCleared(this);
             }
         }
 
@@ -247,7 +247,7 @@ namespace SnekTech.Grid
         {
             InstantiateCells(GridData);
             InitCellsContent();
-            gridEventManager.InvokeOnGridInitComplete(this);
+            gridEventChannel.InvokeOnGridInitComplete(this);
         }
 
         public void InitCells(GridData newGridData)

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
-    [CreateAssetMenu(menuName = C.MenuName.EventManagers + "/" + nameof(PlayerEventChannel))]
+    [CreateAssetMenu(menuName = C.MenuName.EventChannels + "/" + nameof(PlayerEventChannel))]
     public class PlayerEventChannel : ScriptableObject
     {
         public event Action<List<PlayerAbility>> AbilitiesChanged;

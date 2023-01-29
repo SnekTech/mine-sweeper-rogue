@@ -7,7 +7,7 @@ namespace SnekTech.UI.ChooseItem
     public class ChooseItemPanel : MonoBehaviour
     {
         [SerializeField]
-        private UIEventManager uiEventManager;
+        private UIEventChannel uiEventChannel;
 
         [SerializeField]
         private Player player;
@@ -20,12 +20,12 @@ namespace SnekTech.UI.ChooseItem
 
         private void OnEnable()
         {
-            uiEventManager.OnChooseItem += HandleOnChooseItem;
+            uiEventChannel.OnChooseItem += HandleOnChooseItem;
         }
 
         private void OnDisable()
         {
-            uiEventManager.OnChooseItem -= HandleOnChooseItem;
+            uiEventChannel.OnChooseItem -= HandleOnChooseItem;
         }
 
         private void HandleOnChooseItem(ItemData item)

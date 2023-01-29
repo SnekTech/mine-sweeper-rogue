@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ef52c0382042ce85d6d91739743b10, type: 3}
-  m_Name: BasicGridEventManager
+  m_Script: {fileID: 11500000, guid: eb4a940bd18a4a4699f7a66e0c1546db, type: 3}
+  m_Name: UIEventChannel
   m_EditorClassIdentifier: 

@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d6d77566604ac088498cfcf066402e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputEventManager: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
+  inputEventChannel: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
 --- !u!114 &1820703183
 MonoBehaviour:
   m_ObjectHideFlags: 0

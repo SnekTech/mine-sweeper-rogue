@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace SnekTech
 {
-    [CreateAssetMenu(fileName = nameof(InputEventManager), menuName = MenuName.EventManagers + "/" + nameof(InputEventManager))]
-    public class InputEventManager : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(InputEventChannel), menuName = MenuName.EventChannels + "/" + nameof(InputEventChannel))]
+    public class InputEventChannel : ScriptableObject
     {
         public event Action<Vector2> PrimaryPerformed;
         public event Action<Vector2> DoublePrimaryPerformed;

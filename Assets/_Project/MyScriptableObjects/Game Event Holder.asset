@@ -15,5 +15,5 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   cellEventPool: {fileID: 11400000, guid: 478e2bc02094a384e85e7b8e7e45f7b1, type: 2}
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
-  gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  gridEventChannel: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   currentRecordHolder: {fileID: 11400000, guid: 24a333e8b5cd0f34cb7dcaf4c8562edd, type: 2}

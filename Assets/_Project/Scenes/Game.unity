@@ -186,9 +186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 4038224895371612872, guid: 60dd97a3585e17244a66b5f87c7e2c47, type: 3}
   cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
-  inputEventManager: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
-  uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
-  gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  inputEventChannel: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
+  gridEventChannel: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   uiStateManager: {fileID: 11400000, guid: 6f698e70899f57847896747677088a46, type: 2}
   mainCamera: {fileID: 1997230523}
@@ -2223,7 +2222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ef7adbb4f84e928754f6d2547b2349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  gridEventChannel: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   mySceneManager: {fileID: 11400000, guid: 39a032eefcd8fc54eb3779b2c022d2eb, type: 2}
   playerEventChannel: {fileID: 11400000, guid: 6c712dff9287c6349bdb6e403dd96d29, type: 2}
   player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
@@ -2490,7 +2489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbbabaf34a04289b9ec60d676ed6c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridEventManager: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
+  gridEventChannel: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   remainingCoverCountLabel: {fileID: 956498734}
   flaggedCellCountLabel: {fileID: 183749562}
 --- !u!1 &2138649437

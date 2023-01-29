@@ -6,12 +6,12 @@ namespace SnekTech.Core.GameModeSystem
 {
     public class ClassicMode : GameMode
     {
-        private readonly GridEventManager _gridEventManager;
+        private readonly GridEventChannel _gridEventChannel;
 
-        public ClassicMode(GridEventManager gridEventManager, GameModeInfo gameModeInfo, PlayerEventChannel playerEventChannel)
+        public ClassicMode(GridEventChannel gridEventChannel, GameModeInfo gameModeInfo, PlayerEventChannel playerEventChannel)
             : base(gameModeInfo, playerEventChannel)
         {
-            _gridEventManager = gridEventManager;
+            _gridEventChannel = gridEventChannel;
         }
 
         private void HandleOnGridClear(IGrid grid)
@@ -21,7 +21,7 @@ namespace SnekTech.Core.GameModeSystem
 
         protected override void OnStart()
         {
-            _gridEventManager.OnGridClear += HandleOnGridClear;
+            _gridEventChannel.OnGridClear += HandleOnGridClear;
             PlayerEventChannel.HealthRanOut += OnPlayerHealthRanOut;
         }
 
@@ -32,7 +32,7 @@ namespace SnekTech.Core.GameModeSystem
 
         protected override void OnStop()
         {
-            _gridEventManager.OnGridClear -= HandleOnGridClear;
+            _gridEventChannel.OnGridClear -= HandleOnGridClear;
             PlayerEventChannel.HealthRanOut -= OnPlayerHealthRanOut;
         }
     }

@@ -17,7 +17,7 @@ namespace SnekTech.UI.Modal
         private UIStateManager uiStateManager;
 
         [SerializeField]
-        private UIEventManager uiEventManager;
+        private UIEventChannel uiEventChannel;
         
         #endregion
         
@@ -96,11 +96,11 @@ namespace SnekTech.UI.Modal
             {
                 await Hide();
                 actionAfterModalHide();
-                uiEventManager.OnChooseItem -= HandleOnChooseItem;
+                uiEventChannel.OnChooseItem -= HandleOnChooseItem;
                 closeTaskCompletionSource.TrySetResult();
             }
 
-            uiEventManager.OnChooseItem += HandleOnChooseItem;
+            uiEventChannel.OnChooseItem += HandleOnChooseItem;
         }
 
         private async UniTask ShowConfirmTask(UniTaskCompletionSource closeTaskCompletionSource, string header, Sprite image, string annotationText) 
@@ -113,11 +113,11 @@ namespace SnekTech.UI.Modal
             async UniTaskVoid HandleOnModalOkAsync()
             {
                 await Hide();
-                uiEventManager.OnModalOk -= HandleOnModalOk;
+                uiEventChannel.OnModalOk -= HandleOnModalOk;
                 closeTaskCompletionSource.TrySetResult();
             }
 
-            uiEventManager.OnModalOk += HandleOnModalOk;
+            uiEventChannel.OnModalOk += HandleOnModalOk;
         }
 
         public UniTask ShowConfirmAsync(string header, Sprite image, string annotationText) =>

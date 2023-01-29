@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace SnekTech.Grid
 {
-    [CreateAssetMenu(fileName = nameof(GridEventManager), menuName = MenuName.EventManagers + "/" + nameof(GridEventManager))]
-    public class GridEventManager : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(GridEventChannel), menuName = MenuName.EventChannels + "/" + nameof(GridEventChannel))]
+    public class GridEventChannel : ScriptableObject
     {
         public event Action<IGrid> OnGridInitComplete;
         public event Action<IGrid, ILogicCell> OnBombReveal;

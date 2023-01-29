@@ -17,7 +17,7 @@ namespace SnekTech.GamePlay.PlayerSystem
         [SerializeField]
         private PlayerEventChannel playerEventChannel;
         [SerializeField]
-        private GridEventManager gridEventChannel;
+        private GridEventChannel gridEventChannel;
 
         #endregion
 

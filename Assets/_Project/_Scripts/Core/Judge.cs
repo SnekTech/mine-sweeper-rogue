@@ -18,7 +18,7 @@ namespace SnekTech.Core
         
         [Header("DI")]
         [SerializeField]
-        private GridEventManager gridEventManager;
+        private GridEventChannel gridEventChannel;
         
         [SerializeField]
         private MySceneManager mySceneManager;
@@ -71,7 +71,7 @@ namespace SnekTech.Core
 
         private void Awake()
         {
-            var classicMode = new ClassicMode(gridEventManager, classicModeInfo, playerEventChannel);
+            var classicMode = new ClassicMode(gridEventChannel, classicModeInfo, playerEventChannel);
             var countDownMode = new WithCountDown(countDownModeInfo, classicMode, WithCountDown.DefaultDuration, countDownText);
             
             // todo: maybe use reflection to to these?
