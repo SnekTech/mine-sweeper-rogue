@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18c9607d68a4e758be4c07d92e58e11, type: 3}
-  m_Name: Basic Shovel
+  m_Script: {fileID: 11500000, guid: 80c4f00e23564e87998cad6184972dc0, type: 3}
+  m_Name: Gamble Reveal
   m_EditorClassIdentifier: 
-  primary: {fileID: 11400000, guid: 5b2a56922205b614c9353860abf3254f, type: 2}
-  secondary: {fileID: 11400000, guid: 325df282243b6324b815d68a054949d2, type: 2}

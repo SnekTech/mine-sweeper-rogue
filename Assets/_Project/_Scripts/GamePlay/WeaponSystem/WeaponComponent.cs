@@ -6,6 +6,6 @@ namespace SnekTech.GamePlay.WeaponSystem
 {
     public abstract class WeaponComponent : ScriptableObject
     {
-        public abstract UniTask Use(ICell cell);
+        public abstract UniTask Use(ICell targetCell);
     }
 }

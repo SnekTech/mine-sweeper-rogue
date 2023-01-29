@@ -7,9 +7,9 @@ namespace SnekTech.GamePlay.WeaponSystem.Components
     [CreateAssetMenu(menuName = C.MenuName.WeaponComponents + "/" + nameof(SwitchFlag))]
     public class SwitchFlag : WeaponComponent
     {
-        public override UniTask Use(ICell cell)
+        public override UniTask Use(ICell targetCell)
         {
-            return cell.SwitchFlag();
+            return targetCell.SwitchFlag();
         }
     }
 }

@@ -7,10 +7,10 @@ namespace SnekTech.GamePlay.WeaponSystem.Components
     [CreateAssetMenu(menuName = C.MenuName.WeaponComponents + "/" + nameof(Reveal))]
     public class Reveal : WeaponComponent
     {
-        public override UniTask Use(ICell cell)
+        public override UniTask Use(ICell targetCell)
         {
-            var grid = cell.ParentGrid;
-            return grid.RevealCellAsync(cell.GridIndex);
+            var grid = targetCell.ParentGrid;
+            return grid.RevealCellAsync(targetCell.GridIndex);
         }
     }
 }
