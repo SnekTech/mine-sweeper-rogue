@@ -58,7 +58,7 @@ namespace SnekTech.Grid
         {
             foreach (var offset in NeighborOffsets)
             {
-                var gridIndex = _grid.CellIndexDict[cell] + offset;
+                var gridIndex = cell.GridIndex + offset;
                 if (IsIndexWithinGrid(gridIndex))
                 {
                     processNeighbor(GetCellAt(gridIndex));
@@ -84,7 +84,7 @@ namespace SnekTech.Grid
         {
             // todo: better handle the scope when near the edge, do it in weapon system
             int cornerOffset = sweepScope / 2;
-            var topLeftIndex = new GridIndex(_grid.CellIndexDict[cellHovering]);
+            var topLeftIndex = new GridIndex(cellHovering.GridIndex);
             topLeftIndex.RowIndex -= cornerOffset;
             topLeftIndex.ColumnIndex -= cornerOffset;
 

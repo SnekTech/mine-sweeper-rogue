@@ -5,7 +5,6 @@ namespace SnekTech.Grid
 {
     public interface IGrid : ICanClickAsync
     {
-        Dictionary<ICell, GridIndex> CellIndexDict { get; }
         List<ICell> Cells { get; }
         GridData GridData { get; }
         

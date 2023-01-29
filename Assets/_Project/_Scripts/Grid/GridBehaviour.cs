@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using SnekTech.GamePlay;
 using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.GridCell;
 using SnekTech.Roguelike;
@@ -42,7 +40,6 @@ namespace SnekTech.Grid
         private List<Sprite> NoBombSprites => cellSprites.noBombSprites;
         private Sprite BombSprite => cellSprites.bombSprite;
 
-        public Dictionary<ICell, GridIndex> CellIndexDict { get; } = new Dictionary<ICell, GridIndex>();
         public List<ICell> Cells { get; } = new List<ICell>();
 
         public GridData GridData { get; private set; }
@@ -113,7 +110,7 @@ namespace SnekTech.Grid
 
             var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, player.SweepScope);
             var revealCellTasks = Enumerable
-                .Select(affectedCells, affectedCell => RevealCellAsync(CellIndexDict[affectedCell])).ToList();
+                .Select(affectedCells, affectedCell => RevealCellAsync(affectedCell.GridIndex)).ToList();
 
             await UniTask.WhenAll(revealCellTasks);
 
@@ -210,7 +207,7 @@ namespace SnekTech.Grid
             _gridBrain.ForEachNeighbor(cell,
                 neighborCell =>
                 {
-                    revealNeighborTasks.Add(RevealCellAsync(CellIndexDict[neighborCell]));
+                    revealNeighborTasks.Add(RevealCellAsync(neighborCell.GridIndex));
                 });
 
             return UniTask.WhenAll(revealNeighborTasks);
@@ -261,7 +258,6 @@ namespace SnekTech.Grid
             transform.DestroyAllChildren();
 
             Cells.Clear();
-            CellIndexDict.Clear();
         }
 
         private void InstantiateCells(GridData newGridData)
@@ -288,7 +284,6 @@ namespace SnekTech.Grid
                         BombCount++;
                     }
 
-                    CellIndexDict.Add(cell, cellIndex);
                     Cells.Add(cell);
                 }
             }
