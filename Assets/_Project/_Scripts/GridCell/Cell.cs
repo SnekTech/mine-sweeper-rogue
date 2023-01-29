@@ -26,6 +26,8 @@ namespace SnekTech.GridCell
 
         public GridIndex GridIndex { get; set; }
 
+        public IGrid Grid { get; set; }
+
 
         private void Awake()
         {
@@ -36,9 +38,9 @@ namespace SnekTech.GridCell
             _fsm = new CellFSM(this);
         }
 
-        public UniTask<bool> OnPrimary() => _fsm.OnPrimary();
+        public UniTask<bool> Reveal() => _fsm.Current.OnReveal();
 
-        public UniTask<bool> OnSecondary() => _fsm.OnSecondary();
+        public UniTask<bool> SwitchFlag() => _fsm.Current.OnSwitchFlag();
 
         public void SetContent(Sprite sprite)
         {

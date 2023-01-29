@@ -30,7 +30,7 @@ namespace SnekTech.GridCell.Flag
                 return UniTask.FromResult(false);
             }
 
-            animFSM.Lift();
+            animFSM.Current.Lift();
 
             var liftCompletionSource = new UniTaskCompletionSource<bool>();
 
@@ -52,7 +52,7 @@ namespace SnekTech.GridCell.Flag
                 return UniTask.FromResult(false);
             }
 
-            animFSM.PutDown();
+            animFSM.Current.PutDown();
 
             var putDownCompletionSource = new UniTaskCompletionSource<bool>();
             void HandlePutDownComplete()

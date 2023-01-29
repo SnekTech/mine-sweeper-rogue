@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using SnekTech.DataPersistence;
 using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.GamePlay.InventorySystem;
+using SnekTech.GamePlay.WeaponSystem;
 using SnekTech.Grid;
 using SnekTech.GridCell;
 using UnityEngine;
@@ -30,11 +31,15 @@ namespace SnekTech.GamePlay.PlayerSystem
         [SerializeField]
         private PlayerStats stats;
 
+        [SerializeField]
+        private Weapon weapon;
+
         private readonly List<IPlayerDataHolder> dataHolders = new List<IPlayerDataHolder>();
 
         #region Getters
 
         public Inventory Inventory => inventory;
+        public IWeapon Weapon => weapon;
         public int SweepScope => stats.Calculated.sweepScope;
         public int DamagePerBomb => stats.Calculated.damagePerBomb;
         public int ItemChoiceCount => stats.Calculated.itemChoiceCount;

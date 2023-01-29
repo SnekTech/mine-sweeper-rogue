@@ -1,5 +1,6 @@
 ﻿using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.GamePlay.InventorySystem;
+using SnekTech.GamePlay.WeaponSystem;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
@@ -26,5 +27,6 @@ namespace SnekTech.GamePlay.PlayerSystem
         #endregion
         
         Inventory Inventory { get; }
+        IWeapon Weapon { get; }
     }
 }

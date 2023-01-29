@@ -27,10 +27,6 @@ namespace SnekTech.Grid
             new GridIndex(1, 1),
         };
         
-        public ICell GetCellAt(GridIndex gridIndex)
-        {
-            return _grid.Cells[gridIndex.RowIndex * GridSize.columnCount + gridIndex.ColumnIndex];
-        }
 
         public bool IsIndexWithinGrid(GridIndex gridIndex)
         {
@@ -61,7 +57,7 @@ namespace SnekTech.Grid
                 var gridIndex = cell.GridIndex + offset;
                 if (IsIndexWithinGrid(gridIndex))
                 {
-                    processNeighbor(GetCellAt(gridIndex));
+                    processNeighbor(_grid.GetCellAt(gridIndex));
                 }
             }
         }
@@ -96,7 +92,7 @@ namespace SnekTech.Grid
                     var cellIndex = new GridIndex(topLeftIndex.RowIndex + i, topLeftIndex.ColumnIndex + j);
                     if (IsIndexWithinGrid(cellIndex))
                     {
-                        affectedCells.Add(GetCellAt(cellIndex));
+                        affectedCells.Add(_grid.GetCellAt(cellIndex));
                     }
                 }
             }

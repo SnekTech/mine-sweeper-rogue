@@ -84,6 +84,9 @@ namespace SnekTech
             public const string Effects = Root + "/" + nameof(Effects);
 
             public const string DataPersistenceSystem = Root + "/" + nameof(DataPersistenceSystem);
+
+            public const string WeaponSystem = Root + "/" + nameof(WeaponSystem);
+            public const string WeaponComponents = WeaponSystem + "/" + nameof(WeaponComponents);
         }
 
         public static class GameConstants

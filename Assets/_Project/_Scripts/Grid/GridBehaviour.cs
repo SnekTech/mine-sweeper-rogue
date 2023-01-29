@@ -100,19 +100,15 @@ namespace SnekTech.Grid
         public async UniTaskVoid ProcessPrimaryAsync(Vector2 mousePosition)
         {
             var cell = GetMouseHoveringCell(mousePosition);
-            bool canClickCell = cell is{IsCovered: true};
+            bool canClickCell = cell is {IsCovered: true};
             if (!canClickCell)
             {
                 return;
             }
             
             player.UseClickAbilities();
-
-            var affectedCells = _gridBrain.GetAffectedCellsWithinScope(cell, player.SweepScope);
-            var revealCellTasks = Enumerable
-                .Select(affectedCells, affectedCell => RevealCellAsync(affectedCell.GridIndex)).ToList();
-
-            await UniTask.WhenAll(revealCellTasks);
+            
+            await player.Weapon.Primary(cell);
 
             HandleRecursiveRevealCellComplete(cell);
         }
@@ -155,22 +151,22 @@ namespace SnekTech.Grid
                 return;
             }
 
-            bool isClickSuccessful = await cell.OnSecondary();
+            bool isClickSuccessful = await cell.SwitchFlag();
 
             if (isClickSuccessful)
             {
-                gridEventChannel.InvokeOnCellFlagOperated(this, cell);
+                gridEventChannel.InvokeOnCellFlagOperated(this);
             }
         }
-        
-        private async UniTask RevealCellAsync(GridIndex cellGridIndex)
+
+        public async UniTask RevealCellAsync(GridIndex cellGridIndex)
         {
             if (!_gridBrain.IsIndexWithinGrid(cellGridIndex))
             {
                 return;
             }
 
-            var cell = _gridBrain.GetCellAt(cellGridIndex);
+            var cell = GetCellAt(cellGridIndex);
             if (!cell.IsCovered)
             {
                 return;
@@ -179,7 +175,7 @@ namespace SnekTech.Grid
             // if last click action has not finished,
             // the task will return false,
             // to throttle the player input frequency
-            bool isLeftClickSuccessful = await cell.OnPrimary();
+            bool isLeftClickSuccessful = await cell.Reveal();
             if (!isLeftClickSuccessful)
             {
                 return;
@@ -239,6 +235,8 @@ namespace SnekTech.Grid
                 gridEventChannel.InvokeOnGridCleared(this);
             }
         }
+        
+        #region cell initialization
 
         private void InitCells()
         {
@@ -276,6 +274,7 @@ namespace SnekTech.Grid
                     var cellIndex = new GridIndex(i, j);
                     cell.GridIndex = cellIndex;
                     cell.SetPosition(cellIndex);
+                    cell.Grid = this;
 
                     bool hasBomb = bombGenerator.NextBool(newGridData.BombPercent);
                     if (hasBomb)
@@ -300,6 +299,13 @@ namespace SnekTech.Grid
             }
         }
         
+        #endregion
+
+        public ICell GetCellAt(GridIndex gridIndex)
+        {
+            return Cells[gridIndex.RowIndex * GridSize.columnCount + gridIndex.ColumnIndex];
+        }
+
         #region Cell Highlight
 
         private void UpdateGridHighlight(ICell cellHovering)

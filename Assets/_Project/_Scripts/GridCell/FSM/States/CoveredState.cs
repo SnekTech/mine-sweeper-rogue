@@ -16,7 +16,7 @@ namespace SnekTech.GridCell.FSM
         {
         }
 
-        public override async UniTask<bool> OnPrimary()
+        public override async UniTask<bool> OnReveal()
         {
             cellFSM.ChangeState(cellFSM.RevealedState);
             bool isRevealSuccessful = await Cover.RevealAsync();
@@ -24,7 +24,7 @@ namespace SnekTech.GridCell.FSM
             return isRevealSuccessful;
         }
 
-        public override async UniTask<bool> OnSecondary()
+        public override async UniTask<bool> OnSwitchFlag()
         {
             cellFSM.ChangeState(cellFSM.FlaggedState);
 

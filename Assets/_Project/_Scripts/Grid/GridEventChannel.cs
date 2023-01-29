@@ -11,7 +11,7 @@ namespace SnekTech.Grid
         public event Action<IGrid> OnGridInitComplete;
         public event Action<IGrid, ILogicCell> OnBombReveal;
         public event Action<IGrid, ILogicCell> OnCellReveal;
-        public event Action<IGrid, ILogicCell> OnCellFlagOperateComplete;
+        public event Action<IGrid> OnCellFlagOperateComplete;
         public event Action<IGrid> OnGridClear;
         public event Action<ILogicCell> OnCellRecursiveRevealComplete;
 
@@ -23,7 +23,7 @@ namespace SnekTech.Grid
 
         public void InvokeOnGridCleared(IGrid grid) => OnGridClear?.Invoke(grid);
 
-        public void InvokeOnCellFlagOperated(IGrid grid, ILogicCell cell) => OnCellFlagOperateComplete?.Invoke(grid, cell);
+        public void InvokeOnCellFlagOperated(IGrid grid) => OnCellFlagOperateComplete?.Invoke(grid);
 
         public void InvokeOnRecursiveRevealComplete(ILogicCell cell) => OnCellRecursiveRevealComplete?.Invoke(cell);
     }

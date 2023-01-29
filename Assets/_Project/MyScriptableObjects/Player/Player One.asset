@@ -17,3 +17,4 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: dc8f914bdbe5b45408bf634eceffa71e, type: 2}
   abilityHolder: {fileID: 11400000, guid: a069ab956393e3f40878976a72b8b019, type: 2}
   stats: {fileID: 11400000, guid: ff227436e395af24ea9387d3f76d6531, type: 2}
+  weapon: {fileID: 11400000, guid: 378bf8cc8874f3740a72f775ae259f78, type: 2}

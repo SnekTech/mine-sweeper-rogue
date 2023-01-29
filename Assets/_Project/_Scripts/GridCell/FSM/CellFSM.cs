@@ -24,8 +24,5 @@ namespace SnekTech.GridCell.FSM
             
             Init(CoveredState);
         }
-
-        public UniTask<bool> OnPrimary() => Current.OnPrimary();
-        public UniTask<bool> OnSecondary() => Current.OnSecondary();
     }
 }

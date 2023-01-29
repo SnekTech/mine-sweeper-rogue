@@ -16,12 +16,12 @@ namespace SnekTech.GridCell.FSM
         {
         }
 
-        public override UniTask<bool> OnPrimary()
+        public override UniTask<bool> OnReveal()
         {
             return UniTask.FromResult(false);
         }
 
-        public override UniTask<bool> OnSecondary()
+        public override UniTask<bool> OnSwitchFlag()
         {
             return UniTask.FromResult(false);
         }

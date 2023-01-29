@@ -9,11 +9,12 @@ namespace Tests.EditMode.Builder
     public class FakeCell : ILogicCell
     {
         public GridIndex GridIndex { get; set; } = GridIndex.Zero;
+        public IGrid Grid { get; set; }
         public ILogicFlag Flag { get; } = new FakeFlag();
         public ILogicCover Cover { get; } = new FakeCover();
 
-        public UniTask<bool> OnPrimary() => UniTask.FromResult(true);
-        public UniTask<bool> OnSecondary() => UniTask.FromResult(true);
+        public UniTask<bool> Reveal() => UniTask.FromResult(true);
+        public UniTask<bool> SwitchFlag() => UniTask.FromResult(true);
 
         public bool HasBomb { get; set; } = false;
 

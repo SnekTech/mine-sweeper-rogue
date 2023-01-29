@@ -34,7 +34,7 @@ namespace SnekTech.UI
 
         private void HandleOnCellReveal(IGrid grid, ILogicCell cell) => UpdateRemainingCoverCount(grid);
 
-        private void HandleOnCellFlagOperateComplete(IGrid grid, ILogicCell cell) => UpdateFlaggedCellCount(grid);
+        private void HandleOnCellFlagOperateComplete(IGrid grid) => UpdateFlaggedCellCount(grid);
 
         private void UpdateGridData(IGrid grid)
         {

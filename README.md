@@ -292,7 +292,35 @@ classDiagram
 
 ### 武器系统
 
-
+```mermaid
+%%{init: {'theme':'neutral'}}%%
+classDiagram
+    class IWeapon{
+        <<interface>>
+        int sweepScope
+        IWeaponComponent Primary
+        IWeaponComponent Secondary
+        
+        void Primary(ICell cell)
+        void Secondary(ICell cell)
+    }
+    
+    class IWeaponComponent {
+        <<interface>>
+        void Use(ICell cell)
+    }
+    
+    class IPlayer {
+        IWeapon weapon
+    }
+    
+    class BasicShovel
+    
+    BasicShovel ..|> IWeapon
+    
+    IWeapon ..* IPlayer
+    IWeaponComponent ..* IWeapon
+```
 
 ```mermaid
 %%{init: {'theme':'neutral'}}%%

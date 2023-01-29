@@ -12,11 +12,12 @@ namespace SnekTech.GridCell
     public interface ILogicCell
     {
         GridIndex GridIndex { get; set; }
+        IGrid Grid { get; set; }
         ILogicFlag Flag { get; }
         ILogicCover Cover { get; }
 
-        UniTask<bool> OnPrimary();
-        UniTask<bool> OnSecondary();
+        UniTask<bool> Reveal();
+        UniTask<bool> SwitchFlag();
 
         bool HasBomb { get; set; }
         bool IsFlagged { get; }

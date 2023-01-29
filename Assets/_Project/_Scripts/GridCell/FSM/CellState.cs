@@ -19,7 +19,7 @@ namespace SnekTech.GridCell.FSM
 
         public abstract void Enter();
         public abstract void Exit();
-        public abstract UniTask<bool> OnPrimary();
-        public abstract UniTask<bool> OnSecondary();
+        public abstract UniTask<bool> OnReveal();
+        public abstract UniTask<bool> OnSwitchFlag();
     }
 }

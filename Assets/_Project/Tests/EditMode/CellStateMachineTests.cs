@@ -21,7 +21,7 @@ namespace Tests.EditMode
             var fsm = new CellFSM(A.Cell);
             fsm.ChangeState(fsm.RevealedState);
 
-            await fsm.OnPrimary();
+            await fsm.Current.OnReveal();
             Assert.AreSame(fsm.Current, fsm.RevealedState);
         }
 
@@ -30,7 +30,7 @@ namespace Tests.EditMode
         {
             var fsm = new CellFSM(A.Cell);
 
-            await fsm.OnSecondary();
+            await fsm.Current.OnSwitchFlag();
 
             Assert.AreSame(fsm.Current, fsm.FlaggedState);
         }
@@ -41,7 +41,7 @@ namespace Tests.EditMode
             var fsm = new CellFSM(A.Cell);
             fsm.ChangeState(fsm.FlaggedState);
 
-            await fsm.OnSecondary();
+            await fsm.Current.OnSwitchFlag();
             Assert.AreSame(fsm.Current, fsm.CoveredState);
         }
     }

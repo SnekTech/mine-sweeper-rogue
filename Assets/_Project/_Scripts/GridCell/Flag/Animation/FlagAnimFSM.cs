@@ -18,8 +18,5 @@ namespace SnekTech.GridCell.Flag
             
             Init(HideState);
         }
-        
-        public void Lift() => Current.Lift();
-        public void PutDown() => Current.PutDown();
     }
 }
