@@ -8,7 +8,7 @@ using UnityEngine;
 namespace SnekTech.GamePlay.WeaponSystem.Components
 {
     /// <summary>
-    /// random reveal a covered cell after revealing the target cell
+    /// random reveal a covered cell
     /// </summary>
     [CreateAssetMenu(menuName = C.MenuName.WeaponComponents + "/" + nameof(GambleReveal))]
     public class GambleReveal : WeaponComponent
@@ -16,7 +16,6 @@ namespace SnekTech.GamePlay.WeaponSystem.Components
         public override async UniTask Use(ICell targetCell)
         {
             var grid = targetCell.ParentGrid;
-            await grid.RevealCellAsync(targetCell.GridIndex);
             
             var coveredCells = grid.Cells.Where(c => c.IsCovered).ToList();
             if (coveredCells.Count == 0)
