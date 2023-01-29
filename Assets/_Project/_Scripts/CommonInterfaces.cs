@@ -6,9 +6,9 @@ namespace SnekTech
 {
     public interface ICanClickAsync
     {
-        UniTaskVoid ProcessLeftClickAsync(Vector2 mousePosition);
-        UniTaskVoid ProcessLeftDoubleClickAsync(Vector2 mousePosition);
-        UniTaskVoid ProcessRightClickAsync(Vector2 mousePosition);
+        UniTaskVoid ProcessPrimaryAsync(Vector2 mousePosition);
+        UniTaskVoid ProcessDoublePrimaryAsync(Vector2 mousePosition);
+        UniTaskVoid ProcessSecondaryAsync(Vector2 mousePosition);
     }
 
     public interface ICanSwitchActiveness

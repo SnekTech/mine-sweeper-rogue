@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
@@ -20,9 +21,6 @@ namespace SnekTech.Grid
 
         [SerializeField]
         private InputEventManager inputEventManager;
-
-        [SerializeField]
-        private UIEventManager uiEventManager;
 
         [SerializeField]
         private GridEventManager gridEventManager;
@@ -69,34 +67,30 @@ namespace SnekTech.Grid
 
         private void OnEnable()
         {
-            inputEventManager.LeftClickPerformed += HandleOnLeftClick;
-            inputEventManager.LeftDoubleClickPerformed += HandleOnLeftDoubleClick;
-            inputEventManager.RightClickPerformed += HandleOnRightClick;
+            inputEventManager.PrimaryPerformed += HandlePrimary;
+            inputEventManager.DoublePrimaryPerformed += HandleDoublePrimary;
+            inputEventManager.SecondaryPerformed += HandleSecondary;
             inputEventManager.MovePerformed += OnMove;
-
-            uiEventManager.ResetButtonClicked += OnResetButtonClicked;
         }
 
         private void OnDisable()
         {
-            inputEventManager.LeftClickPerformed -= HandleOnLeftClick;
-            inputEventManager.LeftDoubleClickPerformed -= HandleOnLeftDoubleClick;
-            inputEventManager.RightClickPerformed -= HandleOnRightClick;
+            inputEventManager.PrimaryPerformed -= HandlePrimary;
+            inputEventManager.DoublePrimaryPerformed -= HandleDoublePrimary;
+            inputEventManager.SecondaryPerformed -= HandleSecondary;
             inputEventManager.MovePerformed -= OnMove;
-
-            uiEventManager.ResetButtonClicked -= OnResetButtonClicked;
         }
         
         #endregion
 
         #region Event Handlers
         
-        private void HandleOnLeftClick(Vector2 mousePosition) => ProcessLeftClickAsync(mousePosition).Forget();
+        private void HandlePrimary(Vector2 mousePosition) => ProcessPrimaryAsync(mousePosition).Forget();
 
-        private void HandleOnLeftDoubleClick(Vector2 mousePosition) =>
-            ProcessLeftDoubleClickAsync(mousePosition).Forget();
+        private void HandleDoublePrimary(Vector2 mousePosition) =>
+            ProcessDoublePrimaryAsync(mousePosition).Forget();
 
-        private void HandleOnRightClick(Vector2 mousePosition) => ProcessRightClickAsync(mousePosition).Forget();
+        private void HandleSecondary(Vector2 mousePosition) => ProcessSecondaryAsync(mousePosition).Forget();
 
         private void OnMove(Vector2 mousePosition)
         {
@@ -104,11 +98,9 @@ namespace SnekTech.Grid
             UpdateGridHighlight(cellHovering);
         }
         
-        private void OnResetButtonClicked(GridData gridDataIn) => InitCells(gridDataIn);
-        
         #endregion
-        
-        public async UniTaskVoid ProcessLeftClickAsync(Vector2 mousePosition)
+
+        public async UniTaskVoid ProcessPrimaryAsync(Vector2 mousePosition)
         {
             var cell = GetMouseHoveringCell(mousePosition);
             bool canClickCell = cell is{IsCovered: true};
@@ -128,7 +120,7 @@ namespace SnekTech.Grid
             HandleRecursiveRevealCellComplete(cell);
         }
 
-        public async UniTaskVoid ProcessLeftDoubleClickAsync(Vector2 mousePosition)
+        public async UniTaskVoid ProcessDoublePrimaryAsync(Vector2 mousePosition)
         {
             var cell = GetMouseHoveringCell(mousePosition);
             bool canDoubleClickCell = cell is {IsRevealed: true, HasBomb: false};
@@ -158,7 +150,7 @@ namespace SnekTech.Grid
             HandleRecursiveRevealCellComplete(cell);
         }
 
-        public async UniTaskVoid ProcessRightClickAsync(Vector2 mousePosition)
+        public async UniTaskVoid ProcessSecondaryAsync(Vector2 mousePosition)
         {
             var cell = GetMouseHoveringCell(mousePosition);
             if (cell == null)
@@ -176,7 +168,6 @@ namespace SnekTech.Grid
         
         private async UniTask RevealCellAsync(GridIndex cellGridIndex)
         {
-            // bug: if first reveal attempt is clearing a cell, it won't recursively reveal neighbors
             if (!_gridBrain.IsIndexWithinGrid(cellGridIndex))
             {
                 return;

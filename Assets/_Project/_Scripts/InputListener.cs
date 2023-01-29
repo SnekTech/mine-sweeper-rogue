@@ -7,13 +7,22 @@ namespace SnekTech
     [RequireComponent(typeof(PlayerInput))]
     public class InputListener : MonoBehaviour
     {
+        private static class ActionNames
+        {
+            public const string Primary = "Primary";
+            public const string Secondary = "Secondary";
+            public const string DoublePrimary = "DoublePrimary";
+            public const string Move = "Move";
+            public const string Pause = "Pause";
+        }
+        
         [SerializeField]
         private InputEventManager inputEventManager;
 
         private PlayerInput _playerInput;
-        private InputAction _leftClickAction;
-        private InputAction _leftDoubleClickAction;
-        private InputAction _rightClickAction;
+        private InputAction _primaryAction;
+        private InputAction _doublePrimaryAction;
+        private InputAction _secondaryAction;
         private InputAction _moveAction;
         private InputAction _pauseAction;
 
@@ -23,44 +32,44 @@ namespace SnekTech
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
-            _leftClickAction = _playerInput.actions["LeftClick"];
-            _leftDoubleClickAction = _playerInput.actions["LeftDoubleClick"];
-            _rightClickAction = _playerInput.actions["RightClick"];
-            _moveAction = _playerInput.actions["Move"];
-            _pauseAction = _playerInput.actions["Pause"];
+            _primaryAction = _playerInput.actions[ActionNames.Primary];
+            _doublePrimaryAction = _playerInput.actions[ActionNames.DoublePrimary];
+            _secondaryAction = _playerInput.actions[ActionNames.Secondary];
+            _moveAction = _playerInput.actions[ActionNames.Move];
+            _pauseAction = _playerInput.actions[ActionNames.Pause];
         }
 
         private void OnEnable()
         {
-            _leftClickAction.performed += OnLeftClickPerformed;
-            _leftDoubleClickAction.performed += OnLeftDoubleClickPerformed;
-            _rightClickAction.performed += OnRightClickPerformed;
+            _primaryAction.performed += OnPrimaryPerformed;
+            _doublePrimaryAction.performed += OnDoublePrimaryPerformed;
+            _secondaryAction.performed += OnSecondaryPerformed;
             _moveAction.performed += OnMovePerformed;
             _pauseAction.performed += OnPausePerformed;
         }
 
         private void OnDisable()
         {
-            _leftClickAction.performed -= OnLeftClickPerformed;
-            _leftDoubleClickAction.performed -= OnLeftDoubleClickPerformed;
-            _rightClickAction.performed -= OnRightClickPerformed;
+            _primaryAction.performed -= OnPrimaryPerformed;
+            _doublePrimaryAction.performed -= OnDoublePrimaryPerformed;
+            _secondaryAction.performed -= OnSecondaryPerformed;
             _moveAction.performed -= OnMovePerformed;
             _pauseAction.performed -= OnPausePerformed;
         }
 
-        private void OnLeftClickPerformed(InputAction.CallbackContext obj)
+        private void OnPrimaryPerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokeLeftClickPerformed(MousePosition);
+            inputEventManager.InvokePrimaryPerformed(MousePosition);
         }
 
-        private void OnLeftDoubleClickPerformed(InputAction.CallbackContext obj)
+        private void OnDoublePrimaryPerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokeLeftDoubleClickPerformed(MousePosition);
+            inputEventManager.InvokeDoublePrimaryPerformed(MousePosition);
         }
 
-        private void OnRightClickPerformed(InputAction.CallbackContext obj)
+        private void OnSecondaryPerformed(InputAction.CallbackContext obj)
         {
-            inputEventManager.InvokeRightClickPerformed(MousePosition);
+            inputEventManager.InvokeSecondaryPerformed(MousePosition);
         }
 
         private void OnMovePerformed(InputAction.CallbackContext obj)
