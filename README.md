@@ -297,7 +297,6 @@ classDiagram
 classDiagram
     class IWeapon{
         <<interface>>
-        int sweepScope
         IWeaponComponent Primary
         IWeaponComponent Secondary
         
@@ -309,6 +308,14 @@ classDiagram
         <<interface>>
         void Use(ICell cell)
     }
+    
+    class Reveal
+    class SwitchFlag
+    class GambleReveal
+    
+    Reveal ..|> IWeaponComponent
+    SwitchFlag ..|> IWeaponComponent
+    GambleReveal ..|> IWeaponComponent
     
     class IPlayer {
         IWeapon weapon
