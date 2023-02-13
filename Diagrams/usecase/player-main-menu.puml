@@ -1,0 +1,33 @@
+@startuml player main menu
+
+left to right direction
+
+actor :玩家: as p1
+
+rectangle 主菜单 {
+    usecase (开始新游戏) as start_game
+    usecase (创建新的存档) as create_new_save
+    usecase (加载关卡界面) as load_level_scene
+
+    usecase (继续上次游戏) as continue_game
+    usecase (读取上次游戏的存档) as load_last_save
+
+    usecase (查看历史纪录) as check_history
+    usecase (加载历史记录界面) as load_history_scene
+    usecase (读取历史记录) as load_history
+    usecase (退出游戏) as quit_game
+
+    start_game ..> create_new_save : <<include>>
+    start_game ..> load_level_scene : <<include>>
+    continue_game ..> load_last_save : <<include>>
+    continue_game ..> load_level_scene : <<include>>
+    check_history ..> load_history_scene : <<include>>
+    check_history ..> load_history : <<include>>
+}
+
+p1 -- start_game
+p1 -- continue_game
+p1 -- check_history
+p1 -- quit_game
+
+@enduml
