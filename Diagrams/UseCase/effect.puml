@@ -1,0 +1,33 @@
+@startuml effect system
+
+left to right direction
+
+actor effect as "效果"
+
+rectangle 效果系统 {
+
+    usecase affect_player as "影响角色"
+    usecase affect_grid as "影响雷区"
+
+
+    usecase modify_life as "修改生命值、护甲值"
+    usecase modify_abilities as "修改能力"
+    usecase modify_weapon as "修改武器"
+
+    affect_player <.. modify_life : <<extend>>
+    affect_player <.. modify_abilities : <<extend>>
+    affect_player <.. modify_weapon : <<extend>>
+
+
+    usecase reveal_some_cell as "揭开某些单元格"
+    usecase modify_damage as "修改地雷伤害"
+
+    affect_grid <.. reveal_some_cell : <<extend>>
+    affect_grid <.. modify_damage : <<extend>>
+}
+
+effect -- affect_player
+effect -- affect_grid
+
+@enduml
+
