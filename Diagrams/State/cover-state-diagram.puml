@@ -1,0 +1,20 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+title
+    单元格盖子状态图
+end title
+
+
+state covered as "被覆盖"
+state revealing as "揭开中"
+state revealed as "被揭开"
+
+[*] -> covered
+
+covered --> revealing : "收到揭开指令"
+revealing --> revealed : "揭开完成"
+
+revealed -> [*] : "本轮游戏结束"
+
+@enduml

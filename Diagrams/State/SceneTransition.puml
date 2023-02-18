@@ -1,0 +1,26 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+hide empty description
+
+state "主菜单场景" as main_menu_scene
+state "关卡场景" as level_scene
+state "历史记录场景" as history_scene
+state "胜利场景" as win_scene
+state "失败场景" as lose_scene
+
+[*] --> main_menu_scene
+main_menu_scene --> level_scene : 继续或开始新游戏
+
+main_menu_scene --> history_scene : 查看历史记录
+history_scene --> main_menu_scene : 点击返回主菜单
+
+level_scene --> win_scene : 游戏胜利
+level_scene --> lose_scene : 游戏失败
+
+win_scene --> main_menu_scene : 点击返回主菜单
+lose_scene --> main_menu_scene : 点击返回主菜单
+
+main_menu_scene --> [*] : 退出游戏
+
+@enduml

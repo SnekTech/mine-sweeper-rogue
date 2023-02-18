@@ -1,0 +1,21 @@
+﻿@startuml
+'https://plantuml.com/state-diagram
+
+title
+    单元格状态图
+end title
+
+state covered as "被覆盖"
+state flagged as "被标记"
+state revealed as "被揭开"
+
+[*] -> covered
+
+covered --> flagged : "收到切换标记指令"
+flagged --> covered : "收到切换标记指令"
+
+covered --> revealed : "收到揭开指令"
+
+revealed -> [*] : "本轮游戏结束"
+
+@enduml
