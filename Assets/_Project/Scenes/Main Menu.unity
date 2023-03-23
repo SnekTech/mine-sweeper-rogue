@@ -624,8 +624,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Mine Sweeper Rogue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
-  m_sharedMaterial: {fileID: 614707346233058595, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
+  m_sharedMaterial: {fileID: 1165720069118869371, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

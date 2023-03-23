@@ -511,8 +511,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: header text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
-  m_sharedMaterial: {fileID: 614707346233058595, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
+  m_sharedMaterial: {fileID: 1165720069118869371, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1935,7 +1935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc59150b0494d54bfc9fe30ff8b65b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiEventManager: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
+  uiEventChannel: {fileID: 0}
   header: {fileID: 1338162041}
   alphaAlphaGroup: {fileID: 1747403260}
   confirmBody: {fileID: 1808190891}
@@ -2680,8 +2680,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: tooltip body text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
-  m_sharedMaterial: {fileID: 614707346233058595, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
+  m_sharedMaterial: {fileID: 1165720069118869371, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
