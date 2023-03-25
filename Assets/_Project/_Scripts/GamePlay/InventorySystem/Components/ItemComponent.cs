@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using SnekTech.GamePlay.EffectSystem;
-using SnekTech.GamePlay.PlayerSystem;
+﻿using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.InventorySystem.Components

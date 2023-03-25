@@ -42,15 +42,15 @@ namespace SnekTech.Core.GameEvent
 
         #region Unity callbacks
 
-        private void OnEnable()
-        {
-            gridEventChannel.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
-        }
-
-        private void OnDisable()
-        {
-            gridEventChannel.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
-        }
+        // private void OnEnable()
+        // {
+        //     gridEventChannel.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     gridEventChannel.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
+        // }
 
         #endregion
 

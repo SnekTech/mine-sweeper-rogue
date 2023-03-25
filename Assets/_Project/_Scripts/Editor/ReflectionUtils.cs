@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SnekTech.GamePlay.EffectSystem;
-using SnekTech.GamePlay.PlayerSystem;
 
 namespace SnekTech.Editor
 {
