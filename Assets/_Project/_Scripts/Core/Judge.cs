@@ -5,7 +5,9 @@ using SnekTech.Core.GameModeSystem;
 using SnekTech.Core.History;
 using SnekTech.DataPersistence;
 using SnekTech.GamePlay.PlayerSystem;
-using SnekTech.Grid;
+using SnekTech.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem;
+using SnekTech.Roguelike;
 using SnekTech.SceneManagement;
 using SnekTech.UI.Modal;
 using UnityEngine;
@@ -36,7 +38,7 @@ namespace SnekTech.Core
 
         [Header("Levels")]
         [SerializeField]
-        private GridBehaviour grid;
+        private GridBehaviour humbleGrid;
         [SerializeField]
         private GridDataPool gridDataPool;
 
@@ -59,7 +61,7 @@ namespace SnekTech.Core
         private const int LevelCount = 3;
         public Level CurrentLevel { get; private set; }
         private GameMode CurrentGameMode => CurrentLevel.GameMode;
-        private IGrid Grid => grid;
+        private IGrid Grid => humbleGrid.Grid;
 
         private int CurrentLevelIndex
         {
@@ -108,8 +110,9 @@ namespace SnekTech.Core
         {
             CurrentLevel = level;
             OnLevelLoad?.Invoke();
-            
-            Grid.InitCells(level.GridData);
+
+            var bombMatrix = new BombMatrix(level.GridData, RandomGenerator.Instance);
+            Grid.InitCells(bombMatrix);
             
             CurrentGameMode.Start();
             CurrentGameMode.OnLevelComplete += HandleOnLevelComplete;

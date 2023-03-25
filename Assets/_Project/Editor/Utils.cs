@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SnekTech.Core.GameEvent;
 using SnekTech.GamePlay.InventorySystem;
-using SnekTech.Grid;
+using SnekTech.GridSystem;
 
 namespace SnekTech.Editor
 {

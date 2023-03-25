@@ -1,5 +1,5 @@
 ﻿using System;
-using SnekTech.Grid;
+using SnekTech.MineSweeperRogue.GridSystem;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent

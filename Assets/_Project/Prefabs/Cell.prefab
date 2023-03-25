@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c226a098883874b42ba3404360cd4a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
   highlightFrame: {fileID: 6161805054413332011}
 --- !u!61 &460246214638790137
 BoxCollider2D:

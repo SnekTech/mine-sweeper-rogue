@@ -1,10 +1,11 @@
 using Cysharp.Threading.Tasks;
 using SnekTech.Core.Animation;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 using UnityEngine;
 
 namespace SnekTech.GridCell.Flag
 {
-    public class Flag : MonoBehaviour, IFlag
+    public class Flag : MonoBehaviour, IFlag, ICanAnimateSnek
     {
 
         [SerializeField]
@@ -13,55 +14,55 @@ namespace SnekTech.GridCell.Flag
         public SnekAnimator SnekAnimator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
-        private FlagAnimFSM animFSM;
+        private FlagAnimFSM _animFSM;
 
         private void Awake()
         {
             SpriteRenderer = GetComponent<SpriteRenderer>();
             SnekAnimator = GetComponent<SnekAnimator>();
 
-            animFSM = new FlagAnimFSM(this, animData);
+            _animFSM = new FlagAnimFSM(this, animData);
         }
 
-        public UniTask<bool> LiftAsync()
+        public UniTask LiftAsync()
         {
-            if (animFSM.Current != animFSM.HideState)
+            if (_animFSM.Current != _animFSM.HideState)
             {
                 return UniTask.FromResult(false);
             }
 
-            animFSM.Current.Lift();
+            _animFSM.Current.Lift();
 
             var liftCompletionSource = new UniTaskCompletionSource<bool>();
 
             void HandleListComplete()
             {
                 liftCompletionSource.TrySetResult(true);
-                animFSM.LiftState.OnComplete -= HandleListComplete;
+                _animFSM.LiftState.OnComplete -= HandleListComplete;
             }
 
-            animFSM.LiftState.OnComplete += HandleListComplete;
+            _animFSM.LiftState.OnComplete += HandleListComplete;
             
             return liftCompletionSource.Task;
         }
 
-        public UniTask<bool> PutDownAsync()
+        public UniTask PutDownAsync()
         {
-            if (animFSM.Current != animFSM.FloatState)
+            if (_animFSM.Current != _animFSM.FloatState)
             {
                 return UniTask.FromResult(false);
             }
 
-            animFSM.Current.PutDown();
+            _animFSM.Current.PutDown();
 
             var putDownCompletionSource = new UniTaskCompletionSource<bool>();
             void HandlePutDownComplete()
             {
                 putDownCompletionSource.TrySetResult(true);
-                animFSM.PutDownState.OnComplete -= HandlePutDownComplete;
+                _animFSM.PutDownState.OnComplete -= HandlePutDownComplete;
             }
             
-            animFSM.PutDownState.OnComplete += HandlePutDownComplete;
+            _animFSM.PutDownState.OnComplete += HandlePutDownComplete;
             
             return putDownCompletionSource.Task;
         }

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using SnekTech.MineSweeperRogue.GridSystem;
+using UnityEngine;
 
-namespace SnekTech.Grid
+namespace SnekTech.GridSystem
 {
     [CreateAssetMenu(menuName = C.MenuName.Grid + "/" + nameof(GridData), fileName = nameof(GridData))]
-    public class GridData : ScriptableObject
+    public class GridData : ScriptableObject, IGridData
     {
         [SerializeField]
         private GridSize gridSize = new GridSize(15, 15);
@@ -13,6 +14,6 @@ namespace SnekTech.Grid
         private float bombPercent = 0.2f;
 
         public GridSize GridSize => gridSize;
-        public float BombPercent => bombPercent;
+        public float BombProbability => bombPercent;
     }
 }

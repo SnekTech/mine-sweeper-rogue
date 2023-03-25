@@ -1,10 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
-using SnekTech.GridCell;
+using SnekTech.C;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.WeaponSystem
 {
-    [CreateAssetMenu(menuName = C.MenuName.WeaponSystem + "/" + nameof(Weapon))]
+    [CreateAssetMenu(menuName = MenuName.WeaponSystem + "/" + nameof(Weapon))]
     public class Weapon : ScriptableObject, IWeapon
     {
         [SerializeReference]

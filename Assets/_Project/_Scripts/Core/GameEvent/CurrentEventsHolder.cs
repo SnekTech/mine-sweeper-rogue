@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using SnekTech.C;
 using SnekTech.Core.History;
 using SnekTech.DataPersistence;
-using SnekTech.GamePlay;
 using SnekTech.GamePlay.PlayerSystem;
-using SnekTech.Grid;
-using SnekTech.GridCell;
+using SnekTech.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 using SnekTech.Roguelike;
 using SnekTech.UI.Modal;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [CreateAssetMenu(menuName = C.MenuName.GameEventSystem + "/" + nameof(CurrentEventsHolder))]
+    [CreateAssetMenu(menuName = MenuName.GameEventSystem + "/" + nameof(CurrentEventsHolder))]
     public class CurrentEventsHolder : ScriptableObject, IPersistentDataHolder
     {
         [SerializeField]
@@ -54,20 +54,21 @@ namespace SnekTech.Core.GameEvent
 
         #endregion
 
-        private void HandleCellRecursiveRevealComplete(ILogicCell cell)
+        private void HandleCellRecursiveRevealComplete(ICell cell)
         {
             TryTriggerCellEventAsync(cell).Forget();
         }
-        
-        private async UniTaskVoid TryTriggerCellEventAsync(ILogicCell cell)
+
+        private async UniTaskVoid TryTriggerCellEventAsync(ICell cell)
         {
-            bool shouldTriggerEvent = _cellEventGenerator.NextBool(CellEventProbability);
+            var shouldTriggerEvent = _cellEventGenerator.NextBool(CellEventProbability);
             if (shouldTriggerEvent)
             {
                 var randomCellEventData = cellEventPool.GetRandom();
-                await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon, randomCellEventData.Description);
-                
-                AddCellEvent(new CellEvent(randomCellEventData, cell.GridIndex, currentRecordHolder.CurrentLevelIndex));
+                await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon,
+                    randomCellEventData.Description);
+
+                AddCellEvent(new CellEvent(randomCellEventData, cell.Index, currentRecordHolder.CurrentLevelIndex));
             }
         }
 

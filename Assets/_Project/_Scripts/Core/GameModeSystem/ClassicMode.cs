@@ -1,6 +1,6 @@
-﻿using SnekTech.GamePlay;
-using SnekTech.GamePlay.PlayerSystem;
-using SnekTech.Grid;
+﻿using SnekTech.GamePlay.PlayerSystem;
+using SnekTech.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem;
 
 namespace SnekTech.Core.GameModeSystem
 {
@@ -8,7 +8,8 @@ namespace SnekTech.Core.GameModeSystem
     {
         private readonly GridEventChannel _gridEventChannel;
 
-        public ClassicMode(GridEventChannel gridEventChannel, GameModeInfo gameModeInfo, PlayerEventChannel playerEventChannel)
+        public ClassicMode(GridEventChannel gridEventChannel, GameModeInfo gameModeInfo,
+            PlayerEventChannel playerEventChannel)
             : base(gameModeInfo, playerEventChannel)
         {
             _gridEventChannel = gridEventChannel;

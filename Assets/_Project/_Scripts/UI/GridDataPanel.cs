@@ -1,6 +1,8 @@
 ﻿using System;
-using SnekTech.Grid;
 using SnekTech.GridCell;
+using SnekTech.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 using UnityEngine;
 
 namespace SnekTech.UI
@@ -32,7 +34,7 @@ namespace SnekTech.UI
 
         private void HandleOnGridInitComplete(IGrid grid) => UpdateGridData(grid);
 
-        private void HandleOnCellReveal(IGrid grid, ILogicCell cell) => UpdateRemainingCoverCount(grid);
+        private void HandleOnCellReveal(IGrid grid, ICell cell) => UpdateRemainingCoverCount(grid);
 
         private void HandleOnCellFlagOperateComplete(IGrid grid) => UpdateFlaggedCellCount(grid);
 
@@ -49,7 +51,7 @@ namespace SnekTech.UI
 
         private void UpdateRemainingCoverCount(IGrid grid)
         {
-            int remainingCoverCount = grid.CellCount - grid.RevealedCellCount;
+            var remainingCoverCount = grid.Size.TotalCount - grid.RevealedCellCount;
             remainingCoverCountLabel.SetText(remainingCoverCount);
         }
     }

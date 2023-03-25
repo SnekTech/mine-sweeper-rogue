@@ -184,8 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8324461a814ef4478b8559258064c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellPrefab: {fileID: 4038224895371612872, guid: 60dd97a3585e17244a66b5f87c7e2c47, type: 3}
-  cellSprites: {fileID: 11400000, guid: 942971f4023adc04e86c867295de87f7, type: 2}
+  cellBehaviorPrefab: {fileID: 4038224895371612872, guid: 60dd97a3585e17244a66b5f87c7e2c47, type: 3}
   inputEventChannel: {fileID: 11400000, guid: a21f62a5dd196e24bb9a7be1d5e40232, type: 2}
   gridEventChannel: {fileID: 11400000, guid: aec82cd3dea89ac4392e23f69f0610de, type: 2}
   player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
@@ -2228,7 +2227,7 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
   dataPersistenceManager: {fileID: 11400000, guid: 2dc096a99b8076e4b8663f6d96b75a40, type: 2}
   currentRecordHolder: {fileID: 11400000, guid: 24a333e8b5cd0f34cb7dcaf4c8562edd, type: 2}
-  grid: {fileID: 58783576}
+  humbleGrid: {fileID: 58783576}
   gridDataPool: {fileID: 11400000, guid: eab62f1ab063e254b95672bcbeb7e7a2, type: 2}
   modalManager: {fileID: 11400000, guid: 23b8f22f4b2c53341a713cc2518f2379, type: 2}
   classicModeInfo: {fileID: 11400000, guid: 11134928df80cfd4b9dbbf3997312b44, type: 2}

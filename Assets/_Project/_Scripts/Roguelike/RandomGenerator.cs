@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using SnekTech.DataPersistence;
-using UnityEngine;
+using SnekTech.MineSweeperRogue;
 using Random = System.Random;
 
 namespace SnekTech.Roguelike
 {
-    public sealed class RandomGenerator : IRandomGenerator, IPersistentDataHolder
+    public sealed class RandomGenerator : IRandomGenerator, IPersistentDataHolder, IBombGenerator
     {
         #region Singleton
 
@@ -94,5 +93,7 @@ namespace SnekTech.Roguelike
         }
         
         #endregion
+
+        public bool NextHasBomb(float probability) => NextBool(probability);
     }
 }

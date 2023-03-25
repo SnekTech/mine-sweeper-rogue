@@ -1,7 +1,7 @@
 ﻿using SnekTech.Roguelike;
 using UnityEngine;
 
-namespace SnekTech.Grid
+namespace SnekTech.GridSystem
 {
     [CreateAssetMenu(menuName = C.MenuName.Grid + "/" + nameof(GridDataPool))]
     public class GridDataPool : RandomPool<GridData>

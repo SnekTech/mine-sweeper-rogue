@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using SnekTech.GridCell;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 
 namespace SnekTech.GamePlay.WeaponSystem
 {

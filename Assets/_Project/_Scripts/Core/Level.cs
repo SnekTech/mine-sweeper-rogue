@@ -1,5 +1,5 @@
 ﻿using SnekTech.Core.GameModeSystem;
-using SnekTech.Grid;
+using SnekTech.GridSystem;
 
 namespace SnekTech.Core
 {

@@ -1,5 +1,5 @@
 ﻿using SnekTech.Core.GameEvent;
-using SnekTech.Grid;
+using SnekTech.GridSystem;
 using UnityEditor;
 
 namespace SnekTech.Editor.Pools

@@ -4,8 +4,9 @@ using SnekTech.DataPersistence;
 using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.GamePlay.InventorySystem;
 using SnekTech.GamePlay.WeaponSystem;
-using SnekTech.Grid;
-using SnekTech.GridCell;
+using SnekTech.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.PlayerSystem
@@ -34,14 +35,14 @@ namespace SnekTech.GamePlay.PlayerSystem
         [SerializeField]
         private Weapon weapon;
 
-        private readonly List<IPlayerDataHolder> dataHolders = new List<IPlayerDataHolder>();
+        private readonly List<IPlayerDataHolder> _dataHolders = new List<IPlayerDataHolder>();
 
         #region Getters
 
         public Inventory Inventory => inventory;
         public IWeapon Weapon => weapon;
         public int SweepScope => stats.Calculated.sweepScope;
-        public int DamagePerBomb => stats.Calculated.damagePerBomb;
+        private int DamagePerBomb => stats.Calculated.damagePerBomb;
         public int ItemChoiceCount => stats.Calculated.itemChoiceCount;
         
         #endregion
@@ -55,9 +56,9 @@ namespace SnekTech.GamePlay.PlayerSystem
             abilityHolder.Changed += HandleAbilitiesChanged;
             inventory.ItemsChanged += HandleItemsChanged;
             
-            dataHolders.Clear();
-            dataHolders.Add(inventory);
-            dataHolders.Add(stats);
+            _dataHolders.Clear();
+            _dataHolders.Add(inventory);
+            _dataHolders.Add(stats);
         }
 
         public void OnDisable()
@@ -77,7 +78,7 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         private void HandleHealthRanOut() => playerEventChannel.InvokeHealthRanOut();
         
-        private void HandleOnBombReveal(IGrid grid, ILogicCell cell)
+        private void HandleOnBombReveal(IGrid grid, ICell cell)
         {
             TakeDamage(DamagePerBomb);
         }
@@ -131,7 +132,7 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         public void LoadData(GameData gameData)
         {
-            foreach (var dataHolder in dataHolders)
+            foreach (var dataHolder in _dataHolders)
             {
                 dataHolder.LoadData(gameData.playerData);
             }
@@ -139,7 +140,7 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         public void SaveData(GameData gameData)
         {
-            foreach (var dataHolder in dataHolders)
+            foreach (var dataHolder in _dataHolders)
             {
                 dataHolder.SaveData(gameData.playerData);
             }
