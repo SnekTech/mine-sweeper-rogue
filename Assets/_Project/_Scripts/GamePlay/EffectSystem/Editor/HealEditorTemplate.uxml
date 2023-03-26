@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/_Project/_Scripts/Editor/Styles/EffectDrawer.uss?fileID=7433441132597879392&amp;guid=bf6e924be7febd444aead7546851c6df&amp;type=3#EffectDrawer" />
+    <ui:VisualElement name="root" class="container" style="padding-left: 6px; padding-right: 6px; padding-top: 6px; padding-bottom: 6px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px;">
+        <ui:Label text="Heal Effect" display-tooltip-when-elided="true" name="effect-name" class="container" />
+    </ui:VisualElement>
+</ui:UXML>

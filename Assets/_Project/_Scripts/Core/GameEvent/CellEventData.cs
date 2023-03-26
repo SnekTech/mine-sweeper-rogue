@@ -1,5 +1,6 @@
 ﻿using System;
 using SnekTech.GamePlay;
+using SnekTech.GamePlay.EffectSystem;
 using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.UI;
 using UnityEngine;

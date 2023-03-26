@@ -14,9 +14,10 @@ namespace SnekTech.Editor
                 .ToList();
         }
 
-        public static IEnumerable<Type> GetImplementorsOfInterface<T>()
+        public static IEnumerable<Type> GetImplementorsOfInterface<T>() where T : class
         {
-            return typeof(T).Assembly.GetTypes().Where(type => type.GetInterfaces().Contains(typeof(T)));
+            var interfaceType = typeof(T);
+            return interfaceType.Assembly.GetTypes().Where(type => type != interfaceType && interfaceType.IsAssignableFrom(type));
         }
 
         public static List<FieldInfo> GetInstanceFieldsWithAttributeOfType<T>(this Type type)
