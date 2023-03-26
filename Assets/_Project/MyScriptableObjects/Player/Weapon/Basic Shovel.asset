@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18c9607d68a4e758be4c07d92e58e11, type: 3}
   m_Name: Basic Shovel
   m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: dbacd7de887a1ec4f8ebd67ca2f19857, type: 2}
+  primaryPlayerEffect: {fileID: 11400000, guid: 336a13f1ad35fb942933107f8046b703, type: 2}
   primary: {fileID: 11400000, guid: 4f1ef7b5d9d8c494bb81ed1eef370f6c, type: 2}
   secondary: {fileID: 11400000, guid: 325df282243b6324b815d68a054949d2, type: 2}

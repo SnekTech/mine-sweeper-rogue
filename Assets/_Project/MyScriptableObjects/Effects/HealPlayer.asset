@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1c15654181b44af9f9b14f9606641a9, type: 3}
-  m_Name: New Composite Player Effect
+  m_Name: HealPlayer
   m_EditorClassIdentifier: 
   effects:
   - rid: 4477460444241985536

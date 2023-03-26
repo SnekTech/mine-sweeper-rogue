@@ -14,9 +14,9 @@ namespace SnekTech.GamePlay.WeaponSystem
         [SerializeReference]
         private WeaponComponent secondary;
 
-        public UniTask Primary(ICell cell)
+        public async UniTask Primary(ICell cell)
         {
-            return primary.Use(cell);
+            await primary.Use(cell);
         }
 
         public UniTask Secondary(ICell cell)

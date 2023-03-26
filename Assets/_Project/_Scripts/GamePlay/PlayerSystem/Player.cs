@@ -99,7 +99,10 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         #endregion
 
-        
+        public async UniTask UsePrimary(ICell cell) => await weapon.Primary(cell);
+        public async UniTask UseSecondary(ICell cell) => await weapon.Secondary(cell);
+
+
         // todo: change to event driven & async
         public void AddHealthArmourDisplay(IHealthArmourDisplay display)
         {

@@ -76,7 +76,7 @@ namespace SnekTech.GridSystem
 
             player.UseClickAbilities();
 
-            await player.Weapon.Primary(cell);
+            await player.UsePrimary(cell);
 
             HandleRecursiveRevealCellComplete(cell);
         }
@@ -98,7 +98,7 @@ namespace SnekTech.GridSystem
             if (cell == null)
                 return;
 
-            await player.Weapon.Secondary(cell);
+            await player.UseSecondary(cell);
         }
 
         private ICell GetMouseHoveringCell(Vector2 mousePosition)

@@ -1,6 +1,8 @@
-﻿using SnekTech.GamePlay.AbilitySystem;
+﻿using Cysharp.Threading.Tasks;
+using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.GamePlay.InventorySystem;
 using SnekTech.GamePlay.WeaponSystem;
+using SnekTech.MineSweeperRogue.GridSystem.CellSystem;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
@@ -27,6 +29,8 @@ namespace SnekTech.GamePlay.PlayerSystem
         #endregion
         
         Inventory Inventory { get; }
-        IWeapon Weapon { get; }
+
+        UniTask UsePrimary(ICell cell);
+        UniTask UseSecondary(ICell cell);
     }
 }
