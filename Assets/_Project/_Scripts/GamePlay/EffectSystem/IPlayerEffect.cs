@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SnekTech.GamePlay.EffectSystem
 {
-    public interface PlayerEffect
+    public interface IPlayerEffect
     {
         public UniTask Take(IPlayer target);
     }

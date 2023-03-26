@@ -13,8 +13,6 @@ namespace SnekTech.GamePlay.EffectSystem
     {
         public VisualTreeAsset uxml;
 
-        private CompositePlayerEffect TargetEffect => target as CompositePlayerEffect;
-
         public override VisualElement CreateInspectorGUI()
         {
             var root = new VisualElement();
@@ -31,7 +29,7 @@ namespace SnekTech.GamePlay.EffectSystem
         private void CreateAddEffectButtons(VisualElement buttonGroup)
         {
             buttonGroup.Clear();
-            var effectTypes = ReflectionUtils.GetImplementorsOfInterface<PlayerEffect>()
+            var effectTypes = ReflectionUtils.GetImplementorsOfInterface<IPlayerEffect>()
                 .Where(type => type != typeof(CompositePlayerEffect));
 
             foreach (var effectType in effectTypes)
@@ -45,7 +43,7 @@ namespace SnekTech.GamePlay.EffectSystem
                 };
                 button.RegisterCallback<ClickEvent>(e =>
                 {
-                    var effect = Activator.CreateInstance(effectType) as PlayerEffect;
+                    var effect = Activator.CreateInstance(effectType) as IPlayerEffect;
                     AddEffect(effect);
                 });
                 buttonGroup.Add(button);
@@ -54,7 +52,7 @@ namespace SnekTech.GamePlay.EffectSystem
 
         private SerializedProperty EffectsProperty => serializedObject.FindProperty("effects");
 
-        private void AddEffect(PlayerEffect effect)
+        private void AddEffect(IPlayerEffect effect)
         {
             serializedObject.Update();
             EffectsProperty.InsertArrayElementAtIndex(EffectsProperty.arraySize);

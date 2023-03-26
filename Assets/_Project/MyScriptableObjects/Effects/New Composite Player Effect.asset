@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: New Composite Player Effect
   m_EditorClassIdentifier: 
   effects:
-  - rid: 4477460436345683970
+  - rid: 4477460444241985536
   references:
     version: 2
     RefIds:
-    - rid: 4477460436345683970
-      type: {class: Heal, ns: SnekTech.GamePlay.EffectSystem, asm: Game}
+    - rid: 4477460444241985536
+      type: {class: HealEffect, ns: SnekTech.GamePlay.EffectSystem, asm: Game}
       data:
         amount: 3
