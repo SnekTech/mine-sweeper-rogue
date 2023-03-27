@@ -18,22 +18,22 @@ namespace SnekTech.UI
             _tooltipTrigger = GetComponent<TooltipTrigger>();
         }
 
-        public void SetContent(CellEvent cellEvent)
+        public void SetContent(CellEventInstance cellEventInstance)
         {
-            CellEventData eventData = cellEvent.CellEventData;
+            var eventData = cellEventInstance.CellEvent;
             icon.sprite = eventData.Icon;
 
-            SetTooltipContent(cellEvent);
+            SetTooltipContent(cellEventInstance);
         }
 
-        private void SetTooltipContent(CellEvent cellEvent)
+        private void SetTooltipContent(CellEventInstance cellEventInstance)
         {
-            CellEventData eventData = cellEvent.CellEventData;
+            var eventData = cellEventInstance.CellEvent;
             
-            string header = eventData.Label;
-            string body =
+            var header = eventData.Label;
+            var body =
                 $"{eventData.Description}\n" +
-                $"Level #{cellEvent.LevelIndex}, Cell [{cellEvent.GridIndex.RowIndex}, {cellEvent.GridIndex.ColumnIndex}]";
+                $"Level #{cellEventInstance.LevelIndex}, Cell [{cellEventInstance.GridIndex.RowIndex}, {cellEventInstance.GridIndex.ColumnIndex}]";
             var tooltipContent = new TooltipContent(header, body);
             _tooltipTrigger.SetContent(tooltipContent);
         }

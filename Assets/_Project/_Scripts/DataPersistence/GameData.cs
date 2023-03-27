@@ -16,7 +16,7 @@ namespace SnekTech.DataPersistence
 
         public PlayerData playerData;
         
-        public List<CellEvent> cellEvents;
+        public List<CellEventInstance> cellEvents;
 
         public HistoryData historyData;
 
@@ -27,7 +27,7 @@ namespace SnekTech.DataPersistence
 
             playerData = new PlayerData();
             
-            cellEvents = new List<CellEvent>();
+            cellEvents = new List<CellEventInstance>();
             
             historyData = new HistoryData();
         }

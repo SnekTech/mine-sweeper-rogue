@@ -1,39 +1,30 @@
-﻿using System;
-using Newtonsoft.Json;
-using SnekTech.MineSweeperRogue.GridSystem;
+﻿using Cysharp.Threading.Tasks;
+using SnekTech.GamePlay.PlayerSystem;
+using SnekTech.UI;
 using UnityEngine;
 
 namespace SnekTech.Core.GameEvent
 {
-    [Serializable]
-    public class CellEvent
+    public abstract class CellEvent : ScriptableObject, IHoverableIconHolder
     {
         [SerializeField]
-        private CellEventData cellEventData;
+        private string label;
 
         [SerializeField]
-        private GridIndex gridIndex;
+        private Sprite icon;
 
         [SerializeField]
-        private int levelIndex;
-        
-        [JsonIgnore]
-        public CellEventData CellEventData => cellEventData;
+        private string description;
 
-        public string Name
+        public string Label => label;
+        public Sprite Icon => icon;
+        public string Description => description;
+
+        public abstract UniTask Trigger(Player player);
+
+        private void OnEnable()
         {
-            get => cellEventData.name;
-            set => cellEventData = CellEventAssetRepo.Instance.Get(value);
-        }
-        
-        public int LevelIndex => levelIndex;
-        public GridIndex GridIndex => gridIndex;
-        
-        public CellEvent(CellEventData cellEventData, GridIndex gridIndex, int levelIndex)
-        {
-            this.gridIndex = gridIndex;
-            this.levelIndex = levelIndex;
-            this.cellEventData = cellEventData;
+            CellEventAssetRepo.Instance.Set(name, this);
         }
     }
 }

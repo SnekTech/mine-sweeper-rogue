@@ -9,12 +9,12 @@ namespace SnekTech.UI.History
         [SerializeField]
         private CellEventSlot cellEventSlotPrefab;
 
-        public void SetContent(List<CellEvent> cellEvents)
+        public void SetContent(List<CellEventInstance> cellEvents)
         {
             transform.DestroyAllChildren();
-            foreach (CellEvent cellEvent in cellEvents)
+            foreach (var cellEvent in cellEvents)
             {
-                CellEventSlot slot = Instantiate(cellEventSlotPrefab, transform);
+                var slot = Instantiate(cellEventSlotPrefab, transform);
                 slot.SetContent(cellEvent);
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace SnekTech.Core.GameEvent
 {
     [CreateAssetMenu]
-    public class AffectPlayerEvent : CellEventData
+    public class AffectPlayerEvent : CellEvent
     {
         [SerializeField]
         private CompositePlayerEffect effect;

@@ -19,7 +19,7 @@ namespace SnekTech.Core.History
         [SerializeField]
         private List<InventoryItem> items;
         [SerializeField]
-        private List<CellEvent> cellEvents;
+        private List<CellEventInstance> cellEvents;
 
 
         public string Seed
@@ -46,7 +46,7 @@ namespace SnekTech.Core.History
             set => items = value;
         }
 
-        public List<CellEvent> CellEvents
+        public List<CellEventInstance> CellEvents
         {
             get => cellEvents;
             set => cellEvents = value;

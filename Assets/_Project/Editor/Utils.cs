@@ -22,7 +22,7 @@ namespace SnekTech.Editor
             {
                 {typeof(GridData), GridDataDir},
                 {typeof(ItemData), ItemDataDir},
-                {typeof(CellEventData), CellEventDataDir},
+                {typeof(CellEvent), CellEventDataDir},
             };
         }
     }

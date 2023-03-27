@@ -30,9 +30,9 @@ namespace SnekTech.Core.GameEvent
         [SerializeField]
         private CurrentRecordHolder currentRecordHolder;
 
-        private List<CellEvent> _cellEvents;
+        private List<CellEventInstance> _cellEvents;
 
-        public List<CellEvent> CellEvents => _cellEvents;
+        public List<CellEventInstance> CellEvents => _cellEvents;
 
         // todo: deal with magic number(for debugging)
         private const float CellEventProbability = 1f;
@@ -70,14 +70,14 @@ namespace SnekTech.Core.GameEvent
                 // await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon,
                 //     randomCellEventData.Description);
 
-                await AddCellEvent(new CellEvent(randomCellEventData, cell.Index, currentRecordHolder.CurrentLevelIndex));
+                await AddCellEvent(new CellEventInstance(randomCellEventData, cell.Index, currentRecordHolder.CurrentLevelIndex));
             }
         }
 
         public void LoadData(GameData gameData)
         {
-            List<CellEvent> savedEvents = gameData.cellEvents;
-            _cellEvents = new List<CellEvent>(savedEvents);
+            var savedEvents = gameData.cellEvents;
+            _cellEvents = new List<CellEventInstance>(savedEvents);
         }
 
         public void SaveData(GameData gameData)
@@ -85,10 +85,10 @@ namespace SnekTech.Core.GameEvent
             gameData.cellEvents = _cellEvents;
         }
 
-        private async UniTask AddCellEvent(CellEvent cellEvent)
+        private async UniTask AddCellEvent(CellEventInstance cellEventInstance)
         {
-            await cellEvent.CellEventData.Trigger(player);
-            _cellEvents.Add(cellEvent);
+            await cellEventInstance.CellEvent.Trigger(player);
+            _cellEvents.Add(cellEventInstance);
         }
     }
 }
