@@ -1,7 +1,7 @@
 ﻿using System;
-using SnekTech.Core.GameEvent;
 using SnekTech.DataPersistence;
 using SnekTech.GamePlay;
+using SnekTech.GamePlay.CellEventSystem;
 using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Roguelike;
 using UnityEngine;

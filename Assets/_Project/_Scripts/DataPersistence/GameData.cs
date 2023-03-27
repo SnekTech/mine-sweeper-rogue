@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
 using SnekTech.GamePlay;
+using SnekTech.GamePlay.CellEventSystem;
 using SnekTech.GamePlay.InventorySystem;
 using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Roguelike;

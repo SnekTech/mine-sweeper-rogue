@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using SnekTech.MineSweeperRogue.GridSystem;
 using UnityEngine;
 
-namespace SnekTech.Core.GameEvent
+namespace SnekTech.GamePlay.CellEventSystem
 {
     [Serializable]
     public class CellEventInstance

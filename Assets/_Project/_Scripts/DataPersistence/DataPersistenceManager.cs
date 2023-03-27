@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using SnekTech.Core.GameEvent;
 using SnekTech.Core.History;
+using SnekTech.GamePlay.CellEventSystem;
 using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.Roguelike;
 using UnityEngine;

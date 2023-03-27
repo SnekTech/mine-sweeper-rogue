@@ -3,7 +3,7 @@ using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.UI;
 using UnityEngine;
 
-namespace SnekTech.Core.GameEvent
+namespace SnekTech.GamePlay.CellEventSystem
 {
     public abstract class CellEvent : ScriptableObject, IHoverableIconHolder
     {

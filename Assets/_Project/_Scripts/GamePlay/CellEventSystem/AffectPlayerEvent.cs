@@ -3,7 +3,7 @@ using SnekTech.GamePlay.EffectSystem.PlayerEffects;
 using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
-namespace SnekTech.Core.GameEvent
+namespace SnekTech.GamePlay.CellEventSystem
 {
     [CreateAssetMenu]
     public class AffectPlayerEvent : CellEvent

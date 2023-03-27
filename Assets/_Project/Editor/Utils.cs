@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using SnekTech.Core.GameEvent;
+using SnekTech.GamePlay.CellEventSystem;
 using SnekTech.GamePlay.InventorySystem;
 using SnekTech.GridSystem;
 

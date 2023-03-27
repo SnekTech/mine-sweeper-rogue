@@ -10,7 +10,7 @@ using SnekTech.Roguelike;
 using SnekTech.UI.Modal;
 using UnityEngine;
 
-namespace SnekTech.Core.GameEvent
+namespace SnekTech.GamePlay.CellEventSystem
 {
     [CreateAssetMenu(menuName = MenuName.GameEventSystem + "/" + nameof(CurrentEventsHolder))]
     public class CurrentEventsHolder : ScriptableObject, IPersistentDataHolder

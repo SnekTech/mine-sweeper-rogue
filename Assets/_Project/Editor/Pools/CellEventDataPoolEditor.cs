@@ -1,4 +1,4 @@
-﻿using SnekTech.Core.GameEvent;
+﻿using SnekTech.GamePlay.CellEventSystem;
 using UnityEditor;
 
 namespace SnekTech.Editor.Pools

@@ -1,4 +1,4 @@
-﻿using SnekTech.Core.GameEvent;
+﻿using SnekTech.GamePlay.CellEventSystem;
 using SnekTech.UI.Tooltip;
 using UnityEngine;
 using UnityEngine.UI;

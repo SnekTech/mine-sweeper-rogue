@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SnekTech.Core.GameEvent;
+using SnekTech.GamePlay.CellEventSystem;
 using UnityEngine;
 
 namespace SnekTech.UI.History
