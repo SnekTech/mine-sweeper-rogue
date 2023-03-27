@@ -1,10 +1,9 @@
-﻿using Cysharp.Threading.Tasks;
-using SnekTech.GamePlay.PlayerSystem;
+﻿using SnekTech.GamePlay.PlayerSystem;
+using SnekTech.MineSweeperRogue.EffectSystem;
 
 namespace SnekTech.GamePlay.EffectSystem.PlayerEffects
 {
-    public interface IPlayerEffect
+    public interface IPlayerEffect : IEffect<IPlayer>
     {
-        public UniTask Take(IPlayer target);
     }
 }
