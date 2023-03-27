@@ -35,22 +35,22 @@ namespace SnekTech.Core.GameEvent
         public List<CellEvent> CellEvents => _cellEvents;
 
         // todo: deal with magic number(for debugging)
-        private const float CellEventProbability = 0f;
+        private const float CellEventProbability = 1f;
         private readonly IRandomGenerator _cellEventGenerator = RandomGenerator.Instance;
 
         private const string EventModalHeader = "New Event Triggered";
 
         #region Unity callbacks
 
-        // private void OnEnable()
-        // {
-        //     gridEventChannel.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
-        // }
-        //
-        // private void OnDisable()
-        // {
-        //     gridEventChannel.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
-        // }
+        private void OnEnable()
+        {
+            gridEventChannel.OnCellRecursiveRevealComplete += HandleCellRecursiveRevealComplete;
+        }
+        
+        private void OnDisable()
+        {
+            gridEventChannel.OnCellRecursiveRevealComplete -= HandleCellRecursiveRevealComplete;
+        }
 
         #endregion
 
@@ -65,10 +65,12 @@ namespace SnekTech.Core.GameEvent
             if (shouldTriggerEvent)
             {
                 var randomCellEventData = cellEventPool.GetRandom();
-                await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon,
-                    randomCellEventData.Description);
+                
+                // todo: use a notification instead
+                // await modalManager.ShowConfirmAsync(EventModalHeader, randomCellEventData.Icon,
+                //     randomCellEventData.Description);
 
-                AddCellEvent(new CellEvent(randomCellEventData, cell.Index, currentRecordHolder.CurrentLevelIndex));
+                await AddCellEvent(new CellEvent(randomCellEventData, cell.Index, currentRecordHolder.CurrentLevelIndex));
             }
         }
 
@@ -83,9 +85,9 @@ namespace SnekTech.Core.GameEvent
             gameData.cellEvents = _cellEvents;
         }
 
-        private void AddCellEvent(CellEvent cellEvent)
+        private async UniTask AddCellEvent(CellEvent cellEvent)
         {
-            cellEvent.CellEventData.Trigger(player);
+            await cellEvent.CellEventData.Trigger(player);
             _cellEvents.Add(cellEvent);
         }
     }

@@ -41,7 +41,7 @@ namespace SnekTech.GamePlay.EffectSystem
                     text = effectName,
                     viewDataKey = $"add-effect-button-{effectName}",
                 };
-                button.RegisterCallback<ClickEvent>(e =>
+                button.RegisterCallback<ClickEvent>(_ =>
                 {
                     var effect = Activator.CreateInstance(effectType) as TEffect;
                     AddEffect(effect);

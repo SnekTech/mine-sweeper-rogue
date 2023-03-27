@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f78d38b7bed44799ee03f0f81a91134, type: 3}
-  m_Name: Cell Event Pool
+  m_Script: {fileID: 11500000, guid: aab00f5a15954c60ab9d97c123dc0bde, type: 3}
+  m_Name: test cell event
   m_EditorClassIdentifier: 
-  elements:
-  - {fileID: 11400000, guid: 1d2c685ececfdab4caa6e91564918198, type: 2}
+  label: ttt
+  icon: {fileID: 192732397, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
+  description: 11111
+  effect: {fileID: 11400000, guid: 336a13f1ad35fb942933107f8046b703, type: 2}

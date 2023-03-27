@@ -1935,7 +1935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc59150b0494d54bfc9fe30ff8b65b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiEventChannel: {fileID: 0}
+  uiEventChannel: {fileID: 11400000, guid: 9feae3ca8d863a54186bcb0a14c12289, type: 2}
   header: {fileID: 1338162041}
   alphaAlphaGroup: {fileID: 1747403260}
   confirmBody: {fileID: 1808190891}

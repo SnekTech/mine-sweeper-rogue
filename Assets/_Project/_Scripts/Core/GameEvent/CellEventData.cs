@@ -1,6 +1,4 @@
-﻿using System;
-using SnekTech.GamePlay;
-using SnekTech.GamePlay.EffectSystem;
+﻿using Cysharp.Threading.Tasks;
 using SnekTech.GamePlay.PlayerSystem;
 using SnekTech.UI;
 using UnityEngine;
@@ -22,11 +20,11 @@ namespace SnekTech.Core.GameEvent
         public Sprite Icon => icon;
         public string Description => description;
 
-        public void Trigger(Player player)
-        {
-            OnTrigger(player);
-        }
+        public abstract UniTask Trigger(Player player);
 
-        protected abstract void OnTrigger(Player player);
+        private void OnEnable()
+        {
+            CellEventAssetRepo.Instance.Set(name, this);
+        }
     }
 }

@@ -7,8 +7,8 @@ namespace SnekTech.DataPersistence
 {
     public class FileDataHandler
     {
-        private string _dataDirPath;
-        private string _dataFileName;
+        private readonly string _dataDirPath;
+        private readonly string _dataFileName;
 
         private string FullPath => Path.Combine(_dataDirPath, _dataFileName);
 
@@ -52,15 +52,11 @@ namespace SnekTech.DataPersistence
             try
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(FullPath)!);
-                string dataToStore = JsonConvert.SerializeObject(data, Formatting.Indented);
+                var dataToStore = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-                using (var stream = new FileStream(FullPath, FileMode.Create))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.Write(dataToStore);
-                    }
-                }
+                using var stream = new FileStream(FullPath, FileMode.Create);
+                using var writer = new StreamWriter(stream);
+                writer.Write(dataToStore);
             }
             catch (Exception e)
             {

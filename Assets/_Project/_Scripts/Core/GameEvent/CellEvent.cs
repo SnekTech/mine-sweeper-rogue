@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 using SnekTech.MineSweeperRogue.GridSystem;
 using UnityEngine;
 
@@ -16,7 +17,15 @@ namespace SnekTech.Core.GameEvent
         [SerializeField]
         private int levelIndex;
         
+        [JsonIgnore]
         public CellEventData CellEventData => cellEventData;
+
+        public string Name
+        {
+            get => cellEventData.name;
+            set => cellEventData = CellEventAssetRepo.Instance.Get(value);
+        }
+        
         public int LevelIndex => levelIndex;
         public GridIndex GridIndex => gridIndex;
         
