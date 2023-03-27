@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using SnekTech.Editor;
+using SnekTech.GamePlay.EffectSystem.PlayerEffects;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace SnekTech.GamePlay.EffectSystem

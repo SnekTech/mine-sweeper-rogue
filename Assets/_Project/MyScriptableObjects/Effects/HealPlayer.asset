@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: HealPlayer
   m_EditorClassIdentifier: 
   effects:
-  - rid: 4477460444241985536
+  - rid: 4477460444241985555
   references:
     version: 2
     RefIds:
-    - rid: 4477460444241985536
-      type: {class: HealEffect, ns: SnekTech.GamePlay.EffectSystem, asm: Game}
+    - rid: 4477460444241985555
+      type: {class: HealEffect, ns: SnekTech.GamePlay.EffectSystem.PlayerEffects, asm: Game}
       data:
         amount: 3

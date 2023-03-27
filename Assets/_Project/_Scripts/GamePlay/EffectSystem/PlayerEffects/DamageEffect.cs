@@ -6,24 +6,24 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace SnekTech.GamePlay.EffectSystem
+namespace SnekTech.GamePlay.EffectSystem.PlayerEffects
 {
     [Serializable]
-    public class HealEffect : IPlayerEffect
+    public class DamageEffect : IPlayerEffect
     {
         [SerializeField]
         private int amount = 3;
         
         public UniTask Take(IPlayer target)
         {
-            target.AddHealth(amount);
+            target.TakeDamage(amount);
             return UniTask.CompletedTask;
         }
     }
     
     #if UNITY_EDITOR
-    [CustomPropertyDrawer(typeof(HealEffect))]
-    public class HealEffectDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(DamageEffect))]
+    public class DamageEffectDrawer : PropertyDrawer
     {
         private const string UxmlAssetPath = "Assets/_Project/_Scripts/GamePlay/EffectSystem/Editor/HealEditorTemplate.uxml";
         
@@ -31,7 +31,7 @@ namespace SnekTech.GamePlay.EffectSystem
         {
             var root = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(UxmlAssetPath).Instantiate();
             var nameField = root.Q<Label>("effect-name");
-            nameField.text = nameof(HealEffect);
+            nameField.text = nameof(DamageEffect);
             var amountField = new PropertyField(property.FindPropertyRelative("amount"));
             root.Q("root").Add(amountField);
             
