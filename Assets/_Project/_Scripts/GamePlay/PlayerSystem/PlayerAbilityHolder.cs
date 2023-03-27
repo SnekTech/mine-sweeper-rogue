@@ -1,86 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Cysharp.Threading.Tasks;
 using SnekTech.GamePlay.AbilitySystem;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.PlayerSystem
 {
     [CreateAssetMenu(menuName = C.MenuName.Player + "/" + nameof(PlayerAbilityHolder))]
-    public class PlayerAbilityHolder : ScriptableObject
+    public class PlayerAbilityHolder : ScriptableObject, IPlayerDataHolder
     {
         public event Action<List<PlayerAbility>> Changed;
 
         [SerializeField]
         private Player player;
 
-        private readonly List<PlayerAbility> _clickAbilities = new List<PlayerAbility>();
-        private readonly List<PlayerAbility> _moveAbilities = new List<PlayerAbility>();
+        private static List<PlayerAbility> AllAbilities => PlayerAbilityRepo.Instance.Assets;
 
-        private List<PlayerAbility> AllAbilities
+        private static List<PlayerAbility> ActiveAbilities =>
+            AllAbilities.Where(ability => ability.IsActive).ToList();
+
+        public async UniTask UseAbilities()
         {
-            get
-            {
-                var list = new List<PlayerAbility>();
-                list.AddRange(_clickAbilities);
-                list.AddRange(_moveAbilities);
-                return list;
-            }
+            var tasks = ActiveAbilities.Select(ability => ability.Use(player));
+            await UniTask.WhenAll(tasks);
+
+            Changed?.Invoke(ActiveAbilities);
         }
 
-        public void UseClickAbilities()
+        public void AddAbility(PlayerAbility playerAbility, int repeatTimes)
         {
-            foreach (var clickAbility in _clickAbilities)
-            {
-                clickAbility.Use(player);
-            }
-
-            ClearInactiveAbilities();
+            playerAbility.RepeatTimes += repeatTimes;
+            Changed?.Invoke(ActiveAbilities);
         }
 
-        private void ClearInactiveAbilities()
+        public void RemoveAbility(PlayerAbility playerAbility)
         {
-            if (_clickAbilities.Count == 0) return;
-            
-            _clickAbilities.RemoveAll(ability => !ability.IsActive);
-            Changed?.Invoke(AllAbilities);
-        }
-
-        public void UseMoveAbilities()
-        {
-            foreach (var moveAbility in _moveAbilities)
-            {
-                moveAbility.Use(player);
-            }
-        }
-
-        public void AddClickAbility(PlayerAbility playerAbility)
-        {
-            _clickAbilities.Add(playerAbility);
-            Changed?.Invoke(AllAbilities);
-        }
-
-        public void RemoveClickAbility(PlayerAbility playerAbility)
-        {
-            _clickAbilities.Remove(playerAbility);
-            Changed?.Invoke(AllAbilities);
-        }
-
-        public void AddMoveAbility(PlayerAbility playerAbility)
-        {
-            _moveAbilities.Add(playerAbility);
-            Changed?.Invoke(AllAbilities);
-        }
-
-        public void RemoveMoveAbility(PlayerAbility playerAbility)
-        {
-            _moveAbilities.Remove(playerAbility);
-            Changed?.Invoke(AllAbilities);
+            playerAbility.RepeatTimes = 0;
+            Changed?.Invoke(ActiveAbilities);
         }
 
         public void ClearAll()
         {
-            _clickAbilities.Clear();
-            _moveAbilities.Clear();
+            AllAbilities.ForEach(ability => ability.RepeatTimes = 0);
+            Changed?.Invoke(ActiveAbilities);
+        }
+
+        public void LoadData(PlayerData playerData)
+        {
+            var data = playerData.abilityData;
+            foreach (var (abilityName, repeatTimes) in data.repeatTimesByAbilityName)
+            {
+                var ability = PlayerAbilityRepo.Instance.Get(abilityName);
+                ability.RepeatTimes = repeatTimes;
+            }
+            Changed?.Invoke(ActiveAbilities);
+        }
+
+        public void SaveData(PlayerData playerData)
+        {
+            var data = playerData.abilityData;
+            foreach (var ability in AllAbilities)
+            {
+                data.repeatTimesByAbilityName[ability.name] = ability.RepeatTimes;
+            }
         }
     }
 }

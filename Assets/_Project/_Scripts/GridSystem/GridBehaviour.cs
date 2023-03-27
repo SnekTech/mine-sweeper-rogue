@@ -74,9 +74,9 @@ namespace SnekTech.GridSystem
             if (!canClickCell)
                 return;
 
-            player.UseClickAbilities();
 
             await player.UsePrimary(cell);
+            await player.UseAbilities();
 
             HandleRecursiveRevealCellComplete(cell);
         }

@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f60e349e2564258a34509aa6adca200, type: 3}
-  m_Name: itemA
+  m_Script: {fileID: 11500000, guid: 2b83dad74814444e83b4084aa05b464f, type: 3}
+  m_Name: Heal Player Ability
   m_EditorClassIdentifier: 
-  label: a
-  description: take damage on pick, heal on every click
   icon: {fileID: -1989531792, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
-  components:
-  - {fileID: 11400000, guid: 23574398d52b6a644abd268dc0da0d08, type: 2}
+  label: "\u6CBB\u7597"
+  description: "\u6BCF\u6B21\u70B9\u51FB\u540E\u6CBB\u7597\u73A9\u5BB6"
+  effect: {fileID: 11400000, guid: 336a13f1ad35fb942933107f8046b703, type: 2}

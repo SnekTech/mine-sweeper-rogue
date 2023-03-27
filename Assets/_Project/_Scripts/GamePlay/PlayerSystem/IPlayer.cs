@@ -21,9 +21,9 @@ namespace SnekTech.GamePlay.PlayerSystem
 
         #region ability
 
-        void AddClickAbility(PlayerAbility playerAbility);
-        void RemoveClickAbility(PlayerAbility playerAbility);
-        void UseClickAbilities();
+        void AddAbility(PlayerAbility ability, int repeatTimes);
+        void RemoveAbility(PlayerAbility playerAbility);
+        UniTask UseAbilities();
         void ClearAllAbilities();
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using SnekTech.UI;
+﻿using Cysharp.Threading.Tasks;
+using SnekTech.UI;
 
 namespace SnekTech.GamePlay.AbilitySystem
 {
@@ -9,7 +10,7 @@ namespace SnekTech.GamePlay.AbilitySystem
     public interface IAbility<in T> : IHoverableIconHolder
     {
         bool IsActive { get; }
-        void Init();
-        void Use(T target);
+        int RepeatTimes { get; set; }
+        UniTask Use(T target);
     }
 }

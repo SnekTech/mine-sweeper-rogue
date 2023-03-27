@@ -59,6 +59,7 @@ namespace SnekTech.GamePlay.PlayerSystem
             _dataHolders.Clear();
             _dataHolders.Add(inventory);
             _dataHolders.Add(stats);
+            _dataHolders.Add(abilityHolder);
         }
 
         public void OnDisable()
@@ -111,26 +112,14 @@ namespace SnekTech.GamePlay.PlayerSystem
         
         #region delegate ability methods
 
-        public void AddClickAbility(PlayerAbility playerAbility)
-        {
-            abilityHolder.AddClickAbility(playerAbility);
-        }
+        public void AddAbility(PlayerAbility ability, int repeatTimes) => abilityHolder.AddAbility(ability, repeatTimes);
 
-        public void RemoveClickAbility(PlayerAbility playerAbility)
-        {
-            abilityHolder.RemoveClickAbility(playerAbility);
-        }
+        public void RemoveAbility(PlayerAbility playerAbility) => abilityHolder.RemoveAbility(playerAbility);
 
-        public void UseClickAbilities()
-        {
-            abilityHolder.UseClickAbilities();
-        }
+        public UniTask UseAbilities() => abilityHolder.UseAbilities();
 
-        public void ClearAllAbilities()
-        {
-            abilityHolder.ClearAll();
-        }
-        
+        public void ClearAllAbilities() => abilityHolder.ClearAll();
+
         #endregion
 
         public void LoadData(GameData gameData)
