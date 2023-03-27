@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2b83dad74814444e83b4084aa05b464f, type: 3}
-  m_Name: Heal Player Ability
+  m_Name: Poison Player Ability
   m_EditorClassIdentifier: 
-  icon: {fileID: -536965357, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
-  label: "\u6CBB\u7597"
-  description: "\u6BCF\u6B21\u70B9\u51FB\u540E\u6CBB\u7597\u73A9\u5BB6"
-  effect: {fileID: 11400000, guid: 336a13f1ad35fb942933107f8046b703, type: 2}
+  icon: {fileID: -169151453, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
+  label: "\u4E2D\u6BD2"
+  description: "\u6BCF\u6B21\u70B9\u51FB\u6263\u9664\u751F\u547D\u503C"
+  effect: {fileID: 11400000, guid: 8713826fca137e3478820428159dfb1b, type: 2}
