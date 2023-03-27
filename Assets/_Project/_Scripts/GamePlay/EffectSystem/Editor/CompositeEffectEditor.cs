@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using SnekTech.Editor;
-using SnekTech.GamePlay.EffectSystem.PlayerEffects;
 using SnekTech.MineSweeperRogue.EffectSystem;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -10,7 +9,7 @@ using UnityEngine.UIElements;
 namespace SnekTech.GamePlay.EffectSystem
 {
     public abstract class CompositeEffectEditor<T, TEffect> : UnityEditor.Editor
-        where TEffect : IEffect<T>
+        where TEffect : class, IEffect<T>
     {
         public VisualTreeAsset uxml;
 
@@ -44,7 +43,7 @@ namespace SnekTech.GamePlay.EffectSystem
                 };
                 button.RegisterCallback<ClickEvent>(e =>
                 {
-                    var effect = Activator.CreateInstance(effectType) as IPlayerEffect;
+                    var effect = Activator.CreateInstance(effectType) as TEffect;
                     AddEffect(effect);
                 });
                 buttonGroup.Add(button);
@@ -53,7 +52,7 @@ namespace SnekTech.GamePlay.EffectSystem
 
         private SerializedProperty EffectsProperty => serializedObject.FindProperty("effects");
 
-        private void AddEffect(IPlayerEffect effect)
+        private void AddEffect(TEffect effect)
         {
             serializedObject.Update();
             EffectsProperty.InsertArrayElementAtIndex(EffectsProperty.arraySize);
