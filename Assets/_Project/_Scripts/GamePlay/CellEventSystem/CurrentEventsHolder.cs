@@ -22,9 +22,6 @@ namespace SnekTech.GamePlay.CellEventSystem
         private CellEventPool cellEventPool;
 
         [SerializeField]
-        private ModalManager modalManager;
-
-        [SerializeField]
         private GridEventChannel gridEventChannel;
 
         [SerializeField]
@@ -35,7 +32,7 @@ namespace SnekTech.GamePlay.CellEventSystem
         public List<CellEventInstance> CellEvents => _cellEvents;
 
         // todo: deal with magic number(for debugging)
-        private const float CellEventProbability = 1f;
+        private const float CellEventProbability = 0f;
         private readonly IRandomGenerator _cellEventGenerator = RandomGenerator.Instance;
 
         private const string EventModalHeader = "New Event Triggered";

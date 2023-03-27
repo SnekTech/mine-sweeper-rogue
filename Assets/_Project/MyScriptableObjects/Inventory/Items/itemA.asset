@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f60e349e2564258a34509aa6adca200, type: 3}
   m_Name: itemA
   m_EditorClassIdentifier: 
-  label: a
-  description: take damage on pick, heal on every click
-  icon: {fileID: -1989531792, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
+  label: "\u5148\u82E6\u540E\u751C"
+  description: "\u6361\u5230\u65F6\u53D7\u4F24\uFF0C\u4E4B\u540E\u6BCF\u6B21\u70B9\u51FB\u56DE\u590D\u751F\u547D\u503C"
+  icon: {fileID: 192732397, guid: 6ce4ceac033faf74694af3d73d19abf8, type: 3}
   components:
   - {fileID: 11400000, guid: 23574398d52b6a644abd268dc0da0d08, type: 2}
+  - {fileID: 11400000, guid: 0a8e8468646e79c4e93d7efe182bc0a0, type: 2}

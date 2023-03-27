@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SnekTech.Core.History;
 using SnekTech.GamePlay.CellEventSystem;
 using SnekTech.GamePlay.PlayerSystem;
@@ -42,9 +43,10 @@ namespace SnekTech.DataPersistence
             currentRecordHolder,
         };
 
-        private void OnEnable()
+        private void Awake()
         {
             _fileDataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+            LoadGame();
         }
 
         public void NewGame()

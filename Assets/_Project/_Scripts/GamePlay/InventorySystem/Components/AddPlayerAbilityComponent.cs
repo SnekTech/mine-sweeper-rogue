@@ -1,4 +1,5 @@
-﻿using SnekTech.GamePlay.AbilitySystem;
+﻿using Cysharp.Threading.Tasks;
+using SnekTech.GamePlay.AbilitySystem;
 using SnekTech.GamePlay.PlayerSystem;
 using UnityEngine;
 
@@ -13,13 +14,15 @@ namespace SnekTech.GamePlay.InventorySystem.Components
         [SerializeField]
         private int repeatTimes = 3;
         
-        public override void OnAdd(IPlayer player)
+        public override UniTask OnAdd(IPlayer player)
         {
             player.AddAbility(playerAbility, repeatTimes);
+            return UniTask.CompletedTask;
         }
 
-        public override void OnRemove(IPlayer player)
+        public override UniTask OnRemove(IPlayer player)
         {
+            return UniTask.CompletedTask;
         }
     }
 }

@@ -50,12 +50,12 @@ namespace SnekTech.UI.History
 
         private void GenerateDropdownOptions()
         {
-            List<OptionData> options = new List<OptionData>();
+            var options = new List<OptionData>();
             _records = history.Records;
-            foreach (Record record in _records)
+            foreach (var record in _records)
             {
                 var createdAt = new DateTime(record.CreatedAt);
-                string optionText = $"{(record.HasFailed ? loseText : winText)} - {createdAt.ToShortTimeString()}";
+                var optionText = $"{(record.HasFailed ? loseText : winText)} - {createdAt.ToShortTimeString()}";
                 options.Add(new OptionData(optionText));
             }
             _dropdown.options = options;
