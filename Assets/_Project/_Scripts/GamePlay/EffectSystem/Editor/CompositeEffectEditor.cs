@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using SnekTech.Editor;
-using SnekTech.MineSweeperRogue.EffectSystem;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using SnekTech.GamePlay.PlayerSystem;
-using SnekTech.MineSweeperRogue.EffectSystem;
 using UnityEngine;
 
 namespace SnekTech.GamePlay.EffectSystem

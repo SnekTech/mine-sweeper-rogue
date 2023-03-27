@@ -1,5 +1,4 @@
 ﻿using SnekTech.GamePlay.PlayerSystem;
-using SnekTech.MineSweeperRogue.EffectSystem;
 
 namespace SnekTech.GamePlay.EffectSystem.PlayerEffects
 {
