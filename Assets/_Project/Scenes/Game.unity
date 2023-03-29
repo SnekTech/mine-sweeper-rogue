@@ -964,8 +964,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -279, y: -92}
-  m_SizeDelta: {x: 416.78, y: 100}
+  m_AnchoredPosition: {x: -356, y: -37.599}
+  m_SizeDelta: {x: 163.8149, y: 60.1978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445048134
 MonoBehaviour:
@@ -1040,8 +1040,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Count Down Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
-  m_sharedMaterial: {fileID: 614707346233058595, guid: 529ff59f6ddf84a4db49a0f77473615f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
+  m_sharedMaterial: {fileID: 1165720069118869371, guid: ac3a703ebdc6f6641844be3d61784f59, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
