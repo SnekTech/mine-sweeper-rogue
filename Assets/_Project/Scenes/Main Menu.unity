@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1475377537542809957, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_text
-      value: Continue
+      value: "\u7EE7\u7EED\u6E38\u620F"
       objectReference: {fileID: 0}
     - target: {fileID: 1475377537542809958, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_AnchorMax.y
@@ -432,7 +432,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1475377537542809957, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_text
-      value: History
+      value: "\u5386\u53F2\u8BB0\u5F55"
       objectReference: {fileID: 0}
     - target: {fileID: 1475377537542809958, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_AnchorMax.y
@@ -823,7 +823,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1475377537542809957, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_text
-      value: New Game
+      value: "\u65B0\u6E38\u620F"
       objectReference: {fileID: 0}
     - target: {fileID: 1475377537542809958, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_AnchorMax.y
@@ -936,6 +936,10 @@ PrefabInstance:
     - target: {fileID: 1475377537582754427, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
       propertyPath: m_Name
       value: New Game Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 4042887180481880094, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f986cbe6bbe003d4b82bf655c5e49420, type: 3}

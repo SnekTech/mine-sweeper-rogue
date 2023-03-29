@@ -27,7 +27,7 @@ namespace SnekTech.UI.Modal
         [SerializeField]
         private ChooseItemPanel chooseItemPanel;
 
-        private const string ChooseItemHeader = "Choose An Item";
+        private const string ChooseItemHeader = "选择一个道具";
 
         public CanvasGroup BackgroundGroup => alphaAlphaGroup;
         public RectTransform ParentRect => transform.parent as RectTransform;
